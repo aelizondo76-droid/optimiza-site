@@ -45,7 +45,9 @@ const org = {
   <body>
     <Defs />
     <Nav active={active} />
-    <slot />
+    <main id="main">
+      <slot />
+    </main>
     <Footer />
     <script>
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
