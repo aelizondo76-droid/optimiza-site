@@ -10,6 +10,8 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Defs from '../components/Defs.astro';
+import Analytics from '../components/Analytics.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
 
 interface Props {
   title: string;
@@ -47,6 +49,7 @@ const org = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <Analytics />
     <slot name="head" />
   </head>
   <body>
@@ -56,6 +59,7 @@ const org = {
       <slot />
     </main>
     <Footer />
+    <WhatsAppButton />
     <script>
       const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const nav = document.getElementById('nav');
