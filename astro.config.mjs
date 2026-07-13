@@ -8,5 +8,10 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://optimizahq.com',
   adapter: vercel({ maxDuration: 60 }),
-  integrations: [react(), keystatic(), sitemap()],
+  integrations: [
+    react(),
+    keystatic(),
+    // Excluye páginas internas/privadas del sitemap público.
+    sitemap({ filter: (page) => !page.includes('/leads') }),
+  ],
 });
