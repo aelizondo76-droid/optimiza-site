@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import Markdoc from '@markdoc/markdoc';
+import { reader, categoryMeta } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const all = await reader.collections.analisis.all();
+  return all.filter((p) => !p.entry.draft).map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const entry = await reader.collections.analisis.read(slug!);
+if (!entry) throw new Error(`Análisis no encontrado: ${slug}`);
+
+const { node } = await entry.body();
+const html = Markdoc.renderers.html(Markdoc.transform(node));
+const cat = categoryMeta[entry.category] ?? categoryMeta.teardown;
+
+const title = entry.seo?.metaTitle?.trim() || `${entry.title} — Optimiza`;
+const description = entry.seo?.metaDescription?.trim() || entry.excerpt || '';
+const date = entry.publishDate
+  ? new Date(entry.publishDate).toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+---
+<Base title={title} description={description} active="analisis">
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <div class="art-head">
+        <span class={`tag ${cat.cls}`}>{cat.label}</span>
+        <h1>{entry.title}</h1>
+        {date && <p class="art-meta">{date}</p>}
+      </div>
+      <div class="prose" set:html={html}></div>
+      <div class="art-cta">
+        <p>¿Quieres un análisis así de tu sitio?</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .art { max-width: 720px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 36px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.tear { color: var(--violet-ink); background: rgba(106,62,240,0.10); }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .tag.self { color: #4A5A10; background: rgba(199,249,75,0.30); }
+  .tag.conv { color: #8a4b12; background: rgba(239,159,39,0.16); }
+  .art-head h1 { font-size: clamp(30px, 4.6vw, 46px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 13px; color: var(--faint); margin-top: 16px; }
+
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 40px 0 14px; }
+  .prose :global(h3) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: 20px; margin: 30px 0 10px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 20px; }
+  .prose :global(ul), .prose :global(ol) { margin: 0 0 20px; padding-left: 24px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 9px; line-height: 1.65; font-size: 17px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(img) { border-radius: 14px; margin: 24px 0; border: 1px solid var(--line); }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding-left: 18px; margin: 24px 0; color: var(--text); font-style: italic; }
+
+  .art-cta { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+</style>

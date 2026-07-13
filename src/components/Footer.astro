@@ -1,0 +1,36 @@
+---
+---
+<footer class="ft dark">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-col">
+        <a class="brand" href="/" aria-label="Optimiza">
+          <svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true"><use href="#markB"></use></svg>
+          Optimiza
+        </a>
+        <p class="tagline">Optimizamos tu negocio a través de tu web. Medido en ventas, no en reportes.</p>
+        <div class="ft-badge"><b>100/100</b> PageSpeed · este sitio</div>
+      </div>
+      <div class="ft-col"><h5>Servicios</h5><a href="/servicios">Velocidad</a><a href="/servicios">Visibilidad</a><a href="/servicios">Conversión</a><a href="/servicios">Automatización</a></div>
+      <div class="ft-col"><h5>Empresa</h5><a href="/nosotros">Nosotros</a><a href="/analisis">Análisis</a><a href="/servicios#escalera">Cómo empezar</a><a href="/contacto">Contacto</a></div>
+      <div class="ft-col"><h5>Empieza</h5><a href="/contacto">Diagnóstico gratis</a><a href="/nosotros">Programa Fundador</a><a href="/contacto">Agenda una llamada</a></div>
+    </div>
+    <div class="ft-bottom"><span>© 2026 Optimiza · optimizahq.com</span><span>Privacidad · Términos</span></div>
+  </div>
+</footer>
+
+<style>
+  footer.ft { border-top: 1px solid var(--line); }
+  .brand { display: inline-flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -0.03em; font-size: 20px; color: var(--text); margin-bottom: 8px; }
+  .brandmark { width: 24px; height: 24px; display: block; }
+  .tagline { color: var(--muted); font-size: 14px; max-width: 34ch; margin-top: 6px; }
+  .ft-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; padding-block: 56px 40px; }
+  @media (max-width: 780px) { .ft-top { grid-template-columns: 1fr 1fr; gap: 28px; } }
+  @media (max-width: 460px) { .ft-top { grid-template-columns: 1fr; } }
+  .ft-col h5 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin: 0 0 16px; }
+  .ft-col a { display: block; color: var(--muted); font-size: 14px; padding: 5px 0; transition: color .15s; }
+  .ft-col a:hover { color: var(--text); }
+  .ft-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; border: 1px solid var(--line); border-radius: 10px; padding: 9px 13px; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .ft-badge b { color: var(--lime); }
+  .ft-bottom { border-top: 1px solid var(--line-soft); padding-block: 22px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.04em; }
+</style>

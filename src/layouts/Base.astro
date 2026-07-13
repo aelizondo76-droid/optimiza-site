@@ -1,0 +1,74 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/space-grotesk';
+import '@fontsource/space-mono/400.css';
+import '@fontsource/space-mono/700.css';
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Defs from '../components/Defs.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  active?: string;
+}
+const { title, description, active } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const org = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Optimiza',
+  url: 'https://optimizahq.com',
+  slogan: 'Optimizamos tu negocio a través de tu web',
+  description: 'Firma de optimización web: velocidad, SEO, conversión y automatización, medido en ventas.',
+};
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Optimiza" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" set:html={JSON.stringify(org)} />
+  </head>
+  <body>
+    <Defs />
+    <Nav active={active} />
+    <slot />
+    <Footer />
+    <script>
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const nav = document.getElementById('nav');
+      const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 12);
+      window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+      if ('IntersectionObserver' in window && !reduce) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+      } else {
+        document.querySelectorAll('.reveal').forEach((el) => el.classList.add('in'));
+      }
+      document.querySelectorAll('.qa .q').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const qa = btn.parentElement!;
+          const a = qa.querySelector('.a') as HTMLElement;
+          const open = qa.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          a.style.maxHeight = open ? a.scrollHeight + 'px' : '0';
+        });
+      });
+    </script>
+  </body>
+</html>

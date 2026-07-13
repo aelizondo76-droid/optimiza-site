@@ -1,0 +1,35 @@
+---
+const { active } = Astro.props;
+const links = [
+  { href: '/servicios', label: 'Servicios', key: 'servicios' },
+  { href: '/nosotros', label: 'Nosotros', key: 'nosotros' },
+  { href: '/analisis', label: 'Análisis', key: 'analisis' },
+  { href: '/contacto', label: 'Contacto', key: 'contacto' },
+];
+---
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="Optimiza, inicio">
+      <svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true"><use href="#markB"></use></svg>
+      Optimiza
+    </a>
+    <nav class="nav-links">
+      {links.map((l) => (
+        <a class:list={['link', { active: active === l.key }]} href={l.href}>{l.label}</a>
+      ))}
+      <a class="btn btn-violet" href="/contacto">Diagnóstico gratis</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header.nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: blur(16px); border-bottom: 1px solid var(--line); transition: background .3s ease, box-shadow .3s ease; }
+  header.nav.scrolled { box-shadow: 0 1px 0 var(--line), 0 10px 26px -20px rgba(23,20,31,0.28); }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 80px; }
+  .brand { display: inline-flex; align-items: center; gap: 13px; font-weight: 700; letter-spacing: -0.03em; font-size: 23px; color: var(--text); }
+  .brandmark { width: 36px; height: 36px; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 34px; }
+  .nav-links a.link { font-size: 16px; color: #454150; transition: color .16s ease; padding: 6px 2px; }
+  .nav-links a.link.active, .nav-links a.link:hover { color: var(--text); }
+  @media (max-width: 780px) { .nav-links .link { display: none; } .nav-in { height: 68px; } .brandmark { width: 32px; height: 32px; } }
+</style>

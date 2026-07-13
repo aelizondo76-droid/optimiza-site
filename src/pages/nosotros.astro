@@ -1,0 +1,239 @@
+---
+import Base from '../layouts/Base.astro';
+import { siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagmanager } from 'simple-icons';
+import { getSeo } from '../lib/seo';
+const seo = await getSeo('nosotros', {
+  title: 'Nosotros — Optimiza',
+  description: 'El rigor de una gran agencia con la cercanía que ninguna te da. Conoce al fundador, nuestros principios y por qué puedes confiar en una firma nueva.',
+});
+const title = seo.title;
+const description = seo.description;
+const chk = 'M20 6 9 17l-5-5';
+const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagmanager];
+---
+<Base title={title} description={description} active="nosotros">
+  <section class="hero section">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="reveal">
+          <p class="eyebrow">Nosotros</p>
+          <h1>Tu empresa merece el rigor de una <em>gran agencia</em> — con la cercanía que ninguna te da.</h1>
+          <p class="lead">Optimiza nació para cerrar esa brecha: pericia técnica real, explicada sin humo y medida en ventas. Ni un freelance improvisado, ni una agencia que te trata como número.</p>
+          <div class="hero-cta">
+            <a class="btn btn-violet" href="#historia">Nuestra historia</a>
+            <a class="btn btn-ghost" href="/contacto">Conversemos</a>
+          </div>
+        </div>
+        <div class="fcard reveal">
+          <div class="fcard-top">
+            <div class="avatar" aria-hidden="true">OP</div>
+            <div><p class="frole">Fundador · Optimiza</p><h2>[Tu nombre aquí]</h2></div>
+          </div>
+          <p class="ftag">"Prefiero demostrar sobre tu propio sitio antes que presumir casos ajenos. La confianza se gana mostrando."</p>
+          <div class="fstats">
+            <div class="fstat"><div class="sv">[8]<small>+</small></div><div class="sl">años en performance web</div></div>
+            <div class="fstat"><div class="sv">[5]</div><div class="sl">certificaciones activas</div></div>
+            <div class="fstat"><div class="sv">100<small>/100</small></div><div class="sl">este sitio en PageSpeed</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="historia">
+    <div class="wrap narrow story">
+      <div class="reveal">
+        <p class="eyebrow">Por qué existe Optimiza</p>
+        <h2>Vi el mismo patrón demasiadas veces.</h2>
+        <p>Durante años vi negocios buenos, con productos que valían la pena, <strong>perdiendo ventas por una web lenta, invisible o que no convertía.</strong> Contrataban agencias que entregaban reportes llenos de gráficas bonitas y cero resultados reales.</p>
+        <div class="pullquote">"El técnico brillante que nadie entiende no sirve. El vendedor que no domina lo técnico, tampoco. <span>Optimiza es lo de en medio: rigor real, explicado claro, medido en dinero.</span>"</div>
+        <p>Fundé Optimiza para lo contrario de lo que veía: un socio que trata tu negocio como si fuera suyo, que te habla en tu idioma y que responde por sus resultados. <strong>Somos nuevos como firma, y lo decimos de frente.</strong> Por eso ponemos garantía, precio de fundador y la cara por delante.</p>
+        <p class="signoff">— [Tu nombre], fundador · <span>reemplaza este texto con tu historia real</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="valores">
+    <div class="wrap">
+      <div class="vhead reveal">
+        <p class="eyebrow">Principios</p>
+        <h2>Los principios no se negocian.</h2>
+        <p class="lead">No son valores de póster. Son la forma en que decidimos, priorizamos y te hablamos todos los días. Estos son los nuestros.</p>
+      </div>
+      <div class="values">
+        <div class="vcard reveal">
+          <div class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"></path><path d="M16 7h6v6"></path></svg></div>
+          <span class="vnum">01</span><h3>Resultados, no reportes</h3>
+          <p>Medimos en ventas y tiempo recuperado, no en entregables bonitos. Si no mueve tu aguja, no lo hacemos.</p>
+        </div>
+        <div class="vcard reveal">
+          <div class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+          <span class="vnum">02</span><h3>Transparencia total</h3>
+          <p>Verás el proceso, los números y hasta nuestros errores. Sin cajas negras ni facturación por horas misteriosas.</p>
+        </div>
+        <div class="vcard reveal">
+          <div class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path><path d="M7 9h10M7 13h6"></path></svg></div>
+          <span class="vnum">03</span><h3>Cero jerga</h3>
+          <p>Traducimos lo técnico a decisiones de negocio que entiendes. No necesitas volverte experto en Core Web Vitals — para eso estamos.</p>
+        </div>
+        <div class="vcard reveal">
+          <div class="vico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></div>
+          <span class="vnum">04</span><h3>Rigor técnico</h3>
+          <p>El estándar de una gran agencia — auditorías serias, buenas prácticas, medición real — sin la distancia ni la burocracia.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="confianza">
+    <div class="wrap">
+      <div class="band dark reveal">
+        <div class="tband">
+          <div class="thead">
+            <p class="eyebrow">Por qué confiar en alguien nuevo</p>
+            <h2>No te pedimos fe. Te damos pruebas.</h2>
+            <p class="lead">Cuando aún no hay 100 logos que mostrar, la confianza se construye con demostración, certificaciones y una garantía que pone el riesgo de nuestro lado.</p>
+          </div>
+          <div class="tgrid">
+            <div>
+              <p class="certs-h">Certificaciones activas</p>
+              <div class="certs">
+                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogleads.path} fill={`#${siGoogleads.hex}`}></path></svg></span>Google Ads</span>
+                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogleanalytics.path} fill={`#${siGoogleanalytics.hex}`}></path></svg></span>Analytics 4</span>
+                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siMeta.path} fill={`#${siMeta.hex}`}></path></svg></span>Meta Business</span>
+                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siHubspot.path} fill={`#${siHubspot.hex}`}></path></svg></span>HubSpot</span>
+                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogletagmanager.path} fill={`#${siGoogletagmanager.hex}`}></path></svg></span>Tag Manager</span>
+              </div>
+              <div class="glist">
+                <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Predicamos con el ejemplo: este sitio saca 100/100.</span></div>
+                <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Garantía de desempeño: si no cumplimos, no cobramos.</span></div>
+                <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Publicamos análisis reales — pericia visible antes de contratarnos.</span></div>
+              </div>
+            </div>
+            <div class="readout">
+              <div class="r"><div class="rn">100<small>/100</small></div><div class="rl">PageSpeed</div></div>
+              <div class="r"><div class="rn">0.4<small>s</small></div><div class="rl">Carga</div></div>
+              <div class="r"><div class="rn">A<small>+</small></div><div class="rl">Core Web Vitals</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="founder-band dark reveal">
+        <div class="fb-glow"></div>
+        <div class="fb-grid">
+          <div>
+            <p class="eyebrow">Programa Fundador</p>
+            <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
+            <p class="lead" style="margin-top:14px">Buscamos cinco negocios en crecimiento para trabajar de cerca a cambio de precio preferente y un caso de éxito compartido. Entra temprano en algo bueno.</p>
+            <div class="fb-slots" aria-hidden="true"><span class="slot taken"></span><span class="slot taken"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
+            <p class="fb-count">2 de 5 lugares ocupados</p>
+            <div class="hero-cta"><a class="btn btn-lime" href="/contacto">Aplicar al Programa Fundador</a></div>
+          </div>
+          <div class="fb-guarantee">
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Precio fundador, congelado mientras seas cliente.</span></div>
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Sin amarres: mes a mes, cancelas cuando quieras.</span></div>
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Atención directa del fundador, no de un becario.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section final dark">
+    <div class="fglow"></div>
+    <div class="wrap">
+      <p class="eyebrow" style="justify-content:center">Hablemos</p>
+      <h2>¿Conversamos sobre tu web?</h2>
+      <p class="lead" style="margin:18px auto 0">Empieza por un diagnóstico gratis, o agenda 15 minutos directamente con el fundador. Sin compromiso.</p>
+      <div class="cta-row">
+        <a class="btn btn-lime" href="/">Analizar mi web gratis</a>
+        <a class="btn btn-ghost" href="/contacto">Agenda una llamada</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 720px; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .hero h1 { font-size: clamp(34px, 4.8vw, 54px); }
+  .hero h1 em { font-style: normal; color: var(--violet-ink); }
+  .hero .lead { margin-top: 20px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+  .fcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px; box-shadow: var(--card-shadow); }
+  .fcard-top { display: flex; align-items: center; gap: 16px; }
+  .avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(140deg, #8B6CFF, #5B3FD6); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 26px; color: #0C081F; flex: none; }
+  .fcard .frole { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-ink); font-weight: 600; }
+  .fcard h2 { font-size: 22px; margin: 6px 0 0; }
+  .fcard .ftag { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.55; }
+  .fstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-soft); }
+  .fstat .sv { font-family: var(--mono); font-size: 19px; font-weight: 700; color: var(--violet-ink); letter-spacing: -0.02em; }
+  .fstat .sv small { color: var(--muted); font-size: 13px; }
+  .fstat .sl { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); margin-top: 4px; line-height: 1.3; }
+
+  .story h2 { font-size: clamp(26px, 3.6vw, 38px); margin-bottom: 24px; }
+  .story p { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .story p strong { color: var(--text); font-weight: 600; }
+  .pullquote { font-family: var(--serif); font-style: italic; font-size: clamp(22px, 3vw, 30px); line-height: 1.4; color: var(--text); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 28px 0; margin: 32px 0; letter-spacing: -0.01em; }
+  .pullquote span { color: var(--violet-ink); }
+  .signoff { color: var(--muted); font-size: 15px; font-style: italic; }
+  .signoff span { font-family: var(--mono); font-style: normal; font-size: 13px; }
+
+  .vhead { max-width: 60ch; margin-bottom: 44px; }
+  .vhead h2 { font-size: clamp(26px, 3.6vw, 40px); }
+  .vhead p { margin-top: 14px; }
+  .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
+  .vcard { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px; padding: 24px; box-shadow: var(--card-shadow); position: relative; }
+  .vnum { position: absolute; top: 20px; right: 22px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--faint); letter-spacing: 0.05em; }
+  .vico { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; background: linear-gradient(140deg, rgba(106,62,240,0.16), rgba(43,196,214,0.09)); border: 1px solid rgba(106,62,240,0.18); color: var(--violet-ink); margin-bottom: 18px; }
+  .vico svg { width: 24px; height: 24px; }
+  .vcard h3 { font-size: 18px; }
+  .vcard p { color: var(--muted); font-size: 14.5px; margin-top: 9px; line-height: 1.55; }
+
+  .band { border-radius: 22px; }
+  .band.dark { background: #0B0A12; }
+  .tband { padding: clamp(28px,5vw,52px); }
+  .tband .thead { max-width: 60ch; margin-bottom: 30px; }
+  .tband h2 { font-size: clamp(24px, 3.4vw, 34px); }
+  .tband .lead { margin-top: 14px; }
+  .tgrid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; align-items: center; }
+  @media (max-width: 780px) { .tgrid { grid-template-columns: 1fr; gap: 24px; } }
+  .certs-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 14px; }
+  .certs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cert { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 6px 15px 6px 6px; background: rgba(255,255,255,0.03); }
+  .cert .cl { width: 25px; height: 25px; border-radius: 50%; background: #fff; display: grid; place-items: center; flex: none; }
+  .cert .cl svg { width: 15px; height: 15px; display: block; }
+  .glist { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
+  .glist .g, .fb-guarantee .g { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: var(--text); }
+  .glist .g svg, .fb-guarantee .g svg { color: var(--lime); flex: none; margin-top: 2px; }
+  .readout { display: flex; gap: 26px; flex-wrap: wrap; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); }
+  .readout .rn { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--lime); letter-spacing: -0.02em; }
+  .readout .rn small { color: var(--muted); font-size: 14px; }
+  .readout .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--faint); margin-top: 4px; }
+
+  .founder-band { border: 1px solid var(--line); border-radius: 22px; padding: clamp(28px,5vw,52px); position: relative; overflow: hidden; }
+  .founder-band.dark { background: #0B0A12; }
+  .founder-band .fb-glow { position: absolute; inset: auto -10% -60% auto; width: 460px; height: 460px; background: radial-gradient(circle, rgba(199,249,75,0.14), transparent 65%); pointer-events: none; }
+  .founder-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, rgba(139,108,255,0.18), transparent 60%); pointer-events: none; }
+  .fb-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
+  @media (max-width: 780px) { .fb-grid { grid-template-columns: 1fr; gap: 26px; } }
+  .fb-slots { display: flex; gap: 8px; margin: 22px 0; }
+  .slot { flex: 1; height: 6px; border-radius: 99px; background: var(--violet); }
+  .slot.taken { background: rgba(255,255,255,0.12); }
+  .fb-count { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .fb-guarantee { display: flex; flex-direction: column; gap: 14px; }
+
+  .final { text-align: center; overflow: hidden; }
+  .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, rgba(139,108,255,0.24), transparent 65%); pointer-events: none; }
+  .final :global(.wrap) { position: relative; z-index: 1; }
+  .final h2 { font-size: clamp(30px, 5vw, 50px); max-width: 18ch; margin-inline: auto; }
+  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+</style>

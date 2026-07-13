@@ -1,0 +1,20 @@
+# Optimiza
+
+> Firma de optimización web para empresas en crecimiento. Optimizamos tu negocio a través de tu web: velocidad, visibilidad (SEO/GEO), conversión y automatización — medido en ventas, no en reportes.
+
+## Qué hace Optimiza
+- **Velocidad**: Core Web Vitals, compresión de imágenes, caché y CDN para que la web cargue al instante.
+- **Visibilidad**: SEO técnico, contenido, optimización para IA (GEO) y Google Ads.
+- **Conversión**: landing pages, pruebas A/B, medición GA4/GTM y optimización de formularios.
+- **Automatización**: integración de CRM, flujos de nurturing y seguimiento automático.
+
+## Cómo empezar
+- Diagnóstico gratuito del sitio (velocidad, SEO y conversión).
+- Escalera de servicios: Diagnóstico → Cimientos → Aceleración → Autopilot.
+- Programa Fundador: cupo limitado con precio preferente y garantía de desempeño.
+
+## Enlaces
+- Servicios: https://optimizahq.com/servicios
+- Análisis y teardowns: https://optimizahq.com/analisis
+- Nosotros: https://optimizahq.com/nosotros
+- Contacto: https://optimizahq.com/contacto

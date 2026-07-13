@@ -1,0 +1,15 @@
+# Optimiza — robots.txt
+User-agent: *
+Allow: /
+
+# Crawlers de IA / búsqueda por IA (retrieval) — permitidos
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://optimizahq.com/sitemap-index.xml

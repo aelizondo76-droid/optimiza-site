@@ -1,0 +1,246 @@
+---
+// Escáner de diagnóstico de 2 pasos, estilo instrumento. Colocar dentro de una
+// sección .dark. En producción llamará la API de Google PageSpeed vía serverless.
+---
+<div class="scanner" id="scanner">
+  <div class="scan-chrome">
+    <span class="scan-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="tag"><svg class="scan-ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#markA"></use></svg>Escáner Optimiza</span>
+    <span class="scan-live"><i class="pulse"></i>EN VIVO</span>
+  </div>
+  <form class="scan-input" id="scanForm">
+    <label class="field" for="url"><span class="prefix">https://</span>
+      <input type="text" id="url" placeholder="tu-sitio.com" autocomplete="off" spellcheck="false" aria-label="URL de tu sitio" />
+    </label>
+    <button class="btn btn-lime" type="submit" id="scanBtn">Analizar mi web</button>
+  </form>
+  <div class="scan-progress" aria-hidden="true"><span></span></div>
+  <div class="scan-meta" aria-hidden="true">
+    <span class="sm-live"><i></i>Análisis en tiempo real</span>
+    <span>47 métricas</span><span>Core Web Vitals</span><span>SEO</span><span>Conversión</span>
+  </div>
+
+  <div class="result" id="result" aria-live="polite">
+    <div class="gauge-row">
+      <div class="gauge">
+        <svg viewBox="0 0 190 116" aria-hidden="true">
+          <path d="M6 108 A89 89 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2.5" stroke-dasharray="1.5 9.5" stroke-linecap="round"></path>
+          <path d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="12" stroke-linecap="round"></path>
+          <path id="gaugeArc" d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="#C7F94B" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1); filter: drop-shadow(0 0 7px rgba(199,249,75,0.55));"></path>
+        </svg>
+        <div class="val"><div class="num"><span id="scoreNum">0</span><small>/100</small></div><div class="cap">Puntaje Optimiza</div></div>
+      </div>
+      <div class="subs">
+        <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:linear-gradient(90deg,#6A3EF0,#8B6CFF)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">SEO</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:linear-gradient(90deg,#159AAA,#34DDE6)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Móvil</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:linear-gradient(90deg,#6A3EF0,#8B6CFF)"></span></div></div>
+      </div>
+    </div>
+    <div class="findings">
+      <div class="fhead">Detectamos <b>7 oportunidades</b> · <b>3 críticas</b></div>
+      <div class="flist">
+        <div class="fitem"><span class="sev" style="background:#ff5c6c"></span><span class="txt">Imágenes sin comprimir frenan la carga en móvil</span></div>
+        <div class="fitem"><span class="sev" style="background:#ffb454"></span><span class="txt">Faltan metadatos que Google usa para posicionarte</span></div>
+        <div class="fitem locked"><span class="sev" style="background:#ff5c6c"></span><span class="txt">•••••••• oportunidad crítica de conversión ••••••••</span></div>
+        <div class="fitem locked"><span class="sev" style="background:#8B6CFF"></span><span class="txt">•••••••••••• 4 mejoras más ••••••••••••</span></div>
+      </div>
+    </div>
+    <div class="gate" id="gate">
+      <div id="gateStep1">
+        <p class="gt">Recibe el diagnóstico completo + un plan de acción priorizado por impacto.</p>
+        <form class="gform" id="gateForm">
+          <input type="email" id="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
+          <button class="btn btn-violet" type="submit">Recibir diagnóstico</button>
+        </form>
+        <p class="note">Vista previa ilustrativa · el diagnóstico real analiza tu sitio en vivo.</p>
+      </div>
+      <div class="gate-step2" id="gateStep2">
+        <p class="g-confirm">✓ Diagnóstico en camino a <b id="emailEcho">tu correo</b></p>
+        <p class="gt2">¿Quieres que tu plan sea más preciso? Cuéntanos 3 cosas — opcional:</p>
+        <form id="qualForm">
+          <div class="q-row"><input class="qinp" id="q-name" type="text" placeholder="Tu nombre" /></div>
+          <div class="q-row">
+            <select class="qinp" id="q-goal">
+              <option value="">¿Cuál es tu meta principal?</option>
+              <option>Vender más</option>
+              <option>Conseguir más leads</option>
+              <option>Aparecer primero (visibilidad)</option>
+              <option>Automatizar y ahorrar tiempo</option>
+            </select>
+          </div>
+          <div class="q-row">
+            <span class="q-label">¿Inviertes en publicidad digital hoy?</span>
+            <div class="qpills" role="group" aria-label="¿Inviertes en publicidad?">
+              <label class="qpill on"><input type="radio" name="qads" value="si" checked />Sí</label>
+              <label class="qpill"><input type="radio" name="qads" value="no" />No</label>
+              <label class="qpill"><input type="radio" name="qads" value="pronto" />Pronto</label>
+            </div>
+          </div>
+          <button class="btn btn-lime" type="submit" style="width:100%;margin-top:4px">Personalizar mi diagnóstico</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .scanner { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; padding: 0; box-shadow: var(--card-shadow), 0 0 0 1px rgba(139,108,255,0.06);
+    background:
+      linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
+      linear-gradient(180deg, var(--surface-2), var(--surface)); }
+  .scanner > *:not(.scan-chrome) { padding-inline: 24px; }
+  .scanner > .scan-input { padding-top: 20px; }
+  .scanner > .result { padding-bottom: 24px; }
+  .scan-chrome { display: flex; align-items: center; gap: 12px; padding: 13px 18px; border-bottom: 1px solid var(--line-soft); background: rgba(255,255,255,0.02); }
+  .scan-dots { display: inline-flex; gap: 6px; }
+  .scan-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
+  .scan-dots i:nth-child(1) { background: #ff5f57; }
+  .scan-dots i:nth-child(2) { background: #febc2e; }
+  .scan-dots i:nth-child(3) { background: #28c840; }
+  .scan-chrome .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 9px; margin-left: 4px; }
+  .scan-ico { width: 22px; height: 20px; display: block; }
+  .scan-chrome .scan-live { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10.5px; color: var(--cyan-ink); letter-spacing: 0.14em; }
+  .scan-live .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan-ink); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(52,221,230,0.5);} 70%{ box-shadow:0 0 0 9px rgba(52,221,230,0);} 100%{box-shadow:0 0 0 0 rgba(52,221,230,0);} }
+
+  .scan-input { display: flex; gap: 10px; }
+  .scan-input { min-width: 0; }
+  .scan-input .field { flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; background: var(--ink-2); border: 1px solid var(--line); border-radius: 12px; padding: 0 14px; transition: border-color .18s ease, box-shadow .18s ease; }
+  .scan-input .field:focus-within { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(139,108,255,0.14); }
+  .scan-input .field .prefix { font-family: var(--mono); font-size: 13px; color: var(--faint); }
+  .scan-input input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--text); font-family: var(--mono); font-size: 15px; padding: 15px 0; letter-spacing: 0.01em; }
+  .scan-input input::placeholder { color: var(--faint); }
+  @media (max-width: 480px) { .scan-input { flex-direction: column; } .scan-input .btn { width: 100%; } }
+
+  .scan-progress { height: 2px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin-top: 14px; opacity: 0; transition: opacity .2s; }
+  .scanning .scan-progress { opacity: 1; }
+  .scan-progress span { display: block; height: 100%; width: 38%; border-radius: 99px; background: linear-gradient(90deg, transparent, #6A3EF0, #34DDE6, transparent); transform: translateX(-120%); }
+  .scanning .scan-progress span { animation: scanmove 0.9s linear infinite; }
+  @keyframes scanmove { to { transform: translateX(340%); } }
+
+  .scan-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; margin-top: 14px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+  .scan-meta span { display: inline-flex; align-items: center; }
+  .scan-meta span:not(.sm-live) { padding-left: 14px; border-left: 1px solid var(--line-soft); }
+  .scan-meta .sm-live { color: var(--cyan-ink); gap: 7px; }
+  .scan-meta .sm-live i { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-ink); animation: blink 1.4s ease-in-out infinite; }
+  @keyframes blink { 50% { opacity: 0.25; } }
+
+  .result { margin-top: 22px; display: none; }
+  .result.show { display: block; }
+  .gauge-row { display: grid; grid-template-columns: 190px 1fr; gap: 22px; align-items: center; }
+  @media (max-width: 520px) { .gauge-row { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+  .gauge { position: relative; width: 190px; height: 116px; }
+  .gauge svg { display: block; width: 190px; height: 116px; }
+  .gauge .val { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; }
+  .gauge .num { font-family: var(--mono); font-size: 42px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; text-shadow: 0 0 20px rgba(199,249,75,0.35); }
+  .gauge .num small { font-size: 17px; color: var(--muted); text-shadow: none; }
+  .gauge .cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .subs { display: flex; flex-direction: column; gap: 13px; width: 100%; }
+  .sub-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .sub-top .lbl { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; }
+  .sub-top .n { color: var(--text); font-weight: 700; }
+  .bar { height: 7px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; }
+  .bar span { display: block; height: 100%; width: 0; border-radius: 99px; transition: width 1.1s cubic-bezier(.2,.7,.2,1); }
+  .findings { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 18px; }
+  .findings .fhead { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 12px; }
+  .findings .fhead b { color: var(--lime); }
+  .flist { display: flex; flex-direction: column; gap: 9px; }
+  .fitem { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--text); }
+  .fitem .sev { width: 8px; height: 8px; border-radius: 2px; flex: none; }
+  .fitem.locked { color: var(--faint); filter: blur(0.4px); }
+  .gate { margin-top: 18px; background: #FFFFFF; border: 1px solid rgba(23,20,31,0.10); border-radius: 14px; padding: 18px;
+    --surface: #F4F3FA; --surface-2: #FBFAFF; --ink-2: #F4F3FA;
+    --text: #17141F; --muted: #615C74; --faint: #938EA6;
+    --line: rgba(23,20,31,0.12); --line-soft: rgba(23,20,31,0.06);
+    --violet: #6A3EF0; --violet-ink: #5B2FD6; --cyan-ink: #0E96B0;
+    --vbtn-bg: #6A3EF0; --vbtn-fg: #FFFFFF; }
+  .gate p.gt { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+  .gate .gform { display: flex; gap: 10px; }
+  .gate input { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; }
+  .gate input:focus { border-color: var(--violet); }
+  @media (max-width: 480px) { .gate .gform { flex-direction: column; } }
+  .gate .note { font-family: var(--mono); font-size: 10.5px; color: var(--faint); margin-top: 11px; letter-spacing: 0.03em; }
+  .gate.done { text-align: center; }
+  .gate.done .check { color: #3B9E4E; font-family: var(--mono); font-size: 14px; }
+  .gate-step2 { display: none; }
+  .gate-step2.show { display: block; animation: expandIn .45s ease both; }
+  @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  .g-confirm { font-family: var(--mono); font-size: 12.5px; color: #3B9E4E; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .gt2 { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
+  .q-row { margin-bottom: 10px; }
+  .qinp { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; transition: border-color .16s ease; }
+  .qinp:focus { border-color: var(--violet); }
+  select.qinp { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A95B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 38px; cursor: pointer; }
+  .q-label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+  .qpills { display: flex; gap: 8px; }
+  .qpill { flex: 1; text-align: center; font-size: 13px; padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); cursor: pointer; user-select: none; transition: border-color .16s, background .16s; position: relative; }
+  .qpill.on { border-color: var(--violet); background: rgba(139,108,255,0.12); color: var(--violet-ink); font-weight: 600; }
+  .qpill input { position: absolute; opacity: 0; pointer-events: none; }
+</style>
+
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const scanner = document.getElementById('scanner');
+  const result = document.getElementById('result');
+  if (result && scanner) {
+    const arc = document.getElementById('gaugeArc');
+    const scoreNum = document.getElementById('scoreNum');
+    const scanBtn = document.getElementById('scanBtn') as HTMLButtonElement;
+    const hashScore = (s: string) => { let h = 0; s = s || 'demo'; for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) & 0xffffffff; } return Math.abs(h); };
+    const animateNumber = (el: HTMLElement, to: number, dur: number) => {
+      if (reduce) { el.textContent = String(to); return; }
+      const start = performance.now();
+      const tick = (now: number) => { const p = Math.min(1, (now - start) / dur); const e = 1 - Math.pow(1 - p, 3); el.textContent = String(Math.round(e * to)); if (p < 1) requestAnimationFrame(tick); };
+      requestAnimationFrame(tick);
+    };
+    const setBar = (barId: string, numId: string, v: number) => {
+      const bar = document.getElementById(barId)!; const num = document.getElementById(numId)!;
+      requestAnimationFrame(() => { bar.style.width = v + '%'; });
+      animateNumber(num, v, 1200);
+    };
+    const runScan = (url: string) => {
+      const seed = hashScore(url);
+      const total = 38 + (seed % 25), vel = 30 + (seed % 30), seo = 40 + ((seed >> 3) % 35), mob = 34 + ((seed >> 6) % 28);
+      scanBtn.disabled = true; const prev = scanBtn.textContent; scanBtn.textContent = 'Analizando…';
+      scanner.classList.add('scanning');
+      window.setTimeout(() => {
+        scanner.classList.remove('scanning');
+        result.classList.add('show'); scanBtn.disabled = false; scanBtn.textContent = prev;
+        requestAnimationFrame(() => {
+          if (arc) arc.style.strokeDashoffset = String(100 - total);
+          if (scoreNum) animateNumber(scoreNum, total, 1300);
+          setBar('b-vel', 'n-vel', vel); setBar('b-seo', 'n-seo', seo); setBar('b-mob', 'n-mob', mob);
+        });
+        result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+      }, reduce ? 100 : 1400);
+    };
+    document.getElementById('scanForm')!.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const el = document.getElementById('url') as HTMLInputElement;
+      runScan((el.value || '').trim() || 'tu-sitio.com');
+    });
+    document.getElementById('gateForm')!.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+      const echo = document.getElementById('emailEcho'); if (echo && email) echo.textContent = email;
+      document.getElementById('gateStep1')!.style.display = 'none';
+      document.getElementById('gateStep2')!.classList.add('show');
+    });
+    document.querySelectorAll('.qpills').forEach((group) => {
+      group.querySelectorAll('.qpill').forEach((pill) => {
+        pill.addEventListener('click', () => {
+          group.querySelectorAll('.qpill').forEach((p) => p.classList.remove('on'));
+          pill.classList.add('on');
+          const r = pill.querySelector('input') as HTMLInputElement | null; if (r) r.checked = true;
+        });
+      });
+    });
+    document.getElementById('qualForm')!.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nm = ((document.getElementById('q-name') as HTMLInputElement).value || '').trim().split(' ')[0];
+      const gate = document.getElementById('gate')!; gate.classList.add('done');
+      gate.innerHTML = '<p class="check">✓ ' + (nm ? '¡Listo, ' + nm + '! ' : '¡Listo! ') + 'Personalizamos tu diagnóstico.</p><p class="note">Te contactamos en menos de 24h. En el producto real, aquí entra el lead calificado a tu CRM.</p>';
+    });
+  }
+</script>
