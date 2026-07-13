@@ -1,8 +1,3 @@
-import { createReader } from '@keystatic/core/reader';
-import keystaticConfig from '../../keystatic.config';
-
-const reader = createReader(process.cwd(), keystaticConfig);
-
 export type PageKey = 'home' | 'servicios' | 'nosotros' | 'analisis' | 'contacto';
 
 interface Fallback {
@@ -14,10 +9,15 @@ interface Fallback {
  * Resuelve el SEO de una página de marketing.
  * Lee los overrides desde Keystatic (singleton "SEO de las páginas");
  * si un campo está vacío o el contenido aún no existe, usa el respaldo del código.
+ * El reader se importa de forma dinámica para no arrastrar el CSS del admin de
+ * Keystatic al bundle de las páginas públicas.
  */
 export async function getSeo(page: PageKey, fallback: Fallback) {
-  let data: Awaited<ReturnType<typeof reader.singletons.seo.read>> = null;
+  let data: any = null;
   try {
+    const { createReader } = await import('@keystatic/core/reader');
+    const { default: keystaticConfig } = await import('../../keystatic.config');
+    const reader = createReader(process.cwd(), keystaticConfig);
     data = await reader.singletons.seo.read();
   } catch {
     data = null;

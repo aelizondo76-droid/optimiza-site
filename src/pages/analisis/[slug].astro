@@ -1,15 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Markdoc from '@markdoc/markdoc';
-import { reader, categoryMeta } from '../../lib/content';
+import { getAnalisisSlugs, getAnalisisEntry, categoryMeta } from '../../lib/content';
 
 export async function getStaticPaths() {
-  const all = await reader.collections.analisis.all();
-  return all.filter((p) => !p.entry.draft).map((p) => ({ params: { slug: p.slug } }));
+  const slugs = await getAnalisisSlugs();
+  return slugs.map((slug) => ({ params: { slug } }));
 }
 
 const { slug } = Astro.params;
-const entry = await reader.collections.analisis.read(slug!);
+const entry = await getAnalisisEntry(slug!);
 if (!entry) throw new Error(`Análisis no encontrado: ${slug}`);
 
 const { node } = await entry.body();
