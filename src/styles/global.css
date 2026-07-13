@@ -2,7 +2,7 @@
 
 :root {
   --bg: #F7F6FC; --surface: #FFFFFF; --surface-2: #FBFAFF; --ink-2: #FFFFFF;
-  --text: #17141F; --muted: #615C74; --faint: #938EA6;
+  --text: #17141F; --muted: #615C74; --faint: #726D86;
   --line: rgba(23,20,31,0.11); --line-soft: rgba(23,20,31,0.06);
   --violet: #6A3EF0; --violet-ink: #5B2FD6; --cyan-ink: #0E96B0; --lime: #C7F94B;
   --vbtn-bg: #6A3EF0; --vbtn-fg: #FFFFFF; --ico-bg: rgba(106,62,240,0.10);
@@ -15,7 +15,7 @@
 }
 .dark {
   --bg: #0B0A12; --surface: #15121F; --surface-2: #1B1729; --ink-2: #0E0C16;
-  --text: #F3F1FB; --muted: #9A95B3; --faint: #6A6580;
+  --text: #F3F1FB; --muted: #9A95B3; --faint: #9691AD;
   --line: rgba(139,108,255,0.16); --line-soft: rgba(255,255,255,0.06);
   --violet: #8B6CFF; --violet-ink: #B9A6FF; --cyan-ink: #34DDE6; --lime: #C7F94B;
   --vbtn-bg: #8B6CFF; --vbtn-fg: #0C081F; --ico-bg: rgba(139,108,255,0.14);
