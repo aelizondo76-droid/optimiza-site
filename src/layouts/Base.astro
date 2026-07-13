@@ -47,6 +47,7 @@ const org = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <slot name="head" />
   </head>
   <body>
     <Defs />

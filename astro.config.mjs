@@ -7,6 +7,6 @@ import vercel from '@astrojs/vercel';
 // https://astro.build
 export default defineConfig({
   site: 'https://optimizahq.com',
-  adapter: vercel(),
+  adapter: vercel({ maxDuration: 60 }),
   integrations: [react(), keystatic(), sitemap()],
 });

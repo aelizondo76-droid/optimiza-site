@@ -14,6 +14,7 @@
     </label>
     <button class="btn btn-lime" type="submit" id="scanBtn">Analizar mi web</button>
   </form>
+  <p class="scan-err" id="scanErr" role="alert"></p>
   <div class="scan-progress" aria-hidden="true"><span></span></div>
   <div class="scan-meta" aria-hidden="true">
     <span class="sm-live"><i></i>Análisis en tiempo real</span>
@@ -32,18 +33,13 @@
       </div>
       <div class="subs">
         <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:linear-gradient(90deg,#6A3EF0,#8B6CFF)"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">SEO</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:linear-gradient(90deg,#159AAA,#34DDE6)"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">Móvil</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:linear-gradient(90deg,#6A3EF0,#8B6CFF)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Visibilidad</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:linear-gradient(90deg,#159AAA,#34DDE6)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Conversión</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:linear-gradient(90deg,#6A3EF0,#8B6CFF)"></span></div></div>
       </div>
     </div>
     <div class="findings">
-      <div class="fhead">Detectamos <b>7 oportunidades</b> · <b>3 críticas</b></div>
-      <div class="flist">
-        <div class="fitem"><span class="sev" style="background:#ff5c6c"></span><span class="txt">Imágenes sin comprimir frenan la carga en móvil</span></div>
-        <div class="fitem"><span class="sev" style="background:#ffb454"></span><span class="txt">Faltan metadatos que Google usa para posicionarte</span></div>
-        <div class="fitem locked"><span class="sev" style="background:#ff5c6c"></span><span class="txt">•••••••• oportunidad crítica de conversión ••••••••</span></div>
-        <div class="fitem locked"><span class="sev" style="background:#8B6CFF"></span><span class="txt">•••••••••••• 4 mejoras más ••••••••••••</span></div>
-      </div>
+      <div class="fhead" id="fhead">Analizando oportunidades…</div>
+      <div class="flist" id="flist"></div>
     </div>
     <div class="gate" id="gate">
       <div id="gateStep1">
@@ -56,6 +52,7 @@
       </div>
       <div class="gate-step2" id="gateStep2">
         <p class="g-confirm">✓ Diagnóstico en camino a <b id="emailEcho">tu correo</b></p>
+        <a class="btn btn-violet report-link" id="reportLink" href="#" target="_blank" rel="noopener">Ver tu informe completo →</a>
         <p class="gt2">¿Quieres que tu plan sea más preciso? Cuéntanos 3 cosas — opcional:</p>
         <form id="qualForm">
           <div class="q-row"><input class="qinp" id="q-name" type="text" placeholder="Tu nombre" /></div>
@@ -177,6 +174,10 @@
   .qpill { flex: 1; text-align: center; font-size: 13px; padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); cursor: pointer; user-select: none; transition: border-color .16s, background .16s; position: relative; }
   .qpill.on { border-color: var(--violet); background: rgba(139,108,255,0.12); color: var(--violet-ink); font-weight: 600; }
   .qpill input { position: absolute; opacity: 0; pointer-events: none; }
+  .scan-err { color: #ff8b95; font-family: var(--mono); font-size: 12px; margin-top: 10px; display: none; }
+  .scan-err.show { display: block; }
+  .report-link { width: 100%; margin-bottom: 16px; }
+  .fitem .txt em { color: var(--faint); font-style: normal; }
 </style>
 
 <script>
@@ -187,7 +188,13 @@
     const arc = document.getElementById('gaugeArc');
     const scoreNum = document.getElementById('scoreNum');
     const scanBtn = document.getElementById('scanBtn') as HTMLButtonElement;
-    const hashScore = (s: string) => { let h = 0; s = s || 'demo'; for (let i = 0; i < s.length; i++) { h = (h * 31 + s.charCodeAt(i)) & 0xffffffff; } return Math.abs(h); };
+    const errEl = document.getElementById('scanErr')!;
+    const sevColor = (ok: unknown) => (ok === false ? '#ff5c6c' : ok === 'warn' ? '#ffb454' : '#3B9E4E');
+
+    // Estado de la sesión de escaneo
+    let reportId = '';
+    let leadEmail = '';
+
     const animateNumber = (el: HTMLElement, to: number, dur: number) => {
       if (reduce) { el.textContent = String(to); return; }
       const start = performance.now();
@@ -199,34 +206,102 @@
       requestAnimationFrame(() => { bar.style.width = v + '%'; });
       animateNumber(num, v, 1200);
     };
-    const runScan = (url: string) => {
-      const seed = hashScore(url);
-      const total = 38 + (seed % 25), vel = 30 + (seed % 30), seo = 40 + ((seed >> 3) % 35), mob = 34 + ((seed >> 6) % 28);
-      scanBtn.disabled = true; const prev = scanBtn.textContent; scanBtn.textContent = 'Analizando…';
-      scanner.classList.add('scanning');
-      window.setTimeout(() => {
-        scanner.classList.remove('scanning');
-        result.classList.add('show'); scanBtn.disabled = false; scanBtn.textContent = prev;
-        requestAnimationFrame(() => {
-          if (arc) arc.style.strokeDashoffset = String(100 - total);
-          if (scoreNum) animateNumber(scoreNum, total, 1300);
-          setBar('b-vel', 'n-vel', vel); setBar('b-seo', 'n-seo', seo); setBar('b-mob', 'n-mob', mob);
-        });
-        result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
-      }, reduce ? 100 : 1400);
+
+    const statusMsgs = ['Midiendo velocidad real…', 'Analizando SEO y visibilidad…', 'Revisando conversión…', 'Detectando tu medición…'];
+    let statusTimer = 0;
+    const startStatus = () => {
+      let i = 0; scanBtn.textContent = statusMsgs[0];
+      statusTimer = window.setInterval(() => { i = (i + 1) % statusMsgs.length; scanBtn.textContent = statusMsgs[i]; }, 3500);
     };
+    const stopStatus = (label: string) => { clearInterval(statusTimer); scanBtn.textContent = label; };
+
+    const renderResult = (d: any) => {
+      result.classList.add('show');
+      const byKey: Record<string, number> = {};
+      for (const p of d.pillars) byKey[p.key] = p.score;
+      requestAnimationFrame(() => {
+        if (arc) arc.style.strokeDashoffset = String(100 - d.index);
+        if (scoreNum) animateNumber(scoreNum, d.index, 1300);
+        setBar('b-vel', 'n-vel', byKey.velocidad ?? 0);
+        setBar('b-seo', 'n-seo', byKey.visibilidad ?? 0);
+        setBar('b-mob', 'n-mob', byKey.conversion ?? 0);
+      });
+      // Hallazgos reales (2 visibles) + bloqueados
+      const fhead = document.getElementById('fhead')!;
+      const flist = document.getElementById('flist')!;
+      fhead.innerHTML = `Detectamos <b>${d.totalFindings}</b> oportunidad${d.totalFindings === 1 ? '' : 'es'} en <b>${d.host}</b>`;
+      flist.innerHTML = '';
+      for (const f of d.preview) {
+        const item = document.createElement('div');
+        item.className = 'fitem';
+        item.innerHTML = `<span class="sev" style="background:${sevColor(f.ok)}"></span><span class="txt">${f.title}${f.detail ? ' <em>— ' + f.detail + '</em>' : ''}</span>`;
+        flist.appendChild(item);
+      }
+      if (d.lockedCount > 0) {
+        const locked = document.createElement('div');
+        locked.className = 'fitem locked';
+        locked.innerHTML = `<span class="sev" style="background:#8B6CFF"></span><span class="txt">•••••• ${d.lockedCount} hallazgo${d.lockedCount === 1 ? '' : 's'} más — desbloquea el informe completo ••••••</span>`;
+        flist.appendChild(locked);
+      }
+      result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+    };
+
+    const showErr = (msg: string) => { errEl.textContent = msg; errEl.classList.add('show'); };
+
+    const runScan = async (url: string) => {
+      errEl.classList.remove('show');
+      scanBtn.disabled = true; scanner.classList.add('scanning'); startStatus();
+      try {
+        const res = await fetch('/api/scan', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ url }),
+        });
+        const data = await res.json();
+        if (!res.ok) { stopStatus('Analizar mi web'); scanner.classList.remove('scanning'); scanBtn.disabled = false; showErr(data.error || 'No pudimos analizar el sitio.'); return; }
+        reportId = data.id;
+        scanner.classList.remove('scanning'); scanBtn.disabled = false; stopStatus('Volver a analizar');
+        renderResult(data);
+      } catch {
+        stopStatus('Analizar mi web'); scanner.classList.remove('scanning'); scanBtn.disabled = false;
+        showErr('Error de conexión. Revisa tu internet e intenta de nuevo.');
+      }
+    };
+
     document.getElementById('scanForm')!.addEventListener('submit', (e) => {
       e.preventDefault();
       const el = document.getElementById('url') as HTMLInputElement;
-      runScan((el.value || '').trim() || 'tu-sitio.com');
+      const val = (el.value || '').trim();
+      if (!val) { showErr('Escribe la dirección de tu sitio.'); return; }
+      runScan(val);
     });
-    document.getElementById('gateForm')!.addEventListener('submit', (e) => {
+
+    document.getElementById('gateForm')!.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
-      const echo = document.getElementById('emailEcho'); if (echo && email) echo.textContent = email;
-      document.getElementById('gateStep1')!.style.display = 'none';
-      document.getElementById('gateStep2')!.classList.add('show');
+      const emailInput = document.getElementById('email') as HTMLInputElement;
+      const email = emailInput.value.trim();
+      if (!email || !reportId) return;
+      const btn = (e.target as HTMLFormElement).querySelector('button') as HTMLButtonElement;
+      btn.disabled = true; const prev = btn.textContent; btn.textContent = 'Enviando…';
+      try {
+        const res = await fetch('/api/lead', {
+          method: 'POST', headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ reportId, email }),
+        });
+        const data = await res.json();
+        btn.disabled = false; btn.textContent = prev!;
+        if (!res.ok) { emailInput.setCustomValidity(data.error || 'Correo inválido'); emailInput.reportValidity(); setTimeout(() => emailInput.setCustomValidity(''), 100); return; }
+        leadEmail = email;
+        const echo = document.getElementById('emailEcho'); if (echo) echo.textContent = email;
+        const link = document.getElementById('reportLink') as HTMLAnchorElement;
+        if (link && data.reportUrl) link.href = data.reportUrl;
+        document.getElementById('gateStep1')!.style.display = 'none';
+        document.getElementById('gateStep2')!.classList.add('show');
+      } catch {
+        btn.disabled = false; btn.textContent = prev!;
+      }
     });
+
     document.querySelectorAll('.qpills').forEach((group) => {
       group.querySelectorAll('.qpill').forEach((pill) => {
         pill.addEventListener('click', () => {
@@ -236,11 +311,22 @@
         });
       });
     });
-    document.getElementById('qualForm')!.addEventListener('submit', (e) => {
+
+    document.getElementById('qualForm')!.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const nm = ((document.getElementById('q-name') as HTMLInputElement).value || '').trim().split(' ')[0];
-      const gate = document.getElementById('gate')!; gate.classList.add('done');
-      gate.innerHTML = '<p class="check">✓ ' + (nm ? '¡Listo, ' + nm + '! ' : '¡Listo! ') + 'Personalizamos tu diagnóstico.</p><p class="note">Te contactamos en menos de 24h. En el producto real, aquí entra el lead calificado a tu CRM.</p>';
+      const nm = ((document.getElementById('q-name') as HTMLInputElement).value || '').trim();
+      const goal = (document.getElementById('q-goal') as HTMLSelectElement).value;
+      const ads = (document.querySelector('input[name="qads"]:checked') as HTMLInputElement)?.value || '';
+      // Envía los calificadores para afinar la temperatura del lead
+      fetch('/api/lead', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ reportId, email: leadEmail, name: nm, goal, ads }),
+      }).catch(() => {});
+      const first = nm.split(' ')[0];
+      const gate = document.getElementById('gate')!;
+      const reportUrl = (document.getElementById('reportLink') as HTMLAnchorElement)?.href || '#';
+      gate.classList.add('done');
+      gate.innerHTML = '<p class="check">✓ ' + (first ? '¡Listo, ' + first + '! ' : '¡Listo! ') + 'Personalizamos tu diagnóstico.</p><a class="btn btn-violet report-link" href="' + reportUrl + '" target="_blank" rel="noopener">Ver tu informe completo →</a><p class="note">Te contactamos en menos de 24h con tu plan de acción priorizado.</p>';
     });
   }
 </script>

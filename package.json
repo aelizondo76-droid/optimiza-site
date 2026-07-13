@@ -22,9 +22,13 @@
     "@keystatic/astro": "^5.2.0",
     "@keystatic/core": "^0.5.51",
     "@markdoc/markdoc": "^0.5.7",
+    "@upstash/redis": "^1.38.0",
     "astro": "^7.0.7",
+    "nanoid": "^6.0.0",
+    "node-html-parser": "^9.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
+    "resend": "^6.17.2",
     "simple-icons": "^16.26.0"
   }
 }
