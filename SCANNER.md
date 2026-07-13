@@ -31,6 +31,8 @@ Informe         →  GET /reporte/<id>  (página con URL única, noindex)
 | `src/pages/api/lead.ts` | Endpoint de captura de lead |
 | `src/pages/reporte/[id].astro` | Página de informe con URL única |
 | `src/components/Scanner.astro` | Front-end conectado al API real |
+| `src/pages/leads.astro` | Panel interno de leads (`/leads`, Basic Auth) |
+| `src/lib/env.ts` | Lee variables de `process.env` (Vercel) o `import.meta.env` (dev) |
 
 ## Variables de entorno
 
@@ -43,7 +45,15 @@ Ver `.env.example`. Resumen de prioridad:
 3. **`RESEND_API_KEY` + `SCAN_FROM_EMAIL`** — para enviar el email (sin él, el lead igual se captura
    y el enlace al informe aparece en pantalla, pero no se manda correo).
 
+4. **`LEADS_PASSWORD`** (+ opcional `LEADS_USER`, por defecto `optimiza`) — protege el
+   panel `/leads`. Sin ella, el panel responde 503.
+
 En Vercel: **Project → Settings → Environment Variables**. Redeploy tras agregarlas.
+
+## Panel de leads
+
+`/leads` — protegido con **HTTP Basic Auth** (usuario `LEADS_USER`, contraseña `LEADS_PASSWORD`).
+Muestra los leads capturados con su **temperatura** (frío/tibio/caliente), índice, meta y escaneos.
 
 ## Anti-abuso incluido
 

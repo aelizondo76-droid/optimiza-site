@@ -94,12 +94,31 @@ export async function upsertLead(lead: Lead): Promise<Lead> {
     : lead;
   if (redis) {
     await redis.set(dedupKey, merged);
-    // Índice cronológico de leads para el panel
-    await redis.lpush('leads:index', merged.id);
+    // Solo indexa la primera vez (las actualizaciones reusan el id existente)
+    if (!prev) await redis.lpush('leads:index', merged.id);
     await redis.set(`leadById:${merged.id}`, merged);
   } else {
     memSet(dedupKey, merged);
+    if (!prev) {
+      const idx = memGet<string[]>('leads:index') ?? [];
+      idx.unshift(merged.id);
+      memSet('leads:index', idx);
+    }
     memSet(`leadById:${merged.id}`, merged);
   }
   return merged;
+}
+
+/** Devuelve los leads más recientes para el panel. */
+export async function getLeads(limit = 200): Promise<Lead[]> {
+  let ids: string[] = [];
+  if (redis) ids = (await redis.lrange('leads:index', 0, limit - 1)) as string[];
+  else ids = (memGet<string[]>('leads:index') ?? []).slice(0, limit);
+  if (!ids.length) return [];
+  const leads: Lead[] = [];
+  for (const id of ids) {
+    const l = redis ? await redis.get<Lead>(`leadById:${id}`) : memGet<Lead>(`leadById:${id}`);
+    if (l) leads.push(l);
+  }
+  return leads;
 }

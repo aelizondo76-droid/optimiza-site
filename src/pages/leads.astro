@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import { getLeads } from '../lib/store';
+import { tempLabel } from '../lib/validate';
+import { env } from '../lib/env';
+
+export const prerender = false;
+
+// ── Autenticación básica ──
+const USER = env('LEADS_USER') || 'optimiza';
+const PASS = env('LEADS_PASSWORD');
+const auth = Astro.request.headers.get('authorization');
+const expected = PASS ? 'Basic ' + Buffer.from(`${USER}:${PASS}`).toString('base64') : null;
+
+if (!PASS) {
+  return new Response(
+    'Panel bloqueado: define la variable de entorno LEADS_PASSWORD en Vercel.',
+    { status: 503 }
+  );
+}
+if (auth !== expected) {
+  return new Response('Acceso restringido', {
+    status: 401,
+    headers: { 'WWW-Authenticate': 'Basic realm="Optimiza · Panel de leads"' },
+  });
+}
+
+const leads = await getLeads(300);
+const hot = leads.filter((l) => l.temperature >= 75).length;
+const avg = leads.length ? Math.round(leads.reduce((s, l) => s + l.index, 0) / leads.length) : 0;
+
+const fmt = (iso: string) =>
+  new Date(iso).toLocaleDateString('es-CR', { day: '2-digit', month: 'short', year: '2-digit' });
+const tempCls = (t: number) => (t >= 75 ? 'hot' : t >= 55 ? 'warm' : 'cold');
+---
+<Base title="Panel de leads — Optimiza" description="Leads del scanner">
+  <meta slot="head" name="robots" content="noindex" />
+  <section class="section">
+    <div class="wrap">
+      <p class="eyebrow">Interno · Scanner Optimiza</p>
+      <h1>Leads capturados</h1>
+
+      <div class="stats">
+        <div class="stat"><div class="s-n">{leads.length}</div><div class="s-l">Leads totales</div></div>
+        <div class="stat"><div class="s-n hot">{hot}</div><div class="s-l">Calientes</div></div>
+        <div class="stat"><div class="s-n">{avg}</div><div class="s-l">Índice promedio</div></div>
+      </div>
+
+      {leads.length === 0 ? (
+        <p class="lead empty">Aún no hay leads. Cuando alguien complete el scanner, aparecerá aquí.</p>
+      ) : (
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead>
+              <tr><th>Fecha</th><th>Email</th><th>Sitio</th><th>Índice</th><th>Temp.</th><th>Meta</th><th>Ads</th><th>Escaneos</th></tr>
+            </thead>
+            <tbody>
+              {leads.map((l) => (
+                <tr>
+                  <td class="mono">{fmt(l.createdAt)}</td>
+                  <td><a href={`mailto:${l.email}`}>{l.email}</a></td>
+                  <td class="mono"><a href={l.url} target="_blank" rel="noopener nofollow">{l.domain}</a></td>
+                  <td class="mono idx">{l.index}</td>
+                  <td><span class={`temp ${tempCls(l.temperature)}`}>{l.temperature} · {tempLabel(l.temperature)}</span></td>
+                  <td class="sm">{l.qualifiers?.goal || '—'}</td>
+                  <td class="sm">{l.qualifiers?.ads || '—'}</td>
+                  <td class="mono ctr">{l.scans}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  h1 { font-size: clamp(30px, 5vw, 44px); margin-bottom: 24px; }
+  .stats { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 32px; }
+  .stat { border: 1px solid var(--line); border-radius: 14px; padding: 18px 24px; background: var(--surface); min-width: 120px; }
+  .s-n { font-family: var(--mono); font-weight: 700; font-size: 34px; letter-spacing: -0.03em; line-height: 1; }
+  .s-n.hot { color: #E0483D; }
+  .s-l { font-size: 12px; color: var(--muted); margin-top: 8px; }
+  .empty { margin-top: 20px; }
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+  .tbl { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+  .tbl th { text-align: left; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); padding: 14px 16px; border-bottom: 1px solid var(--line); background: var(--surface-2); }
+  .tbl td { padding: 13px 16px; border-bottom: 1px solid var(--line-soft); color: var(--text); }
+  .tbl tbody tr:last-child td, .tbl tbody tr:last-child td { border-bottom: 0; }
+  .tbl .mono { font-family: var(--mono); }
+  .tbl .idx { font-weight: 700; }
+  .tbl .ctr { text-align: center; }
+  .tbl .sm { color: var(--muted); font-size: 13px; }
+  .tbl a { color: var(--violet-ink); }
+  .tbl a:hover { text-decoration: underline; }
+  .temp { display: inline-block; font-family: var(--mono); font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .temp.hot { background: rgba(224,72,61,0.14); color: #D8392E; }
+  .temp.warm { background: rgba(217,132,10,0.14); color: #C07607; }
+  .temp.cold { background: rgba(97,92,116,0.12); color: var(--muted); }
+</style>

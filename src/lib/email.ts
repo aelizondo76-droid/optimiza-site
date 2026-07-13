@@ -1,11 +1,12 @@
 import { Resend } from 'resend';
+import { env } from './env';
 
 /* Envío del informe por email (Resend). Si no hay RESEND_API_KEY, no falla:
    registra en consola y devuelve false (útil en desarrollo). */
 
-const key = process.env.RESEND_API_KEY;
-const FROM = process.env.SCAN_FROM_EMAIL || 'Optimiza <informes@optimizahq.com>';
-const SITE = process.env.PUBLIC_SITE_URL || 'https://optimizahq.com';
+const key = env('RESEND_API_KEY');
+const FROM = env('SCAN_FROM_EMAIL') || 'Optimiza <informes@optimizahq.com>';
+const SITE = env('PUBLIC_SITE_URL') || 'https://optimizahq.com';
 
 const resend = key ? new Resend(key) : null;
 

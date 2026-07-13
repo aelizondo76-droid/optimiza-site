@@ -1,4 +1,5 @@
 import { parse as parseHtml } from 'node-html-parser';
+import { env } from './env';
 
 /* ────────────────────────────────────────────────────────────────────────
    Motor de diagnóstico Optimiza
@@ -125,7 +126,7 @@ async function runPsi(
   url: string,
   strategy: 'mobile' | 'desktop'
 ): Promise<SpeedResult | null> {
-  const key = process.env.PAGESPEED_API_KEY;
+  const key = env('PAGESPEED_API_KEY');
   const params = new URLSearchParams({ url, strategy });
   for (const c of ['performance', 'accessibility', 'best-practices', 'seo'])
     params.append('category', c);
