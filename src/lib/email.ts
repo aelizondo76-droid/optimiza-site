@@ -7,6 +7,7 @@ import { env } from './env';
 const key = env('RESEND_API_KEY');
 const FROM = env('SCAN_FROM_EMAIL') || 'Optimiza <informes@optimizahq.com>';
 const SITE = env('PUBLIC_SITE_URL') || 'https://optimizahq.com';
+const REPLY_TO = env('SCAN_REPLY_TO'); // correo real donde recibir respuestas de leads
 
 const resend = key ? new Resend(key) : null;
 
@@ -28,6 +29,7 @@ export async function sendReportEmail(p: ReportEmail): Promise<boolean> {
     await resend.emails.send({
       from: FROM,
       to: p.to,
+      ...(REPLY_TO ? { replyTo: REPLY_TO } : {}),
       subject: `Tu diagnóstico Optimiza: ${p.host} obtuvo ${p.index}/100`,
       html: renderEmail(p, link),
     });
