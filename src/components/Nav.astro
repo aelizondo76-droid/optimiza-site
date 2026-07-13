@@ -13,13 +13,23 @@ const links = [
       <svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true"><use href="#markB"></use></svg>
       Optimiza
     </a>
-    <nav class="nav-links">
+    <nav class="nav-links" aria-label="Principal">
       {links.map((l) => (
         <a class:list={['link', { active: active === l.key }]} href={l.href}>{l.label}</a>
       ))}
       <a class="btn btn-violet" href="/contacto">Diagnóstico gratis</a>
     </nav>
+    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
   </div>
+  <div class="nav-scrim" id="navScrim"></div>
+  <nav class="nav-mobile" id="navMobile" aria-label="Menú principal">
+    {links.map((l) => (
+      <a class:list={['m-link', { active: active === l.key }]} href={l.href}>{l.label}</a>
+    ))}
+    <a class="btn btn-violet m-cta" href="/contacto">Diagnóstico gratis</a>
+  </nav>
 </header>
 
 <style>
@@ -31,5 +41,68 @@ const links = [
   .nav-links { display: flex; align-items: center; gap: 34px; }
   .nav-links a.link { font-size: 16px; color: #454150; transition: color .16s ease; padding: 6px 2px; }
   .nav-links a.link.active, .nav-links a.link:hover { color: var(--text); }
-  @media (max-width: 780px) { .nav-links .link { display: none; } .nav-in { height: 68px; } .brandmark { width: 32px; height: 32px; } }
+
+  /* Botón hamburguesa (solo móvil) */
+  .nav-toggle { display: none; width: 44px; height: 44px; margin-right: -10px; align-items: center; justify-content: center; background: transparent; border: 0; cursor: pointer; color: var(--text); border-radius: 10px; }
+  .nav-toggle:hover { background: rgba(23,20,31,0.05); }
+  .bars { position: relative; width: 22px; height: 16px; display: block; }
+  .bars i { position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .2s, top .3s; }
+  .bars i:nth-child(1) { top: 0; }
+  .bars i:nth-child(2) { top: 7px; }
+  .bars i:nth-child(3) { top: 14px; }
+  .nav.menu-open .bars i:nth-child(1) { top: 7px; transform: rotate(45deg); }
+  .nav.menu-open .bars i:nth-child(2) { opacity: 0; }
+  .nav.menu-open .bars i:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+  /* Panel móvil + scrim */
+  .nav-scrim { display: none; position: fixed; inset: 0; background: rgba(11,10,18,0.38); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 40; }
+  .nav.menu-open .nav-scrim { opacity: 1; pointer-events: auto; }
+  .nav-mobile { display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 45;
+    flex-direction: column; gap: 2px; padding: 10px 24px 22px;
+    background: var(--surface); border-bottom: 1px solid var(--line);
+    box-shadow: 0 24px 44px -26px rgba(23,20,31,0.4);
+    transform: translateY(-10px); opacity: 0; pointer-events: none; visibility: hidden;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .22s ease, visibility .3s; }
+  .nav.menu-open .nav-mobile { transform: none; opacity: 1; pointer-events: auto; visibility: visible; }
+  .m-link { font-size: 17px; color: var(--text); padding: 15px 4px; border-bottom: 1px solid var(--line-soft); }
+  .m-link.active { color: var(--violet-ink); font-weight: 600; }
+  .m-cta { margin-top: 16px; width: 100%; }
+
+  @media (max-width: 780px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: inline-flex; }
+    .nav-scrim, .nav-mobile { display: flex; }
+    .nav-in { height: 68px; }
+    .brandmark { width: 32px; height: 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .bars i, .nav-mobile, .nav-scrim { transition: none; }
+  }
 </style>
+
+<script>
+  const nav = document.getElementById('nav');
+  const toggle = document.getElementById('navToggle');
+  const panel = document.getElementById('navMobile');
+  const scrim = document.getElementById('navScrim');
+  if (nav && toggle && panel && scrim) {
+    const setOpen = (open: boolean) => {
+      nav.classList.toggle('menu-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      if (open) panel.removeAttribute('inert');
+      else panel.setAttribute('inert', '');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    setOpen(false);
+    toggle.addEventListener('click', () => setOpen(!nav.classList.contains('menu-open')));
+    scrim.addEventListener('click', () => setOpen(false));
+    panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && nav.classList.contains('menu-open')) { setOpen(false); toggle.focus(); }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 780 && nav.classList.contains('menu-open')) setOpen(false);
+    });
+  }
+</script>
