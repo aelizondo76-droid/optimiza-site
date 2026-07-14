@@ -41,6 +41,41 @@ const pillarVerdict = (n: number) =>
     ? { tone: 'warn', text: 'Hay dinero sobre la mesa: mejorar esto se traduce en más ventas.' }
     : { tone: 'bad', text: 'Aquí estás perdiendo clientes ahora mismo. Es de tus mayores oportunidades.' };
 
+// Glosario: explica en simple qué es cada punto (educar genera confianza).
+const glossary: Record<string, string> = {
+  perf: 'La nota general de velocidad de Google (0-100). Más alta = tu web carga más rápido para el cliente.',
+  lcp: 'Cuánto tarda en aparecer el contenido principal. Si tarda, el visitante ve una pantalla en blanco y se va.',
+  cls: 'Cuánto “salta” la página al cargar. Si los botones se mueven, la gente hace clic donde no quería y se frustra.',
+  tbt: 'Cuánto tarda tu web en responder a un toque o clic. Si tarda, se siente trabada.',
+  opp: 'Un ajuste técnico concreto que, corregido, hace tu web notablemente más rápida.',
+  title: 'El título azul que sale en Google. Es lo primero que el cliente lee para decidir si entra a tu web.',
+  'meta-desc': 'El resumen bajo el título en Google. Bien escrito, convence a la gente de hacer clic en ti y no en la competencia.',
+  h1: 'El titular principal de la página. Le dice a Google y al visitante de qué trata, en una frase.',
+  canonical: 'Una señal que evita que Google se confunda con páginas duplicadas y reparta mal tu posición.',
+  og: 'Define cómo se ve tu web al compartirla en WhatsApp o redes (imagen + título). Sin esto se ve pobre y nadie hace clic.',
+  schema: 'Datos que le explican a Google qué es cada cosa de tu web (negocio, productos, reseñas). Ayuda a destacar en resultados.',
+  sitemap: 'Un mapa de tu web para que Google encuentre todas tus páginas y no se le escape ninguna.',
+  robots: 'Un archivo que le indica a Google qué páginas puede rastrear y cuáles no.',
+  viewport: 'La señal de que tu web se adapta al celular. Sin ella, se ve diminuta en móvil y la gente se va.',
+  lang: 'Le indica a Google en qué idioma está tu web, para mostrarla a la audiencia correcta.',
+  llms: 'Un archivo nuevo que ayuda a que ChatGPT, Perplexity y otras IA te encuentren y te recomienden. La nueva frontera de la visibilidad.',
+  'seo-lh': 'La nota técnica de SEO de Google (0-100): revisa lo básico para que puedas posicionarte.',
+  cta: 'Los botones que invitan a actuar (comprar, cotizar, escribir). Sin ellos, el visitante no sabe qué hacer y se va.',
+  forms: 'Formularios para que el cliente deje sus datos. Son tu forma de capturar clientes potenciales.',
+  whatsapp: 'Un botón de WhatsApp directo. En Costa Rica es el canal #1: la gente prefiere escribir a llamar o llenar formularios.',
+  contacto: 'Teléfono o correo visibles y clicables. Facilitar el contacto = más clientes que sí te escriben.',
+  'h1-valor': 'Un titular claro que en 3 segundos le dice al visitante qué ganas ofreces.',
+  movil: 'Que tu web se vea y funcione bien en el celular, donde está la mayoría de tu tráfico.',
+  alt: 'Texto que describe tus imágenes. Ayuda a Google, a personas con lectores de pantalla, y suma a tu SEO.',
+  ga: 'Google Analytics: te muestra cuánta gente entra, de dónde viene y qué hace. Sin esto decides a ciegas.',
+  'meta-pixel': 'El Pixel de Meta recuerda quién visitó tu web para volver a mostrarle anuncios (retargeting). Sin él, pagas por visitas que no vuelven.',
+  tiktok: 'Como el Pixel de Meta, pero para medir y reimpactar con anuncios en TikTok.',
+  heatmap: 'Mapas de calor: muestran dónde hace clic y hasta dónde baja la gente. Revelan por qué no te compran.',
+  'wa-auto': 'WhatsApp conectado te permite automatizar respuestas y seguimiento, para que ningún lead se enfríe.',
+  'form-crm': 'Un formulario conectado a un CRM guarda y organiza cada lead automáticamente para darle seguimiento.',
+  'sin-medicion': 'Sin herramientas de medición no sabes qué campaña te trae ventas ni dónde pierdes clientes.',
+};
+
 const WA = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
 const waHref = report && WA
   ? `https://wa.me/${WA}?text=${encodeURIComponent(`Hola Optimiza, hice el diagnóstico de ${report.host} (puntaje ${report.index}/100) y quiero una explicación detallada de cómo mejorar mis ventas.`)}`
@@ -122,12 +157,31 @@ const description = report
                 {p.findings.map((f) => (
                   <li class={f.ok === true ? 'ok' : f.ok === 'warn' ? 'warn' : 'bad'}>
                     <span class="fi-ico">{f.ok === true ? '✓' : f.ok === 'warn' ? '!' : '✗'}</span>
-                    <span class="fi-tx">{f.title}{f.detail && <em> — {f.detail}</em>}</span>
+                    <div class="fi-body">
+                      <span class="fi-tx">{f.title}{f.detail && <em> — {f.detail}</em>}</span>
+                      {f.term && glossary[f.term] && <span class="fi-explain">{glossary[f.term]}</span>}
+                    </div>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section rep-cta">
+      <div class="wrap">
+        <div class="cta-band">
+          <p class="cta-eyebrow">El siguiente paso</p>
+          <h2>Este informe te muestra <em>qué</em> pasa. En una llamada te explicamos <em>cómo</em> arreglarlo y <em>cuánto</em> recuperas.</h2>
+          <p class="lead">Cada punto de este diagnóstico impacta tus ventas. Te lo explicamos sin tecnicismos, priorizamos por retorno y armamos el plan — para que tu web deje de perder clientes y empiece a venderte.</p>
+          <div class="cta-acts">
+            <a class="btn btn-lime" href="/contacto">Agenda una llamada</a>
+            {waHref && <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">Escríbenos por WhatsApp</a>}
+            <a class="btn btn-ghost" href="/contacto">Solicita más información</a>
+          </div>
+          <p class="cta-fine">Explicación detallada de tu diagnóstico · sin costo ni compromiso</p>
         </div>
       </div>
     </section>
@@ -171,22 +225,6 @@ const description = report
             <img src={report.screenshot} alt={`Captura de ${report.host} en móvil`} loading="lazy" />
           </div>
         )}
-      </div>
-    </section>
-
-    <section class="section rep-cta">
-      <div class="wrap">
-        <div class="cta-band">
-          <p class="cta-eyebrow">El siguiente paso</p>
-          <h2>Este informe te muestra <em>qué</em> pasa. En una llamada te explicamos <em>cómo</em> arreglarlo y <em>cuánto</em> recuperas.</h2>
-          <p class="lead">Cada punto de este diagnóstico impacta tus ventas. Te lo explicamos sin tecnicismos, priorizamos por retorno y armamos el plan — para que tu web deje de perder clientes y empiece a venderte.</p>
-          <div class="cta-acts">
-            <a class="btn btn-lime" href="/contacto">Agenda una llamada</a>
-            {waHref && <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">Escríbenos por WhatsApp</a>}
-            <a class="btn btn-ghost" href="/contacto">Solicita más información</a>
-          </div>
-          <p class="cta-fine">Explicación detallada de tu diagnóstico · sin costo ni compromiso</p>
-        </div>
       </div>
     </section>
     </>
@@ -236,8 +274,10 @@ const description = report
   .pc-find li.ok .fi-ico { background: rgba(52,168,83,0.14); color: #2E9E4C; }
   .pc-find li.warn .fi-ico { background: rgba(217,119,6,0.14); color: #C77605; }
   .pc-find li.bad .fi-ico { background: rgba(220,38,38,0.13); color: #DC3B3B; }
+  .pc-find .fi-body { display: flex; flex-direction: column; gap: 3px; }
   .pc-find .fi-tx { color: var(--text); }
   .pc-find em { color: var(--muted); font-style: normal; }
+  .pc-find .fi-explain { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
 
   .rep-speed { background: var(--surface-2); }
   .sp-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 20px; margin-top: 8px; }

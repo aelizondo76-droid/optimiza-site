@@ -13,6 +13,7 @@ export interface Finding {
   ok: boolean | 'warn';
   title: string;
   detail?: string;
+  term?: string; // concepto para la explicación educativa en el informe
 }
 
 export interface Pillar {
@@ -374,25 +375,29 @@ function buildPillars(
     vFindings.push({
       ok: mobile.performance >= 90 ? true : mobile.performance >= 50 ? 'warn' : false,
       title: `Rendimiento móvil: ${mobile.performance}/100`,
+      term: 'perf',
     });
     if (mobile.lcp != null)
       vFindings.push({
         ok: mobile.lcp <= 2.5 ? true : mobile.lcp <= 4 ? 'warn' : false,
         title: `LCP (carga): ${mobile.lcp}s`,
         detail: mobile.lcp > 2.5 ? 'Google recomienda menos de 2.5s' : undefined,
+        term: 'lcp',
       });
     if (mobile.cls != null)
       vFindings.push({
         ok: mobile.cls <= 0.1 ? true : mobile.cls <= 0.25 ? 'warn' : false,
         title: `CLS (estabilidad): ${mobile.cls.toFixed(3)}`,
+        term: 'cls',
       });
     if (mobile.tbt != null)
       vFindings.push({
         ok: mobile.tbt <= 200 ? true : mobile.tbt <= 600 ? 'warn' : false,
         title: `Bloqueo de interacción (TBT): ${mobile.tbt}ms`,
+        term: 'tbt',
       });
     for (const o of mobile.opportunities.slice(0, 3))
-      vFindings.push({ ok: false, title: o.title, detail: `~${o.savingsMs}ms de ahorro` });
+      vFindings.push({ ok: false, title: o.title, detail: `~${o.savingsMs}ms de ahorro`, term: 'opp' });
   } else {
     vFindings.push({ ok: 'warn', title: 'No se pudo medir la velocidad (PageSpeed no respondió)' });
   }
@@ -400,36 +405,36 @@ function buildPillars(
   // ── VISIBILIDAD (SEO + GEO) ──
   const viFindings: Finding[] = [];
   let visibilidad = 0;
-  const addV = (cond: boolean | 'warn', pts: number, title: string, detail?: string) => {
+  const addV = (cond: boolean | 'warn', pts: number, title: string, detail?: string, term?: string) => {
     const ok = cond === 'warn' ? 'warn' : !!cond;
     if (ok === true) visibilidad += pts;
     else if (ok === 'warn') visibilidad += pts * 0.5;
-    viFindings.push({ ok, title, detail });
+    viFindings.push({ ok, title, detail, term });
   };
   if (html) {
     const m = html.meta;
     addV(!!m.title && m.titleLen >= 15 && m.titleLen <= 65, 14,
       m.title ? `Título: ${m.titleLen} caracteres` : 'Sin etiqueta <title>',
-      m.title && (m.titleLen < 15 || m.titleLen > 65) ? 'Ideal 15–65 caracteres' : undefined);
+      m.title && (m.titleLen < 15 || m.titleLen > 65) ? 'Ideal 15–65 caracteres' : undefined, 'title');
     addV(!!m.description && m.descLen >= 50 && m.descLen <= 165, 12,
       m.description ? `Meta descripción: ${m.descLen} caracteres` : 'Sin meta descripción',
-      m.description && (m.descLen < 50 || m.descLen > 165) ? 'Ideal 50–165 caracteres' : undefined);
+      m.description && (m.descLen < 50 || m.descLen > 165) ? 'Ideal 50–165 caracteres' : undefined, 'meta-desc');
     addV(m.h1.length === 1 ? true : m.h1.length === 0 ? false : 'warn', 10,
       `Encabezado H1: ${m.h1.length}`,
-      m.h1.length !== 1 ? 'Debe haber exactamente un H1' : undefined);
-    addV(m.canonical, 8, m.canonical ? 'URL canónica definida' : 'Sin URL canónica');
-    addV(m.og, 10, m.og ? 'Open Graph (previews en redes)' : 'Sin Open Graph');
+      m.h1.length !== 1 ? 'Debe haber exactamente un H1' : undefined, 'h1');
+    addV(m.canonical, 8, m.canonical ? 'URL canónica definida' : 'Sin URL canónica', undefined, 'canonical');
+    addV(m.og, 10, m.og ? 'Open Graph (previews en redes)' : 'Sin Open Graph', undefined, 'og');
     addV(m.schema.length > 0, 12,
-      m.schema.length ? `Schema.org: ${m.schema.slice(0, 4).join(', ')}` : 'Sin datos estructurados (Schema.org)');
-    addV(m.sitemap, 8, m.sitemap ? 'sitemap.xml presente' : 'Sin sitemap.xml');
-    addV(m.robots, 6, m.robots ? 'robots.txt presente' : 'Sin robots.txt');
-    addV(m.viewport, 6, m.viewport ? 'Viewport móvil configurado' : 'Sin viewport (no responsive)');
-    addV(!!m.lang, 4, m.lang ? `Idioma declarado: ${m.lang}` : 'Sin atributo lang');
+      m.schema.length ? `Schema.org: ${m.schema.slice(0, 4).join(', ')}` : 'Sin datos estructurados (Schema.org)', undefined, 'schema');
+    addV(m.sitemap, 8, m.sitemap ? 'sitemap.xml presente' : 'Sin sitemap.xml', undefined, 'sitemap');
+    addV(m.robots, 6, m.robots ? 'robots.txt presente' : 'Sin robots.txt', undefined, 'robots');
+    addV(m.viewport, 6, m.viewport ? 'Viewport móvil configurado' : 'Sin viewport (no responsive)', undefined, 'viewport');
+    addV(!!m.lang, 4, m.lang ? `Idioma declarado: ${m.lang}` : 'Sin atributo lang', undefined, 'lang');
     // GEO / IA
     addV(m.llms, 10, m.llms ? 'llms.txt (visibilidad en IA) ✦' : 'Sin llms.txt — invisible para buscadores de IA',
-      m.llms ? undefined : 'Frontera GEO: ChatGPT/Perplexity');
+      m.llms ? undefined : 'Frontera GEO: ChatGPT/Perplexity', 'llms');
     if (mobile?.seo != null)
-      viFindings.push({ ok: mobile.seo >= 90, title: `SEO técnico (Lighthouse): ${mobile.seo}/100` });
+      viFindings.push({ ok: mobile.seo >= 90, title: `SEO técnico (Lighthouse): ${mobile.seo}/100`, term: 'seo-lh' });
   } else {
     visibilidad = mobile?.seo ?? 40;
     viFindings.push({ ok: 'warn', title: 'No se pudo leer el HTML para el análisis SEO/GEO' });
@@ -439,20 +444,20 @@ function buildPillars(
   // ── CONVERSIÓN ──
   const cFindings: Finding[] = [];
   let conversion = 0;
-  const addC = (cond: boolean, pts: number, title: string, detail?: string) => {
+  const addC = (cond: boolean, pts: number, title: string, detail?: string, term?: string) => {
     if (cond) conversion += pts;
-    cFindings.push({ ok: cond, title, detail });
+    cFindings.push({ ok: cond, title, detail, term });
   };
   if (html) {
     const c = html.conversion;
-    addC(c.ctaButtons > 0, 22, c.ctaButtons ? `${c.ctaButtons} llamados a la acción (CTA)` : 'Sin CTA visibles', c.ctaButtons ? undefined : 'El visitante no sabe qué hacer');
-    addC(c.forms > 0, 18, c.forms ? `${c.forms} formulario(s) de captura` : 'Sin formularios de captura de leads');
-    addC(c.whatsapp, 16, c.whatsapp ? 'WhatsApp click-to-chat' : 'Sin WhatsApp directo', c.whatsapp ? undefined : 'Canal #1 en Costa Rica');
-    addC(c.tel || c.mailto, 10, c.tel || c.mailto ? 'Contacto directo (teléfono/email)' : 'Sin contacto directo visible');
-    addC(html.meta.h1.length >= 1, 12, html.meta.h1.length ? 'Propuesta de valor en H1' : 'Sin titular claro (H1)');
-    addC(html.meta.viewport, 12, html.meta.viewport ? 'Experiencia móvil apta' : 'No optimizado para móvil');
+    addC(c.ctaButtons > 0, 22, c.ctaButtons ? `${c.ctaButtons} llamados a la acción (CTA)` : 'Sin CTA visibles', c.ctaButtons ? undefined : 'El visitante no sabe qué hacer', 'cta');
+    addC(c.forms > 0, 18, c.forms ? `${c.forms} formulario(s) de captura` : 'Sin formularios de captura de leads', undefined, 'forms');
+    addC(c.whatsapp, 16, c.whatsapp ? 'WhatsApp click-to-chat' : 'Sin WhatsApp directo', c.whatsapp ? undefined : 'Canal #1 en Costa Rica', 'whatsapp');
+    addC(c.tel || c.mailto, 10, c.tel || c.mailto ? 'Contacto directo (teléfono/email)' : 'Sin contacto directo visible', undefined, 'contacto');
+    addC(html.meta.h1.length >= 1, 12, html.meta.h1.length ? 'Propuesta de valor en H1' : 'Sin titular claro (H1)', undefined, 'h1-valor');
+    addC(html.meta.viewport, 12, html.meta.viewport ? 'Experiencia móvil apta' : 'No optimizado para móvil', undefined, 'movil');
     const altOk = c.imgCount === 0 || c.imgNoAlt / c.imgCount < 0.3;
-    addC(altOk, 10, altOk ? 'Imágenes con texto alternativo' : `${c.imgNoAlt}/${c.imgCount} imágenes sin alt`);
+    addC(altOk, 10, altOk ? 'Imágenes con texto alternativo' : `${c.imgNoAlt}/${c.imgCount} imágenes sin alt`, undefined, 'alt');
   } else {
     conversion = 40;
     cFindings.push({ ok: 'warn' as const, title: 'No se pudo analizar la conversión' } as Finding);
@@ -464,18 +469,18 @@ function buildPillars(
   let automatizacion = 0;
   if (html) {
     const t = html.tracking;
-    const addA = (cond: boolean, pts: number, title: string) => {
+    const addA = (cond: boolean, pts: number, title: string, term?: string) => {
       if (cond) automatizacion += pts;
-      aFindings.push({ ok: cond, title });
+      aFindings.push({ ok: cond, title, term });
     };
-    addA(t.ga4 || t.gtm, 30, t.ga4 || t.gtm ? 'Google Analytics / Tag Manager' : 'Sin Google Analytics — vuelas a ciegas');
-    addA(t.metaPixel, 26, t.metaPixel ? 'Meta Pixel (retargeting)' : 'Sin Meta Pixel — no puedes reimpactar');
-    addA(t.tiktok, 8, t.tiktok ? 'TikTok Pixel' : 'Sin TikTok Pixel');
-    addA(t.hotjarClarity, 10, t.hotjarClarity ? 'Mapas de calor (Hotjar/Clarity)' : 'Sin análisis de comportamiento');
-    addA(html.conversion.whatsapp, 16, html.conversion.whatsapp ? 'Canal WhatsApp para automatizar' : 'Sin WhatsApp para flujos automáticos');
-    addA(html.conversion.forms > 0, 10, html.conversion.forms ? 'Formulario conectable a CRM' : 'Sin formulario para alimentar un CRM');
+    addA(t.ga4 || t.gtm, 30, t.ga4 || t.gtm ? 'Google Analytics / Tag Manager' : 'Sin Google Analytics — vuelas a ciegas', 'ga');
+    addA(t.metaPixel, 26, t.metaPixel ? 'Meta Pixel (retargeting)' : 'Sin Meta Pixel — no puedes reimpactar', 'meta-pixel');
+    addA(t.tiktok, 8, t.tiktok ? 'TikTok Pixel' : 'Sin TikTok Pixel', 'tiktok');
+    addA(t.hotjarClarity, 10, t.hotjarClarity ? 'Mapas de calor (Hotjar/Clarity)' : 'Sin análisis de comportamiento', 'heatmap');
+    addA(html.conversion.whatsapp, 16, html.conversion.whatsapp ? 'Canal WhatsApp para automatizar' : 'Sin WhatsApp para flujos automáticos', 'wa-auto');
+    addA(html.conversion.forms > 0, 10, html.conversion.forms ? 'Formulario conectable a CRM' : 'Sin formulario para alimentar un CRM', 'form-crm');
     if (!t.any)
-      aFindings.unshift({ ok: false, title: 'No se detectó NINGUNA herramienta de medición', detail: 'No sabes de dónde vienen tus ventas' });
+      aFindings.unshift({ ok: false, title: 'No se detectó NINGUNA herramienta de medición', detail: 'No sabes de dónde vienen tus ventas', term: 'sin-medicion' });
   } else {
     automatizacion = 30;
     aFindings.push({ ok: 'warn', title: 'No se pudo analizar la medición' });
