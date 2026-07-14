@@ -12,12 +12,39 @@ const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 
 const scoreColor = (n: number) => (n >= 80 ? 'var(--lime)' : n >= 55 ? '#FFB454' : '#FF6B7A');
-const pillarIntro: Record<string, string> = {
-  velocidad: 'Qué tan rápido carga y responde tu sitio en dispositivos reales.',
-  visibilidad: 'Qué tan bien te encuentran Google y los buscadores de IA.',
-  conversion: 'Qué tan bien tu sitio convierte visitantes en clientes.',
-  automatizacion: 'Si estás midiendo y puedes automatizar tu captación.',
+
+// Explicación en lenguaje de negocio + impacto directo en ventas (sin tecnicismos).
+const pillarExplain: Record<string, { what: string; sales: string }> = {
+  velocidad: {
+    what: 'Qué tan rápido carga y responde tu web en el celular de un cliente real.',
+    sales: 'Cada segundo de más, la gente se va antes de ver lo que vendes. Si tu web tarda más de 3s en móvil, pierdes cerca de la mitad de las visitas — y Google te muestra más abajo. Velocidad lenta = clientes que nunca llegaron a tu producto.',
+  },
+  visibilidad: {
+    what: 'Qué tan bien te encuentran y entienden Google y los buscadores con IA (ChatGPT, Perplexity).',
+    sales: 'Si no apareces cuando alguien busca lo que ofreces, ese cliente le compra a tu competencia. La visibilidad te trae clientes nuevos sin pagar por cada clic; sin ella, dependes solo de quien ya te conoce.',
+  },
+  conversion: {
+    what: 'Qué tan bien tu web convierte visitantes en contactos y clientes.',
+    sales: 'Atraer visitas cuesta tiempo y dinero. Si tu web no guía a la acción — sin un llamado claro, sin forma fácil de escribirte — desperdicias ese tráfico. Subir la conversión te da más ventas con el mismo número de visitas.',
+  },
+  automatizacion: {
+    what: 'Si estás midiendo lo que pasa en tu web y si puedes automatizar tu captación.',
+    sales: 'Sin medición no sabes qué campaña te trae clientes ni dónde los pierdes: decides a ciegas y gastas de más. Y un lead que no se atiende a tiempo se enfría y se va. Medir y automatizar hace que ninguna oportunidad se caiga.',
+  },
 };
+
+// Veredicto dinámico según el puntaje del pilar, enfocado en dinero.
+const pillarVerdict = (n: number) =>
+  n >= 80
+    ? { tone: 'good', text: 'Vas bien aquí — es una ventaja que puedes capitalizar.' }
+    : n >= 55
+    ? { tone: 'warn', text: 'Hay dinero sobre la mesa: mejorar esto se traduce en más ventas.' }
+    : { tone: 'bad', text: 'Aquí estás perdiendo clientes ahora mismo. Es de tus mayores oportunidades.' };
+
+const WA = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
+const waHref = report && WA
+  ? `https://wa.me/${WA}?text=${encodeURIComponent(`Hola Optimiza, hice el diagnóstico de ${report.host} (puntaje ${report.index}/100) y quiero una explicación detallada de cómo mejorar mis ventas.`)}`
+  : null;
 
 const mob = report?.speed.mobile;
 const desk = report?.speed.desktop;
@@ -80,13 +107,17 @@ const description = report
           {report.pillars.map((p) => (
             <div class="pil-card">
               <div class="pc-head">
-                <div>
-                  <h2>{p.label}</h2>
-                  <p class="pc-intro">{pillarIntro[p.key]}</p>
-                </div>
+                <h2>{p.label}</h2>
                 <div class="pc-score" style={`color:${scoreColor(p.score)}`}>{p.score}</div>
               </div>
               <div class="pc-bar"><span style={`width:${p.score}%;background:${scoreColor(p.score)}`}></span></div>
+              <p class="pc-what">{pillarExplain[p.key].what}</p>
+              <div class="pc-sales">
+                <span class="ps-label">Cómo impacta tus ventas</span>
+                <p>{pillarExplain[p.key].sales}</p>
+              </div>
+              <p class:list={['pc-verdict', pillarVerdict(p.score).tone]}>{pillarVerdict(p.score).text}</p>
+              <div class="pc-findhead">Lo que revisamos en tu web</div>
               <ul class="pc-find">
                 {p.findings.map((f) => (
                   <li class={f.ok === true ? 'ok' : f.ok === 'warn' ? 'warn' : 'bad'}>
@@ -144,14 +175,17 @@ const description = report
     </section>
 
     <section class="section rep-cta">
-      <div class="wrap cta-band">
-        <div>
-          <h2>Este diagnóstico es el mapa. Nosotros lo ejecutamos.</h2>
-          <p class="lead">Convertimos cada hallazgo en un plan priorizado por impacto en tus ventas — no en reportes.</p>
-        </div>
-        <div class="cta-acts">
-          <a class="btn btn-lime" href="/contacto">Agenda tu llamada</a>
-          <a class="btn btn-ghost" href="/servicios">Ver cómo trabajamos</a>
+      <div class="wrap">
+        <div class="cta-band">
+          <p class="cta-eyebrow">El siguiente paso</p>
+          <h2>Este informe te muestra <em>qué</em> pasa. En una llamada te explicamos <em>cómo</em> arreglarlo y <em>cuánto</em> recuperas.</h2>
+          <p class="lead">Cada punto de este diagnóstico impacta tus ventas. Te lo explicamos sin tecnicismos, priorizamos por retorno y armamos el plan — para que tu web deje de perder clientes y empiece a venderte.</p>
+          <div class="cta-acts">
+            <a class="btn btn-lime" href="/contacto">Agenda una llamada</a>
+            {waHref && <a class="btn btn-wa" href={waHref} target="_blank" rel="noopener">Escríbenos por WhatsApp</a>}
+            <a class="btn btn-ghost" href="/contacto">Solicita más información</a>
+          </div>
+          <p class="cta-fine">Explicación detallada de tu diagnóstico · sin costo ni compromiso</p>
         </div>
       </div>
     </section>
@@ -184,8 +218,16 @@ const description = report
   .pil-card { border: 1px solid var(--line); border-radius: 18px; padding: 26px; background: var(--surface); box-shadow: var(--card-shadow); }
   .pc-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
   .pc-head h2 { font-size: 22px; }
-  .pc-intro { color: var(--muted); font-size: 13.5px; margin-top: 6px; max-width: 34ch; }
   .pc-score { font-family: var(--mono); font-weight: 700; font-size: 40px; letter-spacing: -0.03em; line-height: 1; }
+  .pc-what { color: var(--muted); font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
+  .pc-sales { background: var(--surface-2); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+  .pc-sales .ps-label { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--violet-ink); margin-bottom: 6px; font-weight: 600; }
+  .pc-sales p { font-size: 13.5px; line-height: 1.55; color: var(--text); }
+  .pc-verdict { font-size: 13.5px; font-weight: 600; line-height: 1.45; margin-bottom: 20px; padding-left: 12px; border-left: 3px solid; }
+  .pc-verdict.good { color: #2E9E4C; border-color: #2E9E4C; }
+  .pc-verdict.warn { color: #C77605; border-color: #FFB454; }
+  .pc-verdict.bad { color: #DC3B3B; border-color: #FF6B7A; }
+  .pc-findhead { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); margin-bottom: 13px; }
   .pc-bar { height: 7px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; margin: 18px 0 20px; }
   .pc-bar span { display: block; height: 100%; border-radius: 99px; }
   .pc-find { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 11px; }
@@ -223,8 +265,13 @@ const description = report
   .shot-cap { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 12px; }
   .sp-shot img { max-width: 300px; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--card-shadow); }
 
-  .cta-band { display: flex; justify-content: space-between; align-items: center; gap: 28px; border: 1px solid var(--line); border-radius: 22px; padding: 40px; background: linear-gradient(120deg, var(--surface), var(--surface-2)); box-shadow: var(--card-shadow); flex-wrap: wrap; }
-  .cta-band h2 { font-size: clamp(24px, 3.5vw, 34px); max-width: 20ch; }
-  .cta-band .lead { margin-top: 12px; max-width: 46ch; }
-  .cta-acts { display: flex; gap: 12px; flex-wrap: wrap; }
+  .cta-band { text-align: center; border: 1px solid var(--line); border-radius: 22px; padding: clamp(32px, 5vw, 56px); background: linear-gradient(135deg, var(--surface), var(--surface-2)); box-shadow: var(--card-shadow); }
+  .cta-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-ink); margin-bottom: 16px; }
+  .cta-band h2 { font-size: clamp(24px, 3.6vw, 36px); max-width: 24ch; margin: 0 auto; line-height: 1.18; }
+  .cta-band h2 em { font-style: normal; color: var(--violet-ink); }
+  .cta-band .lead { margin: 16px auto 0; max-width: 54ch; }
+  .cta-acts { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+  .btn-wa { background: #25D366; color: #fff; }
+  .btn-wa:hover { filter: brightness(1.05); }
+  .cta-fine { font-family: var(--mono); font-size: 11.5px; color: var(--faint); margin-top: 18px; letter-spacing: 0.03em; }
 </style>
