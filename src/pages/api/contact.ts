@@ -1,8 +1,9 @@
 import type { APIRoute } from 'astro';
 import { nanoid } from 'nanoid';
-import { getReport, upsertLead, rateLimit, type Lead } from '../../lib/store';
-import { sendReportEmail, sendLeadNotification } from '../../lib/email';
+import { upsertLead, rateLimit, type Lead } from '../../lib/store';
+import { sendContactConfirmation, sendLeadNotification } from '../../lib/email';
 import { checkEmail, scoreTemperature, tempLabel } from '../../lib/validate';
+import { normalizeUrl } from '../../lib/diagnose';
 
 export const prerender = false;
 
@@ -20,76 +21,69 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     return json({ error: 'Solicitud inválida' }, 400);
   }
 
-  const { reportId, email, whatsapp, name, goal, ads } = body || {};
-  if (!reportId) return json({ error: 'Falta el diagnóstico' }, 400);
+  const { name, company, email, whatsapp, url, goal, ads, message } = body || {};
+
+  if (!(name || '').toString().trim()) return json({ error: 'Falta tu nombre' }, 400);
 
   const chk = checkEmail(email || '');
   if (!chk.valid) return json({ error: chk.reason || 'Correo inválido' }, 400);
 
-  const isFirst = !goal && !ads; // primera llamada = email + WhatsApp
   const wa = (whatsapp || '').toString().trim().slice(0, 30);
-  if (isFirst && wa.replace(/\D/g, '').length < 8)
-    return json({ error: 'Ingresa un WhatsApp válido' }, 400);
+  if (wa.replace(/\D/g, '').length < 8) return json({ error: 'Ingresa un WhatsApp válido' }, 400);
 
   const ip =
     clientAddress ||
     request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
     'anon';
-  const rl = await rateLimit(`lead:${ip}`, 20, 60 * 60);
+  const rl = await rateLimit(`contact:${ip}`, 10, 60 * 60);
   if (!rl.allowed) return json({ error: 'Demasiadas solicitudes. Intenta luego.' }, 429);
 
-  const report = await getReport(reportId);
-  if (!report) return json({ error: 'El diagnóstico expiró. Vuelve a escanear.' }, 404);
+  const normUrl = normalizeUrl((url || '').toString());
+  const domain = normUrl ? new URL(normUrl).host.replace(/^www\./, '') : `contacto-${nanoid(6)}`;
 
   const qualifiers = {
     name: (name || '').toString().slice(0, 80),
     goal: (goal || '').toString().slice(0, 80),
     ads: (ads || '').toString().slice(0, 20),
   };
-  const temperature = scoreTemperature(report.index, qualifiers, !chk.free);
+  // Lead de contacto = alta intención (llenó todo + WhatsApp): base más caliente.
+  const temperature = Math.min(100, scoreTemperature(65, qualifiers, !chk.free) + 12);
 
   const lead: Lead = {
     id: nanoid(10),
-    source: 'scanner',
+    source: 'contacto',
     email: email.trim().toLowerCase(),
-    whatsapp: wa || undefined,
+    whatsapp: wa,
     name: qualifiers.name || undefined,
-    domain: chk.domain,
-    url: report.finalUrl || report.url,
-    index: report.index,
-    grade: report.grade,
+    company: (company || '').toString().slice(0, 120) || undefined,
+    message: (message || '').toString().slice(0, 1000) || undefined,
+    domain,
+    url: normUrl || '',
+    index: null,
+    grade: null,
     temperature,
     qualifiers,
     ip,
     createdAt: new Date().toISOString(),
     scans: 1,
   };
-  const saved = await upsertLead(lead);
+  await upsertLead(lead);
 
-  // Primera llamada: envía el informe al lead + avisa al negocio
-  if (isFirst) {
-    await sendReportEmail({
-      to: lead.email,
-      host: report.host,
-      index: report.index,
-      grade: report.grade,
-      reportId,
-    });
-    await sendLeadNotification({
-      source: 'scanner',
+  await Promise.all([
+    sendContactConfirmation(lead.email, lead.name),
+    sendLeadNotification({
+      source: 'contacto',
       email: lead.email,
       whatsapp: lead.whatsapp,
       name: lead.name,
+      company: lead.company,
+      message: lead.message,
       url: lead.url,
-      index: report.index,
+      index: null,
       temperature,
       tempLabel: tempLabel(temperature),
-    });
-  }
+    }),
+  ]);
 
-  return json({
-    ok: true,
-    reportUrl: `/reporte/${reportId}`,
-    duplicate: saved.scans > 1,
-  });
+  return json({ ok: true });
 };

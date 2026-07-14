@@ -46,6 +46,7 @@
         <p class="gt">Recibe el diagnóstico completo + un plan de acción priorizado por impacto.</p>
         <form class="gform" id="gateForm">
           <input type="email" id="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
+          <input type="tel" id="gwa" inputmode="tel" placeholder="WhatsApp (+506 8888 8888)" aria-label="WhatsApp" required />
           <button class="btn btn-violet" type="submit">Recibir diagnóstico</button>
         </form>
         <p class="note">Vista previa ilustrativa · el diagnóstico real analiza tu sitio en vivo.</p>
@@ -153,10 +154,10 @@
     --violet: #6A3EF0; --violet-ink: #5B2FD6; --cyan-ink: #0E96B0;
     --vbtn-bg: #6A3EF0; --vbtn-fg: #FFFFFF; }
   .gate p.gt { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
-  .gate .gform { display: flex; gap: 10px; }
-  .gate input { flex: 1; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; }
+  .gate .gform { display: flex; flex-direction: column; gap: 10px; }
+  .gate input { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; }
+  .gate .gform input, .gate .gform .btn { width: 100%; }
   .gate input:focus { border-color: var(--violet); }
-  @media (max-width: 480px) { .gate .gform { flex-direction: column; } }
   .gate .note { font-family: var(--mono); font-size: 10.5px; color: var(--faint); margin-top: 11px; letter-spacing: 0.03em; }
   .gate.done { text-align: center; }
   .gate.done .check { color: #3B9E4E; font-family: var(--mono); font-size: 14px; }
@@ -194,6 +195,7 @@
     // Estado de la sesión de escaneo
     let reportId = '';
     let leadEmail = '';
+    let leadWhatsapp = '';
 
     const animateNumber = (el: HTMLElement, to: number, dur: number) => {
       if (reduce) { el.textContent = String(to); return; }
@@ -279,19 +281,22 @@
     document.getElementById('gateForm')!.addEventListener('submit', async (e) => {
       e.preventDefault();
       const emailInput = document.getElementById('email') as HTMLInputElement;
+      const waInput = document.getElementById('gwa') as HTMLInputElement;
       const email = emailInput.value.trim();
+      const whatsapp = waInput.value.trim();
       if (!email || !reportId) return;
+      if (whatsapp.replace(/\D/g, '').length < 8) { waInput.setCustomValidity('Ingresa un WhatsApp válido'); waInput.reportValidity(); setTimeout(() => waInput.setCustomValidity(''), 100); return; }
       const btn = (e.target as HTMLFormElement).querySelector('button') as HTMLButtonElement;
       btn.disabled = true; const prev = btn.textContent; btn.textContent = 'Enviando…';
       try {
         const res = await fetch('/api/lead', {
           method: 'POST', headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ reportId, email }),
+          body: JSON.stringify({ reportId, email, whatsapp }),
         });
         const data = await res.json();
         btn.disabled = false; btn.textContent = prev!;
-        if (!res.ok) { emailInput.setCustomValidity(data.error || 'Correo inválido'); emailInput.reportValidity(); setTimeout(() => emailInput.setCustomValidity(''), 100); return; }
-        leadEmail = email;
+        if (!res.ok) { const t = (data.error || '').toLowerCase(); const tgt = t.includes('whats') ? waInput : emailInput; tgt.setCustomValidity(data.error || 'Dato inválido'); tgt.reportValidity(); setTimeout(() => tgt.setCustomValidity(''), 100); return; }
+        leadEmail = email; leadWhatsapp = whatsapp;
         const echo = document.getElementById('emailEcho'); if (echo) echo.textContent = email;
         const link = document.getElementById('reportLink') as HTMLAnchorElement;
         if (link && data.reportUrl) link.href = data.reportUrl;
@@ -320,7 +325,7 @@
       // Envía los calificadores para afinar la temperatura del lead
       fetch('/api/lead', {
         method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ reportId, email: leadEmail, name: nm, goal, ads }),
+        body: JSON.stringify({ reportId, email: leadEmail, whatsapp: leadWhatsapp, name: nm, goal, ads }),
       }).catch(() => {});
       const first = nm.split(' ')[0];
       const gate = document.getElementById('gate')!;

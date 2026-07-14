@@ -55,6 +55,7 @@ const description = seo.description;
             </div>
             <div class="form-row"><label class="field-l" for="f-msg">Mensaje <span class="opt">· opcional</span></label><textarea class="inp" id="f-msg" placeholder="Cuéntanos brevemente qué te gustaría lograr…"></textarea></div>
             <button class="btn btn-lime wide" type="submit" style="margin-top:6px">Enviar y recibir mi diagnóstico</button>
+            <p class="form-err" id="formErr" role="alert"></p>
             <p class="form-note">Respondemos en menos de 24h · Sin spam · Tus datos están seguros</p>
           </form>
         </div>
@@ -127,6 +128,8 @@ const description = seo.description;
   .pill input { position: absolute; opacity: 0; pointer-events: none; }
   .pill.on { border-color: var(--violet); background: rgba(106,62,240,0.08); color: var(--violet-ink); font-weight: 600; }
   .form-note { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.03em; margin-top: 14px; }
+  .form-err { color: #DC3B3B; font-size: 13px; margin-top: 10px; display: none; }
+  .form-err.show { display: block; }
 
   .side { display: flex; flex-direction: column; gap: 16px; }
   .mini { border-radius: 18px; padding: 22px; box-shadow: var(--card-shadow); }
@@ -177,12 +180,45 @@ const description = seo.description;
       });
     });
   });
-  const form = document.getElementById('leadForm');
-  if (form) form.addEventListener('submit', (e) => {
+  const form = document.getElementById('leadForm') as HTMLFormElement | null;
+  if (form) form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = ((document.getElementById('f-name') as HTMLInputElement).value || '').trim().split(' ')[0];
-    const card = document.getElementById('formCard')!;
-    card.innerHTML = '<div class="form-done"><div class="fd-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h2>' + (name ? '¡Gracias, ' + name + '!' : '¡Gracias!') + '</h2><p>Recibimos tu solicitud. Te enviamos tu diagnóstico completo y te contactamos en menos de 24 horas.</p></div>';
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const val = (id: string) => ((document.getElementById(id) as HTMLInputElement)?.value || '').trim();
+    const err = document.getElementById('formErr')!;
+    err.classList.remove('show');
+    const payload = {
+      name: val('f-name'),
+      company: val('f-empresa'),
+      email: val('f-email'),
+      whatsapp: val('f-tel'),
+      url: val('f-web'),
+      goal: (document.getElementById('f-goal') as HTMLSelectElement)?.value || '',
+      ads: (document.querySelector('input[name="ads"]:checked') as HTMLInputElement)?.value || '',
+      message: val('f-msg'),
+    };
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const prev = btn.textContent;
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        btn.disabled = false; btn.textContent = prev;
+        err.textContent = data.error || 'No pudimos enviar tu solicitud. Intenta de nuevo.';
+        err.classList.add('show');
+        return;
+      }
+      const first = payload.name.split(' ')[0];
+      const card = document.getElementById('formCard')!;
+      card.innerHTML = '<div class="form-done"><div class="fd-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h2>' + (first ? '¡Gracias, ' + first + '!' : '¡Gracias!') + '</h2><p>Recibimos tu solicitud. Te contactamos por WhatsApp o correo en menos de 24 horas.</p></div>';
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch {
+      btn.disabled = false; btn.textContent = prev;
+      err.textContent = 'Error de conexión. Revisa tu internet e intenta de nuevo.';
+      err.classList.add('show');
+    }
   });
 </script>

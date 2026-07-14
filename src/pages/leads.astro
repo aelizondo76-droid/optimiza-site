@@ -27,11 +27,14 @@ if (auth !== expected) {
 
 const leads = await getLeads(300);
 const hot = leads.filter((l) => l.temperature >= 75).length;
-const avg = leads.length ? Math.round(leads.reduce((s, l) => s + l.index, 0) / leads.length) : 0;
+const scored = leads.filter((l) => l.index != null);
+const avg = scored.length ? Math.round(scored.reduce((s, l) => s + (l.index as number), 0) / scored.length) : 0;
+const contactos = leads.filter((l) => l.source === 'contacto').length;
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString('es-CR', { day: '2-digit', month: 'short', year: '2-digit' });
 const tempCls = (t: number) => (t >= 75 ? 'hot' : t >= 55 ? 'warm' : 'cold');
+const waLink = (n: string) => `https://wa.me/${n.replace(/\D/g, '')}`;
 ---
 <Base title="Panel de leads — Optimiza" description="Leads del scanner">
   <meta slot="head" name="robots" content="noindex" />
@@ -43,28 +46,30 @@ const tempCls = (t: number) => (t >= 75 ? 'hot' : t >= 55 ? 'warm' : 'cold');
       <div class="stats">
         <div class="stat"><div class="s-n">{leads.length}</div><div class="s-l">Leads totales</div></div>
         <div class="stat"><div class="s-n hot">{hot}</div><div class="s-l">Calientes</div></div>
+        <div class="stat"><div class="s-n">{contactos}</div><div class="s-l">Vía contacto</div></div>
         <div class="stat"><div class="s-n">{avg}</div><div class="s-l">Índice promedio</div></div>
       </div>
 
       {leads.length === 0 ? (
-        <p class="lead empty">Aún no hay leads. Cuando alguien complete el scanner, aparecerá aquí.</p>
+        <p class="lead empty">Aún no hay leads. Cuando alguien complete el scanner o el formulario, aparecerá aquí.</p>
       ) : (
         <div class="tbl-wrap">
           <table class="tbl">
             <thead>
-              <tr><th>Fecha</th><th>Email</th><th>Sitio</th><th>Índice</th><th>Temp.</th><th>Meta</th><th>Ads</th><th>Escaneos</th></tr>
+              <tr><th>Fecha</th><th>Origen</th><th>Nombre / Empresa</th><th>Email</th><th>WhatsApp</th><th>Sitio</th><th>Índice</th><th>Temp.</th><th>Meta</th></tr>
             </thead>
             <tbody>
               {leads.map((l) => (
                 <tr>
                   <td class="mono">{fmt(l.createdAt)}</td>
+                  <td><span class={`src ${l.source === 'contacto' ? 'sc' : 'ss'}`}>{l.source === 'contacto' ? 'Contacto' : 'Scanner'}</span></td>
+                  <td class="sm">{l.name || '—'}{l.company && <><br /><span class="co">{l.company}</span></>}</td>
                   <td><a href={`mailto:${l.email}`}>{l.email}</a></td>
+                  <td class="mono">{l.whatsapp ? <a href={waLink(l.whatsapp)} target="_blank" rel="noopener">{l.whatsapp}</a> : '—'}</td>
                   <td class="mono"><a href={l.url} target="_blank" rel="noopener nofollow">{l.domain}</a></td>
-                  <td class="mono idx">{l.index}</td>
+                  <td class="mono idx">{l.index ?? '—'}</td>
                   <td><span class={`temp ${tempCls(l.temperature)}`}>{l.temperature} · {tempLabel(l.temperature)}</span></td>
                   <td class="sm">{l.qualifiers?.goal || '—'}</td>
-                  <td class="sm">{l.qualifiers?.ads || '—'}</td>
-                  <td class="mono ctr">{l.scans}</td>
                 </tr>
               ))}
             </tbody>
@@ -94,6 +99,10 @@ const tempCls = (t: number) => (t >= 75 ? 'hot' : t >= 55 ? 'warm' : 'cold');
   .tbl .sm { color: var(--muted); font-size: 13px; }
   .tbl a { color: var(--violet-ink); }
   .tbl a:hover { text-decoration: underline; }
+  .co { color: var(--faint); font-size: 12px; }
+  .src { display: inline-block; font-family: var(--mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; padding: 3px 9px; border-radius: 6px; white-space: nowrap; }
+  .src.ss { background: rgba(139,108,255,0.14); color: var(--violet-ink); }
+  .src.sc { background: rgba(199,249,75,0.22); color: #5A6A12; }
   .temp { display: inline-block; font-family: var(--mono); font-size: 11.5px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
   .temp.hot { background: rgba(224,72,61,0.14); color: #D8392E; }
   .temp.warm { background: rgba(217,132,10,0.14); color: #C07607; }

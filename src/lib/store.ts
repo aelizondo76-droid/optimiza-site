@@ -33,11 +33,16 @@ const REPORT_TTL = 60 * 60 * 24 * 90; // 90 días
 
 export interface Lead {
   id: string;
+  source: 'scanner' | 'contacto';
   email: string;
+  whatsapp?: string;
+  name?: string;
+  company?: string;
+  message?: string;
   domain: string;
   url: string;
-  index: number;
-  grade: string;
+  index: number | null;
+  grade: string | null;
   temperature: number; // 0–100
   qualifiers: Record<string, string>;
   ip: string;
@@ -89,8 +94,24 @@ export async function findLead(email: string, domain: string): Promise<Lead | nu
 export async function upsertLead(lead: Lead): Promise<Lead> {
   const dedupKey = `lead:${lead.email.toLowerCase()}|${lead.domain.toLowerCase()}`;
   const prev = await findLead(lead.email, lead.domain);
+  // Al reincidir, conserva lo previo pero prefiere los valores nuevos no vacíos.
+  const pick = <T>(a: T | undefined | null, b: T | undefined | null) =>
+    (a !== undefined && a !== null && a !== '' ? a : b) as T;
   const merged: Lead = prev
-    ? { ...prev, index: lead.index, grade: lead.grade, temperature: lead.temperature, url: lead.url, scans: prev.scans + 1 }
+    ? {
+        ...prev,
+        source: lead.source || prev.source,
+        whatsapp: pick(lead.whatsapp, prev.whatsapp),
+        name: pick(lead.name, prev.name),
+        company: pick(lead.company, prev.company),
+        message: pick(lead.message, prev.message),
+        index: lead.index ?? prev.index,
+        grade: lead.grade ?? prev.grade,
+        temperature: Math.max(lead.temperature, prev.temperature),
+        url: lead.url || prev.url,
+        qualifiers: { ...prev.qualifiers, ...lead.qualifiers },
+        scans: prev.scans + 1,
+      }
     : lead;
   if (redis) {
     await redis.set(dedupKey, merged);
