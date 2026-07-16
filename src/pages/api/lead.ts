@@ -27,6 +27,11 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   if (!chk.valid) return json({ error: chk.reason || 'Correo inválido' }, 400);
 
   const isFirst = !goal && !ads; // primera llamada = email + WhatsApp
+
+  // Honeypot: bot detectado → fingimos éxito sin guardar ni enviar nada.
+  if (isFirst && (body?.hp || '').toString().trim())
+    return json({ ok: true, reportUrl: `/reporte/${reportId}`, duplicate: false });
+
   const wa = (whatsapp || '').toString().trim().slice(0, 30);
   if (isFirst && wa.replace(/\D/g, '').length < 8)
     return json({ error: 'Ingresa un WhatsApp válido' }, 400);

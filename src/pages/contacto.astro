@@ -27,6 +27,7 @@ const description = seo.description;
           <h2>Solicita tu diagnóstico completo</h2>
           <p class="fsub">Entre más nos cuentes, más específico será tu plan. Solo lo esencial.</p>
           <form id="leadForm">
+            <input type="text" id="hp-field" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <div class="form-row two">
               <div><label class="field-l" for="f-name">Nombre</label><input class="inp" id="f-name" type="text" placeholder="Tu nombre" required /></div>
               <div><label class="field-l" for="f-empresa">Empresa</label><input class="inp" id="f-empresa" type="text" placeholder="Tu empresa" /></div>
@@ -195,6 +196,7 @@ const description = seo.description;
       goal: (document.getElementById('f-goal') as HTMLSelectElement)?.value || '',
       ads: (document.querySelector('input[name="ads"]:checked') as HTMLInputElement)?.value || '',
       message: val('f-msg'),
+      hp: val('hp-field'),
     };
     const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const prev = btn.textContent;

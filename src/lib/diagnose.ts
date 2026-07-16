@@ -1,4 +1,5 @@
 import { parse as parseHtml } from 'node-html-parser';
+import { lookup } from 'node:dns/promises';
 import { env } from './env';
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -100,6 +101,8 @@ export function normalizeUrl(raw: string): string | null {
     const u = new URL(s);
     if (!/^https?:$/.test(u.protocol)) return null;
     if (!u.hostname.includes('.')) return null;
+    // Defensa temprana (safeFetch además resuelve DNS antes de cada fetch).
+    if (/^\d+\.\d+\.\d+\.\d+$/.test(u.hostname) && isPrivateIp(u.hostname)) return null;
     return u.toString();
   } catch {
     return null;
@@ -119,6 +122,78 @@ async function fetchWithTimeout(url: string, ms: number, init?: RequestInit) {
   } finally {
     clearTimeout(t);
   }
+}
+
+/* ── Protección SSRF: bloquea IPs privadas / internas / de metadata ──────── */
+
+function isPrivateIp(ip: string): boolean {
+  if (ip.includes(':')) {
+    const v = ip.toLowerCase().replace(/^\[|\]$/g, '');
+    if (v === '::1' || v === '::') return true;
+    if (v.startsWith('fe80') || v.startsWith('fc') || v.startsWith('fd')) return true; // link-local + ULA
+    const m = v.match(/::ffff:(\d+\.\d+\.\d+\.\d+)$/); // IPv4 mapeada
+    if (m) return isPrivateIp(m[1]);
+    return false;
+  }
+  const p = ip.split('.').map(Number);
+  if (p.length !== 4 || p.some((n) => Number.isNaN(n))) return false;
+  const [a, b, c] = p;
+  if (a === 0 || a === 10 || a === 127) return true;
+  if (a === 169 && b === 254) return true; // link-local / metadata en la nube
+  if (a === 172 && b >= 16 && b <= 31) return true;
+  if (a === 192 && b === 168) return true;
+  if (a === 100 && b >= 64 && b <= 127) return true; // CGNAT
+  if (a === 192 && b === 0 && c === 0) return true;
+  if (a === 198 && (b === 18 || b === 19)) return true;
+  if (a >= 224) return true; // multicast + reservado
+  return false;
+}
+
+/** ¿El host resuelve a una dirección pública? (bloquea DNS a rangos internos) */
+async function hostIsPublic(hostname: string): Promise<boolean> {
+  const h = hostname.replace(/^\[|\]$/g, '');
+  if (h === 'localhost' || h.endsWith('.local') || h.endsWith('.internal')) return false;
+  if (/^\d+\.\d+\.\d+\.\d+$/.test(h) || h.includes(':')) return !isPrivateIp(h);
+  try {
+    const addrs = await lookup(h, { all: true });
+    return addrs.length > 0 && addrs.every((a) => !isPrivateIp(a.address));
+  } catch {
+    return false;
+  }
+}
+
+/** fetch que valida CADA salto de redirect contra rangos internos (anti-SSRF). */
+async function safeFetch(
+  startUrl: string,
+  ms: number,
+  init?: RequestInit
+): Promise<{ res: Response; finalUrl: string }> {
+  let current = startUrl;
+  for (let hop = 0; hop < 5; hop++) {
+    const u = new URL(current);
+    if (!/^https?:$/.test(u.protocol)) throw new Error('protocolo no permitido');
+    if (!(await hostIsPublic(u.hostname))) throw new Error('host bloqueado');
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), ms);
+    let res: Response;
+    try {
+      res = await fetch(current, {
+        ...init,
+        signal: ctrl.signal,
+        redirect: 'manual',
+        headers: { 'user-agent': UA, ...(init?.headers || {}) },
+      });
+    } finally {
+      clearTimeout(t);
+    }
+    const loc = res.status >= 300 && res.status < 400 ? res.headers.get('location') : null;
+    if (loc) {
+      current = new URL(loc, current).toString();
+      continue;
+    }
+    return { res, finalUrl: current };
+  }
+  throw new Error('demasiados redirects');
 }
 
 /* ── PageSpeed Insights ─────────────────────────────────────────────────── */
@@ -211,15 +286,15 @@ interface HtmlLayer {
 
 async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
   let res: Response;
+  let finalUrl: string;
   try {
-    res = await fetchWithTimeout(url, 20000, {
-      headers: { accept: 'text/html' },
-    });
+    const r = await safeFetch(url, 20000, { headers: { accept: 'text/html' } });
+    res = r.res;
+    finalUrl = r.finalUrl;
   } catch {
     return null;
   }
   if (!res.ok) return null;
-  const finalUrl = res.url || url;
   const origin = new URL(finalUrl).origin;
   const host = new URL(finalUrl).host.replace(/^www\./, '');
   const html = await res.text();
@@ -253,7 +328,7 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
   // Recursos externos (existencia)
   const exists = async (path: string, mustInclude?: RegExp) => {
     try {
-      const r = await fetchWithTimeout(origin + path, 8000);
+      const { res: r } = await safeFetch(origin + path, 8000);
       if (!r.ok) return false;
       if (mustInclude) {
         const txt = (await r.text()).slice(0, 4000);

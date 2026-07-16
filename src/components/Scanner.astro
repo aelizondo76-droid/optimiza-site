@@ -47,6 +47,7 @@
         <form class="gform" id="gateForm">
           <input type="email" id="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
           <input type="tel" id="gwa" inputmode="tel" placeholder="WhatsApp (+506 8888 8888)" aria-label="WhatsApp" required />
+          <input type="text" id="gwa-hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
           <button class="btn btn-violet" type="submit">Recibir diagnóstico</button>
         </form>
         <p class="note">Vista previa ilustrativa · el diagnóstico real analiza tu sitio en vivo.</p>
@@ -191,6 +192,9 @@
     const scanBtn = document.getElementById('scanBtn') as HTMLButtonElement;
     const errEl = document.getElementById('scanErr')!;
     const sevColor = (ok: unknown) => (ok === false ? '#ff5c6c' : ok === 'warn' ? '#ffb454' : '#3B9E4E');
+    // Escapa datos externos (host/hallazgos del sitio escaneado) antes de innerHTML.
+    const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => (
+      { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
 
     // Estado de la sesión de escaneo
     let reportId = '';
@@ -231,12 +235,12 @@
       // Hallazgos reales (2 visibles) + bloqueados
       const fhead = document.getElementById('fhead')!;
       const flist = document.getElementById('flist')!;
-      fhead.innerHTML = `Detectamos <b>${d.totalFindings}</b> oportunidad${d.totalFindings === 1 ? '' : 'es'} en <b>${d.host}</b>`;
+      fhead.innerHTML = `Detectamos <b>${Number(d.totalFindings) || 0}</b> oportunidad${d.totalFindings === 1 ? '' : 'es'} en <b>${esc(d.host)}</b>`;
       flist.innerHTML = '';
       for (const f of d.preview) {
         const item = document.createElement('div');
         item.className = 'fitem';
-        item.innerHTML = `<span class="sev" style="background:${sevColor(f.ok)}"></span><span class="txt">${f.title}${f.detail ? ' <em>— ' + f.detail + '</em>' : ''}</span>`;
+        item.innerHTML = `<span class="sev" style="background:${sevColor(f.ok)}"></span><span class="txt">${esc(f.title)}${f.detail ? ' <em>— ' + esc(f.detail) + '</em>' : ''}</span>`;
         flist.appendChild(item);
       }
       if (d.lockedCount > 0) {
@@ -289,9 +293,10 @@
       const btn = (e.target as HTMLFormElement).querySelector('button') as HTMLButtonElement;
       btn.disabled = true; const prev = btn.textContent; btn.textContent = 'Enviando…';
       try {
+        const hp = (document.getElementById('gwa-hp') as HTMLInputElement)?.value || '';
         const res = await fetch('/api/lead', {
           method: 'POST', headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ reportId, email, whatsapp }),
+          body: JSON.stringify({ reportId, email, whatsapp, hp }),
         });
         const data = await res.json();
         btn.disabled = false; btn.textContent = prev!;
@@ -331,7 +336,7 @@
       const gate = document.getElementById('gate')!;
       const reportUrl = (document.getElementById('reportLink') as HTMLAnchorElement)?.href || '#';
       gate.classList.add('done');
-      gate.innerHTML = '<p class="check">✓ ' + (first ? '¡Listo, ' + first + '! ' : '¡Listo! ') + 'Personalizamos tu diagnóstico.</p><a class="btn btn-violet report-link" href="' + reportUrl + '" target="_blank" rel="noopener">Ver tu informe completo →</a><p class="note">Te contactamos en menos de 24h con tu plan de acción priorizado.</p>';
+      gate.innerHTML = '<p class="check">✓ ' + (first ? '¡Listo, ' + esc(first) + '! ' : '¡Listo! ') + 'Personalizamos tu diagnóstico.</p><a class="btn btn-violet report-link" href="' + encodeURI(reportUrl) + '" target="_blank" rel="noopener">Ver tu informe completo →</a><p class="note">Te contactamos en menos de 24h con tu plan de acción priorizado.</p>';
     });
   }
 </script>

@@ -3,6 +3,7 @@ import Base from '../layouts/Base.astro';
 import { getLeads } from '../lib/store';
 import { tempLabel } from '../lib/validate';
 import { env } from '../lib/env';
+import { basicAuthOk } from '../lib/auth';
 
 export const prerender = false;
 
@@ -10,7 +11,6 @@ export const prerender = false;
 const USER = env('LEADS_USER') || 'optimiza';
 const PASS = env('LEADS_PASSWORD');
 const auth = Astro.request.headers.get('authorization');
-const expected = PASS ? 'Basic ' + Buffer.from(`${USER}:${PASS}`).toString('base64') : null;
 
 if (!PASS) {
   return new Response(
@@ -18,7 +18,7 @@ if (!PASS) {
     { status: 503 }
   );
 }
-if (auth !== expected) {
+if (!basicAuthOk(auth, USER, PASS)) {
   return new Response('Acceso restringido', {
     status: 401,
     headers: { 'WWW-Authenticate': 'Basic realm="Optimiza · Panel de leads"' },

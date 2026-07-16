@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { env } from '../../lib/env';
+import { basicAuthOk } from '../../lib/auth';
 
 export const prerender = false;
 
@@ -10,8 +11,7 @@ export const GET: APIRoute = async ({ request }) => {
   const USER = env('LEADS_USER') || 'optimiza';
   const PASS = env('LEADS_PASSWORD');
   const auth = request.headers.get('authorization');
-  const expected = PASS ? 'Basic ' + Buffer.from(`${USER}:${PASS}`).toString('base64') : null;
-  if (!PASS || auth !== expected) {
+  if (!PASS || !basicAuthOk(auth, USER, PASS)) {
     return new Response('Acceso restringido', {
       status: 401,
       headers: { 'WWW-Authenticate': 'Basic realm="Optimiza health"' },

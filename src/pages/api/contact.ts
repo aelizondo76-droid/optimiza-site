@@ -23,6 +23,9 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   const { name, company, email, whatsapp, url, goal, ads, message } = body || {};
 
+  // Honeypot: si un bot llenó el campo oculto, fingimos éxito y descartamos.
+  if ((body?.hp || '').toString().trim()) return json({ ok: true });
+
   if (!(name || '').toString().trim()) return json({ error: 'Falta tu nombre' }, 400);
 
   const chk = checkEmail(email || '');

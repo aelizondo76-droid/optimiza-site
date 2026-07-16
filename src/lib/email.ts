@@ -12,6 +12,11 @@ const NOTIFY = env('LEAD_NOTIFY_EMAIL') || env('SCAN_REPLY_TO'); // a dónde lle
 
 const resend = key ? new Resend(key) : null;
 
+// Escapa datos del lead (nombre, mensaje, host…) antes de meterlos al HTML del email.
+const esc = (s: unknown) =>
+  String(s ?? '').replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+
 interface ReportEmail {
   to: string;
   host: string;
@@ -47,7 +52,7 @@ function renderEmail(p: ReportEmail, link: string): string {
   <div style="max-width:520px;margin:0 auto;padding:32px 20px">
     <div style="font-weight:700;font-size:20px;letter-spacing:-.02em;margin-bottom:24px">Optimiza</div>
     <div style="background:#fff;border:1px solid rgba(23,20,31,.1);border-radius:16px;padding:32px;text-align:center">
-      <p style="margin:0 0 8px;color:#615C74;font-size:14px">Diagnóstico de <b>${p.host}</b></p>
+      <p style="margin:0 0 8px;color:#615C74;font-size:14px">Diagnóstico de <b>${esc(p.host)}</b></p>
       <div style="font-size:64px;font-weight:800;letter-spacing:-.03em;color:${color};line-height:1">${p.index}</div>
       <p style="margin:4px 0 0;color:#615C74;font-size:13px">Índice Optimiza · calificación ${p.grade}</p>
       <a href="${link}" style="display:inline-block;margin-top:24px;background:#6A3EF0;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px">Ver tu informe completo →</a>
@@ -100,7 +105,7 @@ export async function sendLeadNotification(l: LeadNotify): Promise<boolean> {
         <div style="max-width:520px;margin:0 auto;background:#fff;border:1px solid rgba(23,20,31,.1);border-radius:14px;padding:24px">
           <h2 style="margin:0 0 16px;font-size:18px">Nuevo lead en Optimiza</h2>
           <table style="width:100%;border-collapse:collapse;font-size:14px">
-            ${rows.map(([k, v]) => `<tr><td style="padding:7px 0;color:#615C74;width:110px;vertical-align:top">${k}</td><td style="padding:7px 0;font-weight:600">${v}</td></tr>`).join('')}
+            ${rows.map(([k, v]) => `<tr><td style="padding:7px 0;color:#615C74;width:110px;vertical-align:top">${k}</td><td style="padding:7px 0;font-weight:600">${esc(v)}</td></tr>`).join('')}
           </table>
         </div></body></html>`,
     });
@@ -128,7 +133,7 @@ export async function sendContactConfirmation(to: string, name?: string): Promis
         <div style="max-width:520px;margin:0 auto;padding:32px 20px">
           <div style="font-weight:700;font-size:20px;margin-bottom:24px">Optimiza</div>
           <div style="background:#fff;border:1px solid rgba(23,20,31,.1);border-radius:16px;padding:32px">
-            <p style="margin:0 0 12px;font-size:16px">${name ? '¡Hola ' + name + '!' : '¡Hola!'}</p>
+            <p style="margin:0 0 12px;font-size:16px">${name ? '¡Hola ' + esc(name) + '!' : '¡Hola!'}</p>
             <p style="margin:0;color:#615C74;font-size:14px;line-height:1.6">Recibimos tu solicitud. Un miembro del equipo te contactará en menos de 24 horas para revisar tu caso y explicarte, sin tecnicismos, cómo tu web puede vender más.</p>
           </div>
           <p style="color:#726D86;font-size:12px;text-align:center;margin-top:20px">Optimizamos tu negocio a través de tu web.<br>optimizahq.com</p>
