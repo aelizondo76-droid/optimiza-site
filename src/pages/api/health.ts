@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { env } from '../../lib/env';
 import { basicAuthOk } from '../../lib/auth';
+import { clientifyPing } from '../../lib/clientify';
 
 export const prerender = false;
 
@@ -37,6 +38,8 @@ export const GET: APIRoute = async ({ request }) => {
     psi.error = String(e).slice(0, 240);
   }
 
+  const clientify = await clientifyPing();
+
   return Response.json({
     env: {
       PAGESPEED_API_KEY: present('PAGESPEED_API_KEY'),
@@ -44,8 +47,10 @@ export const GET: APIRoute = async ({ request }) => {
       UPSTASH_REDIS_REST_TOKEN: present('UPSTASH_REDIS_REST_TOKEN'),
       RESEND_API_KEY: present('RESEND_API_KEY'),
       LEADS_PASSWORD: present('LEADS_PASSWORD'),
+      CLIENTIFY_API_TOKEN: present('CLIENTIFY_API_TOKEN'),
       PUBLIC_SITE_URL: env('PUBLIC_SITE_URL') || null,
     },
     pagespeed: psi,
+    clientify,
   });
 };

@@ -20,6 +20,21 @@ export interface CrmContact {
   message?: string;
 }
 
+/** Verifica la conexión con Clientify (token presente + auth válida) sin crear datos. */
+export async function clientifyPing(): Promise<{ configured: boolean; status: number; ok: boolean; error: string }> {
+  const token = env('CLIENTIFY_API_TOKEN');
+  if (!token) return { configured: false, status: 0, ok: false, error: 'sin CLIENTIFY_API_TOKEN' };
+  try {
+    const res = await fetch(`${BASE}/contacts/?page_size=1`, {
+      headers: { Authorization: `Token ${token}` },
+    });
+    const error = res.ok ? '' : (await res.text().catch(() => '')).slice(0, 240);
+    return { configured: true, status: res.status, ok: res.ok, error };
+  } catch (e) {
+    return { configured: true, status: 0, ok: false, error: String(e).slice(0, 240) };
+  }
+}
+
 export async function pushToClientify(c: CrmContact): Promise<boolean> {
   const token = env('CLIENTIFY_API_TOKEN');
   if (!token) {
