@@ -1,0 +1,57 @@
+# Estudio Optimiza — Clínicas dentales del GAM
+# (dominios propios; excluidos directorios). Una URL por línea.
+
+# ── Heredia ──
+clinicagoodsmile.com
+freshdentalcr.com
+clinicapertenesercr.com
+jysdentalcare.com
+dcdentalcr.com
+costaricadentalsmile.com
+
+# ── Cartago ──
+clinicadentalcoto.com
+clinicanavarrogarcia.com
+clinicadentalrociodelgadoaiza.com
+casadenscr.com
+dentalteamcr.com
+qadentalcare.com
+clinicadulcenombre.com
+
+# ── Alajuela ──
+primedentalcr.com
+alphadent-cr.com
+clinicavictorsanchez.com
+maxilofacialalajuela.com
+moreradental.com
+arguedassanchezdental.com
+
+# ── Curridabat / San Pedro / Montes de Oca ──
+draadrianagutierrez.com
+odontoser.clinic
+dentalhealthcostarica.com
+
+# ── Tibás / Moravia / Santo Domingo ──
+bestdentcr.com
+dentistcostarica.com
+smiledentalcare.cr
+dentuscr.wordpress.com
+
+# ── Escazú / Santa Ana ──
+gildentalclinic.com
+dentalavenuecr.com
+admiradentalcr.com
+santaanadent.com
+costaricanbiodental.com
+
+# ── Zonas nuevas (pequeñas / periféricas) ──
+frenillosyodontopediatria.com
+arcodental.com
+centromedicotresrios.com
+clinicadentalsantabarbara.com
+
+# ── Premium / top-ranked (referencia de contraste, NO prospectos) ──
+clinicacosdent.com
+dentalinstitutecr.com
+costaricadentalteam.com
+aestheticdentalcr.com

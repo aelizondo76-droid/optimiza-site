@@ -1,0 +1,292 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// ── Estudio: datos verificados (motor Optimiza, julio 2026) ──
+const D = {
+  revisadas: 39,
+  legibles: 36,
+  excluidas: 3,
+  premium: 4,
+  indice: 57,
+  pilares: [
+    { k: 'Visibilidad', v: 71, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 60, note: 'CTA, formularios, WhatsApp' },
+    { k: 'Velocidad', v: 60, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 26, note: 'Medición y retargeting' },
+  ],
+  sinPixel: 97,
+  sinAnalytics: 63,
+  sinWhatsApp: 58,
+  reprEvelocidad: 19,
+  premIndice: 62,
+  grados: [
+    { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 5, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 18, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 11, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 2, cls: 'gE' },
+  ],
+};
+const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
+
+const publishDate = '2026-07-16';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const title = 'Clínicas dentales de Costa Rica: el 97% no mide su web';
+const description = 'Analizamos 36 clínicas dentales del Gran Área Metropolitana: el 97% no tiene Meta Pixel y el 63% no usa Google Analytics. Datos, metodología y hallazgos.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-clinicas-dentales.png', Astro.site).href;
+
+// ── AEO: preguntas y respuestas (también van a FAQPage schema) ──
+const faqs = [
+  {
+    q: '¿Qué tan buenas son las páginas web de las clínicas dentales en Costa Rica?',
+    a: 'Son mediocres de forma generalizada. En un estudio de 36 clínicas dentales del Gran Área Metropolitana, el Índice Optimiza promedio fue de 57 sobre 100 (grado C). Ninguna alcanzó el grado A y solo 5 llegaron a B. El punto más débil es la automatización y medición: el 97% no puede medir ni recuperar a los pacientes que visitan su web.',
+  },
+  {
+    q: '¿Cuál es el problema más común en las webs de clínicas dentales?',
+    a: 'La falta de medición. El 97% de las clínicas analizadas no tiene el píxel de Meta instalado y el 63% no usa Google Analytics. Sin estas herramientas, la clínica no sabe de dónde vienen sus pacientes ni puede volver a impactar a quien visitó su web sin agendar.',
+  },
+  {
+    q: '¿Las clínicas dentales premium tienen mejores páginas web?',
+    a: 'Apenas. Las clínicas premium y reconocidas del estudio promediaron 62 sobre 100, solo 5 puntos por encima del promedio general. Incluso las clínicas más caras y con más trayectoria comparten los mismos vacíos de medición y automatización.',
+  },
+  {
+    q: '¿Qué es el Índice Optimiza?',
+    a: 'Es una calificación de 0 a 100 que resume la salud de un sitio web en cuatro pilares: velocidad (30%), visibilidad o SEO (30%), conversión (20%) y automatización o medición (20%). Se calcula con la API de PageSpeed Insights de Google más un análisis del HTML de la página.',
+  },
+  {
+    q: '¿Cómo se realizó el estudio de clínicas dentales?',
+    a: 'Se analizaron 39 clínicas dentales con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). De ellas, 36 arrojaron datos completos; 3 no pudieron leerse por bloqueo de bots o por depender de JavaScript.',
+  },
+];
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Report',
+  headline: 'El 97% de las clínicas dentales de Costa Rica no puede medir su web',
+  description,
+  image: ogImage,
+  datePublished: publishDate,
+  dateModified: publishDate,
+  inLanguage: 'es-CR',
+  author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Optimiza',
+    url: 'https://optimizahq.com',
+    logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+  keywords: ['clínicas dentales Costa Rica', 'sitio web clínica dental', 'marketing dental', 'Meta Pixel', 'SEO odontología', 'Gran Área Metropolitana'],
+  about: { '@type': 'Thing', name: 'Páginas web de clínicas dentales en Costa Rica' },
+};
+
+const datasetLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Diagnóstico web de clínicas dentales del GAM 2026',
+  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 36 clínicas dentales del Gran Área Metropolitana de Costa Rica.',
+  creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  temporalCoverage: '2026-07',
+  spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
+  measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
+  variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
+  isAccessibleForFree: true,
+  url: canonical,
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+const plus = 'M12 5v14M5 12h14';
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+    <meta property="article:author" content="Optimiza" />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  </Fragment>
+
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+
+      <header class="art-head reveal">
+        <span class="tag res">Investigación propia</span>
+        <h1>El 97% de las clínicas dentales de Costa Rica no puede medir su web</h1>
+        <p class="art-meta">{dateHuman} · Estudio de {D.legibles} clínicas del Gran Área Metropolitana · Lectura 6 min</p>
+      </header>
+
+      <!-- TL;DR — respuesta directa (AEO) -->
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.legibles} clínicas dentales</strong> del Gran Área Metropolitana con nuestro motor de diagnóstico. El <strong>Índice Optimiza promedio fue de {D.indice}/100 (grado C)</strong>. El hallazgo central: <strong>el {D.sinPixel}% no tiene el píxel de Meta</strong> y el <strong>{D.sinAnalytics}% no usa Google Analytics</strong> — es decir, casi ninguna clínica sabe de dónde vienen sus pacientes ni puede recuperarlos. La velocidad no es el problema; la <strong>medición</strong> sí.</p>
+      </div>
+
+      <!-- Stat cards -->
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta (no pueden hacer retargeting)</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics (vuelan a ciegas)</div></div>
+        <div class="stat"><div class="sn">{D.sinWhatsApp}<small>%</small></div><div class="sl">sin WhatsApp directo en la web</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza promedio (grado C)</div></div>
+      </div>
+
+      <div class="prose">
+        <h2>Los cuatro pilares: dónde están fuertes y dónde no</h2>
+        <p>El Índice Optimiza mide cuatro dimensiones. Las clínicas dentales del GAM tienen una visibilidad y una velocidad aceptables, pero se derrumban en <strong>automatización</strong> — la capacidad de medir, entender y recuperar a sus visitantes.</p>
+
+        <div class="bars">
+          {D.pilares.map((p) => (
+            <div class="bar">
+              <div class="bar-top"><span>{p.k}<em>{p.note}</em></span><span class="bar-v">{p.v}<small>/100</small></span></div>
+              <div class="track"><span style={`width:${p.v}%;background:${p.v < 40 ? '#E24B4A' : p.v < 60 ? '#EF9F27' : 'var(--violet)'}`}></span></div>
+            </div>
+          ))}
+        </div>
+
+        <h2>El hallazgo central: vuelan a ciegas</h2>
+        <p>La sorpresa no fue la velocidad —solo el {D.reprEvelocidad}% de las webs reprueba en carga móvil— sino la <strong>ausencia total de medición</strong>. Cuando una clínica no tiene Google Analytics ni el píxel de Meta instalados, ocurren tres cosas:</p>
+        <ul>
+          <li>No sabe <strong>de dónde vienen sus pacientes</strong> (¿Google? ¿Instagram? ¿un anuncio?).</li>
+          <li>No puede <strong>volver a impactar</strong> a quien entró a su web y se fue sin agendar.</li>
+          <li>Invierte en publicidad <strong>sin saber qué funciona</strong> y qué es dinero tirado.</li>
+        </ul>
+        <blockquote>De las {D.legibles} clínicas analizadas, solo una tenía el píxel de Meta instalado. El resto —el {D.sinPixel}%— no puede recuperar a un solo paciente que visita su web sin agendar.</blockquote>
+
+        <h2>Ni las mejores se salvan</h2>
+        <p>Incluimos cuatro clínicas premium y reconocidas como referencia de contraste. Su promedio fue de <strong>{D.premIndice}/100</strong>: apenas <strong>{D.premIndice - D.indice} puntos</strong> por encima del promedio general. La conclusión es contundente:</p>
+        <div class="contrast">
+          <div class="cbar">
+            <div class="cbar-l">Promedio general</div>
+            <div class="track"><span style={`width:${D.indice}%;background:var(--muted)`}></span></div>
+            <div class="cbar-n">{D.indice}</div>
+          </div>
+          <div class="cbar">
+            <div class="cbar-l">Clínicas premium</div>
+            <div class="track"><span style={`width:${D.premIndice}%;background:var(--violet)`}></span></div>
+            <div class="cbar-n">{D.premIndice}</div>
+          </div>
+        </div>
+        <p><strong>Ninguna clínica del GAM —ni las más caras y reconocidas— tiene una web que sea una ventaja competitiva real.</strong> La categoría entera está pareja y débil. Para una clínica, esto es una oportunidad: la primera en resolverlo se adelanta a toda su competencia.</p>
+
+        <h2>Distribución por calificación</h2>
+        <p>Ninguna de las {D.revisadas} clínicas revisadas alcanzó el grado A (80 o más). El grueso se acumula entre <strong>regular y deficiente</strong>.</p>
+        <div class="dist">
+          {D.grados.map((g) => (
+            <div class="drow">
+              <div class="dg">{g.g}<em>{g.label}</em></div>
+              <div class="dtrack"><span class={g.cls} style={`width:${totalGrados ? (g.n / totalGrados) * 100 : 0}%`}></span></div>
+              <div class="dn">{g.n}</div>
+            </div>
+          ))}
+        </div>
+
+        <h2>Metodología</h2>
+        <p>Transparencia total sobre cómo se hizo, porque un dato sin método es una opinión.</p>
+        <ul>
+          <li><strong>Muestra:</strong> {D.revisadas} clínicas dentales con dominio propio del Gran Área Metropolitana (Heredia, Cartago, Alajuela, San José y cantones periféricos), seleccionadas de búsquedas públicas por zona. No es un muestreo aleatorio: hay sesgo hacia clínicas con web indexada en Google.</li>
+          <li><strong>Herramienta:</strong> el motor de diagnóstico de Optimiza, que combina la API de PageSpeed Insights de Google (Lighthouse) con un análisis del HTML de cada página.</li>
+          <li><strong>Métrica:</strong> el Índice Optimiza (0–100) pondera velocidad (30%), visibilidad/SEO (30%), conversión (20%) y automatización/medición (20%). Es una métrica compuesta propia, no una calificación oficial de Google.</li>
+          <li><strong>Momento:</strong> medición única (snapshot) de julio de 2026. Los sitios cambian; los resultados reflejan ese momento.</li>
+          <li><strong>Exclusiones:</strong> {D.excluidas} de las {D.revisadas} no pudieron leerse (bloqueo de bots o dependencia de JavaScript) y se excluyeron de los promedios. Las {D.premium} clínicas premium se usaron solo como referencia comparativa.</li>
+          <li><strong>Ética:</strong> no publicamos el nombre de ninguna clínica ni sus puntajes individuales. Este estudio es agregado, para retratar el estado de la categoría, no para exponer a ningún negocio.</li>
+        </ul>
+
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <!-- FAQ / AEO accordion -->
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+
+      <div class="art-cta">
+        <p>¿Tu clínica está en el 97% que vuela a ciegas? Descúbrelo en 30 segundos.</p>
+        <a class="btn btn-lime" href="/#top">Analizar la web de mi clínica gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .art { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 44px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 10px; line-height: 1.65; font-size: 16.5px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; line-height: 1.6; }
+
+  .bars { display: flex; flex-direction: column; gap: 16px; margin: 26px 0 8px; }
+  .bar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+  .bar-top span { font-size: 14.5px; color: var(--text); font-weight: 500; }
+  .bar-top em { display: block; font-style: normal; font-size: 12px; color: var(--faint); font-weight: 400; margin-top: 2px; }
+  .bar-v { font-family: var(--mono); font-weight: 700; color: var(--text); }
+  .bar-v small { color: var(--faint); font-size: 12px; font-weight: 400; }
+  .track { height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .track { background: rgba(255,255,255,0.09); }
+  .track span { display: block; height: 100%; border-radius: 99px; }
+
+  .contrast { display: flex; flex-direction: column; gap: 16px; margin: 22px 0; }
+  .cbar { display: grid; grid-template-columns: 130px 1fr auto; align-items: center; gap: 14px; }
+  .cbar-l { font-size: 13.5px; color: var(--muted); }
+  .cbar-n { font-family: var(--mono); font-weight: 700; color: var(--text); font-size: 18px; }
+  .cbar .track { height: 12px; }
+
+  .dist { display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+  .drow { display: grid; grid-template-columns: 150px 1fr 28px; align-items: center; gap: 14px; }
+  .dg { font-family: var(--mono); font-size: 15px; font-weight: 700; color: var(--text); }
+  .dg em { display: block; font-style: normal; font-size: 11px; color: var(--faint); font-weight: 400; margin-top: 2px; letter-spacing: 0.02em; }
+  .dtrack { height: 22px; background: rgba(23,20,31,0.05); border-radius: 7px; overflow: hidden; }
+  :global([data-theme="dark"]) .dtrack { background: rgba(255,255,255,0.06); }
+  .dtrack span { display: block; height: 100%; border-radius: 7px; min-width: 2px; }
+  .dtrack .gA { background: #21B36B; } .dtrack .gB { background: #7FCf3F; }
+  .dtrack .gC { background: #EF9F27; } .dtrack .gD { background: #E8743B; } .dtrack .gE { background: #E24B4A; }
+  .dn { font-family: var(--mono); font-weight: 700; color: var(--text); text-align: right; }
+
+  .faq { margin: 8px 0 0; }
+  .qa { border-bottom: 1px solid var(--line); }
+  .qa .q { width: 100%; background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--text); cursor: pointer; }
+  .qa .ic { flex: none; color: var(--violet-ink); transition: transform .2s; }
+  .qa.open .ic { transform: rotate(45deg); }
+  .qa .a { max-height: 0; overflow: hidden; transition: max-height .28s ease; }
+  .qa .a p { color: var(--muted); font-size: 16px; line-height: 1.7; margin: 0 0 18px; }
+
+  .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+</style>
