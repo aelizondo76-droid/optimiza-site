@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { nanoid } from 'nanoid';
 import { getReport, upsertLead, rateLimit, type Lead } from '../../lib/store';
 import { sendReportEmail, sendLeadNotification } from '../../lib/email';
+import { pushToClientify } from '../../lib/clientify';
 import { checkEmail, scoreTemperature, tempLabel } from '../../lib/validate';
 
 export const prerender = false;
@@ -90,6 +91,20 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       temperature,
       tempLabel: tempLabel(temperature),
     });
+    // CRM: solo empuja leads nuevos (evita duplicados al reescanear).
+    if (saved.scans === 1) {
+      await pushToClientify({
+        source: 'scanner',
+        email: lead.email,
+        name: lead.name,
+        phone: lead.whatsapp,
+        url: lead.url,
+        index: report.index,
+        temperature,
+        tempLabel: tempLabel(temperature),
+        goal: qualifiers.goal,
+      });
+    }
   }
 
   return json({

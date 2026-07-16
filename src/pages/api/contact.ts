@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { nanoid } from 'nanoid';
 import { upsertLead, rateLimit, type Lead } from '../../lib/store';
 import { sendContactConfirmation, sendLeadNotification } from '../../lib/email';
+import { pushToClientify } from '../../lib/clientify';
 import { checkEmail, scoreTemperature, tempLabel } from '../../lib/validate';
 import { normalizeUrl } from '../../lib/diagnose';
 
@@ -70,7 +71,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     createdAt: new Date().toISOString(),
     scans: 1,
   };
-  await upsertLead(lead);
+  const saved = await upsertLead(lead);
 
   await Promise.all([
     sendContactConfirmation(lead.email, lead.name),
@@ -86,6 +87,22 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
       temperature,
       tempLabel: tempLabel(temperature),
     }),
+    // CRM: solo empuja leads nuevos.
+    saved.scans === 1
+      ? pushToClientify({
+          source: 'contacto',
+          email: lead.email,
+          name: lead.name,
+          phone: lead.whatsapp,
+          company: lead.company,
+          url: lead.url,
+          index: null,
+          temperature,
+          tempLabel: tempLabel(temperature),
+          goal: qualifiers.goal,
+          message: lead.message,
+        })
+      : Promise.resolve(false),
   ]);
 
   return json({ ok: true });
