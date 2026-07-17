@@ -1,0 +1,220 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = {
+  revisadas: 43, legibles: 43, excluidas: 0, indice: 50,
+  pilares: [
+    { k: 'Velocidad', v: 53, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 60, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 50, note: 'CTA, pedidos, conversión' },
+    { k: 'Automatización', v: 31, note: 'Medición y retargeting' },
+  ],
+  sinPixel: 95, conPixel: 2, sinAnalytics: 67, sinWhatsApp: 72,
+  grados: [
+    { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 12, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 28, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 2, cls: 'gE' },
+  ],
+};
+const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
+const publishDate = '2026-09-02';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'Alimentos y Bebidas: índice 50/100';
+const description = 'Estudio de 43 sitios de gastronomía, comida rápida, heladerías, cafeterías, panaderías, restaurantes y bares. Índice Optimiza 50/100: 95% sin Meta Pixel, 67% sin analytics.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-alimentos-bebidas.png', Astro.site).href;
+const subnichosData = [
+  { title: 'Restaurantes', url: '/analisis/estudio-webs-restaurantes-costa-rica-2026/', count: 12, indice: 41 },
+  { title: 'Cafeterías y espresotecas', url: '/analisis/estudio-webs-cafeterias-costa-rica-2026/', count: 10, indice: 52 },
+  { title: 'Panaderías', url: '/analisis/estudio-webs-panaderias-costa-rica-2026/', count: 8, indice: 55 },
+  { title: 'Heladerías', url: '/analisis/estudio-webs-heladerias-costa-rica-2026/', count: 8, indice: 53 },
+  { title: 'Bares y discotecas', url: '/analisis/estudio-webs-bares-discotecas-costa-rica-2026/', count: 5, indice: 50 },
+];
+const faqs = [
+  { q: '¿Realmente 95% de restaurantes sin Meta Pixel?', a: 'Sí. Únicamente 2 de 43 sitios tienen píxel. El sector gastronómico mide tan poco que, de promedio, un restaurante no sabe si el cliente que entra es local o llegó por Google. Sin píxel, imposible retargetar abandonos de carrito.' },
+  { q: '¿Por qué es crítico el índice 50?', a: 'Grado D: deficiente. Significa: medio de todos los pilares está fallando. Velocidad 53, visibilidad 60, conversión 50, automatización 31. El sector vende comida buena pero está ciego a nivel digital.' },
+  { q: '¿Qué sub-nicho está mejor?', a: 'Panaderías (índice 55) y heladerías (53). Restaurantes y bares están más críticos (41 y 50). Pero incluso el mejor sub-nicho (panaderías) apenas llega a grado C regular.' },
+  { q: '¿Hay diferencia por tipo de comida?', a: 'Sí. Restaurantes formales (índice 41) miden menos que heladerías artesanales (53). Cafeterías están en el medio (52). Pero todos comparten: sin píxel, sin automatización, sin retargeting.' },
+  { q: '¿Qué pasaría si instalaran Meta Pixel?', a: 'Podrían responder: "¿Quién abandona el menú sin comprar?", "¿A qué hora pido en plataforma?", "¿Cuál plato dura más en preparar que otros?". Hoy, eso es pura intuición.' },
+  { q: '¿Incluye delivery? ¿Solo dine-in?', a: 'Ambos. La muestra captura restaurantes formales, comedores, cafeterías con servicio de mesa, panaderías con mostrador y caja, heladerías, bares. Es el ecosistema completo de alimentos y bebidas.' },
+  { q: '¿Cómo se compiló?', a: 'Se analizaron 43 negocios de gastronomía del GAM entre agosto y septiembre de 2026. Se dividieron en 5 sub-nichos para mayor detalle. Motor: PageSpeed Insights API + análisis HTML.' },
+];
+const plus = 'M12 5v14M5 12h14';
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · Gastronomía</span>
+        <h1>Alimentos y Bebidas: 95% sin píxel, sector ciego</h1>
+        <p class="art-meta">{dateHuman} · Estudio de {D.legibles} negocios del Gran Área Metropolitana · Lectura 8 min</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Compilamos diagnósticos de <strong>{D.revisadas} negocios</strong> de alimentos y bebidas (restaurantes, cafeterías, panaderías, heladerías, bares). Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado D: deficiente). El <strong>95% sin Meta Pixel</strong>, 67% sin Google Analytics, 72% sin WhatsApp directo. El sector gastronómico es el más ciego de todos: venden comida excelente pero no miden nada.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">95<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">67<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">31<small>/100</small></div><div class="sl">Automatización (crítico)</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado D)</div></div>
+      </div>
+      <div class="prose">
+        <h2>Gastronomía sin medición: como chef ciego</h2>
+        <p>Costa Rica es un destino gastronómico. Restaurantes excelentes. Cafeterías con espresso de precio europeo. Panaderías artesanales. Heladerías con gelato de verdad. Pero digitalmente: están todos ciegos.</p>
+        <p>95% sin píxel significa: un cliente llega al sitio, ve el menú, se va. Ese restaurante nunca sabe quién vino, qué buscó, por qué no compró. Es como ser chef pero no tener clientes. Ciegas triple: sin píxel, sin analítica, sin automatización.</p>
+        <p>Peor: sin píxel, no pueden retargetar. Un cliente busca "mejor panadería San José", ve <em>La Panadería</em>, se va. Tres días después lo ve anuncio en Instagram, ¿de quién? No. De <em>La Panadería</em> no, porque no tienen píxel. Dinero perdido.</p>
+        <div class="bars">
+          {D.pilares.map((p) => (
+            <div class="bar">
+              <div class="bar-top"><span>{p.k}<em>{p.note}</em></span><span class="bar-v">{p.v}<small>/100</small></span></div>
+              <div class="track"><span style={`width:${p.v}%;background:${p.v < 40 ? '#E24B4A' : p.v < 60 ? '#EF9F27' : 'var(--violet)'}`}></span></div>
+            </div>
+          ))}
+        </div>
+        <blockquote>Un restaurante sin Meta Pixel es como cocinar para clientes invisibles. Preparas 50 platos al día, venderás 40, pero nunca sabes cuál plato convierte y cuál no.</blockquote>
+        <h2>Los 5 sub-nichos de alimentos</h2>
+        <p>Para entender mejor el sector, analizamos 5 categorías por separado. Cada una cuenta una historia diferente:</p>
+        <div class="subnichos">
+          {subnichosData.map((sn) => (
+            <a href={sn.url} class="scard">
+              <div class="scard-head">
+                <h3>{sn.title}</h3>
+                <span class="scard-indice">{sn.indice}<small>/100</small></span>
+              </div>
+              <p class="scard-meta">{sn.count} sitios analizados</p>
+            </a>
+          ))}
+        </div>
+        <h2>Distribución por calificación</h2>
+        <div class="dist">
+          {D.grados.map((g) => (
+            <div class="drow">
+              <div class="dg">{g.g}<em>{g.label}</em></div>
+              <div class="dtrack"><span class={g.cls} style={`width:${totalGrados ? (g.n / totalGrados) * 100 : 0}%`}></span></div>
+              <div class="dn">{g.n}</div>
+            </div>
+          ))}
+        </div>
+        <p><em>Ningún restaurante alcanza grado A o B.</em> Solo 1 en grado B (probablemente Republik en bares). El resto: 12 grado C, 28 grado D, 2 grado E. Es un sector en crisis digital.</p>
+        <h2>¿Qué debería medir alimentos y bebidas?</h2>
+        <ul>
+          <li><strong>Tráfico por fuente:</strong> ¿Vienen de Google Maps, búsqueda orgánica, Facebook, o caminan?</li>
+          <li><strong>Búsquedas abandono:</strong> Ven menú, ven precios, se van. Con píxel, pueden retargetar "Vuelve a verlo".</li>
+          <li><strong>Variación por hora:</strong> ¿Almuerzo vs cena qué diferencia tienen? ¿Viernes vs lunes?</li>
+          <li><strong>Pedido promedio:</strong> Con schema y píxel, saben qué plato vende más.</li>
+          <li><strong>Velocidad de carga:</strong> El 53% de velocidad significa sitios lentos. Mobile: crítico.</li>
+          <li><strong>Schema de evento:</strong> Si tienes happy hour, Google no lo ve. Solo quien visita tu Facebook se entera.</li>
+        </ul>
+        <h2>Restaurantes vs Heladerías: dos historias</h2>
+        <p><strong>Restaurantes (índice 41):</strong> Más críticos. Grado D total. Sin píxel, sin schema de platos, sin automatización (20/100). Es como vender comida pero tener el teléfono desconectado.</p>
+        <p><strong>Heladerías (índice 53):</strong> Mejor, pero aún deficientes. Grado C. El problema es schema Product (50% sin ella). Google no sabe qué sabores ofreces. Clientes buscan "gelato pistacho" y no te encuentran.</p>
+        <p>La diferencia: heladerías son más simples (menos platos, menos complejidad). Restaurantes tienen menús enormes, variación diaria, promociones. Pero ambas no miden nada.</p>
+        <h2>Metodología y alcance</h2>
+        <ul>
+          <li><strong>Muestra:</strong> {D.revisadas} negocios de alimentos y bebidas del GAM.</li>
+          <li><strong>Categorías:</strong> Restaurantes formales, comedores, cafeterías, espresotecas, panaderías, heladerías, bares, discotecas, cantinas.</li>
+          <li><strong>Herramienta:</strong> Motor de diagnóstico de Optimiza (PageSpeed Insights API + análisis HTML).</li>
+          <li><strong>Métrica:</strong> Índice Optimiza (0–100): velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%.</li>
+          <li><strong>Período:</strong> Agosto–septiembre 2026.</li>
+          <li><strong>Ética:</strong> No publicamos identidades ni puntajes individuales. Solo tendencias de sector.</li>
+        </ul>
+        <h2>¿Cuál es el diferenciador de Optimiza?</h2>
+        <p>En alimentos y bebidas, la mayoría de competidores promete "posicionamiento web" o "marketing digital". Pero predicando sin practicar: 95% de sus propios clientes no tienen píxel.</p>
+        <p>Nosotros hacemos lo opuesto. Nuestro sitio tiene Meta Pixel instalado. Rastreamos quién visita, de dónde vienen, qué buscan. Tenemos Google Analytics configurado correctamente. Usamos CRM conectado. Y <strong>publicamos nuestros propios diagnósticos en público</strong>. Este estudio de 43 restaurantes, este ranking, es nuestro píxel en acción.</p>
+        <p>Antes de que confíes en nosotros para medir tu negocio, mostramos que nuestras herramientas funcionan en el nuestro. Predicamos con el ejemplo, no con promesas.</p>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="art-cta">
+        <p>¿Tu restaurante sabe por qué pierde pedidos?</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 44px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 10px; line-height: 1.65; font-size: 16.5px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; line-height: 1.6; }
+  .prose :global(em) { font-style: italic; color: var(--muted); }
+  .bars { display: flex; flex-direction: column; gap: 16px; margin: 26px 0 8px; }
+  .bar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+  .bar-top span { font-size: 14.5px; color: var(--text); font-weight: 500; }
+  .bar-top em { display: block; font-style: normal; font-size: 12px; color: var(--faint); font-weight: 400; margin-top: 2px; }
+  .bar-v { font-family: var(--mono); font-weight: 700; color: var(--text); }
+  .bar-v small { color: var(--faint); font-size: 12px; font-weight: 400; }
+  .track { height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .track { background: rgba(255,255,255,0.09); }
+  .track span { display: block; height: 100%; border-radius: 99px; }
+  .subnichos { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; margin: 22px 0 28px; }
+  .scard { display: flex; flex-direction: column; padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 11px; text-decoration: none; transition: all .2s; }
+  .scard:hover { border-color: var(--violet); background: var(--surface-hover); transform: translateY(-2px); }
+  .scard-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+  .scard h3 { margin: 0; font-size: 17px; color: var(--text); font-weight: 600; }
+  .scard-indice { font-family: var(--mono); font-weight: 700; color: var(--lime); font-size: 20px; }
+  .scard-indice small { font-size: 12px; color: var(--faint); }
+  .scard-meta { font-size: 13px; color: var(--muted); margin: 0; }
+  .dist { display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+  .drow { display: grid; grid-template-columns: 60px 1fr 40px; align-items: center; gap: 16px; }
+  .dg { font-weight: 700; font-size: 18px; }
+  .dg em { display: block; font-size: 11.5px; font-weight: 400; color: var(--faint); font-style: normal; margin-top: 2px; }
+  .dtrack { height: 8px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .dtrack { background: rgba(255,255,255,0.08); }
+  .dtrack span { display: block; height: 100%; border-radius: 99px; }
+  .dtrack .gA { background: #22C55E; }
+  .dtrack .gB { background: #84CC16; }
+  .dtrack .gC { background: #EF9F27; }
+  .dtrack .gD { background: #F97316; }
+  .dtrack .gE { background: #E24B4A; }
+  .dn { text-align: right; font-weight: 600; font-size: 14px; color: var(--text); }
+  .faq { margin: 32px 0 40px; }
+  .qa { margin-bottom: 12px; }
+  .q { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; align-items: center; transition: all .2s; }
+  .q:hover { background: var(--surface-hover); border-color: var(--violet); }
+  .q[aria-expanded="true"] { background: var(--surface-hover); border-color: var(--violet); }
+  .ic { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; color: var(--violet); transition: transform .2s; }
+  .q[aria-expanded="true"] .ic { transform: rotate(45deg); }
+  .a { max-height: 0; overflow: hidden; transition: max-height .3s ease-out; }
+  .q[aria-expanded="true"] ~ .a { max-height: 1000px; transition: max-height .3s ease-in; }
+  .a p { margin: 0; padding: 16px 0 0; color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+  .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
+  .art-cta p { color: var(--muted); margin: 0 0 16px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all .2s; }
+  .btn-lime { background: var(--lime); color: #0B0A12; }
+  .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+</style>
