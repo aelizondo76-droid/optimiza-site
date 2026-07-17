@@ -15,6 +15,7 @@
  * Y al final imprime las estadísticas agregadas para el estudio.
  */
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { basename } from 'node:path';
 import process from 'node:process';
 import { diagnose, type Diagnosis } from '../src/lib/diagnose';
 
@@ -53,6 +54,8 @@ function collectUrls(): string[] {
 // ── 2. Correr diagnose() con concurrencia limitada ──
 async function run() {
   const urls = collectUrls();
+  const txtArg = process.argv.slice(2).find((a) => a.endsWith('.txt'));
+  const outName = txtArg ? basename(txtArg).replace(/\.txt$/, '') : 'estudio';
   const key = process.env.PAGESPEED_API_KEY;
   console.log(`\n🔍 Estudio Optimiza — ${urls.length} sitios`);
   console.log(`   PageSpeed key: ${key ? 'sí ✅' : 'NO (modo anónimo, más lento)'}\n`);
@@ -81,7 +84,7 @@ async function run() {
 
   // ── 3. Escribir salidas ──
   mkdirSync('scripts/out', { recursive: true });
-  writeFileSync('scripts/out/estudio.json', JSON.stringify(results, null, 2));
+  writeFileSync(`scripts/out/${outName}.json`, JSON.stringify(results, null, 2));
 
   const ok = results.filter((r): r is Diagnosis => 'index' in r);
   const pillar = (d: Diagnosis, k: string) =>
@@ -104,7 +107,7 @@ async function run() {
       d.speed.mobile?.lcp ?? '',
     ].join(',')
   );
-  writeFileSync('scripts/out/estudio.csv', [header, ...rows].join('\n'));
+  writeFileSync(`scripts/out/${outName}.csv`, [header, ...rows].join('\n'));
 
   // ── 4. Estadísticas agregadas (los titulares del estudio) ──
   const n = ok.length;
@@ -126,7 +129,7 @@ async function run() {
   console.log(`% sin WhatsApp directo:               ${pct((d) => !d.conversion.whatsapp)}%`);
   console.log(`% sin datos estructurados (Schema):   ${pct((d) => d.meta.schema.length === 0)}%`);
   console.log('─────────────────────────────────────────');
-  console.log('\n📄 scripts/out/estudio.csv  y  scripts/out/estudio.json\n');
+  console.log(`\n📄 scripts/out/${outName}.csv  y  scripts/out/${outName}.json\n`);
 }
 
 run();

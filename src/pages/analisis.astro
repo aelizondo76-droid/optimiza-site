@@ -97,7 +97,10 @@ const posts = await getAnalisis();
             <div class="rstat"><div class="rn">57</div><div class="rl">Índice Optimiza promedio (de 100)</div></div>
             <div class="rstat"><div class="rn">0</div><div class="rl">clínicas alcanzaron el grado A</div></div>
           </div>
-          <div class="rcta"><a class="btn btn-lime" href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026">Ver el estudio completo</a></div>
+          <div class="rcta">
+            <a class="btn btn-lime" href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026">Estudio: clínicas dentales</a>
+            <a class="btn btn-ghost-light" href="/analisis/estudio-webs-clinicas-esteticas-costa-rica-2026">Estudio: medicina estética</a>
+          </div>
         </div>
       </div>
     </div>
@@ -176,7 +179,9 @@ const posts = await getAnalisis();
   .rstat .rn { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
   .rstat .rn small { font-size: 16px; color: var(--muted); }
   .rstat .rl { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
-  .rcta { margin-top: 30px; }
+  .rcta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-ghost-light { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+  .btn-ghost-light:hover { border-color: var(--lime); }
 
   .final { text-align: center; overflow: hidden; }
   .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, rgba(139,108,255,0.24), transparent 65%); pointer-events: none; }

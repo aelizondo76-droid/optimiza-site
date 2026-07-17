@@ -1,0 +1,47 @@
+# Estudio Optimiza — Clínicas de medicina estética del GAM
+# (dominios propios; excluidos directorios). Una URL por línea.
+
+# ── Escazú / Santa Ana ──
+dralips.com
+botoxcostarica.com
+clinicaeclatebeauty.com
+clinicadigarda.com
+star-belle.com
+drajenireegutierrez.com
+
+# ── San José / Sabana / Rohrmoser ──
+spamedicalcr.com
+centropielysalud.com
+medicinaesteticacr.com
+angeluscr.com
+cec.cr
+
+# ── Heredia ──
+clinicaalfaro.com
+artefacial.com
+consultoriocardenas.com
+clinicasantaisabelcr.com
+
+# ── Curridabat / San Pedro ──
+faceandbodycarecentercostarica.com
+csisaludintegral.com
+
+# ── Alajuela / Cartago ──
+europiel.cr
+clinicaintegralcordero.com
+mediluxcr.com
+
+# ── Ampliación: más pequeñas / periféricas (fuera del top 10) ──
+delaser.net
+facialbeautycr.com
+bodyandsoulcr.com
+luxuzuri.com
+drarubio.com
+clinicathuel.com
+dermalightcostarica.com
+clinicaesbelt.com
+centroslooks.com
+luxdermacr.com
+cirugiaesteticacostarica.com
+chloeestheticcentercr.com
+skincarecenter.pro
