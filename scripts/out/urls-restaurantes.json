@@ -1,0 +1,1142 @@
+[
+  {
+    "url": "https://picnic.co.cr/",
+    "finalUrl": "https://picnic.co.cr/",
+    "host": "picnic.co.cr",
+    "fetchedAt": "2026-07-17T13:34:25.711Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://bulali.co.cr/",
+    "finalUrl": "https://bulali.co.cr/",
+    "host": "bulali.co.cr",
+    "fetchedAt": "2026-07-17T13:34:26.809Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://vinomuundo.co.cr/",
+    "finalUrl": "https://vinomuundo.co.cr/",
+    "host": "vinomuundo.co.cr",
+    "fetchedAt": "2026-07-17T13:34:30.786Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://elmosaico.co.cr/",
+    "finalUrl": "https://elmosaico.co.cr/",
+    "host": "elmosaico.co.cr",
+    "fetchedAt": "2026-07-17T13:34:46.078Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://franco.co.cr/",
+    "finalUrl": "https://franco.co.cr/",
+    "host": "franco.co.cr",
+    "fetchedAt": "2026-07-17T13:34:47.343Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://theshabbychihouse.com/",
+    "finalUrl": "https://theshabbychihouse.com/",
+    "host": "theshabbychihouse.com",
+    "fetchedAt": "2026-07-17T13:34:50.298Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://santerest.com/",
+    "finalUrl": "https://santerest.com/",
+    "host": "santerest.com",
+    "fetchedAt": "2026-07-17T13:35:05.533Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://vascocuisine.com/",
+    "finalUrl": "https://vascocuisine.com/",
+    "host": "vascocuisine.com",
+    "fetchedAt": "2026-07-17T13:35:09.288Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://lacentralcantina.com/",
+    "finalUrl": "https://lacentralcantina.com/",
+    "host": "lacentralcantina.com",
+    "fetchedAt": "2026-07-17T13:35:22.714Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://masfish.co.cr/",
+    "finalUrl": "https://masfish.co.cr/",
+    "host": "masfish.co.cr",
+    "fetchedAt": "2026-07-17T13:35:24.387Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://henrysbeach.com/",
+    "finalUrl": "https://henrysbeach.com/",
+    "host": "henrysbeach.com",
+    "fetchedAt": "2026-07-17T13:35:34.752Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  },
+  {
+    "url": "https://terrazatoscana.co.cr/",
+    "finalUrl": "https://terrazatoscana.co.cr/",
+    "host": "terrazatoscana.co.cr",
+    "fetchedAt": "2026-07-17T13:35:41.922Z",
+    "index": 41,
+    "grade": "D",
+    "pillars": [
+      {
+        "key": "velocidad",
+        "label": "Velocidad",
+        "score": 50,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo medir la velocidad (PageSpeed no respondió)"
+          }
+        ]
+      },
+      {
+        "key": "visibilidad",
+        "label": "Visibilidad",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo leer el HTML para el análisis SEO/GEO"
+          }
+        ]
+      },
+      {
+        "key": "conversion",
+        "label": "Conversión",
+        "score": 40,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la conversión"
+          }
+        ]
+      },
+      {
+        "key": "automatizacion",
+        "label": "Automatización",
+        "score": 30,
+        "findings": [
+          {
+            "ok": "warn",
+            "title": "No se pudo analizar la medición"
+          }
+        ]
+      }
+    ],
+    "speed": {
+      "mobile": null,
+      "desktop": null
+    },
+    "meta": {
+      "title": null,
+      "titleLen": 0,
+      "description": null,
+      "descLen": 0,
+      "h1": [],
+      "canonical": false,
+      "og": false,
+      "schema": [],
+      "hreflang": false,
+      "viewport": false,
+      "robots": false,
+      "sitemap": false,
+      "llms": false,
+      "favicon": false,
+      "lang": null
+    },
+    "conversion": {
+      "forms": 0,
+      "whatsapp": false,
+      "tel": false,
+      "mailto": false,
+      "ctaButtons": 0,
+      "imgCount": 0,
+      "imgNoAlt": 0
+    },
+    "tracking": {
+      "ga4": false,
+      "gtm": false,
+      "metaPixel": false,
+      "tiktok": false,
+      "hotjarClarity": false,
+      "any": false
+    },
+    "stack": null,
+    "screenshot": null,
+    "error": "No se pudo analizar el sitio"
+  }
+]
