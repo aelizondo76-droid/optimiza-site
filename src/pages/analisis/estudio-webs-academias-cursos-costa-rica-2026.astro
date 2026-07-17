@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = {
+  revisadas: 7, legibles: 7, excluidas: 0, indice: 58,
+  pilares: [
+    { k: 'Velocidad', v: 68, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 59, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 57, note: 'CTA, formularios, conversión' },
+    { k: 'Automatización', v: 44, note: 'Medición y retargeting' },
+  ],
+  sinPixel: 86, conPixel: 1, sinAnalytics: 57, sinWhatsApp: 71,
+  grados: [
+    { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 2, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
+  ],
+  secTotal: 40, secSinPixel: 87,
+};
+const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
+const publishDate = '2026-08-01';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'Plataformas de cursos online: 86% sin retargeting';
+const description = 'Analizamos 7 academias y plataformas de educación digital: 86% sin Meta Pixel, 1 grado A, velocidad 68/100, pero faltan datos estructurados.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-academias-cursos.png', Astro.site).href;
+const faqs = [
+  { q: '¿Qué tan buenas son las plataformas educativas online en Costa Rica?', a: 'Mixta. Índice Optimiza promedio: 58/100 (grado C). Velocidad es su fortaleza (68/100), pero el 86% no tiene Meta Pixel para retargetar estudiantes que abandonan. Solo 1 academia tiene grado A (76/100). Venden educación online, pero pierden inscritos porque su web no retargeta.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Datos estructurados: el 100% carece de esquema educativo (Course, CourseInstance, etc.). Google no entiende qué cursos ofrecen. Además, sin píxel, no pueden rastrear "beginners que vieron el curso pero no se inscribieron" y recuperarlos con anuncios.' },
+  { q: '¿Hay excepciones buenas?', a: 'Una academia tiene índice 76/100 (grado B), otra 71/100 (grado B). Ambas tienen velocidad decente (>70). El problema es que incluso las buenas (86% de ellas) carecen de Meta Pixel. Solo 1 lo tiene.' },
+  { q: '¿En qué se diferencian de otros sectores?', a: 'Academias tienen mejor velocidad (68/100) que marketing (52/100) o consultoría (53/100). Pero la visibilidad es peor (59/100 vs 78/100 en marketing). Y todas necesitan retargeting porque un estudiante tarda días en decidirse a inscribirse.' },
+  { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para educación, la visibilidad es crítica — el 57% de academias no aparece bien en búsquedas de "cursos online Costa Rica".' },
+  { q: '¿Cómo se analizaron?', a: 'Se escanearon 7 academias, universidades online y plataformas de educación digital del GAM en agosto de 2026, con el motor de diagnóstico de Optimiza.' },
+];
+const articleLd = { '@context': 'https://schema.org', '@type': 'Report', headline: 'El estado de las academias y cursos online en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['cursos online', 'academia digital', 'educación Costa Rica', 'plataforma e-learning', 'inscripción'], about: { '@type': 'Thing', name: 'Plataformas de educación digital del GAM' } };
+const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de academias y cursos online 2026', description: 'Índice Optimiza de 7 plataformas educativas y academias del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-08', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, url: canonical };
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const plus = 'M12 5v14M5 12h14';
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · Educación digital</span>
+        <h1>Las academias online pierden inscritos porque no retargeán</h1>
+        <p class="art-meta">{dateHuman} · Estudio de {D.legibles} academias del Gran Área Metropolitana · Lectura 5 min</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.revisadas} plataformas educativas y academias</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong> para retargetar estudiantes interesados. El 100% carece de esquema Course (datos estructurados educativos). Solo 1 academia tiene grado A. Velocidad es buena (68/100), pero la automatización es crítica para educación.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">100<small>%</small></div><div class="sl">sin Schema Course</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
+      </div>
+      <div class="prose">
+        <h2>Inscritos que se escapan</h2>
+        <p>El 86% de academias online no tiene Meta Pixel. Significa: un estudiante visita "Curso de Marketing Digital", sale sin inscribirse, y desaparece. Sin píxel, no puede ser retargeado. 3 días después, cuando cae el precio, la academia no sabe cómo recuperarlo.</p>
+        <p>Velocidad es buena (68/100), lo que ayuda. Pero sin retargeting, cada visitante perdido es dinero perdido. Una academia que pierde 20 inscritos mensuales por abandono = $5,000+ en ingresos anuales sin rastrear.</p>
+        <div class="bars">
+          {D.pilares.map((p) => (
+            <div class="bar">
+              <div class="bar-top"><span>{p.k}<em>{p.note}</em></span><span class="bar-v">{p.v}<small>/100</small></span></div>
+              <div class="track"><span style={`width:${p.v}%;background:${p.v < 40 ? '#E24B4A' : p.v < 60 ? '#EF9F27' : 'var(--violet)'}`}></span></div>
+            </div>
+          ))}
+        </div>
+        <blockquote>Un curso cuesta $50–$200. Si la academia pierde 20 interesados mensuales sin píxel, eso es $12,000–$48,000 anuales en ingresos no recuperados. Todo por no instalar Meta Pixel.</blockquote>
+        <h2>Schema Course: la brecha invisible</h2>
+        <p>El 100% de academias carece de esquema educativo (Course, CourseInstance, Instructor). Resultado: Google no entiende qué cursos ofrecen. Un buscador que quiere "Curso de Python" no ve estas academias en los resultados ricos.</p>
+        <p>Comparado con servicios digitales (87% sin píxel), educación está igual en medición pero peor en visibilidad: 59/100 vs 72-82 en otros sectores.</p>
+        <h2>Distribución por calificación</h2>
+        <div class="dist">
+          {D.grados.map((g) => (
+            <div class="drow">
+              <div class="dg">{g.g}<em>{g.label}</em></div>
+              <div class="dtrack"><span class={g.cls} style={`width:${totalGrados ? (g.n / totalGrados) * 100 : 0}%`}></span></div>
+              <div class="dn">{g.n}</div>
+            </div>
+          ))}
+        </div>
+        <h2>Metodología</h2>
+        <ul>
+          <li><strong>Muestra:</strong> {D.revisadas} academias, universidades online y plataformas de educación digital del GAM.</li>
+          <li><strong>Herramienta:</strong> motor de diagnóstico de Optimiza (PageSpeed Insights API + análisis de HTML).</li>
+          <li><strong>Métrica:</strong> Índice Optimiza (0–100): velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%.</li>
+          <li><strong>Exclusiones:</strong> {D.excluidas} no pudieron leerse.</li>
+          <li><strong>Ética:</strong> no publicamos identidades ni puntajes individuales.</li>
+        </ul>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="art-cta">
+        <p>¿Tu academia está pierdiendo inscritos sin saberlo?</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi plataforma gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 44px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 10px; line-height: 1.65; font-size: 16.5px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; line-height: 1.6; }
+  .bars { display: flex; flex-direction: column; gap: 16px; margin: 26px 0 8px; }
+  .bar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+  .bar-top span { font-size: 14.5px; color: var(--text); font-weight: 500; }
+  .bar-top em { display: block; font-style: normal; font-size: 12px; color: var(--faint); font-weight: 400; margin-top: 2px; }
+  .bar-v { font-family: var(--mono); font-weight: 700; color: var(--text); }
+  .bar-v small { color: var(--faint); font-size: 12px; font-weight: 400; }
+  .track { height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .track { background: rgba(255,255,255,0.09); }
+  .track span { display: block; height: 100%; border-radius: 99px; }
+  .dist { display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+  .drow { display: grid; grid-template-columns: 60px 1fr 40px; align-items: center; gap: 16px; }
+  .dg { font-weight: 700; font-size: 18px; }
+  .dg em { display: block; font-size: 11.5px; font-weight: 400; color: var(--faint); font-style: normal; margin-top: 2px; }
+  .dtrack { height: 8px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .dtrack { background: rgba(255,255,255,0.08); }
+  .dtrack span { display: block; height: 100%; border-radius: 99px; }
+  .dtrack .gA { background: #22C55E; }
+  .dtrack .gB { background: #84CC16; }
+  .dtrack .gC { background: #EF9F27; }
+  .dtrack .gD { background: #F97316; }
+  .dtrack .gE { background: #E24B4A; }
+  .dn { text-align: right; font-weight: 600; font-size: 14px; color: var(--text); }
+  .faq { margin: 32px 0 40px; }
+  .qa { margin-bottom: 12px; }
+  .q { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; align-items: center; transition: all .2s; }
+  .q:hover { background: var(--surface-hover); border-color: var(--violet); }
+  .q[aria-expanded="true"] { background: var(--surface-hover); border-color: var(--violet); }
+  .ic { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; color: var(--violet); transition: transform .2s; }
+  .q[aria-expanded="true"] .ic { transform: rotate(45deg); }
+  .a { max-height: 0; overflow: hidden; transition: max-height .3s ease-out; }
+  .q[aria-expanded="true"] ~ .a { max-height: 1000px; transition: max-height .3s ease-in; }
+  .a p { margin: 0; padding: 16px 0 0; color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+  .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
+  .art-cta p { color: var(--muted); margin: 0 0 16px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all .2s; }
+  .btn-lime { background: var(--lime); color: #0B0A12; }
+  .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+</style>

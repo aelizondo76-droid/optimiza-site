@@ -1,0 +1,180 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = {
+  revisadas: 9, legibles: 9, excluidas: 0, indice: 56,
+  pilares: [
+    { k: 'Velocidad', v: 53, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 72, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 56, note: 'CTA, formularios, conversión' },
+    { k: 'Automatización', v: 35, note: 'Medición y retargeting' },
+  ],
+  sinPixel: 100, conPixel: 0, sinAnalytics: 56, sinWhatsApp: 78,
+  grados: [
+    { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 3, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 3, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
+  ],
+  secTotal: 40, secSinPixel: 87,
+};
+const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
+const publishDate = '2026-08-05';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'El 100% de las consultoría en CR no mide convertidores';
+const description = 'Analizamos 9 consultoría empresariales: 100% sin Meta Pixel (0 píxeles), velocidad 53/100 crítica, 0 grado A. Venden estrategia sin medir resultados.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-consultoria-empresarial.png', Astro.site).href;
+const faqs = [
+  { q: '¿Qué tan buenas son las consultoría de estrategia en Costa Rica?', a: 'Paradójica. Índice Optimiza promedio: 56/100 (grado C). El 100% sin Meta Pixel — es el peor del estudio. CERO consultoría mide a sus propios leads. Venden "estrategia de crecimiento" pero no tienen forma de medir si su web genera leads. Hipocresía corporativa a nivel empresarial.' },
+  { q: '¿Por qué el 100% sin píxel?', a: 'Probablemente por sesgo generacional: muchas consultoría son lideradas por ejecutivos mayores que ven la web como "vitrina corporativa", no como "motor de leads". No reconocen que cada contacto es un prospecto a retargetar. Falta mentalidad de crecimiento digital.' },
+  { q: '¿Hay algo que hagan bien?', a: 'SEO/Visibilidad: 72/100. Es su fortaleza. Aparecen en búsquedas "consultoría empresarial" o "empresa de consultoría". Pero sin píxel, no pueden retargetar los que buscan pero no contactan. Pérdida de oportunidad.' },
+  { q: '¿Cuál es la consecuencia?', a: 'Un prospecto grande busca "consultoría empresarial Costa Rica", visita 3 webs (de estas consultoría), y ninguna puede retargetarlo. 2 meses después, cuando decide contratar, esas 3 consultoría no pueden recuperarlo porque lo "perdieron" de vista.' },
+  { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para consultoría (negocio B2B), la automatización es crítica — cada lead tarda meses en convertir y requiere múltiples touchpoints.' },
+  { q: '¿Cómo se analizaron?', a: 'Se escanearon 9 consultoría empresariales, asesorías y firmas de consultoría del GAM en agosto de 2026, con el motor de diagnóstico de Optimiza.' },
+];
+const articleLd = { '@context': 'https://schema.org', '@type': 'Report', headline: 'El estado de las consultoría empresariales en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['consultoría empresarial', 'asesoría empresas', 'estrategia negocios', 'B2B', 'lead generation'], about: { '@type': 'Thing', name: 'Consultoría y firmas de asesoría empresarial del GAM' } };
+const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de consultoría empresariales 2026', description: 'Índice Optimiza de 9 firmas de consultoría y asesoría empresarial del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-08', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, url: canonical };
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const plus = 'M12 5v14M5 12h14';
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · Servicios profesionales</span>
+        <h1>El 100% de las consultoría no miden sus propios prospectos</h1>
+        <p class="art-meta">{dateHuman} · Estudio de {D.legibles} consultoría del Gran Área Metropolitana · Lectura 5 min</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.revisadas} consultoría empresariales</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>100% sin Meta Pixel</strong> — es la única industria donde NINGUNA empresa mide conversión. Venden estrategia de crecimiento, pero su propia web es ciega. 0 grado A, 3 grado B, 3 grado C, 3 grado D.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">100<small>%</small></div><div class="sl">sin Meta Pixel (0/9)</div></div>
+        <div class="stat"><div class="sn">53<small>/100</small></div><div class="sl">Velocidad móvil</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
+      </div>
+      <div class="prose">
+        <h2>Venden estrategia sin medir la suya</h2>
+        <p>El 100% de consultoría analizadas carece de Meta Pixel. CERO. Es la cifra más anómala del estudio: ninguna otra industria tiene 100% sin píxel. Venden "estrategia digital" a clientes, pero su propia web no tiene un pixel de retargeting. Es como vender antivirus sin actualizar los antivirus.</p>
+        <p>Índice Optimiza promedio: 56/100 (grado C). Velocidad reprueba (53/100). Ninguna alcanza grado A. 56% no tiene Google Analytics. Venden crecimiento a otros, pero miden cero de su propio crecimiento.</p>
+        <div class="bars">
+          {D.pilares.map((p) => (
+            <div class="bar">
+              <div class="bar-top"><span>{p.k}<em>{p.note}</em></span><span class="bar-v">{p.v}<small>/100</small></span></div>
+              <div class="track"><span style={`width:${p.v}%;background:${p.v < 40 ? '#E24B4A' : p.v < 60 ? '#EF9F27' : 'var(--violet)'}`}></span></div>
+            </div>
+          ))}
+        </div>
+        <blockquote>Una consultoría sin Meta Pixel es un médico sin estetoscopio. Supuestamente sana empresas, pero no puede auscultar su propio negocio.</blockquote>
+        <h2>El ciclo largo de B2B</h2>
+        <p>En consultoría, el ciclo de venta es largo: 3–6 meses desde primer contacto hasta contrato. Sin píxel, sin retargeting, sin automación, los prospectos se "pierden". Un CEO busca "consultoría de transformación digital", visita la web de 3 consultoría, y ninguna puede retargetarlo cuando decida buscar presupuestos.</p>
+        <p>Peor aún: 78% sin WhatsApp directo. Un prospecto que quiere hablar ahora, no puede. Tiene que llenar un formulario y esperar respuesta. Contacto perdido.</p>
+        <h2>Distribución por calificación</h2>
+        <div class="dist">
+          {D.grados.map((g) => (
+            <div class="drow">
+              <div class="dg">{g.g}<em>{g.label}</em></div>
+              <div class="dtrack"><span class={g.cls} style={`width:${totalGrados ? (g.n / totalGrados) * 100 : 0}%`}></span></div>
+              <div class="dn">{g.n}</div>
+            </div>
+          ))}
+        </div>
+        <h2>Metodología</h2>
+        <ul>
+          <li><strong>Muestra:</strong> {D.revisadas} consultoría empresariales, firmas de asesoría y consultoría de negocios del GAM.</li>
+          <li><strong>Herramienta:</strong> motor de diagnóstico de Optimiza (PageSpeed Insights API + análisis de HTML).</li>
+          <li><strong>Métrica:</strong> Índice Optimiza (0–100): velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%.</li>
+          <li><strong>Exclusiones:</strong> {D.excluidas} no pudieron leerse.</li>
+          <li><strong>Ética:</strong> no publicamos identidades ni puntajes individuales.</li>
+        </ul>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="art-cta">
+        <p>¿Tu consultoría mide sus propios leads?</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 44px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 10px; line-height: 1.65; font-size: 16.5px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; line-height: 1.6; }
+  .bars { display: flex; flex-direction: column; gap: 16px; margin: 26px 0 8px; }
+  .bar-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+  .bar-top span { font-size: 14.5px; color: var(--text); font-weight: 500; }
+  .bar-top em { display: block; font-style: normal; font-size: 12px; color: var(--faint); font-weight: 400; margin-top: 2px; }
+  .bar-v { font-family: var(--mono); font-weight: 700; color: var(--text); }
+  .bar-v small { color: var(--faint); font-size: 12px; font-weight: 400; }
+  .track { height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .track { background: rgba(255,255,255,0.09); }
+  .track span { display: block; height: 100%; border-radius: 99px; }
+  .dist { display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+  .drow { display: grid; grid-template-columns: 60px 1fr 40px; align-items: center; gap: 16px; }
+  .dg { font-weight: 700; font-size: 18px; }
+  .dg em { display: block; font-size: 11.5px; font-weight: 400; color: var(--faint); font-style: normal; margin-top: 2px; }
+  .dtrack { height: 8px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .dtrack { background: rgba(255,255,255,0.08); }
+  .dtrack span { display: block; height: 100%; border-radius: 99px; }
+  .dtrack .gA { background: #22C55E; }
+  .dtrack .gB { background: #84CC16; }
+  .dtrack .gC { background: #EF9F27; }
+  .dtrack .gD { background: #F97316; }
+  .dtrack .gE { background: #E24B4A; }
+  .dn { text-align: right; font-weight: 600; font-size: 14px; color: var(--text); }
+  .faq { margin: 32px 0 40px; }
+  .qa { margin-bottom: 12px; }
+  .q { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; cursor: pointer; font-size: 16px; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; align-items: center; transition: all .2s; }
+  .q:hover { background: var(--surface-hover); border-color: var(--violet); }
+  .q[aria-expanded="true"] { background: var(--surface-hover); border-color: var(--violet); }
+  .ic { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; color: var(--violet); transition: transform .2s; }
+  .q[aria-expanded="true"] .ic { transform: rotate(45deg); }
+  .a { max-height: 0; overflow: hidden; transition: max-height .3s ease-out; }
+  .q[aria-expanded="true"] ~ .a { max-height: 1000px; transition: max-height .3s ease-in; }
+  .a p { margin: 0; padding: 16px 0 0; color: var(--muted); font-size: 15.5px; line-height: 1.7; }
+  .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
+  .art-cta p { color: var(--muted); margin: 0 0 16px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all .2s; }
+  .btn-lime { background: var(--lime); color: #0B0A12; }
+  .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+</style>
