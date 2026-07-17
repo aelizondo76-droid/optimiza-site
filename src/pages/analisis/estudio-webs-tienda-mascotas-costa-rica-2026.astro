@@ -1,0 +1,76 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = { revisadas: 15, legibles: 14, indice: 56, sinPixel: 87, sinAnalytics: 80, sinWhatsApp: 67, grados: [{g:'A',n:0},{g:'B',n:3},{g:'C',n:7},{g:'D',n:3},{g:'E',n:1}] };
+const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
+const publishDate = '2026-07-08';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'Tiendas de mascotas en Costa Rica: 87% no mide su web';
+const description = 'Analizamos 15 tiendas de alimento y accesorios para mascotas del GAM: 87% sin Meta Pixel, 80% sin Analytics. Compra mensual, cero datos.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-tienda-mascotas.png', Astro.site).href;
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · E-commerce</span>
+        <h1>El 87% de las tiendas de mascotas online no mide su web</h1>
+        <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.revisadas} tiendas de alimento y accesorios para mascotas</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene píxel de Meta</strong>, el <strong>{D.sinAnalytics}% no usa Analytics</strong>. Compra mensual pero sin seguimiento del cliente.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
+        <div class="stat"><div class="sn">80<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">40<small>%</small></div><div class="sl">reprueba velocidad</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
+      </div>
+      <div class="prose">
+        <h2>Cliente leal, pero fantasma</h2>
+        <p>Mascotas es compra repetitiva: alimento cada mes, accesorios cada 3 meses. Pero el {D.sinPixel}% sin píxel significa que cuando el dueño busca alimento "gato adulto" en Google, no ven anuncios retargeteados de la tienda que le vendió antes. Es cliente leal que no aparece en el marketing.</p>
+        <blockquote>Un cliente que compra $30 de alimento cada mes sin retargeting es un cliente perdido. $360/año por tienda, sin datos.</blockquote>
+        <h2>Metodología</h2>
+        <ul>
+          <li><strong>Muestra:</strong> {D.revisadas} tiendas de alimento, accesorios, juguetes para mascotas del GAM.</li>
+          <li><strong>Herramienta:</strong> motor de diagnóstico Optimiza.</li>
+        </ul>
+      </div>
+      <div class="art-cta">
+        <p>¿Vendés alimento para mascotas? Descubrí si pierdes clientes cada mes.</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi tienda gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 760px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 44px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; }
+  .tldr-k { font-family: var(--mono); font-size: 11px; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; }
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; }
+  .prose :global(li) { margin-bottom: 10px; font-size: 16.5px; color: var(--muted); }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; }
+  .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+</style>

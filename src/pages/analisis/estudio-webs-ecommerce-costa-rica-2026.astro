@@ -1,0 +1,161 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = {
+  total: 109, legibles: 101, indice: 60,
+  sinPixel: 82, sinAnalytics: 50, sinWhatsApp: 53, gradoA: 3,
+  sectores: [
+    { name: 'Alimentos y gourmet', slug: 'estudio-webs-tienda-alimentos-costa-rica-2026', n: 18, indice: 62, sinPixel: 83, nota: 'Mejor índice, pero sin medición.' },
+    { name: 'Moda y accesorios', slug: 'estudio-webs-tienda-moda-costa-rica-2026', n: 18, indice: 60, sinPixel: 78, nota: '83% reprueba velocidad móvil.' },
+    { name: 'Hogar y decoración', slug: 'estudio-webs-tienda-hogar-costa-rica-2026', n: 21, indice: 58, sinPixel: 81, nota: 'Compra cara sin datos del cliente.' },
+    { name: 'Mascotas', slug: 'estudio-webs-tienda-mascotas-costa-rica-2026', n: 15, indice: 56, sinPixel: 87, nota: 'Compra repetitiva, cliente fantasma.' },
+    { name: 'Belleza y cosméticos', slug: 'estudio-webs-tienda-belleza-costa-rica-2026', n: 15, indice: 56, sinPixel: 87, nota: 'Cliente leal, pero sin retargeting.' },
+    { name: 'Electrónica', slug: 'estudio-webs-tienda-electronica-costa-rica-2026', n: 22, indice: 57, sinPixel: 82, nota: 'Compra urgente, sin seguimiento.' },
+  ],
+};
+const publishDate = '2026-07-12';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'Tiendas en línea de Costa Rica: 82% no mide su web';
+const description = 'Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos, mascotas. 82% sin Meta Pixel.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-ecommerce.png', Astro.site).href;
+const faqs = [
+  { q: '¿Cómo están las tiendas en línea de Costa Rica?', a: 'Sin medición. Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos y mascotas. El Índice Optimiza promedio fue 60/100 (grado C). El 82% no tiene el píxel de Meta, lo que significa que no pueden retargetar, no pueden recuperar carritos abandonados, no pueden volver a mostrar el producto que vio el cliente.' },
+  { q: '¿Qué sub-nicho está mejor?', a: 'Alimentos y gourmet (índice 62), seguido por moda (60). Pero incluso el mejor sub-nicho tiene 83% sin píxel. La diferencia real está en la *urgencia* de compra: alimentos es repetitivo (necesita retargeting más), moda es por impulso (se olvida fácilmente).' },
+  { q: '¿Cuál es el problema más grave?', a: 'Multifacético: (1) 82% sin píxel = sin retargeting; (2) velocidad: moda 83% reprueba, hogar 67%; (3) conversión: ningún sub-nicho supera 72 en conversión; (4) automatización: promedio 39/100.' },
+  { q: '¿Cómo se compara con salud y construcción?', a: 'Salud: 94% sin píxel (peor en medición). Construcción: 93% sin píxel (peor). E-commerce: 82% sin píxel (mejor). PERO e-commerce tiene un problema que los otros no: la velocidad es crítica. En construcción/salud, el cliente tolera 5 segundos. En e-commerce, pierde 7% de conversión en 1 segundo extra.' },
+  { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100 que mide: velocidad (30%), visibilidad/SEO (30%), conversión (20%), automatización/medición (20%). Métrica propia que resume la salud web.' },
+  { q: '¿Cómo se realizó?', a: 'Analizamos 109 tiendas en línea con dominio propio del GAM (18-22 por sub-nicho) en junio-julio de 2026, con el motor de diagnóstico de Optimiza: PageSpeed Insights API + análisis de HTML.' },
+];
+const reportLd = { '@context': 'https://schema.org', '@type': 'Report', headline: 'El estado del e-commerce en Costa Rica 2026', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical };
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
+const plus = 'M12 5v14M5 12h14';
+const maxN = Math.max(...D.sectores.map((s) => s.indice));
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(reportLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · E-commerce</span>
+        <h1>El estado del e-commerce en Costa Rica: 109 tiendas analizadas</h1>
+        <p class="art-meta">{dateHuman} · {D.total} tiendas · 6 sub-nichos · Gran Área Metropolitana</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.total} tiendas en línea del GAM</strong> en 6 sub-nichos — moda, belleza, hogar, electrónica, alimentos, mascotas. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El hallazgo principal: <strong>{D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta). Eso significa sin retargeting, sin carrito abandonado, sin datos.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.total}</div><div class="sl">tiendas analizadas</div></div>
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.gradoA}</div><div class="sl">alcanzaron el grado A</div></div>
+      </div>
+      <div class="prose">
+        <h2>El triángulo perdido: medición + velocidad + conversión</h2>
+        <p>E-commerce depende de tres cosas: que el cliente encuentre la tienda (SEO), que la tienda cargue rápido (velocidad), que cierre la venta (conversión). Pero también necesita un cuarto pilar: medir si todo está funcionando. El {D.sinPixel}% no lo hace.</p>
+        <p>A diferencia de salud/construcción (donde es compra reflexiva), en e-commerce la medición afecta todo: sin píxel, no recuperas el carrito abandonado; sin analytics, no sabes de dónde vinieron; sin CTA clara, no conviertes a quien visitó.</p>
+      </div>
+      <h2 class="sec-h">Por sub-nicho</h2>
+      <div class="cmp">
+        {D.sectores.map((s) => (
+          <div class="cmp-row">
+            <div class="cmp-name">{s.name}<em>{s.n} tiendas</em></div>
+            <div class="cmp-bar"><div class="track"><span style={`width:${(s.indice / maxN) * 100}%`}></span></div><b>{s.indice}<small>/100</small></b></div>
+            <div class="cmp-pix">{s.sinPixel}%<em>sin píxel</em></div>
+          </div>
+        ))}
+      </div>
+      <div class="sectors">
+        {D.sectores.map((s) => (
+          <a class="sec-card" href={`/analisis/${s.slug}`}>
+            <div class="sc-top"><span class="sc-idx">{s.indice}<small>/100</small></span><span class="sc-pix">{s.sinPixel}% sin píxel</span></div>
+            <h3>{s.name}</h3>
+            <p>{s.nota}</p>
+            <span class="sc-link">Leer el estudio →</span>
+          </a>
+        ))}
+      </div>
+      <div class="prose">
+        <h2>Comparación: salud vs construcción vs e-commerce</h2>
+        <ul>
+          <li><strong>Salud (104 tiendas):</strong> 94% sin píxel. Compra reflexiva de bajo riesgo percibido. Se pierden pacientes pero es tolerable.</li>
+          <li><strong>Construcción (90 tiendas):</strong> 93% sin píxel. Compra de alto ticket pero lenta. Se pierden proyectos de $50.000+ sin saber por qué.</li>
+          <li><strong>E-commerce (109 tiendas):</strong> 82% sin píxel (mejor), pero con problema de velocidad. Compra impulsiva/urgente. Pierden todo en 3 segundos.</li>
+        </ul>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+      <div class="art-cta">
+        <p>¿Tu tienda está entre las que no mide? Descubrilo gratis.</p>
+        <a class="btn btn-lime" href="/#top">Analizar mi tienda gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 780px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(30px, 4.6vw, 46px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; }
+  .prose :global(h2), .sec-h { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; color: var(--text); }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; }
+  .prose :global(li) { margin-bottom: 10px; font-size: 16.5px; color: var(--muted); }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .cmp { display: flex; flex-direction: column; gap: 14px; margin: 8px 0 28px; }
+  .cmp-row { display: grid; grid-template-columns: 200px 1fr 90px; align-items: center; gap: 16px; }
+  .cmp-name { font-size: 15px; color: var(--text); font-weight: 500; }
+  .cmp-name em { display: block; font-style: normal; font-size: 12px; color: var(--faint); margin-top: 2px; }
+  .cmp-bar { display: flex; align-items: center; gap: 12px; }
+  .cmp-bar .track { flex: 1; height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  .cmp-bar .track span { display: block; height: 100%; background: var(--violet); border-radius: 99px; }
+  .cmp-bar b { font-family: var(--mono); color: var(--text); font-size: 15px; }
+  .cmp-bar b small { color: var(--faint); font-size: 11px; }
+  .cmp-pix { text-align: right; font-family: var(--mono); font-weight: 700; color: var(--lime); font-size: 20px; }
+  .cmp-pix em { display: block; font-style: normal; font-size: 10.5px; color: var(--faint); font-weight: 400; }
+  .sectors { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 8px 0 12px; }
+  @media (max-width: 680px) { .sectors { grid-template-columns: 1fr; } }
+  .sec-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px; padding: 20px; box-shadow: var(--card-shadow); transition: border-color .2s, transform .2s; text-decoration: none; }
+  .sec-card:hover { border-color: var(--violet); transform: translateY(-3px); }
+  .sc-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .sc-idx { font-family: var(--mono); font-weight: 700; font-size: 24px; color: var(--text); }
+  .sc-idx small { font-size: 12px; color: var(--faint); }
+  .sc-pix { font-family: var(--mono); font-size: 11.5px; color: var(--violet-ink); font-weight: 600; }
+  .sec-card h3 { font-size: 17px; margin: 0 0 8px; color: var(--text); }
+  .sec-card p { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin: 0 0 16px; }
+  .sc-link { margin-top: auto; font-family: var(--mono); font-size: 12px; color: var(--violet-ink); font-weight: 600; }
+  .faq { margin: 8px 0 0; }
+  .qa { border-bottom: 1px solid var(--line); }
+  .qa .q { width: 100%; background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--text); cursor: pointer; }
+  .qa .ic { flex: none; color: var(--violet-ink); transition: transform .2s; }
+  .qa.open .ic { transform: rotate(45deg); }
+  .qa .a { max-height: 0; overflow: hidden; transition: max-height .28s ease; }
+  .qa .a p { color: var(--muted); font-size: 16px; line-height: 1.7; margin: 0 0 18px; }
+  .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+</style>
