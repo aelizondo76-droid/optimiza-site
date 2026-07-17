@@ -1,0 +1,567 @@
+---
+import Base from '../../layouts/Base.astro';
+const title = 'Glosario Digital: Términos sin Jerga para Empresarios';
+const description = '20+ términos de marketing digital explicados sin jerga técnica. Definiciones simples, analogías del mundo real, ejemplos prácticos, y por qué importa para tu negocio.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+<Base title={title} description={description} active="analisis">
+  <article class="section">
+    <div class="wrap glos">
+      <a class="back" href="/analisis">← Análisis y teardowns</a>
+      <header class="glos-head">
+        <span class="tag res">Educación · Guía Digital</span>
+        <h1>Glosario Digital: Términos sin Jerga</h1>
+        <p class="glos-subtitle">Todo dueño de negocio debería saber estos términos. Sin complicaciones. Solo lo importante.</p>
+      </header>
+
+      <div class="glos-intro">
+        <p><strong>¿Por qué existe este glosario?</strong></p>
+        <p>Eres dueño de negocio, no ingeniero. Cuando hablas con una agencia web, escuchas "Necesitas optimizar Core Web Vitals", "Instala Meta Pixel", "Mejorar tu ROAS". ¿Qué significa? ¿Es importante? ¿Cuánto cuesta?</p>
+        <p>Si no entiendes, no puedes decidir. Este glosario cambia eso: cada término explicado en 30 segundos, con analogía del mundo físico, ejemplo real, y por qué importa para tu negocio.</p>
+      </div>
+
+      <div class="glos-terms">
+        <!-- 1. Meta Pixel -->
+        <div class="term" id="pixel">
+          <div class="term-header">
+            <h3>Meta Pixel (Píxel de Meta)</h3>
+            <span class="term-num">1 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Un código pequeño que instalas en tu sitio web. Actúa como una "cámara invisible" que te muestra quién visita, qué hace, y si compra.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como tener un vendedor en la tienda que anota: Juan entró a las 3pm, vio zapatos 5 minutos, miró el precio, se fue sin comprar. Meta Pixel hace eso, pero automático."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Un restaurante instala Meta Pixel. Cuando cliente A busca "restaurante San José" en Google, llega al sitio, mira el menú, ve el precio y se va. Pixel registra: "Visitante de San José, vio menú, no compró". Dos días después, el restaurante le muestra un anuncio en Instagram: "Espéranos el viernes para cena especial".</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Sin Pixel, ese cliente desaparece. Con Pixel, lo recuperas. Es la diferencia entre dinero perdido y dinero ganado.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Retargeting -->
+        <div class="term" id="retargeting">
+          <div class="term-header">
+            <h3>Retargeting (Recuperación de visitantes)</h3>
+            <span class="term-num">2 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Mostrar anuncios a personas que visitaron tu web pero no compraron, para que vuelvan e intenten de nuevo.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como si tu tienda física tuviera una puerta mágica: cuando cliente entra pero se va sin comprar, esa puerta lo sigue a la calle y dice 'Espera, recuerda que tenemos descuento'."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Cliente busca "vestido azul online", entra a tu tienda, lo agrega al carrito pero se asusta del costo de envío y se va. Con retargeting, tres días después ve tu anuncio en Instagram: "Vestido azul: envío gratis hoy". Vuelve, compra. Sin retargeting: ese cliente jamás vuelve.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> El 98% de visitantes primera vez NO compra. Sin retargeting, pierdes el 98%. Con retargeting, recuperas 15-30% de ellos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Conversión -->
+        <div class="term" id="conversion">
+          <div class="term-header">
+            <h3>Conversión (Cuando logras vender)</h3>
+            <span class="term-num">3 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Cuando un visitante de tu web hace lo que quieres: compra, llama, reserva, se suscribe. El objetivo final de tu sitio.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"En tienda física: cliente entra, ve producto, pasa por caja, paga. Eso es conversión. En web es lo mismo, pero el cliente nunca te ve la cara."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Restaurante: conversión = reserva hecha. Dentista: conversión = llamada recibida. Tienda online: conversión = compra completada.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Un sitio sin conversión es un gasto, no una inversión. El objetivo de tu web es convertir visitantes en clientes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Velocidad -->
+        <div class="term" id="velocidad">
+          <div class="term-header">
+            <h3>Velocidad de carga (PageSpeed)</h3>
+            <span class="term-num">4 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Cuánto tiempo tarda tu sitio en cargar completamente en el teléfono. Medido en segundos.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como una tienda física: si la puerta tarda 5 segundos en abrirse, los clientes se van a otra. Sitios lentos pierden clientes igual."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Sitio rápido (1-2 segundos): cliente abre, ve producto, compra. Sitio lento (5+ segundos): cliente se aburre, va al competidor.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Google penaliza sitios lentos en búsqueda. Pero peor: cada segundo de retraso = 7% menos conversión. Dinero perdido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Analytics -->
+        <div class="term" id="analitycs">
+          <div class="term-header">
+            <h3>Google Analytics (Análisis de tu web)</h3>
+            <span class="term-num">5 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Herramienta gratuita de Google que te muestra quién visitó, de dónde vino, cuánto tiempo pasó, si compró.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como un cuaderno de notas digital. Cada visitante está anotado: Juan, de San José, llegó por Google, miró 3 páginas, se fue sin comprar."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Con Analytics ves: "80% de mis visitas vienen de móvil", "Los viernes tengo 3x más visitantes", "De cada 100 visitantes, solo 2 compran". Sin Analytics: pura adivinanza.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> No puedes mejorar lo que no mides. Analytics te muestra exactamente dónde está el problema.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. SEO -->
+        <div class="term" id="seo">
+          <div class="term-header">
+            <h3>SEO (Posicionamiento en Google)</h3>
+            <span class="term-num">6 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>El arte de hacer que Google te muestre primero cuando alguien busca tu producto o servicio.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como estar en la página 1 de Google Pages Amarillas. Si nadie te ve, no existes."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Buscas "dentista San José" en Google. Los primeros 3 resultados son dentistas con buen SEO. Los que están en página 2 o 3: invisibles. Nadie llega ahí.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> SEO es tráfico gratis. Pagar publicidad es alquilar tráfico. SEO es invertir en ser encontrado naturalmente.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Schema -->
+        <div class="term" id="schema">
+          <div class="term-header">
+            <h3>Schema (Lenguaje de Google)</h3>
+            <span class="term-num">7 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Código especial que le dices a Google: "Este es un producto, con esta descripción, este precio, esta calificación". Google lo entiende mejor.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como etiquetar tu producto con código de barras. En lugar de Google adivinar, tú le dices exactamente qué es."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Con Schema: Google ve que tu restaurante tiene 4.8 estrellas, sirve comida mexicana, está abierto viernes. Sin Schema: Google intenta adivinar.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Schema mejora tu visibilidad en búsqueda. Google premia sitios con Schema bien hecho.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Índice Optimiza -->
+        <div class="term" id="indice">
+          <div class="term-header">
+            <h3>Índice Optimiza (Calificación de tu web)</h3>
+            <span class="term-num">8 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Métrica 0-100 que mide: velocidad (30%), visibilidad en Google (30%), conversión (20%), automatización (20%). Escala A-E.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Como cuando un inspector llega a un restaurante y califica de 1-100. Índice Optimiza hace lo mismo: ve todo, suma puntos, te da nota."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Sitio A: índice 85 (A). Sitio B: índice 42 (D). A vende 3x más que B. No es suerte. Es medición.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Si no mides, no mejoras. Índice Optimiza te da nota clara: ¿qué tan bueno está tu web?</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Automatización -->
+        <div class="term" id="automation">
+          <div class="term-header">
+            <h3>Automatización (Trabajar sin trabajar)</h3>
+            <span class="term-num">9 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Procesos que tu web hace sin que tú tengas que hacerlos: enviar emails, responder mensajes, generar reportes, calificar leads.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como tener vendedores trabajando 24/7 sin que les pagues. Email automático se envía de noche. Chat responde al cliente mientras tú duermes."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Cliente se suscribe. Automáticamente recibe email con guía de bienvenida. Responde formulario. CRM lo clasifica como "caliente" o "frío". Tu vendedor se enfoca solo en "calientes". Resultado: 3x más conversión.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Trabajo manual no escala. Automatización permite crecer sin contratar 10 empleados más.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. CRM -->
+        <div class="term" id="crm">
+          <div class="term-header">
+            <h3>CRM (Gestor de clientes)</h3>
+            <span class="term-num">10 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Base de datos donde guardas: nombre, teléfono, email, qué compró, cuándo visitó, qué necesita. Un "librito" de clientes en digital.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como un cuaderno donde la abuela apunta: 'Don Carlos, compró zapatos negros, talla 43, le gusta descuento'. Cuando Don Carlos llega, ella lo saluda: 'Mire, llegaron zapatos nuevos'."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>CRM registra: "Este cliente compró en enero, no ha vuelto en 6 meses". Automáticamente se dispara email: "Te extrañamos, aquí hay 10% descuento". Cliente regresa.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Sin CRM, olvidas clientes. Con CRM, cada cliente es una relación. Clientes olvidados = dinero perdido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. E-commerce -->
+        <div class="term" id="ecommerce">
+          <div class="term-header">
+            <h3>E-commerce (Tienda online)</h3>
+            <span class="term-num">11 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Sitio web donde cliente ve productos, agrega a carrito, paga, recibe. Todo online.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como una tienda física, pero en internet. Cliente entra, mira vitrinas (fotos), pone productos en bolsa (carrito), paga en caja (checkout), se lo enviamos."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Cliente en San José busca "vestido azul" a las 2am. Tu e-commerce funciona 24/7. Ve 10 opciones, compra una, recibe al día siguiente. Sin e-commerce: tienda cerrada.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> E-commerce multiplica tus clientes potenciales de 1 ciudad a todo el país. Ventas 24/7.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Carrito abandonado -->
+        <div class="term" id="carrito-abandonado">
+          <div class="term-header">
+            <h3>Carrito Abandonado (Dinero que perdiste)</h3>
+            <span class="term-num">12 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Cliente agrega productos al carrito pero se va sin pagar. Eso que no compraron es "carrito abandonado".</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como cliente que pone cosas en la bolsa, va a la caja, ve el total, se asusta, deja la bolsa y se va."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Cliente agrega zapatos ($150) al carrito. Ve costo de envío ($30). Cierra navegador. Carrito: abandonado. Sin acción: cliente desaparece. Con email recordatorio: cliente vuelve, completa compra.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> 70% de carritos son abandonados. Email recordatorio recupera 15-30% de esos. Dinero que casi pierdes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 13. Lead -->
+        <div class="term" id="lead">
+          <div class="term-header">
+            <h3>Lead (Cliente potencial)</h3>
+            <span class="term-num">13 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Persona que mostró interés: dejó email, llamó, visitó 3+ páginas. No compró aún, pero podría comprar.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Cliente que entró a tienda, preguntó precio, dijo 'Vuelvo mañana'. Ese es un lead: interesado, no comprador aún."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Persona busca "dentista San José", entra a tu sitio, lee servicios, pero no reserva. Es un lead. Sin nurturing: se olvida. Con email + llamada: cierra 40% de esos leads.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> No todos compran en visita 1. Leads son clientes futuros. Ignorarlos = dinero perdido.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 14. Core Web Vitals -->
+        <div class="term" id="core-web-vitals">
+          <div class="term-header">
+            <h3>Core Web Vitals (Salud de tu sitio)</h3>
+            <span class="term-num">14 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>3 métricas que Google mide: cuánto tarda en cargar (LCP), cuánto tarda en volverse interactivo (FID), cuánto se mueve el contenido (CLS).</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Como examinar a un paciente: presión, pulso, respiración. Si algo está mal, el paciente está mal. Si Core Web Vitals son malos, tu web está mal."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Sitio A: abre en 1 segundo (bueno). Sitio B: abre en 4 segundos (malo). Google pone Sitio A arriba. Cliente ve Sitio A primero.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Google penaliza sitios lentos en búsqueda. Core Web Vitals definen si tu web es "rápido" o "lento".</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15. Tasa de conversión -->
+        <div class="term" id="tasa-conversion">
+          <div class="term-header">
+            <h3>Tasa de Conversión (Porcentaje que compra)</h3>
+            <span class="term-num">15 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>De cada 100 visitantes, cuántos compran. Si 2 de cada 100 compran: tasa = 2%.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"De cada 100 clientes que entran a tu tienda, cuántos salen con compra hecha. Eso es tasa de conversión."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Tienda A: 1000 visitas/mes, 20 compras = 2% tasa. Tienda B: 1000 visitas/mes, 50 compras = 5% tasa. B vende 2.5x más sin gastar más en tráfico.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> No es solo tráfico, es tráfico + conversión. Puedes tener 10k visitas pero 0% conversión (igual a 0 dinero).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16. CPC -->
+        <div class="term" id="cpc">
+          <div class="term-header">
+            <h3>CPC (Costo por click)</h3>
+            <span class="term-num">16 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Cuánto pagas por cada click en tus anuncios. Si tu anuncio cuesta $1 por click y 10 personas hacen click: gastas $10.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como pagar por cada cliente que entra a tu tienda. Pagagas piso de publicidad cada vez que alguien entra."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Publicidad en Google: $2 por click. 500 clicks/mes = $1000 gastos. De esos 500: 10 compran (2% tasa). Ganancia: $5000 (si cada venta = $600).</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Si CPC sube, necesitas mejor tasa de conversión para no perder dinero. Equilibrio crítico.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 17. ROAS -->
+        <div class="term" id="roas">
+          <div class="term-header">
+            <h3>ROAS (Retorno de inversión publicitaria)</h3>
+            <span class="term-num">17 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Por cada $1 que gastas en publicidad, cuánto recuperas en ventas. Si gastas $1000 y vendes $5000: ROAS = 5x.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Es como sembrar: plantaste 1kg de semilla, cosechaste 10kg. ROAS 10x. Si cosechas 0.5kg: ROAS 0.5x (perdiste dinero)."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Publicidad Google: $1000/mes. Ventas generadas por esa publicidad: $4000/mes. ROAS = 4x (bueno). Si ROAS = 0.8x: pierdes dinero.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> ROAS define si tu publicidad es rentable. Sin ROAS medido: no sabes si pierdes o ganas dinero.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 18. Funnel -->
+        <div class="term" id="funnel">
+          <div class="term-header">
+            <h3>Funnel (Embudo de ventas)</h3>
+            <span class="term-num">18 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Camino que el cliente sigue: visita → lee → agrega carrito → paga → cliente. Cada paso pierde gente.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Ancho arriba (muchos curiosos), angosto abajo (pocos compradores). De 1000 personas que ven anuncio: 100 llegan al sitio, 10 ven precio, 2 compran."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Funnel: 1000 visitas → 500 ven producto → 100 leen descripción → 20 agregan carrito → 5 compran. Ley: cada paso pierde gente. Optimizar cada paso = más dinero.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Si conoces tu funnel, sabes dónde mejorés. ¿Muchos abandonan en carrito? Arregla ese paso. Dinero recuperado.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 19. Bounce Rate -->
+        <div class="term" id="bounce-rate">
+          <div class="term-header">
+            <h3>Bounce Rate (Tasa de rebote)</h3>
+            <span class="term-num">19 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Porcentaje de visitantes que llegan a tu sitio y se van sin ver otra página. "Rebote".</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Cliente entra a tienda, ve nada que le guste, se va sin mirar otra sección. Eso es rebote."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>100 personas llegan a tu sitio. 60 se van sin hacer nada (bounce rate 60%). 40 miran 2+ páginas. Bounce alto = primera impresión mala.</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Bounce alto significa: tu sitio confunde, carga lento, o no muestra lo que visitante buscaba. Problema a arreglar.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 20. Landing Page -->
+        <div class="term" id="landing-page">
+          <div class="term-header">
+            <h3>Landing Page (Página de destino)</h3>
+            <span class="term-num">20 / 20+</span>
+          </div>
+          <div class="term-content">
+            <div class="term-section">
+              <h4>Qué es</h4>
+              <p>Página donde llega cliente después de click en anuncio. Diseñada para 1 solo objetivo: vender, registrar, o reservar.</p>
+            </div>
+            <div class="term-section">
+              <h4>En el mundo real</h4>
+              <p><em>"Tienda con 1 solo cuarto. El cliente entra a ese cuarto y ve un solo producto. Nada más. Compra o se va."</em></p>
+            </div>
+            <div class="term-section">
+              <h4>Ejemplo</h4>
+              <p>Anuncio: "Compra curso marketing". Click → landing page. Landing page solo tiene: foto del curso, beneficios, botón "Comprar". Nada más. Conversión 10% (excelente).</p>
+            </div>
+            <div class="term-footer">
+              <p><strong>Por qué importa:</strong> Landing pages especializadas convierten 5-10x mejor que página genérica. Conversión = dinero.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="glos-cta">
+        <p>¿Tu web tiene estas herramientas implementadas?</p>
+        <a class="btn btn-lime" href="/#top">Hacer diagnóstico gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .glos { max-width: 820px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; text-decoration: none; margin-bottom: 32px; transition: color .2s; }
+  .back:hover { color: var(--violet-ink); }
+  .glos-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .glos-head h1 { font-size: clamp(28px, 4.4vw, 48px); margin: 18px 0 0; line-height: 1.15; }
+  .glos-subtitle { font-size: 18px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
+  .glos-intro { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 40px; }
+  .glos-intro p { color: var(--muted); margin: 0 0 12px; font-size: 16px; line-height: 1.7; }
+  .glos-intro p:last-child { margin: 0; }
+  .glos-intro strong { color: var(--text); font-weight: 600; }
+  .glos-terms { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+  .term { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px; transition: all 0.2s; }
+  .term:hover { border-color: var(--lime); background: rgba(199,249,75,0.02); }
+  .term-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
+  .term-header h3 { font-size: 20px; font-weight: 600; color: var(--text); margin: 0; }
+  .term-num { font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; margin-left: 16px; }
+  .term-content { display: flex; flex-direction: column; gap: 16px; }
+  .term-section { }
+  .term-section h4 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--lime); font-weight: 700; margin: 0 0 6px; }
+  .term-section p { color: var(--muted); font-size: 15px; line-height: 1.7; margin: 0; }
+  .term-section p em { color: var(--text); font-style: italic; }
+  .term-footer { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 16px; }
+  .term-footer p { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.7; }
+  .term-footer strong { color: var(--text); font-weight: 600; }
+  .glos-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
+  .glos-cta p { color: var(--muted); margin: 0 0 16px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: #0B0A12; transition: all .2s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+  @media (max-width: 640px) {
+    .term-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .term-num { margin-left: 0; }
+  }
+</style>
