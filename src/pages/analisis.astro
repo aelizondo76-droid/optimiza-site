@@ -88,19 +88,19 @@ const posts = await getAnalisis();
         <div class="tband">
           <div class="thead">
             <p class="eyebrow">Investigación propia</p>
-            <h2>Analizamos 36 clínicas dentales del GAM. Vuelan a ciegas.</h2>
-            <p class="lead">Datos originales, no opiniones. Radiografiamos las webs de clínicas dentales reales del Gran Área Metropolitana con nuestro motor de diagnóstico. El hallazgo: casi ninguna puede medir ni recuperar a los pacientes que las visitan.</p>
+            <h2>Analizamos 104 clínicas de salud del GAM. El 94% vuela a ciegas.</h2>
+            <p class="lead">Datos originales, no opiniones. Radiografiamos las webs de clínicas dentales, estéticas y consultorios médicos del Gran Área Metropolitana con nuestro motor de diagnóstico. El hallazgo transversal: casi ninguna puede medir ni recuperar a los pacientes que las visitan.</p>
           </div>
           <div class="rstats">
-            <div class="rstat"><div class="rn">97<small>%</small></div><div class="rl">sin píxel de Meta (sin retargeting)</div></div>
-            <div class="rstat"><div class="rn">63<small>%</small></div><div class="rl">sin Google Analytics</div></div>
-            <div class="rstat"><div class="rn">57</div><div class="rl">Índice Optimiza promedio (de 100)</div></div>
-            <div class="rstat"><div class="rn">0</div><div class="rl">clínicas alcanzaron el grado A</div></div>
+            <div class="rstat"><div class="rn">94<small>%</small></div><div class="rl">sin píxel de Meta (sin retargeting)</div></div>
+            <div class="rstat"><div class="rn">104</div><div class="rl">clínicas de salud analizadas</div></div>
+            <div class="rstat"><div class="rn">3</div><div class="rl">sectores: dental · estética · médicos</div></div>
+            <div class="rstat"><div class="rn">1<small>/104</small></div><div class="rl">alcanzó el grado A</div></div>
           </div>
           <div class="rcta">
-            <a class="btn btn-lime" href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026">Estudio: clínicas dentales</a>
-            <a class="btn btn-ghost-light" href="/analisis/estudio-webs-clinicas-esteticas-costa-rica-2026">Estudio: medicina estética</a>
+            <a class="btn btn-lime" href="/analisis/estudio-webs-sector-salud-costa-rica-2026">Ver el estudio del sector salud</a>
           </div>
+          <p class="rsub">Por sector: <a href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026">dentales</a> · <a href="/analisis/estudio-webs-clinicas-esteticas-costa-rica-2026">medicina estética</a> · <a href="/analisis/estudio-webs-consultorios-medicos-costa-rica-2026">consultorios médicos</a></p>
         </div>
       </div>
     </div>
@@ -180,6 +180,9 @@ const posts = await getAnalisis();
   .rstat .rn small { font-size: 16px; color: var(--muted); }
   .rstat .rl { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
   .rcta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .rsub { margin-top: 16px; font-family: var(--mono); font-size: 12.5px; color: #9A95B3; }
+  .rsub a { color: var(--lime); text-decoration: none; }
+  .rsub a:hover { text-decoration: underline; }
   .btn-ghost-light { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
   .btn-ghost-light:hover { border-color: var(--lime); }
 

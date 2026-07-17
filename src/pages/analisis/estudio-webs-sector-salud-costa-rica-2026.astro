@@ -1,0 +1,241 @@
+---
+import Base from '../../layouts/Base.astro';
+
+// ── Estudio pilar: sector salud (3 estudios combinados) ──
+const D = {
+  total: 104,
+  legibles: 95,
+  indice: 59,
+  sinPixel: 94,
+  sinAnalytics: 56,
+  sinWhatsApp: 50,
+  gradoA: 1,
+  sectores: [
+    { name: 'Medicina estética', slug: 'estudio-webs-clinicas-esteticas-costa-rica-2026', n: 33, indice: 63, sinPixel: 90, note: 'Las más pro: se ven bien y convierten. Aun así, el 90% no mide.' },
+    { name: 'Clínicas dentales', slug: 'estudio-webs-clinicas-dentales-costa-rica-2026', n: 39, indice: 57, sinPixel: 97, note: 'Las más ciegas del sector: solo 1 de 39 tenía el píxel de Meta.' },
+    { name: 'Consultorios médicos', slug: 'estudio-webs-consultorios-medicos-costa-rica-2026', n: 32, indice: 57, sinPixel: 94, note: 'Cargan lento y dependen del boca a boca; casi ninguno mide.' },
+  ],
+};
+
+const publishDate = '2026-07-16';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const title = 'Webs del sector salud en Costa Rica: el 94% no mide';
+const description = 'Analizamos 104 clínicas de salud del GAM —dentales, estéticas y consultorios médicos—. El 94% no puede medir su web. El estudio completo, por sector.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-sector-salud.png', Astro.site).href;
+
+const faqs = [
+  {
+    q: '¿Cómo están las páginas web del sector salud en Costa Rica?',
+    a: 'Deficientes en un punto clave. Analizamos 104 clínicas de salud del Gran Área Metropolitana (dentales, estéticas y consultorios médicos): el Índice Optimiza promedio fue de 59 sobre 100 y solo una alcanzó el grado A. El problema transversal es la medición: el 94% no tiene el píxel de Meta y el 56% no usa Google Analytics.',
+  },
+  {
+    q: '¿Cuál es el problema más común de las clínicas en su web?',
+    a: 'La falta de medición. El 94% de las clínicas de salud analizadas no puede medir ni recuperar a los pacientes que visitan su web, porque no tienen instaladas herramientas como el píxel de Meta o Google Analytics. Invierten en publicidad sin saber qué funciona.',
+  },
+  {
+    q: '¿Qué sector de salud tiene las mejores páginas web en Costa Rica?',
+    a: 'La medicina estética. Con un Índice Optimiza promedio de 63, sus webs cargan mejor y convierten más que las de clínicas dentales (57) y consultorios médicos (57). Sin embargo, comparten el mismo vacío: el 90% de las estéticas tampoco tiene el píxel de Meta.',
+  },
+  {
+    q: '¿Qué es el Índice Optimiza?',
+    a: 'Es una calificación de 0 a 100 que resume la salud de un sitio web en cuatro pilares: velocidad (30%), visibilidad o SEO (30%), conversión (20%) y automatización o medición (20%). Se calcula con la API de PageSpeed Insights de Google más un análisis del HTML de la página.',
+  },
+  {
+    q: '¿Cómo se realizó el estudio del sector salud?',
+    a: 'Se analizaron 104 clínicas de salud con dominio propio del Gran Área Metropolitana en julio de 2026, en tres estudios independientes (clínicas dentales, medicina estética y consultorios médicos), usando el motor de diagnóstico de Optimiza: PageSpeed Insights API y análisis de HTML.',
+  },
+];
+
+const reportLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Report',
+  headline: 'El estado de las webs del sector salud en Costa Rica (2026)',
+  description,
+  image: ogImage,
+  datePublished: publishDate,
+  dateModified: publishDate,
+  inLanguage: 'es-CR',
+  author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Optimiza',
+    url: 'https://optimizahq.com',
+    logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+  keywords: ['sector salud Costa Rica', 'marketing médico Costa Rica', 'web para clínicas', 'Meta Pixel', 'clínicas dentales', 'medicina estética', 'consultorios médicos', 'Gran Área Metropolitana'],
+  about: { '@type': 'Thing', name: 'Páginas web de clínicas del sector salud en Costa Rica' },
+};
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+
+const plus = 'M12 5v14M5 12h14';
+const maxN = Math.max(...D.sectores.map((s) => s.indice));
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+    <meta property="article:author" content="Optimiza" />
+    <script type="application/ld+json" set:html={JSON.stringify(reportLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  </Fragment>
+
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · Sector salud</span>
+        <h1>El estado de las webs del sector salud en Costa Rica</h1>
+        <p class="art-meta">{dateHuman} · {D.total} clínicas · 3 sectores · Gran Área Metropolitana</p>
+      </header>
+
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen</p>
+        <p>Analizamos <strong>{D.total} clínicas de salud</strong> del Gran Área Metropolitana en tres sectores —dentales, estéticas y consultorios médicos—. El Índice Optimiza promedio fue de <strong>{D.indice}/100</strong> y solo una alcanzó el grado A. El hallazgo es transversal: <strong>el {D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta) y el {D.sinAnalytics}% no usa Google Analytics. Cambia el sector; el punto ciego es el mismo.</p>
+      </div>
+
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.total}</div><div class="sl">clínicas de salud analizadas</div></div>
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta (no miden ni recuperan)</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.gradoA}<small>/{D.total}</small></div><div class="sl">alcanzó el grado A</div></div>
+      </div>
+
+      <div class="prose">
+        <h2>Un punto ciego que atraviesa todo el sector</h2>
+        <p>Durante julio de 2026 pasamos por nuestro motor de diagnóstico las webs de 104 clínicas de salud del GAM. Buscábamos problemas de velocidad; encontramos algo más grande: <strong>casi ninguna clínica sabe qué pasa en su propia web.</strong></p>
+        <p>Sin el píxel de Meta ni Google Analytics, una clínica no puede volver a impactar a quien la visitó, no sabe de dónde vienen sus pacientes y no puede distinguir qué campaña funciona de la que solo gasta presupuesto. En un sector que vive de la reputación y cada vez más de la publicidad, es un vacío enorme.</p>
+      </div>
+
+      <h2 class="sec-h">El sector, por dentro</h2>
+      <div class="cmp">
+        {D.sectores.map((s) => (
+          <div class="cmp-row">
+            <div class="cmp-name">{s.name}<em>{s.n} clínicas</em></div>
+            <div class="cmp-bar"><div class="track"><span style={`width:${(s.indice / maxN) * 100}%`}></span></div><b>{s.indice}<small>/100</small></b></div>
+            <div class="cmp-pix">{s.sinPixel}%<em>sin píxel</em></div>
+          </div>
+        ))}
+      </div>
+
+      <div class="sectors">
+        {D.sectores.map((s) => (
+          <a class="sec-card" href={`/analisis/${s.slug}`}>
+            <div class="sc-top"><span class="sc-idx">{s.indice}<small>/100</small></span><span class="sc-pix">{s.sinPixel}% sin píxel</span></div>
+            <h3>{s.name}</h3>
+            <p>{s.note}</p>
+            <span class="sc-link">Ver el estudio →</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="prose">
+        <h2>Lo que significa para una clínica</h2>
+        <p>Cuando una categoría entera comparte la misma debilidad, deja de ser un problema y se vuelve una <strong>oportunidad</strong>. La medición no es un lujo técnico: es la base para saber qué funciona, gastar mejor en publicidad y recuperar pacientes que ya mostraron interés.</p>
+        <blockquote>En un sector donde nadie mide, el primero que lo haga no compite mejor: juega otro juego.</blockquote>
+
+        <h2>Metodología</h2>
+        <ul>
+          <li><strong>Muestra:</strong> {D.total} clínicas de salud con dominio propio del Gran Área Metropolitana, en tres estudios independientes: <a href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026">clínicas dentales</a> (39), <a href="/analisis/estudio-webs-clinicas-esteticas-costa-rica-2026">medicina estética</a> (33) y <a href="/analisis/estudio-webs-consultorios-medicos-costa-rica-2026">consultorios médicos</a> (32). No es un muestreo aleatorio.</li>
+          <li><strong>Herramienta:</strong> el motor de diagnóstico de Optimiza (API de PageSpeed Insights de Google + análisis de HTML). De las {D.total} clínicas, {D.legibles} arrojaron datos completos.</li>
+          <li><strong>Métrica:</strong> el Índice Optimiza (0–100) pondera velocidad (30%), visibilidad/SEO (30%), conversión (20%) y automatización/medición (20%). Métrica compuesta propia, no oficial de Google.</li>
+          <li><strong>Momento:</strong> medición única (snapshot) de julio de 2026.</li>
+          <li><strong>Ética:</strong> no publicamos el nombre de ninguna clínica ni sus puntajes individuales. Los estudios son agregados, para retratar el estado de cada categoría.</li>
+        </ul>
+
+        <h2>Preguntas frecuentes</h2>
+      </div>
+
+      <div class="faq">
+        {faqs.map((f) => (
+          <div class="qa">
+            <button class="q" aria-expanded="false">{f.q}<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d={plus} stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button>
+            <div class="a"><p>{f.a}</p></div>
+          </div>
+        ))}
+      </div>
+
+      <div class="art-cta">
+        <p>¿Tu clínica está en el 94% que no mide? Descubrilo en 30 segundos, gratis.</p>
+        <a class="btn btn-lime" href="/#top">Analizar la web de mi clínica gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .art { max-width: 780px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(30px, 4.6vw, 46px); margin: 18px 0 0; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+
+  .prose :global(h2), .sec-h { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; color: var(--text); }
+  .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 10px; line-height: 1.65; font-size: 16.5px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; line-height: 1.6; }
+
+  /* comparación por sector */
+  .cmp { display: flex; flex-direction: column; gap: 14px; margin: 8px 0 28px; }
+  .cmp-row { display: grid; grid-template-columns: 190px 1fr 92px; align-items: center; gap: 16px; }
+  @media (max-width: 560px) { .cmp-row { grid-template-columns: 1fr auto; } .cmp-bar { display: none; } }
+  .cmp-name { font-size: 15px; color: var(--text); font-weight: 500; }
+  .cmp-name em { display: block; font-style: normal; font-size: 12px; color: var(--faint); margin-top: 2px; }
+  .cmp-bar { display: flex; align-items: center; gap: 12px; }
+  .cmp-bar .track { flex: 1; height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  :global([data-theme="dark"]) .cmp-bar .track { background: rgba(255,255,255,0.09); }
+  .cmp-bar .track span { display: block; height: 100%; background: var(--violet); border-radius: 99px; }
+  .cmp-bar b { font-family: var(--mono); color: var(--text); font-size: 15px; }
+  .cmp-bar b small { color: var(--faint); font-size: 11px; }
+  .cmp-pix { text-align: right; font-family: var(--mono); font-weight: 700; color: var(--lime); font-size: 20px; }
+  .cmp-pix em { display: block; font-style: normal; font-size: 10.5px; color: var(--faint); font-weight: 400; letter-spacing: 0.04em; }
+
+  /* tarjetas hacia cada estudio */
+  .sectors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 8px 0 12px; }
+  @media (max-width: 680px) { .sectors { grid-template-columns: 1fr; } }
+  .sec-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px; padding: 20px; box-shadow: var(--card-shadow); transition: border-color .2s, transform .2s; }
+  .sec-card:hover { border-color: var(--violet); transform: translateY(-3px); }
+  .sc-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .sc-idx { font-family: var(--mono); font-weight: 700; font-size: 24px; color: var(--text); }
+  .sc-idx small { font-size: 12px; color: var(--faint); }
+  .sc-pix { font-family: var(--mono); font-size: 11.5px; color: var(--violet-ink); font-weight: 600; }
+  .sec-card h3 { font-size: 17px; margin: 0 0 8px; }
+  .sec-card p { color: var(--muted); font-size: 13.5px; line-height: 1.5; margin: 0 0 16px; }
+  .sc-link { margin-top: auto; font-family: var(--mono); font-size: 12px; color: var(--violet-ink); font-weight: 600; }
+
+  .faq { margin: 8px 0 0; }
+  .qa { border-bottom: 1px solid var(--line); }
+  .qa .q { width: 100%; background: none; border: none; text-align: left; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; font-family: var(--display); font-weight: 600; font-size: 17px; color: var(--text); cursor: pointer; }
+  .qa .ic { flex: none; color: var(--violet-ink); transition: transform .2s; }
+  .qa.open .ic { transform: rotate(45deg); }
+  .qa .a { max-height: 0; overflow: hidden; transition: max-height .28s ease; }
+  .qa .a p { color: var(--muted); font-size: 16px; line-height: 1.7; margin: 0 0 18px; }
+
+  .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
+  .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+</style>

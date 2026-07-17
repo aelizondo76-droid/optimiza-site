@@ -1,0 +1,56 @@
+# Estudio Optimiza — Consultorios y especialidades médicas del GAM
+# (medicina general + especialidades con consultorio; dominios propios). Una URL por línea.
+
+# ── Ginecología / Obstetricia ──
+clinicaumay.com
+clinicaevacr.com
+
+# ── Pediatría ──
+pediaclinic.cr
+dranataliapediatra.com
+centrokidoz.com
+
+# ── Cardiología / Ortopedia ──
+clinicadrmanuelvindas.com
+ortocolumnacostarica.com
+orthopedik.net
+
+# ── Centros médicos / medicina general ──
+medcare.cr
+centrosmedicosbonanzacr.com
+centromedicosanjoaquin.com
+ghclinica.com
+centromedicoasuncion.com
+
+# ── Oftalmología ──
+microcirugiaocularylaser.com
+oftalmejia.com
+oftalmologia.co.cr
+oftalmocostarica.com
+centrooftalmologico.cr
+
+# ── Gastroenterología ──
+gastrocr.com
+gastrocentrocr.com
+
+# ── Otorrinolaringología ──
+valverdeorl.com
+dracarranzaotorrino.com
+
+# ── Urología ──
+urologia.care
+urologiacostarica.com
+
+# ── Salud mental (psiquiatría / psicología clínica) ──
+saludmental.co.cr
+clinicacasabienestar.com
+communitascr.com
+
+# ── Dermatología clínica ──
+clinicaskn.com
+dermatologaruizmoh.co.cr
+totaldermatologycr.com
+
+# ── Nutrición / Fisioterapia ──
+consusalud.co.cr
+cncsalud.com
