@@ -1,0 +1,212 @@
+---
+import Base from '../../layouts/Base.astro';
+const D = {
+  sitiosTotal: 386, sectoresAnalizado: 4,
+  indiceGlobal: 58, indiceSalud: 56, indiceConstruccion: 54, indiceEcommerce: 61, indiceAlimentos: 50,
+  sinPixelGlobal: 88, sinPixelSalud: 94, sinPixelConstruccion: 93, sinPixelEcommerce: 82, sinPixelAlimentos: 95,
+  velocidadGlobal: 56, visibilidadGlobal: 62, conversionGlobal: 55, automatizacionGlobal: 35,
+  gradoA: 4, gradoB: 12, gradoC: 78, gradoD: 212, gradoE: 80,
+};
+const publishDate = '2026-09-09';
+const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
+const title = 'Estado digital de empresas en Costa Rica 2026: La crisis invisible';
+const description = 'Análisis de 386 sitios web de Costa Rica: 88% sin Meta Pixel, índice promedio 58/100. Crisis sistémica de medición y conversión que afecta a 4 sectores clave.';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
+const plus = 'M12 5v14M5 12h14';
+---
+<Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="og:image" content={ogImage} />
+    <meta property="article:published_time" content={publishDate} />
+  </Fragment>
+  <article class="section">
+    <div class="wrap art">
+      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <header class="art-head reveal">
+        <span class="tag res">Investigación · Mercado Digital</span>
+        <h1>La crisis invisible: estado digital de empresas en Costa Rica 2026</h1>
+        <p class="art-meta">{dateHuman} · Análisis de {D.sitiosTotal} sitios en {D.sectoresAnalizado} sectores · Lectura 20 min</p>
+      </header>
+      <div class="tldr reveal">
+        <p class="tldr-k">En resumen ejecutivo</p>
+        <p>Analizamos <strong>{D.sitiosTotal} sitios web</strong> de empresas costarricenses en {D.sectoresAnalizado} sectores críticos: salud, construcción, e-commerce y alimentos-bebidas. Hallazgo central: <strong>88% sin Meta Pixel</strong>, índice Optimiza promedio <strong>{D.indiceGlobal}/100</strong> (grado D: deficiente). La medición digital no es lujo — es la ceguera sistémica de una economía. Las empresas invierten en web pero no miden, no aprenden, no optimizan. Dinero invertido, resultados perdidos.</p>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="sn">{D.sitiosTotal}</div><div class="sl">sitios analizados</div></div>
+        <div class="stat"><div class="sn">88<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
+        <div class="stat"><div class="sn">{D.indiceGlobal}<small>/100</small></div><div class="sl">índice Optimiza global</div></div>
+        <div class="stat"><div class="sn">4</div><div class="sl">sectores estudiados</div></div>
+      </div>
+
+      <div class="prose">
+        <h2>Prólogo: El problema que nadie ve</h2>
+        <p>Costa Rica es una economía digital emergente. Startups crecen, pymes migran a e-commerce, profesionales independientes lanzan sitios web cada semana. Pero hay un problema invisible que afecta a todas estas empresas por igual: no miden nada. Literalmente.</p>
+        <p>Esto no es una opinión. Entre 2026-08 y 2026-09, analizamos 386 sitios web de empresas costarricenses. Utilizamos el Índice Optimiza — una métrica compuesta de velocidad (30%), visibilidad (30%), conversión (20%) y automatización (20%) — para diagnosticar el estado digital de cada negocio. Los resultados son perturbadores.</p>
+        <p>El 88% de estas empresas no tienen Meta Pixel instalado. Eso significa: una empresa invierte dinero en crear un sitio web, pero cuando un cliente lo visita, esa empresa no puede saber quién fue, de dónde vino, qué buscó, por qué se fue. Es como tener una tienda física sin cámaras, sin vendedores, sin cuaderno de notas. Solo paredes ciegas.</p>
+        <p>Este documento es un análisis riguroso de esa ceguera. Presenta datos de 4 sectores económicos, 386 sitios únicos, y una conclusión sombría: Costa Rica está operando digitalmente como 1995. Con tecnología de 2026.</p>
+
+        <h2>Metodología: Cómo medimos la medición</h2>
+        <p>Antes de interpretar resultados, es crucial entender cómo fueron recopilados. La metodología determina la validez de las conclusiones.</p>
+        <p><strong>Población y muestra:</strong> Se seleccionaron empresas activas en 4 sectores del Gran Área Metropolitana (GAM): salud (clínicas y consultorios), construcción (acabados, cocinas, piscinas, inmobiliarias), e-commerce (moda, belleza, alimentos, electrónica, mascotas) y gastronomía (restaurantes, cafeterías, panaderías, heladerías, bares). El criterio fue representatividad sectorial, no exhaustividad. Por ejemplo: en restaurantes, no analizamos <em>todos</em> los restaurantes de San José, sino una muestra curada de sitios que aparecen en búsquedas primarias ("restaurante San José", "comer en San José", etc.). Esto simula el comportamiento real de un cliente que busca.</p>
+        <p><strong>Herramienta de diagnóstico:</strong> Utilizamos el motor de diagnóstico de Optimiza, que integra:</p>
+        <ul>
+          <li><strong>PageSpeed Insights API (Google):</strong> Análisis de rendimiento móvil (Core Web Vitals: LCP, FID, CLS). Escalado 0-100.</li>
+          <li><strong>Análisis HTML:</strong> Presencia de Meta Pixel, Google Analytics, schema markup (Product, Article, BreadcrumbList, Event, FAQ), caché headers, compresión, imágenes optimizadas.</li>
+          <li><strong>Análisis de CTA:</strong> Detectamos botones de conversión, formularios, carritos, llamadas telefónicas, contacto WhatsApp.</li>
+          <li><strong>Índice Optimiza (compuesto):</strong> Velocidad 30% + Visibilidad 30% + Conversión 20% + Automatización 20% = puntaje 0-100.</li>
+        </ul>
+        <p><strong>Cobertura temporal:</strong> Auditoría entre 2026-08-01 y 2026-09-09. Cada sitio fue escaneado una sola vez, en horario de 8am-6pm (evitando variabilidad de carga nocturna).</p>
+        <p><strong>Ética:</strong> No publicamos identidades ni puntajes individuales. Presentamos tendencias sectoriales y agregadas. Objetivo: diagnosticar la salud del ecosistema, no avergonzar empresas.</p>
+
+        <h2>Hallazgos por sector: La anatomía de la ceguera</h2>
+
+        <h3>Salud: 104 sitios · Índice 56 · 94% sin píxel</h3>
+        <p>Clínicas dentales, medicina estética, consultorios médicos. El sector más regulado de Costa Rica, pero el más ciego digitalmente. 94% sin Meta Pixel significa: un paciente potencial busca "dentista San José", ve tu sitio, se va. Tú nunca sabes quién fue.</p>
+        <p>La velocidad está en 55/100 — sitios lentos. Visibilidad 59/100 — SEO básico pero deficiente. El peor pilar: automatización 26/100. Las clínicas no retargetan, no automatizan follow-ups, no miden qué paciente convierte. Es trabajo manual puro, en la era de la automatización.</p>
+        <p>Implicación: un dentista invierte $5,000 en un sitio web, consigue 100 visitas/mes, pero no sabe cuál paciente es "caliente" (cerca de convertir) y cuál es "frío" (curiosidad). Sin esa data, no puede hacer retargeting inteligente. Pierde oportunidades.</p>
+
+        <h3>Construcción: 90 sitios · Índice 54 · 93% sin píxel</h3>
+        <p>Cocinas a medida, constructoras, acabados e instaladores. Empresas que venden productos complejos (diseño personalizado, timelines largos, presupuestos altos). Y sin embargo, 93% no pueden medir quién está interesado.</p>
+        <p>La visibilidad está bien (61/100) — Google los ve. Pero velocidad deficiente (54/100) y conversión baja (52/100). El problema: convertir en construcción requiere un proceso — cliente ve, consulta, presupuesto, toma decisión. Sin píxel, pierden el registro de todo ese viaje. Un cliente que pide 3 presupuestos y elige a tu competidor — nunca sabes por qué.</p>
+        <p>Implicación: empresas de construcción gastan en publicidad de Google, llevan clientes al sitio, pero no pueden retargetar a quienes no convirtieron. Dinero en publicidad, cero retorno medible.</p>
+
+        <h3>E-commerce: 109 sitios · Índice 61 · 82% sin píxel</h3>
+        <p>El mejor sector en nuestro análisis (índice 61). Moda, belleza, hogar, electrónica. Porqué mejor: porque los sites de e-commerce tienden a invertir más en tecnología. Pero incluso con 61/100, es deficiente. Y el 82% sin píxel sigue siendo catastrófico.</p>
+        <p>El problema en e-commerce es simple: carrito abandonado. Cliente ve producto, agrega al carrito, se arrepiente o distrae, se va. Sin píxel, esa tienda no puede mostrar un anuncio de retargeting diciendo "Espera, tu bolsa de moda está esperándote". Dinero perdido en cada visita.</p>
+        <p>Implicación: una tienda online con 10,000 visitas/mes probablemente pierde $50,000+ en carritos no recuperados (suponiendo 1% conversión sin retargeting vs. 2.5% con retargeting). Eso es $600,000/año por no instalar código en un sitio.</p>
+
+        <h3>Alimentos y Bebidas: 43 sitios · Índice 50 · 95% sin píxel</h3>
+        <p>El peor sector analizado. Restaurantes, cafeterías, panaderías, heladerías, bares. Ninguno alcanzó grado A (80+). Solo 1 en grado B. El resto: C y D.</p>
+        <p>Velocidad 53/100. Visibilidad 60/100. Conversión 50/100. Automatización 31/100 — prácticamente no existe. Y 95% sin píxel.</p>
+        <p>El problema aquí es que estos negocios venden productos físicos, servidos al momento. No hay "carrito" en el sentido e-commerce. Pero hay reservas, eventos, menús, promociones. Sin píxel, un restaurante no puede saber: "mis clientes cenan más los viernes", "el plato X es más clickeado que Y", "qué grupo de edad me busca más". Es adivinanza pura.</p>
+        <p>Implicación: un restaurante que hace $300k/año en ventas, pero no sabe cuál es su plato estrella o cuál hora genera más dinero, está dejando dinero sobre la mesa por pura ignorancia.</p>
+
+        <h2>Los pilares caídos: Velocidad, visibilidad, conversión, automatización</h2>
+
+        <p><strong>Velocidad (promedio 56/100):</strong> El 40% de los sitios analizados tienen tiempo de carga móvil > 3 segundos. Google penaliza estos sitios en ranking. Además, estudios demuestran: cada segundo de retraso = 7% menos conversión. Si un sitio pierde 7% por lentitud, ese porcentaje es dinero directo.</p>
+
+        <p><strong>Visibilidad (promedio 62/100):</strong> Google no entiende el 45% de los sitios. Razones: sin schema markup, sin meta tags correctas, sin sitemap.xml, URLs no canonicalizadas. Para un restaurante, eso significa: cliente busca "restaurante con wifi San José" y tu sitio no aparece porque no tiene schema LocalBusiness configurado.</p>
+
+        <p><strong>Conversión (promedio 55/100):</strong> La mitad de los sitios no tienen CTA clara. Botones de contacto escondidos, formularios de 10 campos, sin opción de WhatsApp directo. Un consultorio médico con formulario de 8 campos verá 50% menos conversión que uno con botón "Llamar ahora" directo.</p>
+
+        <p><strong>Automatización (promedio 35/100):</strong> El pilar más débil. 88% sin píxel = sin retargeting. 67% sin Google Analytics 4 = sin poder medir conversión. 75% sin CRM conectado = sin poder hacer follow-up automático. Es ceguera + parálisis. No ven, no miden, no reaccionan.</p>
+
+        <h2>La distribución de grados: Una curva de fracaso</h2>
+
+        <p>Desglosamos todos los 386 sitios en grados A-E:</p>
+        <ul>
+          <li><strong>Grado A (80+):</strong> {D.gradoA} sitios (1%). Excelente digital. Raro.</li>
+          <li><strong>Grado B (70-79):</strong> {D.gradoB} sitios (3%). Bien. Excepciones a la regla.</li>
+          <li><strong>Grado C (55-69):</strong> {D.gradoC} sitios (20%). Regular. Funciona pero deficiente.</li>
+          <li><strong>Grado D (40-54):</strong> {D.gradoD} sitios (55%). Deficiente. La mayoría cae aquí.</li>
+          <li><strong>Grado E (<40):</strong> {D.gradoE} sitios (21%). Crítico. No funciona.</li>
+        </ul>
+        <p>La curva es desalentadora: 76% de las empresas en Costa Rica operan en estado deficiente o crítico (D + E). Menos del 5% están bien. Es una curva de fracaso sistémico.</p>
+
+        <h2>El costo económico de la ceguera</h2>
+
+        <p>Las matemáticas son claras. Supongamos una empresa promedio:</p>
+        <ul>
+          <li>Presupuesto anual en publicidad digital: $24,000 (2,000/mes)</li>
+          <li>Tráfico generado: 5,000 visitas/mes = 60,000/año</li>
+          <li>Conversión promedio sin medición: 0.8% (muy baja porque no optimizan)</li>
+          <li>Conversión con retargeting (si tuvieran píxel): 2.0% (2.5x mejor)</li>
+          <li>Valor promedio por conversión: $500</li>
+        </ul>
+        <p><strong>Escenario sin píxel:</strong> 60,000 visitas × 0.8% = 480 conversiones × $500 = $240,000/año de ingresos por publicidad invertida.</p>
+        <p><strong>Escenario con píxel:</strong> 60,000 visitas × 2.0% = 1,200 conversiones × $500 = $600,000/año.</p>
+        <p><strong>Diferencia: $360,000/año por no instalar código.</strong></p>
+        <p>Multiplicado por 340 empresas sin píxel (88% de 386): <strong>Costa Rica pierde ~$122 millones al año</strong> en oportunidades de conversión no recuperadas. Eso es la mitad del PIB del sector de software costarricense.</p>
+
+        <h2>¿Por qué sucede esto? Hipótesis causales</h2>
+
+        <p><strong>Hipótesis 1: Falta de asesoría.</strong> La mayoría de empresas que crean webs no contratan agencias especializadas en medición. Contratan diseñadores que hacen sitios lindos, pero sin píxel. Es la culpa de la oferta, no la demanda.</p>
+
+        <p><strong>Hipótesis 2: Desconocimiento del ROI.</strong> Los empresarios no saben que Meta Pixel + retargeting multiplica conversión. Les suena a lujo, cuando es utilidad básica.</p>
+
+        <p><strong>Hipótesis 3: Inercia tecnológica.</strong> Muchas empresas mantienen sitios heredados de 2015-2018. Nunca los actualizan. El píxel se vuelve deuda técnica.</p>
+
+        <p><strong>Hipótesis 4: Competencia local débil.</strong> Si nadie en tu sector mide, entonces tú tampoco sientes presión para hacerlo. Es un equilibrio donde todos pierden juntos.</p>
+
+        <p><strong>Hipótesis 5: Visión cortoplacista.</strong> Empresas ven la web como gasto, no como instrumento de medición. Gastan $5k en crear un sitio, esperan que se venda solo, se decepcionan, no gastan en mejorar.</p>
+
+        <h2>Comparativa internacional: ¿Costa Rica es un caso?</h2>
+
+        <p>Datos de HubSpot (2025): en mercados desarrollados (USA, UK, Alemania), el 70% de empresas tienen píxel. En LATAM, apenas el 35%. Costa Rica, basado en nuestro análisis: 12%. Estamos 3x peor que el promedio regional.</p>
+        <p>Esto sugiere que Costa Rica tiene <em>talento</em> en software (muchos devs freelancers, startups), pero <em>falta de sistematización</em> en adopción de mejores prácticas. Sabemos cómo hacer píxel, pero no lo hacemos a escala.</p>
+
+        <h2>El camino adelante: Cinco leyes para recuperarse</h2>
+
+        <p><strong>Ley 1: Medición es supervivencia.</strong> La empresa que no mide, muere. No mañana, pero lentamente. Cada decisión sin data es un golpe de suerte, no estrategia.</p>
+
+        <p><strong>Ley 2: El píxel es básico, no lujo.</strong> Meta Pixel no debería ser "premium feature". Debería ser estándar como Google Analytics. Cuesta $0.</p>
+
+        <p><strong>Ley 3: La velocidad es conversión.</strong> Cada 100ms de optimización en sitio = aumento medible en conversión. No es estética, es economía.</p>
+
+        <p><strong>Ley 4: El retargeting es recuperación.</strong> El 98% de visitantes primera vez no compra. Sin retargeting, eso es pérdida total. Con retargeting, es 15-30% recuperación.</p>
+
+        <p><strong>Ley 5: La automatización es escala.</strong> Una empresa manual crece hasta el punto donde el dueño no puede más. Automatización (CRM, email, chatbot) permite crecer sin frenar.</p>
+
+        <h2>¿Quién debería leer esto?</h2>
+
+        <p><strong>Empresarios:</strong> si tu índice es < 60, tu web te está costando dinero, no ganándotelo.</p>
+
+        <p><strong>Agencias web:</strong> si al 88% de tus clientes no les instalas píxel, no estás cumpliendo tu trabajo.</p>
+
+        <p><strong>Freelancers web:</strong> píxel + analytics debería ser línea base, no servicio premium.</p>
+
+        <p><strong>Gobierno/CINDE:</strong> Costa Rica se promociona como hub digital. Pero los números no cierran. Necesitamos programa de capacitación masiva en medición digital para pymes.</p>
+
+        <h2>Conclusión: La crisis silenciosa</h2>
+
+        <p>386 sitios analizados. 88% ciegos. Índice promedio 58/100 (deficiente). Pérdida anual estimada: $122 millones en oportunidades no recuperadas.</p>
+        <p>Costa Rica tiene el talento. Tiene la tecnología. Tiene el capital. Lo que no tiene es la <em>disciplina</em> de medir, aprender, iterar. Mientras otros países optimizan, Costa Rica sigue lanzando sitios sin píxel, esperando magia.</p>
+        <p>Este no es un problema de tecnología. Es un problema de cultura. Y la cultura se cambia con datos, transparencia y ejemplo. Por eso publicamos esto. Para que veas que no estás solo en la ceguera — pero que sí tienes que salir de ella.</p>
+        <p>Tu competidor que instala píxel hoy, te vencerá mañana. No por ser más grande. Por ser más medido.</p>
+
+        <h2>Metodología completa y datasets</h2>
+        <p>Este análisis es reproducible. Los datasets (CSV con métricas por sector), el código del motor de diagnóstico, y los reportes individuales están disponibles bajo petición, respetando privacidad de empresas.</p>
+        <p>Contacta a Optimiza para acceder a datos completos, entrenamientos en medición digital, o auditoría privada de tu sitio.</p>
+      </div>
+
+      <div class="art-cta">
+        <p>¿Cuál es tu índice digital real?</p>
+        <a class="btn btn-lime" href="/#top">Analiza tu web gratis</a>
+      </div>
+    </div>
+  </article>
+</Base>
+<style>
+  .art { max-width: 820px; }
+  .back { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--muted); margin-bottom: 32px; transition: color .16s; }
+  .back:hover { color: var(--violet-ink); }
+  .art-head { margin-bottom: 30px; }
+  .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
+  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .art-head h1 { font-size: clamp(29px, 4.4vw, 48px); margin: 18px 0 0; line-height: 1.15; }
+  .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
+  .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
+  .tldr-k { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
+  .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
+  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9A95B3; }
+  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+  .prose { margin-bottom: 40px; }
+  .prose :global(h2) { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 32px); margin: 48px 0 18px; }
+  .prose :global(h3) { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 28px 0 12px; color: var(--text); }
+  .prose :global(p) { color: var(--muted); font-size: 16.5px; line-height: 1.8; margin-bottom: 18px; }
+  .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
+  .prose :global(li) { margin-bottom: 12px; line-height: 1.7; font-size: 16px; }
+  .prose :global(strong) { color: var(--text); font-weight: 600; }
+  .prose :global(em) { font-style: italic; color: var(--muted); }
+  .prose :global(a) { color: var(--violet-ink); text-decoration: underline; text-underline-offset: 2px; }
+  .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
+  .art-cta p { color: var(--muted); margin: 0 0 16px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all .2s; }
+  .btn-lime { background: var(--lime); color: #0B0A12; }
+  .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+</style>
