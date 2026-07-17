@@ -1,12 +1,12 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
-  --bg: #F7F6FC; --surface: #FFFFFF; --surface-2: #FBFAFF; --ink-2: #FFFFFF;
-  --text: #17141F; --muted: #615C74; --faint: #726D86;
-  --line: rgba(23,20,31,0.11); --line-soft: rgba(23,20,31,0.06);
-  --violet: #6A3EF0; --violet-ink: #5B2FD6; --cyan-ink: #0E96B0; --lime: #C7F94B;
-  --vbtn-bg: #6A3EF0; --vbtn-fg: #FFFFFF; --ico-bg: rgba(106,62,240,0.10);
-  --card-shadow: 0 1px 2px rgba(23,20,31,0.05), 0 16px 36px -22px rgba(23,20,31,0.20);
+  --bg: #F5F1E8; --surface: #FFFFFF; --surface-2: #FBF8F0; --ink-2: #FFFFFF;
+  --text: #2D2620; --muted: #704F38; --faint: #8B6F57;
+  --line: rgba(45,38,32,0.12); --line-soft: rgba(45,38,32,0.06);
+  --violet: #C65D3B; --violet-ink: #A0522D; --cyan-ink: #1B4D3E; --lime: #2D5A50;
+  --vbtn-bg: #C65D3B; --vbtn-fg: #FFFFFF; --ico-bg: rgba(198,93,59,0.10);
+  --card-shadow: 0 1px 2px rgba(45,38,32,0.08), 0 16px 36px -22px rgba(45,38,32,0.25);
   --sans: "Inter Variable", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --display: "Space Grotesk Variable", "Inter Variable", system-ui, sans-serif;
   --mono: "Space Mono", ui-monospace, "SF Mono", Menlo, monospace;
@@ -14,13 +14,13 @@
   --maxw: 1080px;
 }
 .dark {
-  --bg: #0B0A12; --surface: #15121F; --surface-2: #1B1729; --ink-2: #0E0C16;
-  --text: #F3F1FB; --muted: #9A95B3; --faint: #9691AD;
-  --line: rgba(139,108,255,0.16); --line-soft: rgba(255,255,255,0.06);
-  --violet: #8B6CFF; --violet-ink: #B9A6FF; --cyan-ink: #34DDE6; --lime: #C7F94B;
-  --vbtn-bg: #8B6CFF; --vbtn-fg: #0C081F; --ico-bg: rgba(139,108,255,0.14);
-  --card-shadow: 0 30px 80px -40px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.04);
-  background: #0B0A12; color: var(--text);
+  --bg: #1A1410; --surface: #242118; --surface-2: #2D2620; --ink-2: #0F0D0A;
+  --text: #E8E3D8; --muted: #B8A89A; --faint: #9F8F81;
+  --line: rgba(198,93,59,0.16); --line-soft: rgba(232,227,216,0.06);
+  --violet: #E8956B; --violet-ink: #F5B8A0; --cyan-ink: #5FD9C1; --lime: #7AD9B3;
+  --vbtn-bg: #E8956B; --vbtn-fg: #1A1410; --ico-bg: rgba(232,149,107,0.14);
+  --card-shadow: 0 30px 80px -40px rgba(0,0,0,0.95), inset 0 1px 0 rgba(232,227,216,0.04);
+  background: #1A1410; color: var(--text);
 }
 
 html { scroll-behavior: smooth; }
