@@ -87,12 +87,7 @@ const description = seo.description;
       </div>
 
       <div class="hero-proof reveal">
-        <p class="pmsg">No lo prometemos, lo demostramos. <b>Este mismo sitio</b> corre con puntaje perfecto — el tuyo también puede.</p>
-        <div class="readout">
-          <div class="r"><div class="rn">100<small>/100</small></div><div class="rl">PageSpeed</div></div>
-          <div class="r"><div class="rn">0.4<small>s</small></div><div class="rl">Carga</div></div>
-          <div class="r"><div class="rn">A<small>+</small></div><div class="rl">Core Web Vitals</div></div>
-        </div>
+        <p class="pmsg">No lo prometemos, lo demostramos: <b>arriba acabas de escanear este mismo sitio.</b> Así de honesto es el diagnóstico que te damos del tuyo.</p>
       </div>
     </div>
   </section>
@@ -257,14 +252,9 @@ const description = seo.description;
   .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 20px; align-items: center; }
 
   /* Prueba de PageSpeed, fusionada al hero (antes era su propia sección) */
-  .hero-proof { margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
-  .pmsg { font-size: 14.5px; color: var(--muted); max-width: 38ch; text-align: left; }
+  .hero-proof { margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; }
+  .pmsg { font-size: 14.5px; color: var(--muted); max-width: 48ch; margin-inline: auto; }
   .pmsg b { color: var(--text); font-weight: 600; }
-  .readout { display: flex; gap: 26px; flex-wrap: wrap; }
-  .readout .rn { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--lime); letter-spacing: -0.02em; }
-  .readout .rn small { color: var(--muted); font-size: 14px; }
-  .readout .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-top: 3px; }
-  @media (max-width: 640px) { .hero-proof { flex-direction: column; text-align: center; } .pmsg { text-align: center; } }
 
   .shead { max-width: 60ch; margin-bottom: 48px; }
   .shead h2 { font-size: clamp(28px, 4vw, 44px); }

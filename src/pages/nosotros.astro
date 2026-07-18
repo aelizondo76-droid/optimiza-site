@@ -33,7 +33,7 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
           <div class="fstats">
             <div class="fstat"><div class="sv">[8]<small>+</small></div><div class="sl">años en performance web</div></div>
             <div class="fstat"><div class="sv">[5]</div><div class="sl">certificaciones activas</div></div>
-            <div class="fstat"><div class="sv">100<small>/100</small></div><div class="sl">este sitio en PageSpeed</div></div>
+            <div class="fstat"><a href="/#scanner" class="sv sv-link">Compruébalo →</a><div class="sl">este sitio en PageSpeed</div></div>
           </div>
         </div>
       </div>
@@ -105,16 +105,15 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
                 <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogletagmanager.path} fill={`#${siGoogletagmanager.hex}`}></path></svg></span>Tag Manager</span>
               </div>
               <div class="glist">
-                <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Predicamos con el ejemplo: este sitio saca 100/100.</span></div>
+                <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Predicamos con el ejemplo: <a href="/#scanner">escanea este mismo sitio</a>.</span></div>
                 <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Garantía de desempeño: si no cumplimos, no cobramos.</span></div>
                 <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d={chk} stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Publicamos análisis reales — pericia visible antes de contratarnos.</span></div>
               </div>
             </div>
-            <div class="readout">
-              <div class="r"><div class="rn">100<small>/100</small></div><div class="rl">PageSpeed</div></div>
-              <div class="r"><div class="rn">0.4<small>s</small></div><div class="rl">Carga</div></div>
-              <div class="r"><div class="rn">A<small>+</small></div><div class="rl">Core Web Vitals</div></div>
-            </div>
+            <a class="readout-cta" href="/#scanner">
+              <span>Ver el puntaje real de este sitio</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
           </div>
         </div>
       </div>
@@ -175,6 +174,8 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
   .fcard .ftag { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.55; }
   .fstats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line-soft); }
   .fstat .sv { font-family: var(--mono); font-size: 19px; font-weight: 700; color: var(--violet-ink); letter-spacing: -0.02em; }
+  .fstat .sv-link { display: inline-block; text-decoration: none; transition: color .15s; }
+  .fstat .sv-link:hover { color: var(--lime); }
   .fstat .sv small { color: var(--muted); font-size: 13px; }
   .fstat .sl { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--faint); margin-top: 4px; line-height: 1.3; }
 
@@ -214,10 +215,9 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
   .glist { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
   .glist .g, .fb-guarantee .g { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: var(--text); }
   .glist .g svg, .fb-guarantee .g svg { color: var(--lime); flex: none; margin-top: 2px; }
-  .readout { display: flex; gap: 26px; flex-wrap: wrap; padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); }
-  .readout .rn { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--lime); letter-spacing: -0.02em; }
-  .readout .rn small { color: var(--muted); font-size: 14px; }
-  .readout .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.13em; color: var(--faint); margin-top: 4px; }
+  .readout-cta { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--ink-2); font-family: var(--mono); font-size: 13px; color: var(--text); transition: border-color .15s; }
+  .readout-cta:hover { border-color: var(--lime); }
+  .readout-cta svg { flex: none; color: var(--lime); }
 
   .founder-band { border: 1px solid var(--line); border-radius: 22px; padding: clamp(28px,5vw,52px); position: relative; overflow: hidden; }
   .founder-band.dark { background: #0B0A12; }
