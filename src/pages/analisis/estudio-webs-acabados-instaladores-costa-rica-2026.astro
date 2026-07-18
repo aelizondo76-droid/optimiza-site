@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const D = {
   revisadas: 18, legibles: 17, excluidas: 1, indice: 61,
   pilares: [
@@ -109,9 +110,9 @@ const plus = 'M12 5v14M5 12h14';
           </div>
         ))}
       </div>
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Recibís cotizaciones sin saber de dónde vienen? Descubrilo gratis en 30 segundos.</p>
-        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -175,4 +176,5 @@ const plus = 'M12 5v14M5 12h14';
   .qa .a p { color: var(--muted); font-size: 16px; line-height: 1.7; margin: 0 0 18px; }
   .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

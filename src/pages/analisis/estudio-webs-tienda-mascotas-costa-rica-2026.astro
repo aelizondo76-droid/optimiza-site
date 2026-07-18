@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const D = { revisadas: 15, legibles: 14, indice: 56, sinPixel: 87, sinAnalytics: 80, sinWhatsApp: 67, grados: [{g:'A',n:0},{g:'B',n:3},{g:'C',n:7},{g:'D',n:3},{g:'E',n:1}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-07-08';
@@ -42,9 +43,9 @@ const ogImage = new URL('/og/estudio-tienda-mascotas.png', Astro.site).href;
           <li><strong>Herramienta:</strong> motor de diagnóstico Optimiza.</li>
         </ul>
       </div>
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Vendés alimento para mascotas? Descubrí si pierdes clientes cada mes.</p>
-        <a class="btn btn-lime" href="/#top">Analizar mi tienda gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -73,4 +74,5 @@ const ogImage = new URL('/og/estudio-tienda-mascotas.png', Astro.site).href;
   .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; }
   .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const publishDate = '2026-09-09';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 const title = 'Estado digital de empresas en Costa Rica 2026: La crisis invisible';
@@ -107,9 +108,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         <p><strong>Tu competidor que instala píxel hoy, te vencerá mañana. No por ser más grande. Por ser más medido.</strong></p>
       </div>
 
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Cuál es tu índice digital?</p>
-        <a class="btn btn-lime" href="/#top">Analizar web gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -145,4 +146,5 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .art-cta p { color: var(--muted); margin: 0 0 16px; }
   .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: all .2s; }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

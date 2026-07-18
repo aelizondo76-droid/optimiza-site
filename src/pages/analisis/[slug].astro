@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 import Markdoc from '@markdoc/markdoc';
 import { getAnalisisSlugs, getAnalisisEntry, categoryMeta } from '../../lib/content';
 
@@ -32,9 +33,9 @@ const date = entry.publishDate
         {date && <p class="art-meta">{date}</p>}
       </div>
       <div class="prose" set:html={html}></div>
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Quieres un análisis así de tu sitio?</p>
-        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -65,4 +66,5 @@ const date = entry.publishDate
 
   .art-cta { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

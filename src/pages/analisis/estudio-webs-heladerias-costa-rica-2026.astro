@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const D = {
   revisadas: 8, legibles: 8, excluidas: 0, indice: 53,
   pilares: [
@@ -108,9 +109,9 @@ const plus = 'M12 5v14M5 12h14';
           </div>
         ))}
       </div>
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Tu heladería sabe qué sabor vende más?</p>
-        <a class="btn btn-lime" href="/#top">Analizar mi web gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -177,4 +178,5 @@ const plus = 'M12 5v14M5 12h14';
   .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all .2s; }
   .btn-lime { background: var(--lime); color: var(--lime-fg); }
   .btn-lime:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

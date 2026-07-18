@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const title = 'Glosario Digital: Términos sin Jerga para Empresarios';
 const description = '20+ términos de marketing digital explicados sin jerga técnica. Definiciones simples, analogías del mundo real, ejemplos prácticos, y por qué importa para tu negocio.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -522,9 +523,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
         </div>
       </div>
 
-      <div class="glos-cta">
+      <div class="glos-cta dark">
         <p>¿Tu web tiene estas herramientas implementadas?</p>
-        <a class="btn btn-lime" href="/#top">Hacer diagnóstico gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -564,4 +565,5 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     .term-header { flex-direction: column; align-items: flex-start; gap: 8px; }
     .term-num { margin-left: 0; }
   }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

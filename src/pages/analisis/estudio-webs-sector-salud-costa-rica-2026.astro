@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 
 // ── Estudio pilar: sector salud (3 estudios combinados) ──
 const D = {
@@ -163,9 +164,9 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
         ))}
       </div>
 
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Tu clínica está en el 94% que no mide? Descubrilo en 30 segundos, gratis.</p>
-        <a class="btn btn-lime" href="/#top">Analizar la web de mi clínica gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -238,4 +239,5 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
 
   .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

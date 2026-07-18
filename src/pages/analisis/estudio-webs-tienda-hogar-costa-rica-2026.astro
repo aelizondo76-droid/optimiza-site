@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Scanner from '../../components/Scanner.astro';
 const D = { revisadas: 21, legibles: 20, indice: 58, sinPixel: 81, sinAnalytics: 33, sinWhatsApp: 38, grados: [{g:'A',n:1},{g:'B',n:4},{g:'C',n:10},{g:'D',n:4},{g:'E',n:2}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-06-23';
@@ -53,9 +54,9 @@ const plus = 'M12 5v14M5 12h14';
           <li><strong>Herramienta:</strong> motor de diagnóstico Optimiza (PageSpeed + análisis HTML).</li>
         </ul>
       </div>
-      <div class="art-cta">
+      <div class="art-cta dark">
         <p>¿Vendés muebles? Descubrí si tu tienda pierde clientes.</p>
-        <a class="btn btn-lime" href="/#top">Analizar mi tienda gratis</a>
+        <div class="scanwrap"><Scanner /></div>
       </div>
     </div>
   </article>
@@ -90,4 +91,5 @@ const plus = 'M12 5v14M5 12h14';
   .dn { font-family: var(--mono); font-weight: 700; color: var(--text); text-align: right; }
   .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
+  .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>
