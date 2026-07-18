@@ -55,7 +55,7 @@ function renderEmail(p: ReportEmail, link: string): string {
       <p style="margin:0 0 8px;color:#615C74;font-size:14px">Diagnóstico de <b>${esc(p.host)}</b></p>
       <div style="font-size:64px;font-weight:800;letter-spacing:-.03em;color:${color};line-height:1">${p.index}</div>
       <p style="margin:4px 0 0;color:#615C74;font-size:13px">Índice Optimiza · calificación ${p.grade}</p>
-      <a href="${link}" style="display:inline-block;margin-top:24px;background:#6A3EF0;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px">Ver tu informe completo →</a>
+      <a href="${link}" style="display:inline-block;margin-top:24px;background:#C65D3B;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:14px 28px;border-radius:999px">Ver tu informe completo →</a>
       <p style="margin:20px 0 0;color:#726D86;font-size:12px">Velocidad · Visibilidad · Conversión · Automatización</p>
     </div>
     <p style="color:#726D86;font-size:12px;text-align:center;margin-top:20px">

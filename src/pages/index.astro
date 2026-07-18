@@ -9,6 +9,7 @@ const seo = await getSeo('home', {
 const title = seo.title;
 const description = seo.description;
 ---
+<!-- Hallmark · macrostructure: Stat-Led (fused) · differs from default AI-SaaS flow on: proof folded into hero, método+pricing fused 2-col, FAQ+CTA fused -->
 <Base title={title} description={description}>
   <section class="hero section hero-data dark">
     <div class="wrap">
@@ -78,32 +79,27 @@ const description = seo.description;
         </div>
       </div>
 
-      <p class="hero-insight reveal">
-        <strong>Diferencia: +$360k/año</strong> por empresa.
-        <br/>Multiplicado por 340 empresas sin medición = oportunidad perdida de $122 millones en Costa Rica.
-      </p>
+      <div class="scanwrap reveal"><Scanner /></div>
+
+      <p class="hero-sub reveal">Sin registro para ver tu puntaje. Los pilares que no mides son los que más te cuestan.</p>
 
       <div class="hero-cta-row reveal">
-        <a class="btn btn-lime" href="#top">Analizar mi web — Gratis</a>
         <a class="btn btn-ghost" href="#metodo">Ver cómo trabajamos</a>
       </div>
-    </div>
-  </section>
 
-  <section class="proof dark">
-    <div class="wrap">
-      <p class="pmsg">No lo prometemos, lo demostramos. <b>Este mismo sitio</b> corre con puntaje perfecto — el tuyo también puede.</p>
-      <div class="readout">
-        <div class="r"><div class="rn">100<small>/100</small></div><div class="rl">PageSpeed</div></div>
-        <div class="r"><div class="rn">0.4<small>s</small></div><div class="rl">Carga</div></div>
-        <div class="r"><div class="rn">A<small>+</small></div><div class="rl">Core Web Vitals</div></div>
+      <div class="hero-proof reveal">
+        <p class="pmsg">No lo prometemos, lo demostramos. <b>Este mismo sitio</b> corre con puntaje perfecto — el tuyo también puede.</p>
+        <div class="readout">
+          <div class="r"><div class="rn">100<small>/100</small></div><div class="rl">PageSpeed</div></div>
+          <div class="r"><div class="rn">0.4<small>s</small></div><div class="rl">Carga</div></div>
+          <div class="r"><div class="rn">A<small>+</small></div><div class="rl">Core Web Vitals</div></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section statband reveal">
     <div class="wrap">
-      <p class="eyebrow" style="justify-content:center">El costo de no optimizar</p>
       <p class="big">Un sitio lento no es un detalle técnico. Es <em>dinero que se va</em> — hasta un 7% de tus ventas por cada segundo de más.</p>
       <p class="src">Fuente: datos de la industria sobre velocidad y conversión</p>
     </div>
@@ -112,74 +108,76 @@ const description = seo.description;
   <section class="section" id="pilares">
     <div class="wrap">
       <div class="shead reveal">
-        <p class="eyebrow">Qué hacemos</p>
         <h2>Todo lo que tu web necesita para vender, en un solo lugar.</h2>
         <p class="lead">Cuatro palancas que trabajan juntas: atraer, cargar rápido, convertir y automatizar. No vendemos tareas técnicas — vendemos el resultado de negocio de cada una.</p>
       </div>
       <div class="pillars">
-        <article class="pcard reveal">
-          <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 14 4-4"></path><path d="M3.34 19a10 10 0 1 1 17.32 0"></path></svg></div>
-          <h3>Velocidad</h3><p class="hook">"Cada segundo cuesta ventas."</p>
-          <p class="desc">Core Web Vitals, compresión de imágenes y código limpio para que tu web cargue al instante.</p>
+        <article class="pcard pcard-lead reveal">
+          <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2l-8 14h6l-2 6 10-15h-6l2-5Z"/></svg></div>
+          <div class="pcard-body">
+            <h3>Velocidad</h3><p class="hook">&ldquo;Cada segundo cuesta ventas.&rdquo;</p>
+            <p class="desc">Core Web Vitals, compresión de imágenes y código limpio para que tu web cargue al instante.</p>
+          </div>
         </article>
-        <article class="pcard reveal">
-          <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></div>
-          <h3>Visibilidad</h3><p class="hook">"Que te encuentren primero."</p>
-          <p class="desc">SEO técnico, contenido y optimización para IA — para que aparezcas antes que tu competencia.</p>
-        </article>
-        <article class="pcard reveal">
-          <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
-          <h3>Conversión</h3><p class="hook">"Convierte tráfico en clientes."</p>
-          <p class="desc">Landing pages, medición y pruebas A/B para que las visitas que ya tienes se vuelvan ventas.</p>
-        </article>
-        <article class="pcard reveal">
-          <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="3" y="3" rx="2"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect width="8" height="8" x="13" y="13" rx="2"></rect></svg></div>
-          <h3>Automatización</h3><p class="hook">"Que tu negocio trabaje sin ti."</p>
-          <p class="desc">CRM, integraciones y flujos que convierten tu crecimiento en tiempo libre recuperado.</p>
-        </article>
+        <div class="pillars-rest">
+          <article class="pcard reveal">
+            <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <h3>Visibilidad</h3><p class="hook">&ldquo;Que te encuentren primero.&rdquo;</p>
+            <p class="desc">SEO técnico, contenido y optimización para IA — para que aparezcas antes que tu competencia.</p>
+          </article>
+          <article class="pcard reveal">
+            <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20V6"/><path d="M3 6l4 4 4-6 6 8 4-2"/><path d="M20 6v2"/></svg></div>
+            <h3>Conversión</h3><p class="hook">&ldquo;Convierte tráfico en clientes.&rdquo;</p>
+            <p class="desc">Landing pages, medición y pruebas A/B para que las visitas que ya tienes se vuelvan ventas.</p>
+          </article>
+          <article class="pcard reveal">
+            <div class="pico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="12" r="3"/><circle cx="15" cy="12" r="3"/><path d="M9 9v6M15 9v6M12 12h0"/><path d="M6 12a3 3 0 0 0 6 0 3 3 0 0 1 6 0 3 3 0 0 0 0-6"/></svg></div>
+            <h3>Automatización</h3><p class="hook">&ldquo;Que tu negocio trabaje sin ti.&rdquo;</p>
+            <p class="desc">CRM, integraciones y flujos que convierten tu crecimiento en tiempo libre recuperado.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section" id="metodo">
     <div class="wrap">
-      <div class="shead reveal">
-        <p class="eyebrow">Cómo trabajamos</p>
-        <h2>Sin cajas negras.</h2>
-        <p class="lead">Un proceso claro, en cuatro pasos, donde cada acción se justifica por su impacto en ventas — no por horas facturadas.</p>
-      </div>
-      <div class="panel steps reveal">
-        <div class="step"><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></span><div class="sn">01</div><h3>Diagnosticamos</h3><p>Auditoría técnica completa de velocidad, SEO y conversión.</p></div>
-        <div class="step"><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></span><div class="sn">02</div><h3>Priorizamos</h3><p>Ordenamos cada mejora por impacto en tus ventas, no por dificultad.</p></div>
-        <div class="step"><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span><div class="sn">03</div><h3>Ejecutamos</h3><p>Implementamos rápido, con reportes claros en cada paso.</p></div>
-        <div class="step"><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><div class="sn">04</div><h3>Medimos</h3><p>Reportamos resultados en la métrica que importa: dinero.</p></div>
+      <div class="method-grid">
+        <div class="method-col">
+          <div class="shead reveal">
+            <h2>Sin cajas negras.</h2>
+            <p class="lead">Un proceso claro, en cuatro pasos, donde cada acción se justifica por su impacto en ventas — no por horas facturadas.</p>
+          </div>
+          <ol class="timeline reveal">
+            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></span><div><div class="sn">01 · Diagnosticamos</div><p>Auditoría técnica completa de velocidad, SEO y conversión.</p></div></li>
+            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></span><div><div class="sn">02 · Priorizamos</div><p>Ordenamos cada mejora por impacto en tus ventas, no por dificultad.</p></div></li>
+            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span><div><div class="sn">03 · Ejecutamos</div><p>Implementamos rápido, con reportes claros en cada paso.</p></div></li>
+            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><div><div class="sn">04 · Medimos</div><p>Reportamos resultados en la métrica que importa: dinero.</p></div></li>
+          </ol>
+        </div>
+
+        <div class="method-col" id="paquetes">
+          <div class="shead reveal">
+            <h2>Empieza donde estás. Escala cuando estés listo.</h2>
+            <p class="lead">Una escalera clara: entra por un diagnóstico gratis y sube de nivel solo cuando el anterior ya te esté generando resultados.</p>
+          </div>
+          <div class="ladder-v reveal">
+            <article class="rung-v free"><div class="rv-top"><span class="lvl">Paso 0</span><span class="kind">Gratis</span></div><h3>Diagnóstico</h3><p class="for">Descubre qué te frena y cuánto puedes ganar.</p></article>
+            <article class="rung-v"><div class="rv-top"><span class="lvl">Nivel 1</span><span class="kind">Proyecto</span></div><h3>Cimientos</h3><p class="for">Para que tu web deje de perder ventas: base técnica sólida.</p></article>
+            <article class="rung-v"><div class="rv-top"><span class="lvl">Nivel 2</span><span class="kind">Retainer</span></div><h3>Aceleración</h3><p class="for">Para crecer ventas mes a mes: tráfico y conversión.</p></article>
+            <article class="rung-v"><div class="rv-top"><span class="lvl">Nivel 3</span><span class="kind">Premium</span></div><h3>Autopilot</h3><p class="for">Para que el crecimiento no dependa de ti: automatización total.</p></article>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="paquetes">
-    <div class="wrap">
-      <div class="shead reveal">
-        <p class="eyebrow">Cómo empezar</p>
-        <h2>Empieza donde estás. Escala cuando estés listo.</h2>
-        <p class="lead">Una escalera clara: entra por un diagnóstico gratis y sube de nivel solo cuando el anterior ya te esté generando resultados.</p>
-      </div>
-      <div class="ladder">
-        <article class="rung free reveal"><span class="meter" aria-hidden="true"><i style="height:8px"></i><i style="height:12px"></i><i style="height:16px"></i></span><div class="lvl">Paso 0</div><h3>Diagnóstico</h3><p class="for">Descubre qué te frena y cuánto puedes ganar.</p><span class="kind">Gratis</span></article>
-        <article class="rung reveal"><span class="meter" aria-hidden="true"><i style="height:10px"></i><i style="height:16px"></i><i style="height:22px"></i></span><div class="lvl">Nivel 1</div><h3>Cimientos</h3><p class="for">Para que tu web deje de perder ventas: base técnica sólida.</p><span class="kind">Proyecto</span></article>
-        <article class="rung reveal"><span class="meter" aria-hidden="true"><i style="height:12px"></i><i style="height:20px"></i><i style="height:28px"></i></span><div class="lvl">Nivel 2</div><h3>Aceleración</h3><p class="for">Para crecer ventas mes a mes: tráfico y conversión.</p><span class="kind">Retainer</span></article>
-        <article class="rung reveal"><span class="meter" aria-hidden="true"><i style="height:14px"></i><i style="height:24px"></i><i style="height:34px"></i></span><div class="lvl">Nivel 3</div><h3>Autopilot</h3><p class="for">Para que el crecimiento no dependa de ti: automatización total.</p><span class="kind">Premium</span></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
+  <section class="section" style="padding-block:clamp(80px,11vw,130px)">
     <div class="wrap">
       <div class="founder-band dark reveal">
         <div class="fb-glow"></div>
         <div class="fb-grid">
           <div>
-            <p class="eyebrow">Programa Fundador</p>
             <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
             <p class="lead" style="margin-top:14px">Buscamos cinco negocios en crecimiento para trabajar de cerca a cambio de precio preferente y un caso de éxito compartido. Entra temprano en algo bueno.</p>
             <div class="fb-slots" aria-hidden="true"><span class="slot taken"></span><span class="slot taken"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
@@ -187,37 +185,35 @@ const description = seo.description;
             <div class="hero-cta-row"><a class="btn btn-lime" href="/contacto">Aplicar al Programa Fundador</a></div>
           </div>
           <div class="fb-guarantee">
-            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Precio fundador, congelado mientras seas cliente.</span></div>
-            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Sin amarres: mes a mes, cancelas cuando quieras.</span></div>
-            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Atención directa del fundador, no de un becario.</span></div>
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Precio fundador, congelado mientras seas cliente.</span></div>
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Sin amarres: mes a mes, cancelas cuando quieras.</span></div>
+            <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Atención directa del fundador, no de un becario.</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="faq">
+  <section class="section closer" id="faq">
     <div class="wrap">
-      <div class="shead reveal" style="text-align:center;margin-inline:auto">
-        <p class="eyebrow" style="justify-content:center">Preguntas frecuentes</p>
-        <h2>Lo que probablemente te estás preguntando.</h2>
-      </div>
-      <div class="faq reveal">
-        <div class="qa"><button class="q" aria-expanded="false">¿Son nuevos?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="a"><p>Sí, y lo decimos de frente. Por eso ofrecemos garantía de desempeño y un cupo fundador con precio preferente. Preferimos demostrar antes que presumir: nuestro escáner y nuestro propio sitio hablan por nosotros.</p></div></div>
-        <div class="qa"><button class="q" aria-expanded="false">¿Cuánto cuesta?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="a"><p>El diagnóstico es gratis. A partir de ahí, cada nivel tiene un precio claro según el alcance — Cimientos es un proyecto puntual, Aceleración y Autopilot son mensuales. Sin sorpresas ni letras chiquitas.</p></div></div>
-        <div class="qa"><button class="q" aria-expanded="false">¿Trabajan con mi plataforma?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></span></button><div class="a"><p>Sí: WordPress, Shopify, Webflow, sitios a medida y más. El diagnóstico detecta tu stack automáticamente y adaptamos el plan a lo que ya tienes.</p></div></div>
-      </div>
-    </div>
-  </section>
+      <div class="closer-grid">
+        <div>
+          <p class="eyebrow">Preguntas frecuentes</p>
+          <h2>Lo que probablemente te estás preguntando.</h2>
+          <div class="faq reveal">
+            <div class="qa"><button class="q" aria-expanded="false">¿Son nuevos?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span></button><div class="a"><p>Sí, y lo decimos de frente. Por eso ofrecemos garantía de desempeño y un cupo fundador con precio preferente. Preferimos demostrar antes que presumir: nuestro escáner y nuestro propio sitio hablan por nosotros.</p></div></div>
+            <div class="qa"><button class="q" aria-expanded="false">¿Cuánto cuesta?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span></button><div class="a"><p>El diagnóstico es gratis. A partir de ahí, cada nivel tiene un precio claro según el alcance — Cimientos es un proyecto puntual, Aceleración y Autopilot son mensuales. Sin sorpresas ni letras chiquitas.</p></div></div>
+            <div class="qa"><button class="q" aria-expanded="false">¿Trabajan con mi plataforma?<span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path></svg></span></button><div class="a"><p>Sí: WordPress, Shopify, Webflow, sitios a medida y más. El diagnóstico detecta tu stack automáticamente y adaptamos el plan a lo que ya tienes.</p></div></div>
+          </div>
+        </div>
 
-  <section class="section final dark">
-    <div class="fglow"></div>
-    <div class="wrap">
-      <p class="eyebrow" style="justify-content:center">Empieza gratis</p>
-      <h2>¿Listo para ver cuánto puede crecer tu web?</h2>
-      <div class="cta-row">
-        <a class="btn btn-lime" href="#top">Analizar mi web gratis</a>
-        <a class="btn btn-ghost" href="/contacto">Agenda una llamada</a>
+        <div class="closer-cta">
+          <h2>¿Listo para ver cuánto puede crecer tu web?</h2>
+          <div class="cta-row">
+            <a class="btn btn-lime" href="#scanner">Analizar mi web gratis</a>
+            <a class="btn btn-ghost" href="/contacto">Agenda una llamada</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -256,76 +252,77 @@ const description = seo.description;
   .ba-arrow svg { width: 40px; height: 40px; color: var(--lime); }
   @media (max-width: 820px) { .ba-arrow { display: none; } }
 
-  .hero-insight { font-size: 16px; color: var(--text); max-width: 60ch; margin-inline: auto; line-height: 1.7; margin-bottom: 32px; }
-  .hero-insight strong { color: var(--lime); }
+  .scanwrap { max-width: 560px; margin: 40px auto 0; text-align: left; }
+  .hero-sub { font-size: 13.5px; color: var(--muted); margin-top: 16px; }
 
-  .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 32px; align-items: center; }
+  .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 20px; align-items: center; }
 
-  /* Estilos antiguos mantenidos para compatibilidad */
-  .hero-grid-layout { display: none; }
-  .hero-glow { display: none; }
-  .hero-grid { display: none; }
-
-  .proof.dark { background: #0E0C16; }
-  .proof { border-block: 1px solid var(--line); }
-  .proof :global(.wrap) { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-block: 26px; }
-  .pmsg { font-size: 15px; color: var(--muted); max-width: 42ch; }
+  /* Prueba de PageSpeed, fusionada al hero (antes era su propia sección) */
+  .hero-proof { margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap; }
+  .pmsg { font-size: 14.5px; color: var(--muted); max-width: 38ch; text-align: left; }
   .pmsg b { color: var(--text); font-weight: 600; }
-  .readout { display: flex; gap: 30px; flex-wrap: wrap; }
-  .readout .rn { font-family: var(--mono); font-size: 26px; font-weight: 700; color: var(--lime); letter-spacing: -0.02em; }
-  .readout .rn small { color: var(--muted); font-size: 15px; }
-  .readout .rl { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-top: 3px; }
+  .readout { display: flex; gap: 26px; flex-wrap: wrap; }
+  .readout .rn { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--lime); letter-spacing: -0.02em; }
+  .readout .rn small { color: var(--muted); font-size: 14px; }
+  .readout .rl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--faint); margin-top: 3px; }
+  @media (max-width: 640px) { .hero-proof { flex-direction: column; text-align: center; } .pmsg { text-align: center; } }
 
   .shead { max-width: 60ch; margin-bottom: 48px; }
   .shead h2 { font-size: clamp(28px, 4vw, 44px); }
   .shead p { margin-top: 16px; }
 
-  .statband { text-align: center; }
+  .statband { text-align: center; padding-block: clamp(40px, 6vw, 64px); }
   .statband .big { font-size: clamp(30px, 5vw, 52px); font-weight: 700; letter-spacing: -0.03em; max-width: 20ch; margin-inline: auto; }
   .statband .big em { color: var(--violet-ink); font-style: normal; }
   .statband .src { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 20px; letter-spacing: 0.06em; }
 
-  .pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  @media (max-width: 900px) { .pillars { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 520px) { .pillars { grid-template-columns: 1fr; } }
+  /* Pilares: 1 lead card + 3 en grid — rompe el patrón de 4 columnas iguales */
+  .pillars { display: flex; flex-direction: column; gap: 16px; }
   .pcard { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px; padding: 24px; box-shadow: var(--card-shadow); transition: border-color .2s ease, transform .2s ease; }
   .pcard:hover { border-color: var(--violet); transform: translateY(-3px); }
-  .pico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 20px; background: linear-gradient(140deg, rgba(106,62,240,0.16), rgba(43,196,214,0.09)); border: 1px solid rgba(106,62,240,0.18); color: var(--violet-ink); }
+  .pcard-lead { display: flex; align-items: center; gap: 28px; padding: 32px; }
+  .pcard-lead .pico { margin-bottom: 0; flex: none; width: 68px; height: 68px; }
+  .pcard-lead .pico svg { width: 32px; height: 32px; }
+  .pcard-lead h3 { font-size: 24px; }
+  .pcard-lead .desc { max-width: 52ch; }
+  @media (max-width: 640px) { .pcard-lead { flex-direction: column; align-items: flex-start; gap: 16px; } }
+  .pillars-rest { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 820px) { .pillars-rest { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .pillars-rest { grid-template-columns: 1fr; } }
+  .pico { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 20px; background: color-mix(in srgb, var(--violet) 14%, transparent); border: 1px solid color-mix(in srgb, var(--violet) 28%, transparent); color: var(--violet-ink); }
   .pico svg { width: 25px; height: 25px; }
   .pcard h3 { font-size: 20px; letter-spacing: -0.02em; }
   .pcard .hook { color: var(--text); font-size: 14.5px; margin-top: 8px; font-weight: 600; }
   .pcard .desc { color: var(--muted); font-size: 13.5px; margin-top: 12px; line-height: 1.55; }
 
-  .panel { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 20px; box-shadow: var(--card-shadow); }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); }
-  @media (max-width: 820px) { .steps { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
-  .step { padding: 26px 24px; border-right: 1px solid var(--line-soft); }
-  .step:last-child { border-right: 0; }
-  .step-ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(140deg, rgba(106,62,240,0.15), rgba(43,196,214,0.08)); border: 1px solid rgba(106,62,240,0.16); color: var(--violet-ink); margin-bottom: 16px; }
-  .step-ic svg { width: 21px; height: 21px; }
-  .step .sn { font-family: var(--mono); font-size: 12px; color: var(--cyan-ink); letter-spacing: 0.14em; font-weight: 600; }
-  .step h3 { font-size: 18px; margin-top: 10px; }
-  .step p { color: var(--muted); font-size: 13.5px; margin-top: 9px; line-height: 1.5; }
+  /* Método + Pricing fusionados en 2 columnas */
+  .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: start; }
+  @media (max-width: 900px) { .method-grid { grid-template-columns: 1fr; gap: 64px; } }
+  .method-col .shead { margin-bottom: 32px; }
 
-  .ladder { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; align-items: stretch; }
-  @media (max-width: 820px) { .ladder { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .ladder { grid-template-columns: 1fr; } }
-  .rung { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 14px; padding: 22px; position: relative; box-shadow: var(--card-shadow); transition: border-color .2s, transform .2s; }
-  .rung:hover { border-color: var(--violet); transform: translateY(-3px); }
-  .rung.free { border-color: rgba(106,62,240,0.4); }
-  .rung .meter { position: absolute; top: 22px; right: 22px; display: flex; gap: 3px; align-items: flex-end; }
-  .rung .meter i { width: 4px; border-radius: 2px; background: var(--violet); display: block; opacity: 0.9; }
-  .rung .lvl { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.16em; text-transform: uppercase; }
-  .rung h3 { font-size: 21px; margin-top: 12px; }
-  .rung .for { color: var(--muted); font-size: 13.5px; margin-top: 10px; line-height: 1.5; }
-  .rung .kind { display: inline-block; margin-top: 16px; font-family: var(--mono); font-size: 11px; color: var(--cyan-ink); border: 1px solid var(--line); border-radius: 99px; padding: 4px 11px; letter-spacing: 0.06em; }
-  .rung.free .kind { background: var(--lime); color: #14180A; border-color: transparent; }
+  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
+  .timeline li { display: flex; gap: 18px; padding-block: 18px; border-left: 2px solid var(--line); padding-left: 22px; margin-left: 20px; position: relative; }
+  .timeline li:last-child { border-left-color: transparent; }
+  .step-ic { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: color-mix(in srgb, var(--violet) 13%, transparent); border: 1px solid color-mix(in srgb, var(--violet) 26%, transparent); color: var(--violet-ink); flex: none; margin-left: -41px; margin-top: -2px; }
+  .step-ic svg { width: 19px; height: 19px; }
+  .timeline .sn { font-family: var(--mono); font-size: 12px; color: var(--cyan-ink); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; }
+  .timeline p { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+
+  .ladder-v { display: flex; flex-direction: column; gap: 12px; }
+  .rung-v { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 14px; padding: 18px 22px; box-shadow: var(--card-shadow); transition: border-color .2s, transform .2s; }
+  .rung-v:hover { border-color: var(--violet); transform: translateX(3px); }
+  .rung-v.free { border-color: color-mix(in srgb, var(--violet) 45%, transparent); }
+  .rv-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .rung-v .lvl { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.14em; text-transform: uppercase; }
+  .rung-v .kind { font-family: var(--mono); font-size: 10.5px; color: var(--cyan-ink); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; letter-spacing: 0.05em; }
+  .rung-v.free .kind { background: var(--lime); color: #14180A; border-color: transparent; }
+  .rung-v h3 { font-size: 18px; }
+  .rung-v .for { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
 
   .founder-band { border: 1px solid var(--line); border-radius: 22px; padding: clamp(28px, 5vw, 52px); position: relative; overflow: hidden; }
   .founder-band.dark { background: #0B0A12; }
   .founder-band .fb-glow { position: absolute; inset: auto -10% -60% auto; width: 460px; height: 460px; background: radial-gradient(circle, rgba(199,249,75,0.14), transparent 65%); pointer-events: none; }
-  .founder-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, rgba(139,108,255,0.18), transparent 60%); pointer-events: none; }
+  .founder-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, color-mix(in srgb, var(--violet) 20%, transparent), transparent 60%); pointer-events: none; }
   .fb-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 780px) { .fb-grid { grid-template-columns: 1fr; gap: 26px; } }
   .fb-slots { display: flex; gap: 8px; margin: 22px 0; }
@@ -336,17 +333,20 @@ const description = seo.description;
   .fb-guarantee .g { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: var(--text); }
   .fb-guarantee .g svg { color: var(--lime); flex: none; margin-top: 2px; }
 
-  .faq { max-width: 760px; margin-inline: auto; }
+  /* FAQ + CTA final fusionados */
+  .closer-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: clamp(40px, 6vw, 72px); align-items: start; }
+  @media (max-width: 900px) { .closer-grid { grid-template-columns: 1fr; gap: 56px; } }
+  .closer h2 { font-size: clamp(26px, 3.6vw, 38px); margin-top: 10px; }
+  .faq { margin-top: 32px; }
   .qa { border-bottom: 1px solid var(--line); }
-  .qa button.q { width: 100%; background: none; border: 0; color: var(--text); font-family: var(--sans); font-size: 17px; font-weight: 600; text-align: left; padding: 22px 40px 22px 0; cursor: pointer; position: relative; letter-spacing: -0.01em; }
+  .qa button.q { width: 100%; background: none; border: 0; color: var(--text); font-family: var(--sans); font-size: 16px; font-weight: 600; text-align: left; padding: 20px 36px 20px 0; cursor: pointer; position: relative; letter-spacing: -0.01em; }
   .qa button.q .ic { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); color: var(--violet-ink); transition: transform .25s ease; }
   .qa.open button.q .ic { transform: translateY(-50%) rotate(45deg); }
   .qa .a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
-  .qa .a p { color: var(--muted); font-size: 15px; line-height: 1.6; padding: 0 40px 22px 0; }
+  .qa .a p { color: var(--muted); font-size: 14.5px; line-height: 1.6; padding: 0 36px 20px 0; }
 
-  .final { text-align: center; overflow: hidden; }
-  .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, rgba(139,108,255,0.24), transparent 65%); pointer-events: none; }
-  .final :global(.wrap) { position: relative; z-index: 1; }
-  .final h2 { font-size: clamp(30px, 5vw, 52px); max-width: 18ch; margin-inline: auto; }
-  .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+  .closer-cta { position: sticky; top: 110px; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 18px; padding: 32px; box-shadow: var(--card-shadow); }
+  .closer-cta h2 { margin-top: 0; }
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  @media (max-width: 900px) { .closer-cta { position: static; } }
 </style>

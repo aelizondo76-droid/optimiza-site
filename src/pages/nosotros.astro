@@ -169,7 +169,7 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
 
   .fcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px; box-shadow: var(--card-shadow); }
   .fcard-top { display: flex; align-items: center; gap: 16px; }
-  .avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(140deg, #8B6CFF, #5B3FD6); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 26px; color: #0C081F; flex: none; }
+  .avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(140deg, #E8956B, #C65D3B); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 26px; color: #2D1810; flex: none; }
   .fcard .frole { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-ink); font-weight: 600; }
   .fcard h2 { font-size: 22px; margin: 6px 0 0; }
   .fcard .ftag { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.55; }
@@ -193,7 +193,7 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
   @media (max-width: 640px) { .values { grid-template-columns: 1fr; } }
   .vcard { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 16px; padding: 24px; box-shadow: var(--card-shadow); position: relative; }
   .vnum { position: absolute; top: 20px; right: 22px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--faint); letter-spacing: 0.05em; }
-  .vico { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; background: linear-gradient(140deg, rgba(106,62,240,0.16), rgba(43,196,214,0.09)); border: 1px solid rgba(106,62,240,0.18); color: var(--violet-ink); margin-bottom: 18px; }
+  .vico { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; background: color-mix(in srgb, var(--violet) 14%, transparent); border: 1px solid color-mix(in srgb, var(--violet) 28%, transparent); color: var(--violet-ink); margin-bottom: 18px; }
   .vico svg { width: 24px; height: 24px; }
   .vcard h3 { font-size: 18px; }
   .vcard p { color: var(--muted); font-size: 14.5px; margin-top: 9px; line-height: 1.55; }
@@ -222,7 +222,7 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
   .founder-band { border: 1px solid var(--line); border-radius: 22px; padding: clamp(28px,5vw,52px); position: relative; overflow: hidden; }
   .founder-band.dark { background: #0B0A12; }
   .founder-band .fb-glow { position: absolute; inset: auto -10% -60% auto; width: 460px; height: 460px; background: radial-gradient(circle, rgba(199,249,75,0.14), transparent 65%); pointer-events: none; }
-  .founder-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, rgba(139,108,255,0.18), transparent 60%); pointer-events: none; }
+  .founder-band::before { content: ""; position: absolute; inset: 0; background: radial-gradient(600px 300px at 12% 0%, color-mix(in srgb, var(--violet) 20%, transparent), transparent 60%); pointer-events: none; }
   .fb-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 780px) { .fb-grid { grid-template-columns: 1fr; gap: 26px; } }
   .fb-slots { display: flex; gap: 8px; margin: 22px 0; }
@@ -232,7 +232,7 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
   .fb-guarantee { display: flex; flex-direction: column; gap: 14px; }
 
   .final { text-align: center; overflow: hidden; }
-  .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, rgba(139,108,255,0.24), transparent 65%); pointer-events: none; }
+  .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, color-mix(in srgb, var(--violet) 26%, transparent), transparent 65%); pointer-events: none; }
   .final :global(.wrap) { position: relative; z-index: 1; }
   .final h2 { font-size: clamp(30px, 5vw, 50px); max-width: 18ch; margin-inline: auto; }
   .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
