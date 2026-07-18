@@ -127,14 +127,14 @@
 
   .result { margin-top: 22px; display: none; }
   .result.show { display: block; }
-  .gauge-row { display: grid; grid-template-columns: 190px 1fr; gap: 22px; align-items: center; }
-  @media (max-width: 520px) { .gauge-row { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
-  .gauge { position: relative; width: 190px; height: 116px; }
-  .gauge svg { display: block; width: 190px; height: 116px; }
-  .gauge .val { position: absolute; left: 0; right: 0; bottom: 6px; text-align: center; }
-  .gauge .num { font-family: var(--mono); font-size: 42px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; text-shadow: 0 0 20px rgba(199,249,75,0.35); }
-  .gauge .num small { font-size: 17px; color: var(--muted); text-shadow: none; }
-  .gauge .cap { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+  .gauge-row { display: grid; grid-template-columns: 246px 1fr; gap: 26px; align-items: center; }
+  @media (max-width: 560px) { .gauge-row { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
+  .gauge { position: relative; width: 246px; height: 150px; }
+  .gauge svg { display: block; width: 246px; height: 150px; }
+  .gauge .val { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; }
+  .gauge .num { font-family: var(--mono); font-size: 56px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; text-shadow: 0 0 24px rgba(199,249,75,0.4); }
+  .gauge .num small { font-size: 21px; color: var(--muted); text-shadow: none; }
+  .gauge .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
   .subs { display: flex; flex-direction: column; gap: 13px; width: 100%; }
   .sub-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; margin-bottom: 6px; }
   .sub-top .lbl { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; }
