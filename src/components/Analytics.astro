@@ -5,11 +5,9 @@
  * Los snippets van en el HTML servido (para que el propio scanner los detecte)
  * y cargan de forma asíncrona (no bloquean el render).
  */
-// TEST TEMPORAL — GA4/Clarity forzados a null para medir su impacto real en LCP.
-// Revertir en cuanto se tenga la medición, sin importar el resultado.
-const GA4 = undefined; // import.meta.env.PUBLIC_GA4_ID;
+const GA4 = import.meta.env.PUBLIC_GA4_ID;
 const PIXEL = import.meta.env.PUBLIC_META_PIXEL_ID;
-const CLARITY = undefined; // import.meta.env.PUBLIC_CLARITY_ID;
+const CLARITY = import.meta.env.PUBLIC_CLARITY_ID;
 const TIKTOK = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
 
 const gaInit = GA4
