@@ -198,6 +198,13 @@ async function safeFetch(
 
 /* ── PageSpeed Insights ─────────────────────────────────────────────────── */
 
+/** Pide el performance de escritorio bajo demanda (usado solo por /reporte/[id]). */
+export async function getDesktopSpeed(rawUrl: string): Promise<SpeedResult | null> {
+  const url = normalizeUrl(rawUrl);
+  if (!url) return null;
+  return runPsi(url, 'desktop');
+}
+
 async function runPsi(
   url: string,
   strategy: 'mobile' | 'desktop'
@@ -579,16 +586,19 @@ function gradeFor(n: number): string {
   return 'E';
 }
 
-/** Punto de entrada: diagnostica una URL completa. */
+/** Punto de entrada: diagnostica una URL completa.
+ *  Nota: el desktop de PageSpeed NO se corre aquí. Solo se muestra en /reporte/[id],
+ *  así que se pide ahí (ver getDesktopSpeed) para no competir por presupuesto de tiempo
+ *  con el mobile, que es el único que puntúa y se ve en el scanner. */
 export async function diagnose(rawUrl: string): Promise<Diagnosis> {
   const url = normalizeUrl(rawUrl);
   if (!url) throw new Error('URL inválida');
 
-  const [mobile, desktop, html] = await Promise.all([
+  const [mobile, html] = await Promise.all([
     runPsi(url, 'mobile'),
-    runPsi(url, 'desktop'),
     analyzeHtml(url),
   ]);
+  const desktop: SpeedResult | null = null;
   const screenshot = mobile?.screenshot ?? null;
 
   const pillars = buildPillars(mobile, html);

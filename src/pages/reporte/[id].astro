@@ -1,12 +1,18 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { getReport } from '../../lib/store';
+import { getDesktopSpeed } from '../../lib/diagnose';
 import type { Diagnosis } from '../../lib/diagnose';
 
 export const prerender = false;
 
 const { id } = Astro.params;
 const report = (await getReport<Diagnosis>(id!)) ?? null;
+// El scan no corre desktop (ver diagnose.ts) para no competir por tiempo con mobile.
+// Se pide aquí, la única vista que lo muestra, sin presión de tiempo del scanner.
+if (report && !report.speed.desktop) {
+  report.speed.desktop = await getDesktopSpeed(report.finalUrl || report.url).catch(() => null);
+}
 
 const fmtDate = (iso: string) =>
   new Date(iso).toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
