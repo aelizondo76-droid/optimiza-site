@@ -37,12 +37,12 @@ const description = seo.description;
         <div class="ba-item ba-before">
           <div class="ba-visual ba-broken">
             <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="20" width="160" height="100" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5,5" opacity="0.3"/>
-              <circle cx="100" cy="70" r="25" fill="none" stroke="currentColor" stroke-width="2" opacity="0.3"/>
-              <text x="100" y="85" text-anchor="middle" font-size="12" fill="currentColor" opacity="0.3">Invisible</text>
-              <g opacity="0.2">
-                <path d="M 60 40 L 80 50 L 100 35 L 120 55 L 140 45" stroke="currentColor" stroke-width="2" fill="none"/>
-              </g>
+              <!-- señal que se corta y desaparece antes de llegar al borde: sin medición, no hay pulso -->
+              <line x1="10" y1="70" x2="190" y2="70" stroke="currentColor" stroke-width="1" stroke-dasharray="2,6" opacity="0.25"/>
+              <path d="M10,70 L34,70 L41,56 L48,84 L55,70 L82,70" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M106,70 L113,62 L120,78 L127,70 L146,70" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+              <path d="M168,70 L172,67 L176,71" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+              <circle cx="41" cy="56" r="2.2" fill="currentColor"/>
             </svg>
           </div>
           <div class="ba-text">
@@ -62,12 +62,11 @@ const description = seo.description;
         <div class="ba-item ba-after">
           <div class="ba-visual ba-optimized">
             <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
-              <rect x="20" y="20" width="160" height="100" fill="none" stroke="currentColor" stroke-width="2"/>
-              <circle cx="100" cy="70" r="25" fill="currentColor" opacity="0.8"/>
-              <text x="100" y="75" text-anchor="middle" font-size="14" fill="white" font-weight="bold">✓</text>
-              <g>
-                <path d="M 60 40 L 80 50 L 100 35 L 120 55 L 140 45" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
-              </g>
+              <!-- pulso continuo que crece: se mide, se ve, sube -->
+              <line x1="10" y1="110" x2="190" y2="30" stroke="currentColor" stroke-width="1" stroke-dasharray="2,6" opacity="0.2"/>
+              <path d="M10,104 L38,104 L45,86 L52,118 L59,58 L66,104 L92,94 L99,74 L106,108 L113,50 L120,90 L146,76 L153,56 L160,86 L167,40 L184,20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="184" cy="20" r="3.5" fill="currentColor"/>
+              <circle cx="184" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
             </svg>
           </div>
           <div class="ba-text">
@@ -242,8 +241,8 @@ const description = seo.description;
   .ba-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px; }
   .ba-visual { height: 140px; margin-bottom: 16px; }
   .ba-visual svg { width: 100%; height: 100%; }
-  .ba-broken svg { color: rgba(239, 68, 68, 0.5); }
-  .ba-optimized svg { color: #C7F94B; }
+  .ba-broken svg { color: color-mix(in srgb, var(--violet) 55%, transparent); }
+  .ba-optimized svg { color: var(--lime); }
   .ba-text { text-align: center; }
   .ba-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 12px; }
   .ba-metric { font-size: 13px; color: var(--muted); font-family: var(--mono); margin-bottom: 6px; }
