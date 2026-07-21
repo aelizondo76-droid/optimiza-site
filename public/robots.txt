@@ -12,4 +12,13 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+# Crawlers de entrenamiento de IA — permitidos explícitamente (decisión
+# deliberada, no un accidente de omisión: nos interesa que nos citen).
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: CCBot
+Allow: /
+
 Sitemap: https://optimizahq.com/sitemap-index.xml

@@ -5,6 +5,7 @@ import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 import { readFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { execSync } from 'node:child_process';
 
 // lastmod del sitemap: se lee el `publishDate` real de cada estudio de /analisis
 // (fuente única de verdad, sin duplicar fechas). Mapea URL → fecha ISO.
@@ -22,7 +23,32 @@ function buildLastmodMap() {
   }
   return map;
 }
-const lastmodMap = buildLastmodMap();
+
+// lastmod de las páginas core (sin publishDate propio): fecha real del último
+// commit de su archivo fuente, no una fecha inventada.
+function buildCoreLastmodMap() {
+  const map = {};
+  const entries = [
+    ['https://optimizahq.com/', 'src/pages/index.astro'],
+    ['https://optimizahq.com/servicios/', 'src/pages/servicios.astro'],
+    ['https://optimizahq.com/nosotros/', 'src/pages/nosotros.astro'],
+    ['https://optimizahq.com/contacto/', 'src/pages/contacto.astro'],
+    ['https://optimizahq.com/analisis/', 'src/pages/analisis.astro'],
+    ['https://optimizahq.com/analisis/glosario-digital-empresas/', 'src/pages/analisis/glosario-digital-empresas.astro'],
+    ['https://optimizahq.com/analisis/tienda-de-moda-online/', 'src/content/analisis/tienda-de-moda-online.mdoc'],
+    ['https://optimizahq.com/legal/licencia-datos/', 'src/pages/legal/licencia-datos.astro'],
+  ];
+  for (const [url, path] of entries) {
+    try {
+      const date = execSync(`git log -1 --format=%cd --date=short -- ${path}`, { encoding: 'utf8' }).trim();
+      if (date) map[url] = new Date(date + 'T12:00:00Z').toISOString();
+    } catch {
+      // Sin historial de git disponible (ej. build fuera del repo) — se omite, no se inventa.
+    }
+  }
+  return map;
+}
+const lastmodMap = { ...buildLastmodMap(), ...buildCoreLastmodMap() };
 
 // https://astro.build
 export default defineConfig({
