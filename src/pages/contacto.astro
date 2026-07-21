@@ -97,7 +97,7 @@ const phoneDisplay = '+1 (305) 686-9617';
             <p class="mini-note">Se llena automáticamente con tu escaneo · el análisis completo llega por correo.</p>
           </div>
 
-          <div class="scard reveal">
+          <div class="scard reveal" id="agenda">
             <h3>¿Prefieres hablar directo?</h3>
             <p>Agenda 15 minutos con el fundador. Sin guion de ventas — revisamos tu caso y te decimos si podemos ayudarte.</p>
             <button class="btn btn-violet wide" id="agendaToggle" type="button" aria-expanded="false" aria-controls="agendaEmbed">Agenda 15 min</button>
@@ -191,8 +191,14 @@ const phoneDisplay = '+1 (305) 686-9617';
 </style>
 
 <script>
-  const agendaBtn = document.getElementById('agendaToggle');
+  const agendaBtn = document.getElementById('agendaToggle') as HTMLButtonElement | null;
   const agendaEmbed = document.getElementById('agendaEmbed');
+  const openAgenda = () => {
+    if (!agendaEmbed || !agendaBtn || !agendaEmbed.hidden) return;
+    agendaEmbed.hidden = false;
+    agendaBtn.setAttribute('aria-expanded', 'true');
+    agendaBtn.textContent = 'Ocultar calendario';
+  };
   agendaBtn?.addEventListener('click', () => {
     if (!agendaEmbed) return;
     const willShow = agendaEmbed.hidden;
@@ -201,6 +207,11 @@ const phoneDisplay = '+1 (305) 686-9617';
     agendaBtn.textContent = willShow ? 'Ocultar calendario' : 'Agenda 15 min';
     if (willShow) agendaEmbed.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+  // Llega desde el informe (/reporte/[id]) con #agenda — abre el calendario directo, sin un clic extra.
+  if (window.location.hash === '#agenda') {
+    openAgenda();
+    document.getElementById('agenda')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
   document.querySelectorAll('.pills').forEach((group) => {
     group.querySelectorAll('.pill').forEach((pill) => {
