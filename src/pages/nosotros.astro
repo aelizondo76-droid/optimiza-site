@@ -1,7 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagmanager } from 'simple-icons';
+import { siGoogleads, siGoogleanalytics, siMeta, siGoogletagmanager } from 'simple-icons';
 import { getSeo } from '../lib/seo';
+import { founderProgramSlots } from '../lib/founderProgram';
+const founder = founderProgramSlots();
 const seo = await getSeo('nosotros', {
   title: 'Nosotros — Optimiza',
   description: 'El rigor de una gran agencia con la cercanía que ninguna te da. Conoce al fundador, nuestros principios y por qué puedes confiar en una firma nueva.',
@@ -9,9 +11,14 @@ const seo = await getSeo('nosotros', {
 const title = seo.title;
 const description = seo.description;
 const chk = 'M20 6 9 17l-5-5';
-const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagmanager];
 ---
-<Base title={title} description={description} active="nosotros">
+<Base
+  title={title}
+  description={description}
+  active="nosotros"
+  ogImage={seo.ogImage}
+  breadcrumbs={[{ name: 'Nosotros', url: 'https://optimizahq.com/nosotros/' }]}
+>
   <section class="hero section">
     <div class="wrap">
       <div class="hero-grid">
@@ -101,7 +108,6 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
                 <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogleads.path} fill={`#${siGoogleads.hex}`}></path></svg></span>Google Ads</span>
                 <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogleanalytics.path} fill={`#${siGoogleanalytics.hex}`}></path></svg></span>Analytics 4</span>
                 <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siMeta.path} fill={`#${siMeta.hex}`}></path></svg></span>Meta Business</span>
-                <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siHubspot.path} fill={`#${siHubspot.hex}`}></path></svg></span>HubSpot</span>
                 <span class="cert"><span class="cl"><svg viewBox="0 0 24 24"><path d={siGoogletagmanager.path} fill={`#${siGoogletagmanager.hex}`}></path></svg></span>Tag Manager</span>
               </div>
               <div class="glist">
@@ -129,8 +135,8 @@ const certs = [siGoogleads, siGoogleanalytics, siMeta, siHubspot, siGoogletagman
             <p class="eyebrow">Programa Fundador</p>
             <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
             <p class="lead" style="margin-top:14px">Buscamos cinco negocios en crecimiento para trabajar de cerca a cambio de precio preferente y un caso de éxito compartido. Entra temprano en algo bueno.</p>
-            <div class="fb-slots" aria-hidden="true"><span class="slot taken"></span><span class="slot taken"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
-            <p class="fb-count">2 de 5 lugares ocupados</p>
+            <div class="fb-slots" aria-hidden="true" set:html={founder.dotsHtml} />
+            <p class="fb-count">{founder.label}</p>
             <div class="hero-cta"><a class="btn btn-lime" href="/contacto">Aplicar al Programa Fundador</a></div>
           </div>
           <div class="fb-guarantee">

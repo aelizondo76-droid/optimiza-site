@@ -11,7 +11,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-electronica.png', Astro.site).href;
 const articleLd = {
   '@context': 'https://schema.org',
-  '@type': 'Report',
+  '@type': ['Report', 'Article'],
   headline: title,
   description,
   image: ogImage,
@@ -39,7 +39,7 @@ const datasetLd = {
   spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
   measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
   variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
-  isAccessibleForFree: true,
+  isAccessibleForFree: true, license: 'Todos los derechos reservados — Optimiza. Uso editorial permitido con atribución.', datePublished: publishDate, dateModified: publishDate,
   url: canonical,
 };
 ---

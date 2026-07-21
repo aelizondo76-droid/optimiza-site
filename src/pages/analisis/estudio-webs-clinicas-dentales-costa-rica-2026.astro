@@ -64,7 +64,7 @@ const faqs = [
 
 const articleLd = {
   '@context': 'https://schema.org',
-  '@type': 'Report',
+  '@type': ['Report', 'Article'],
   headline: 'El 97% de las clínicas dentales de Costa Rica no puede medir su web',
   description,
   image: ogImage,
@@ -93,7 +93,7 @@ const datasetLd = {
   spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
   measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
   variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
-  isAccessibleForFree: true,
+  isAccessibleForFree: true, license: 'Todos los derechos reservados — Optimiza. Uso editorial permitido con atribución.', datePublished: publishDate, dateModified: publishDate,
   url: canonical,
 };
 

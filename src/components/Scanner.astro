@@ -302,6 +302,9 @@
         btn.disabled = false; btn.textContent = prev!;
         if (!res.ok) { const t = (data.error || '').toLowerCase(); const tgt = t.includes('whats') ? waInput : emailInput; tgt.setCustomValidity(data.error || 'Dato inválido'); tgt.reportValidity(); setTimeout(() => tgt.setCustomValidity(''), 100); return; }
         leadEmail = email; leadWhatsapp = whatsapp;
+        // Lead real (no solo PageView) para que Google/Meta Ads puedan optimizar hacia conversiones.
+        if (typeof (window as any).gtag === 'function') (window as any).gtag('event', 'generate_lead', { method: 'scanner' });
+        if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead', { content_name: 'scanner_gate' });
         const echo = document.getElementById('emailEcho'); if (echo) echo.textContent = email;
         const link = document.getElementById('reportLink') as HTMLAnchorElement;
         if (link && data.reportUrl) link.href = data.reportUrl;

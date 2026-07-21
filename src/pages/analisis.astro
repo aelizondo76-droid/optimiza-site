@@ -13,7 +13,13 @@ const check = 'M5 12 l5 5 9-11';
 import { getAnalisis, categoryMeta } from '../lib/content';
 const posts = await getAnalisis();
 ---
-<Base title={title} description={description} active="analisis">
+<Base
+  title={title}
+  description={description}
+  active="analisis"
+  ogImage={seo.ogImage}
+  breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }]}
+>
   <section class="hero section">
     <div class="wrap">
       <div>

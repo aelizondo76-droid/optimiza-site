@@ -11,7 +11,13 @@ const title = seo.title;
 const description = seo.description;
 const check = 'M20 6 9 17l-5-5';
 ---
-<Base title={title} description={description} active="servicios">
+<Base
+  title={title}
+  description={description}
+  active="servicios"
+  ogImage={seo.ogImage}
+  breadcrumbs={[{ name: 'Servicios', url: 'https://optimizahq.com/servicios/' }]}
+>
   <section class="hero section dark">
     <div class="hero-glow"></div>
     <div class="wrap">

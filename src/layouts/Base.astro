@@ -1,9 +1,7 @@
 ---
 import '@fontsource-variable/inter';
-import '@fontsource/playfair-display/600.css';
 import '@fontsource/playfair-display/700.css';
 import '@fontsource/playfair-display/800.css';
-import '@fontsource/playfair-display/900.css';
 import '@fontsource/space-mono/400.css';
 import '@fontsource/space-mono/700.css';
 import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
@@ -20,17 +18,50 @@ interface Props {
   title: string;
   description: string;
   active?: string;
+  ogImage?: string | null;
+  breadcrumbs?: { name: string; url: string }[];
 }
-const { title, description, active } = Astro.props;
+const { title, description, active, ogImage, breadcrumbs } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
+
+// Entidad única, referenciada por su @id desde WebSite y desde los bloques
+// Report/Dataset de /analisis — así el grafo no repite 33+ Organization sueltas.
+const ORG_ID = 'https://optimizahq.com/#organization';
 const org = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  '@id': ORG_ID,
   name: 'Optimiza',
   url: 'https://optimizahq.com',
   slogan: 'Optimizamos tu negocio a través de tu web',
   description: 'Firma de optimización web: velocidad, SEO, conversión y automatización, medido en ventas.',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    url: 'https://optimizahq.com/contacto',
+  },
 };
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Optimiza',
+  url: 'https://optimizahq.com',
+  publisher: { '@id': ORG_ID },
+};
+const defaultCrumbs = [{ name: 'Inicio', url: 'https://optimizahq.com/' }];
+const crumbLd = breadcrumbs?.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [...defaultCrumbs, ...breadcrumbs].map((c, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: c.name,
+        item: c.url,
+      })),
+    }
+  : null;
 ---
 <!doctype html>
 <html lang="es">
@@ -49,9 +80,13 @@ const org = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta name="twitter:card" content="summary_large_image" />
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
+    <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    {crumbLd && <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />}
     <Analytics />
     <slot name="head" />
   </head>

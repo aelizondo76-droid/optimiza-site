@@ -2,15 +2,50 @@
 import Base from '../layouts/Base.astro';
 import Scanner from '../components/Scanner.astro';
 import { getSeo } from '../lib/seo';
+import { founderProgramSlots } from '../lib/founderProgram';
+const founder = founderProgramSlots();
 const seo = await getSeo('home', {
   title: 'Optimiza — Optimización de negocios a través de tu web',
   description: 'No solo optimizamos tu web: optimizamos tu negocio a través de ella. Analiza tu sitio al instante y descubre dónde pierdes ventas — y cuánto puedes recuperar.',
 });
 const title = seo.title;
 const description = seo.description;
+
+// AEO: mismas preguntas/respuestas visibles en la sección #faq, también expuestas como FAQPage.
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '¿Son nuevos?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí, y lo decimos de frente. Por eso ofrecemos garantía de desempeño y un cupo fundador con precio preferente. Preferimos demostrar antes que presumir: nuestro escáner y nuestro propio sitio hablan por nosotros.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Cuánto cuesta?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'El diagnóstico es gratis. A partir de ahí, cada nivel tiene un precio claro según el alcance — Cimientos es un proyecto puntual, Aceleración y Autopilot son mensuales. Sin sorpresas ni letras chiquitas.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '¿Trabajan con mi plataforma?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sí: WordPress, Shopify, Webflow, sitios a medida y más. El diagnóstico detecta tu stack automáticamente y adaptamos el plan a lo que ya tienes.',
+      },
+    },
+  ],
+};
 ---
 <!-- Hallmark · macrostructure: Stat-Led (fused) · differs from default AI-SaaS flow on: proof folded into hero, método+pricing fused 2-col, FAQ+CTA fused -->
-<Base title={title} description={description}>
+<Base title={title} description={description} ogImage={seo.ogImage}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   <section class="hero section hero-data dark">
     <div class="wrap">
       <div class="hero-statement">
@@ -174,8 +209,8 @@ const description = seo.description;
           <div>
             <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
             <p class="lead" style="margin-top:14px">Buscamos cinco negocios en crecimiento para trabajar de cerca a cambio de precio preferente y un caso de éxito compartido. Entra temprano en algo bueno.</p>
-            <div class="fb-slots" aria-hidden="true"><span class="slot taken"></span><span class="slot taken"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></div>
-            <p class="fb-count">2 de 5 lugares ocupados</p>
+            <div class="fb-slots" aria-hidden="true" set:html={founder.dotsHtml} />
+            <p class="fb-count">{founder.label}</p>
             <div class="hero-cta-row"><a class="btn btn-lime" href="/contacto">Aplicar al Programa Fundador</a></div>
           </div>
           <div class="fb-guarantee">

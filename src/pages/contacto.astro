@@ -9,7 +9,13 @@ const seo = await getSeo('contacto', {
 const title = seo.title;
 const description = seo.description;
 ---
-<Base title={title} description={description} active="contacto">
+<Base
+  title={title}
+  description={description}
+  active="contacto"
+  ogImage={seo.ogImage}
+  breadcrumbs={[{ name: 'Contacto', url: 'https://optimizahq.com/contacto/' }]}
+>
   <section class="hero section" style="padding-bottom:0">
     <div class="wrap">
       <div>
@@ -213,6 +219,9 @@ const description = seo.description;
         err.classList.add('show');
         return;
       }
+      // Lead real (no solo PageView) para que Google/Meta Ads puedan optimizar hacia conversiones.
+      if (typeof (window as any).gtag === 'function') (window as any).gtag('event', 'generate_lead', { method: 'contact_form' });
+      if (typeof (window as any).fbq === 'function') (window as any).fbq('track', 'Lead', { content_name: 'contact_form' });
       const first = payload.name.split(' ')[0];
       const card = document.getElementById('formCard')!;
       card.innerHTML = '<div class="form-done"><div class="fd-ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path></svg></div><h2>' + (first ? '¡Gracias, ' + first + '!' : '¡Gracias!') + '</h2><p>Recibimos tu solicitud. Te contactamos por WhatsApp o correo en menos de 24 horas.</p></div>';
