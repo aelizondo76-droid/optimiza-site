@@ -8,6 +8,12 @@ const seo = await getSeo('contacto', {
 });
 const title = seo.title;
 const description = seo.description;
+
+const WA = import.meta.env.PUBLIC_WHATSAPP_NUMBER;
+const waDisplay = WA ? `+${WA.slice(0, 1)} ${WA.slice(1, 4)} ${WA.slice(4, 7)} ${WA.slice(7)}` : null;
+const waHref = WA ? `https://wa.me/${WA}?text=${encodeURIComponent('Hola Optimiza, quiero saber más sobre optimizar mi web.')}` : null;
+const PHONE_E164 = '+13056869617';
+const phoneDisplay = '+1 (305) 686-9617';
 ---
 <Base
   title={title}
@@ -99,8 +105,9 @@ const description = seo.description;
 
           <div class="scard reveal">
             <div class="methods">
-              <div class="method"><span class="mi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span><div><div class="ml">Correo</div><div class="mval">hola@optimizahq.com</div></div></div>
-              <div class="method"><span class="mi wa"><svg width="17" height="17" viewBox="0 0 24 24"><path d={siWhatsapp.path} fill={`#${siWhatsapp.hex}`}></path></svg></span><div><div class="ml">WhatsApp</div><div class="mval">+506 0000 0000</div></div></div>
+              <div class="method"><span class="mi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span><div><div class="ml">Correo</div><a class="mval mlink" href="mailto:informes@optimizahq.com">informes@optimizahq.com</a></div></div>
+              {waHref && <div class="method"><span class="mi wa"><svg width="17" height="17" viewBox="0 0 24 24"><path d={siWhatsapp.path} fill={`#${siWhatsapp.hex}`}></path></svg></span><div><div class="ml">WhatsApp</div><a class="mval mlink" href={waHref} target="_blank" rel="noopener">{waDisplay}</a></div></div>}
+              <div class="method"><span class="mi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span><div><div class="ml">Teléfono</div><a class="mval mlink" href={`tel:${PHONE_E164}`}>{phoneDisplay}</a></div></div>
               <div class="method"><span class="mi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><div><div class="ml">Respuesta</div><div class="mval">En menos de 24 horas</div></div></div>
             </div>
           </div>
@@ -170,6 +177,8 @@ const description = seo.description;
   .method .mi svg { display: block; }
   .method .ml { color: var(--faint); font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.1em; }
   .method .mval { color: var(--text); font-weight: 500; }
+  a.mval.mlink { display: inline-block; text-decoration: none; transition: color .15s; }
+  a.mval.mlink:hover { color: var(--violet-ink); }
 
   .form-done { text-align: center; padding: 20px 0; }
   .form-done .fd-ic { width: 56px; height: 56px; border-radius: 50%; background: rgba(199,249,75,0.25); display: grid; place-items: center; margin: 0 auto 18px; color: #4A5A10; }
