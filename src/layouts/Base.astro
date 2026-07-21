@@ -23,7 +23,8 @@ interface Props {
 }
 const { title, description, active, ogImage, breadcrumbs } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImageUrl = ogImage ? new URL(ogImage, Astro.site).href : null;
+// Fallback al banner de marca por defecto cuando la página no tiene ogImage propio (Keystatic).
+const ogImageUrl = new URL(ogImage || '/og/default.jpg', Astro.site).href;
 
 // Entidad única, referenciada por su @id desde WebSite y desde los bloques
 // Report/Dataset de /analisis — así el grafo no repite 33+ Organization sueltas.
@@ -36,9 +37,13 @@ const org = {
   url: 'https://optimizahq.com',
   slogan: 'Optimizamos tu negocio a través de tu web',
   description: 'Firma de optimización web: velocidad, SEO, conversión y automatización, medido en ventas.',
+  logo: 'https://optimizahq.com/og/organization-logo.png',
+  sameAs: ['https://www.facebook.com/share/1JnUhWp2or/?mibextid=wwXIfr', 'https://www.instagram.com/optimizahq'],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
+    email: 'informes@optimizahq.com',
+    telephone: '+1-305-686-9617',
     url: 'https://optimizahq.com/contacto',
   },
 };
@@ -69,6 +74,10 @@ const crumbLd = breadcrumbs?.length
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={playfairUrl} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={spaceMonoUrl} as="font" type="font/woff2" crossorigin />
@@ -80,9 +89,9 @@ const crumbLd = breadcrumbs?.length
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
-    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={ogImageUrl} />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />

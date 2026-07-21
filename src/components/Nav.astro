@@ -1,4 +1,5 @@
 ---
+import { siFacebook, siInstagram } from 'simple-icons';
 const { active } = Astro.props;
 const links = [
   { href: '/servicios', label: 'Servicios', key: 'servicios' },
@@ -6,9 +7,21 @@ const links = [
   { href: '/analisis', label: 'Análisis', key: 'analisis' },
   { href: '/contacto', label: 'Contacto', key: 'contacto' },
 ];
+// Redes activas hoy. LinkedIn/TikTok aún no tienen link confirmado — se agregan cuando existan.
+const social = [
+  { name: 'Facebook', href: 'https://www.facebook.com/share/1JnUhWp2or/?mibextid=wwXIfr', icon: siFacebook },
+  { name: 'Instagram', href: 'https://www.instagram.com/optimizahq', icon: siInstagram },
+];
 ---
 <!-- Hallmark · nav: N5 floating pill · differs from N1a on: detachment, shape, positioning -->
 <header class="nav" id="nav">
+  <div class="social-top" aria-label="Redes sociales">
+    {social.map((s) => (
+      <a href={s.href} target="_blank" rel="noopener me" aria-label={s.name}>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon.path}></path></svg>
+      </a>
+    ))}
+  </div>
   <nav class="nav-pill" aria-label="Principal">
     <a class="brand" href="/" aria-label="Optimiza, inicio">
       <svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true"><use href="#markB"></use></svg>
@@ -49,6 +62,27 @@ const links = [
     max-width: calc(100vw - 32px);
   }
   header.nav.scrolled .nav-pill { box-shadow: 0 16px 40px -14px rgba(20,15,10,0.36); }
+  .social-top {
+    pointer-events: auto;
+    position: fixed; top: 18px; right: 22px; z-index: 51;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .social-top a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 999px;
+    background: color-mix(in srgb, var(--surface) 82%, transparent);
+    backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid var(--line);
+    color: var(--muted);
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .social-top a:hover { color: var(--text); border-color: var(--violet); }
+  .social-top svg { width: 16px; height: 16px; fill: currentColor; }
+  @media (max-width: 780px) {
+    .social-top { top: 14px; right: 16px; }
+    .social-top a { width: 30px; height: 30px; }
+    .social-top svg { width: 14px; height: 14px; }
+  }
   .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.03em; font-size: 18px; color: var(--text); white-space: nowrap; }
   .brandmark { width: 34px; height: 34px; display: block; }
   .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; margin: 0; padding: 0; }

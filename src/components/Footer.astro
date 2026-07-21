@@ -1,4 +1,10 @@
 ---
+import { siFacebook, siInstagram } from 'simple-icons';
+// Redes activas hoy. LinkedIn/TikTok aún no tienen link confirmado — se agregan cuando existan.
+const social = [
+  { name: 'Facebook', href: 'https://www.facebook.com/share/1JnUhWp2or/?mibextid=wwXIfr', icon: siFacebook },
+  { name: 'Instagram', href: 'https://www.instagram.com/optimizahq', icon: siInstagram },
+];
 ---
 <!-- Hallmark · footer: Ft5 statement · differs from Ft3 on: single closing line vs. sitemap columns -->
 <footer class="ft dark">
@@ -17,6 +23,13 @@
         <a href="/contacto">Contacto</a>
       </nav>
       <a class="ft-badge" href="/#scanner">Corre tu propio diagnóstico →</a>
+      <div class="ft-social" aria-label="Redes sociales">
+        {social.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener me" aria-label={s.name}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon.path}></path></svg>
+          </a>
+        ))}
+      </div>
     </div>
 
     <div class="ft-bottom"><span>© 2026 Optimiza · optimizahq.com</span><span>Privacidad · Términos</span></div>
@@ -34,6 +47,10 @@
   .ft-links a:hover { color: var(--text); }
   .ft-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 10px; padding: 7px 12px; font-family: var(--mono); font-size: 11.5px; color: var(--muted); white-space: nowrap; transition: border-color .15s, color .15s; }
   .ft-badge:hover { border-color: var(--lime); color: var(--text); }
+  .ft-social { display: inline-flex; align-items: center; gap: 10px; }
+  .ft-social a { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); transition: color .15s, border-color .15s; }
+  .ft-social a:hover { color: var(--text); border-color: var(--lime); }
+  .ft-social svg { width: 15px; height: 15px; fill: currentColor; }
   .ft-bottom { border-top: 1px solid var(--line-soft); margin-top: 22px; padding-block: 20px 32px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 11.5px; color: var(--faint); letter-spacing: 0.04em; }
 
   @media (max-width: 560px) {
