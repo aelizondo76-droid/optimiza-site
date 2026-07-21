@@ -11,6 +11,22 @@ const seo = await getSeo('nosotros', {
 const title = seo.title;
 const description = seo.description;
 const chk = 'M20 6 9 17l-5-5';
+
+// Persona real del fundador, referenciada desde Organization.founder (Base.astro).
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://optimizahq.com/#founder',
+  name: 'Alonso Elizondo',
+  jobTitle: 'Fundador',
+  worksFor: { '@id': 'https://optimizahq.com/#organization' },
+  description: 'Economista con más de 25 años de experiencia liderando organizaciones empresariales, formulando estrategias económicas y participando en la construcción de políticas públicas. Director Ejecutivo de la Cámara de Comercio de Costa Rica (2006-2024).',
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Indiana Institute of Technology' },
+    { '@type': 'CollegeOrUniversity', name: 'Universidad de Costa Rica' },
+  ],
+  award: 'Premio Democracia y Libertad (2025)',
+};
 ---
 <Base
   title={title}
@@ -19,6 +35,7 @@ const chk = 'M20 6 9 17l-5-5';
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Nosotros', url: 'https://optimizahq.com/nosotros/' }]}
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(personLd)} />
   <section class="hero section">
     <div class="wrap">
       <div class="hero-grid">
@@ -33,13 +50,13 @@ const chk = 'M20 6 9 17l-5-5';
         </div>
         <div class="fcard reveal">
           <div class="fcard-top">
-            <div class="avatar" aria-hidden="true">OP</div>
-            <div><p class="frole">Fundador · Optimiza</p><h2>[Tu nombre aquí]</h2></div>
+            <div class="avatar" aria-hidden="true">AE</div>
+            <div><p class="frole">Fundador · Optimiza</p><h2>Alonso Elizondo</h2></div>
           </div>
           <p class="ftag">"Prefiero demostrar sobre tu propio sitio antes que presumir casos ajenos. La confianza se gana mostrando."</p>
           <div class="fstats">
-            <div class="fstat"><div class="sv">[8]<small>+</small></div><div class="sl">años en performance web</div></div>
-            <div class="fstat"><div class="sv">[5]</div><div class="sl">certificaciones activas</div></div>
+            <div class="fstat"><div class="sv">25<small>+</small></div><div class="sl">años liderando organizaciones empresariales</div></div>
+            <div class="fstat"><div class="sv">9</div><div class="sl">juntas directivas y comités</div></div>
             <div class="fstat"><a href="/#scanner" class="sv sv-link">Compruébalo →</a><div class="sl">este sitio en PageSpeed</div></div>
           </div>
         </div>
@@ -52,10 +69,10 @@ const chk = 'M20 6 9 17l-5-5';
       <div class="reveal">
         <p class="eyebrow">Por qué existe Optimiza</p>
         <h2>Vi el mismo patrón demasiadas veces.</h2>
-        <p>Durante años vi negocios buenos, con productos que valían la pena, <strong>perdiendo ventas por una web lenta, invisible o que no convertía.</strong> Contrataban agencias que entregaban reportes llenos de gráficas bonitas y cero resultados reales.</p>
+        <p>Durante 18 años dirigí la Cámara de Comercio de Costa Rica, representando a empresas de todos los tamaños ante gobiernos y organismos internacionales. Ahí aprendí algo que no enseña ninguna maestría: <strong>casi nunca el problema es lo que el negocio cree — es dónde de verdad se le está yendo la venta.</strong> Muchas veces esa fuga empieza en su propia web, y nadie la está viendo.</p>
         <div class="pullquote">"El técnico brillante que nadie entiende no sirve. El vendedor que no domina lo técnico, tampoco. <span>Optimiza es lo de en medio: rigor real, explicado claro, medido en dinero.</span>"</div>
-        <p>Fundé Optimiza para lo contrario de lo que veía: un socio que trata tu negocio como si fuera suyo, que te habla en tu idioma y que responde por sus resultados. <strong>Somos nuevos como firma, y lo decimos de frente.</strong> Por eso ponemos garantía, precio de fundador y la cara por delante.</p>
-        <p class="signoff">— [Tu nombre], fundador · <span>reemplaza este texto con tu historia real</span></p>
+        <p>Fundé Optimiza para aplicar esa misma mirada a la web de tu negocio: economista, no programador. La maestría en Business Analytics pone el rigor técnico; 25 años trabajando con cámaras empresariales y juntas directivas ponen el criterio de negocio. <strong>Somos nuevos como firma, y lo decimos de frente.</strong> Por eso ponemos garantía, precio de fundador y la cara por delante.</p>
+        <p class="signoff">— Alonso Elizondo, economista y fundador · <span>25 años ayudando a empresas a vender más, ahora aplicado a tu web.</span></p>
       </div>
     </div>
   </section>
