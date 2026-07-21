@@ -47,7 +47,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
   </Fragment>
   <article class="section">
     <div class="wrap art">
-      <a class="back" href="/analisis"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
+      <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head reveal">
         <span class="tag res">Investigación · E-commerce</span>
         <h1>El estado del e-commerce en Costa Rica: 109 tiendas analizadas</h1>
@@ -64,9 +64,9 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
         <div class="stat"><div class="sn">{D.gradoA}</div><div class="sl">alcanzaron el grado A</div></div>
       </div>
       <div class="prose">
-        <h2>El triángulo perdido: medición + <a href="/analisis/glosario-digital-empresas#velocidad">velocidad</a> + <a href="/analisis/glosario-digital-empresas#conversion">conversión</a></h2>
-        <p><a href="/analisis/glosario-digital-empresas#ecommerce">e-commerce</a> depende de tres cosas: que el cliente encuentre la tienda (<a href="/analisis/glosario-digital-empresas#seo">SEO</a>), que la tienda cargue rápido (velocidad), que cierre la venta (conversión). Pero también necesita un cuarto pilar: medir si todo está funcionando. El {D.sinPixel}% no lo hace.</p>
-        <p>A diferencia de salud/construcción (donde es compra reflexiva), en e-commerce la medición afecta todo: sin <a href="/analisis/glosario-digital-empresas#pixel">píxel</a>, no recuperas el <a href="/analisis/glosario-digital-empresas#carrito-abandonado">carrito abandonado</a>; sin <a href="/analisis/glosario-digital-empresas#analitycs">Analytics</a>, no sabes de dónde vinieron; sin CTA clara, no conviertes a quien visitó.</p>
+        <h2>El triángulo perdido: medición + <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> + <a href="/analisis/glosario-digital-empresas/#conversion">conversión</a></h2>
+        <p><a href="/analisis/glosario-digital-empresas/#ecommerce">e-commerce</a> depende de tres cosas: que el cliente encuentre la tienda (<a href="/analisis/glosario-digital-empresas/#seo">SEO</a>), que la tienda cargue rápido (velocidad), que cierre la venta (conversión). Pero también necesita un cuarto pilar: medir si todo está funcionando. El {D.sinPixel}% no lo hace.</p>
+        <p>A diferencia de salud/construcción (donde es compra reflexiva), en e-commerce la medición afecta todo: sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, no recuperas el <a href="/analisis/glosario-digital-empresas/#carrito-abandonado">carrito abandonado</a>; sin <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a>, no sabes de dónde vinieron; sin CTA clara, no conviertes a quien visitó.</p>
       </div>
       <h2 class="sec-h">Por sub-nicho</h2>
       <div class="cmp">
@@ -80,7 +80,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
       </div>
       <div class="sectors">
         {D.sectores.map((s) => (
-          <a class="sec-card" href={`/analisis/${s.slug}`}>
+          <a class="sec-card" href={`/analisis/${s.slug}/`}>
             <div class="sc-top"><span class="sc-idx">{s.indice}<small>/100</small></span><span class="sc-pix">{s.sinPixel}% sin píxel</span></div>
             <h3>{s.name}</h3>
             <p>{s.nota}</p>

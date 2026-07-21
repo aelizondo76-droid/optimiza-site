@@ -31,7 +31,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   // Honeypot: bot detectado → fingimos éxito sin guardar ni enviar nada.
   if (isFirst && (body?.hp || '').toString().trim())
-    return json({ ok: true, reportUrl: `/reporte/${reportId}`, duplicate: false });
+    return json({ ok: true, reportUrl: `/reporte/${reportId}/`, duplicate: false });
 
   const wa = (whatsapp || '').toString().trim().slice(0, 30);
   if (isFirst && wa.replace(/\D/g, '').length < 8)
@@ -109,7 +109,7 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
 
   return json({
     ok: true,
-    reportUrl: `/reporte/${reportId}`,
+    reportUrl: `/reporte/${reportId}/`,
     duplicate: saved.scans > 1,
   });
 };

@@ -2,10 +2,10 @@
 import { siFacebook, siInstagram } from 'simple-icons';
 const { active } = Astro.props;
 const links = [
-  { href: '/servicios', label: 'Servicios', key: 'servicios' },
-  { href: '/nosotros', label: 'Nosotros', key: 'nosotros' },
-  { href: '/analisis', label: 'Análisis', key: 'analisis' },
-  { href: '/contacto', label: 'Contacto', key: 'contacto' },
+  { href: '/servicios/', label: 'Servicios', key: 'servicios' },
+  { href: '/nosotros/', label: 'Nosotros', key: 'nosotros' },
+  { href: '/analisis/', label: 'Análisis', key: 'analisis' },
+  { href: '/contacto/', label: 'Contacto', key: 'contacto' },
 ];
 // Redes activas hoy. LinkedIn/TikTok aún no tienen link confirmado — se agregan cuando existan.
 const social = [
@@ -32,7 +32,7 @@ const social = [
         <li><a class:list={['link', { active: active === l.key }]} href={l.href}>{l.label}</a></li>
       ))}
     </ul>
-    <a class="btn btn-violet cta-fill" href="/contacto">Diagnóstico gratis</a>
+    <a class="btn btn-violet cta-fill" href="/contacto/">Diagnóstico gratis</a>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
       <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
     </button>
@@ -42,7 +42,7 @@ const social = [
     {links.map((l) => (
       <a class:list={['m-link', { active: active === l.key }]} href={l.href}>{l.label}</a>
     ))}
-    <a class="btn btn-violet m-cta" href="/contacto">Diagnóstico gratis</a>
+    <a class="btn btn-violet m-cta" href="/contacto/">Diagnóstico gratis</a>
   </nav>
 </header>
 

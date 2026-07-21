@@ -53,10 +53,14 @@ const lastmodMap = { ...buildLastmodMap(), ...buildCoreLastmodMap() };
 // https://astro.build
 export default defineConfig({
   site: 'https://optimizahq.com',
+  // El sitemap y los canonical siempre usaron la variante con slash — ahora
+  // todos los href internos también lo usan (ver commit), así que esto ya
+  // fuerza un 301 real en vez de servir /ruta y /ruta/ ambas en 200.
+  trailingSlash: 'always',
   adapter: vercel({ maxDuration: 60 }),
   // Redirect 301 del slug antiguo con ñ (no-ASCII) al slug ASCII.
   redirects: {
-    '/analisis/estudio-webs-agencias-diseño-costa-rica-2026': '/analisis/estudio-webs-agencias-diseno-costa-rica-2026',
+    '/analisis/estudio-webs-agencias-diseño-costa-rica-2026': '/analisis/estudio-webs-agencias-diseno-costa-rica-2026/',
   },
   // Inyecta el CSS de cada página directo en el <head> en vez de 3 hojas
   // separadas y bloqueantes (Base/Scanner/página) — evita esos round-trips

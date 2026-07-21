@@ -26,7 +26,7 @@ interface ReportEmail {
 }
 
 export async function sendReportEmail(p: ReportEmail): Promise<boolean> {
-  const link = `${SITE}/reporte/${p.reportId}`;
+  const link = `${SITE}/reporte/${p.reportId}/`;
   if (!resend) {
     console.log(`[email:dev] Informe listo para ${p.to} → ${link} (índice ${p.index})`);
     return false;
