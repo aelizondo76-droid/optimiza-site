@@ -9,12 +9,47 @@ const title = 'Tiendas de hogar en Costa Rica: 81% no mide su web';
 const description = 'Analizamos 21 tiendas de muebles y decoración del GAM: 67% reprueba velocidad móvil, 81% sin Meta Pixel. Compra de alto ticket sin medición.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-hogar.png', Astro.site).href;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Report',
+  headline: title,
+  description,
+  image: ogImage,
+  datePublished: publishDate,
+  dateModified: publishDate,
+  inLanguage: 'es-CR',
+  author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Optimiza',
+    url: 'https://optimizahq.com',
+    logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+  keywords: ['tiendas de hogar Costa Rica', 'e-commerce hogar', 'decoración y muebles', 'Meta Pixel', 'SEO tienda online', 'Gran Área Metropolitana'],
+  about: { '@type': 'Thing', name: 'Páginas web de tiendas de artículos para el hogar en Costa Rica' },
+};
+const datasetLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Diagnóstico web de tiendas de hogar del GAM 2026',
+  description: `Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de ${D.legibles} tiendas de artículos para el hogar del Gran Área Metropolitana de Costa Rica.`,
+  creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  temporalCoverage: '2026',
+  spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
+  measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
+  variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
+  isAccessibleForFree: true,
+  url: canonical,
+};
 const plus = 'M12 5v14M5 12h14';
 ---
 <Base title={title} description={description} active="analisis">
   <Fragment slot="head">
     <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
   </Fragment>
   <article class="section">
     <div class="wrap art">

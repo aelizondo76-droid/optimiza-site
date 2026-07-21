@@ -9,11 +9,46 @@ const title = 'Tiendas de mascotas en Costa Rica: 87% no mide su web';
 const description = 'Analizamos 15 tiendas de alimento y accesorios para mascotas del GAM: 87% sin Meta Pixel, 80% sin Analytics. Compra mensual, cero datos.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-mascotas.png', Astro.site).href;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Report',
+  headline: title,
+  description,
+  image: ogImage,
+  datePublished: publishDate,
+  dateModified: publishDate,
+  inLanguage: 'es-CR',
+  author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Optimiza',
+    url: 'https://optimizahq.com',
+    logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+  keywords: ['tiendas de mascotas Costa Rica', 'e-commerce mascotas', 'pet shop', 'Meta Pixel', 'SEO tienda online', 'Gran Área Metropolitana'],
+  about: { '@type': 'Thing', name: 'Páginas web de tiendas de mascotas en Costa Rica' },
+};
+const datasetLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Diagnóstico web de tiendas de mascotas del GAM 2026',
+  description: `Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de ${D.legibles} tiendas de mascotas del Gran Área Metropolitana de Costa Rica.`,
+  creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  temporalCoverage: '2026',
+  spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
+  measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
+  variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
+  isAccessibleForFree: true,
+  url: canonical,
+};
 ---
 <Base title={title} description={description} active="analisis">
   <Fragment slot="head">
     <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
   </Fragment>
   <article class="section">
     <div class="wrap art">

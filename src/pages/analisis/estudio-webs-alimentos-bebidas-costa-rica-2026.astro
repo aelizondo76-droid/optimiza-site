@@ -41,12 +41,49 @@ const faqs = [
   { q: '¿Incluye delivery? ¿Solo dine-in?', a: 'Ambos. La muestra captura restaurantes formales, comedores, cafeterías con servicio de mesa, panaderías con mostrador y caja, heladerías, bares. Es el ecosistema completo de alimentos y bebidas.' },
   { q: '¿Cómo se compiló?', a: 'Se analizaron 43 negocios de gastronomía del GAM entre agosto y septiembre de 2026. Se dividieron en 5 sub-nichos para mayor detalle. Motor: PageSpeed Insights API + análisis HTML.' },
 ];
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Report',
+  headline: title,
+  description,
+  image: ogImage,
+  datePublished: publishDate,
+  dateModified: publishDate,
+  inLanguage: 'es-CR',
+  author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Optimiza',
+    url: 'https://optimizahq.com',
+    logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' },
+  },
+  mainEntityOfPage: canonical,
+  keywords: ['alimentos y bebidas Costa Rica', 'sitio web restaurante', 'marketing gastronómico', 'Meta Pixel', 'SEO restaurantes', 'Gran Área Metropolitana'],
+  about: { '@type': 'Thing', name: 'Páginas web del sector alimentos y bebidas en Costa Rica' },
+};
+const datasetLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Diagnóstico web del sector alimentos y bebidas del GAM 2026',
+  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 43 negocios de gastronomía del Gran Área Metropolitana de Costa Rica.',
+  creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
+  temporalCoverage: '2026',
+  spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
+  measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML',
+  variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'],
+  isAccessibleForFree: true,
+  url: canonical,
+};
+const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const plus = 'M12 5v14M5 12h14';
 ---
 <Base title={title} description={description} active="analisis">
   <Fragment slot="head">
     <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   </Fragment>
   <article class="section">
     <div class="wrap art">

@@ -8,6 +8,12 @@ const description = 'Análisis de 386 sitios: 88% sin Meta Pixel, índice 58/100
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 <Base title={title} description={description} active="analisis">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={publishDate} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Report', headline: title, description, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, about: { '@type': 'Thing', name: 'Estado digital de las empresas en Costa Rica' } })} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Estado digital de empresas en Costa Rica 2026 — Índice Optimiza', description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 386 sitios web de empresas costarricenses en 4 sectores: salud, construcción, e-commerce y alimentos.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026', spatialCoverage: { '@type': 'Place', name: 'Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, url: canonical })} />
+  </Fragment>
+
   <article class="section">
     <div class="wrap art">
       <a class="back" href="/analisis">← Análisis y teardowns</a>

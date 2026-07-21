@@ -86,6 +86,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
     <meta property="article:author" content="Optimiza" />
     <script type="application/ld+json" set:html={JSON.stringify(reportLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web del sector salud del GAM 2026', description: `Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de ${D.legibles} clínicas de salud (dentales, estéticas y consultorios médicos) del Gran Área Metropolitana de Costa Rica.`, creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, url: canonical })} />
   </Fragment>
 
   <article class="section">
