@@ -29,6 +29,25 @@ const ogImageUrl = new URL(ogImage || '/og/default.jpg', Astro.site).href;
 // Entidad única, referenciada por su @id desde WebSite y desde los bloques
 // Report/Dataset de /analisis — así el grafo no repite 33+ Organization sueltas.
 const ORG_ID = 'https://optimizahq.com/#organization';
+const FOUNDER_ID = 'https://optimizahq.com/#founder';
+// Persona real del fundador. Se emite en TODAS las páginas (no solo /nosotros)
+// para que la referencia Organization.founder abajo resuelva localmente en
+// cada documento, en vez de apuntar a un @id que solo existiera en otra URL.
+const founderLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': FOUNDER_ID,
+  name: 'Alonso Elizondo',
+  jobTitle: 'Fundador',
+  image: 'https://optimizahq.com/founder/alonso-elizondo.jpg',
+  worksFor: { '@id': ORG_ID },
+  description: 'Economista con más de 25 años de experiencia liderando organizaciones empresariales, formulando estrategias económicas y participando en la construcción de políticas públicas. Director Ejecutivo de la Cámara de Comercio de Costa Rica (2006-2024).',
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Indiana Institute of Technology' },
+    { '@type': 'CollegeOrUniversity', name: 'Universidad de Costa Rica' },
+  ],
+  award: 'Premio Democracia y Libertad (2025)',
+};
 const org = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -39,7 +58,7 @@ const org = {
   description: 'Firma de optimización web: velocidad, SEO, conversión y automatización, medido en ventas.',
   logo: 'https://optimizahq.com/og/organization-logo.png',
   sameAs: ['https://www.facebook.com/share/1JnUhWp2or/?mibextid=wwXIfr', 'https://www.instagram.com/optimizahq'],
-  founder: { '@id': 'https://optimizahq.com/#founder' },
+  founder: { '@id': FOUNDER_ID },
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
@@ -96,6 +115,7 @@ const crumbLd = breadcrumbs?.length
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
+    <script type="application/ld+json" set:html={JSON.stringify(founderLd)} />
     {crumbLd && <script type="application/ld+json" set:html={JSON.stringify(crumbLd)} />}
     <Analytics />
     <slot name="head" />

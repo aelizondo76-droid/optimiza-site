@@ -20,7 +20,7 @@ const D = {
   secTotal: 40, secSinPixel: 87,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
-const publishDate = '2026-07-28';
+const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 const title = 'Empresas de software en Costa Rica: 83% sin seguimiento';
 const description = 'Analizamos 6 empresas de programación y desarrollo: 83% sin Meta Pixel, velocidad promedio 65/100, pero sin grado A. Todos grado C o D.';
@@ -35,13 +35,18 @@ const faqs = [
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 6 empresas de programación, desarrollo web y software del GAM en julio de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El estado de las empresas de software en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['software Costa Rica', 'desarrollo web', 'empresa tech', 'Meta Pixel', 'lead generation'], about: { '@type': 'Thing', name: 'Empresas de software y programación del GAM' } };
-const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de empresas de software 2026', description: 'Índice Optimiza de 6 empresas de programación y desarrollo del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'Todos los derechos reservados — Optimiza. Uso editorial permitido con atribución.', datePublished: publishDate, dateModified: publishDate, url: canonical };
+const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de empresas de software 2026', description: 'Índice Optimiza de 6 empresas de programación y desarrollo del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const plus = 'M12 5v14M5 12h14';
 ---
-<Base title={title} description={description} active="analisis">
+<Base
+  title={title}
+  description={description}
+  active="analisis"
+  ogImage={ogImage}
+  breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }, { name: title, url: canonical }]}
+>
   <Fragment slot="head">
-    <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
     <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />

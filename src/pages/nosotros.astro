@@ -11,23 +11,6 @@ const seo = await getSeo('nosotros', {
 const title = seo.title;
 const description = seo.description;
 const chk = 'M20 6 9 17l-5-5';
-
-// Persona real del fundador, referenciada desde Organization.founder (Base.astro).
-const personLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': 'https://optimizahq.com/#founder',
-  name: 'Alonso Elizondo',
-  jobTitle: 'Fundador',
-  image: 'https://optimizahq.com/founder/alonso-elizondo.jpg',
-  worksFor: { '@id': 'https://optimizahq.com/#organization' },
-  description: 'Economista con más de 25 años de experiencia liderando organizaciones empresariales, formulando estrategias económicas y participando en la construcción de políticas públicas. Director Ejecutivo de la Cámara de Comercio de Costa Rica (2006-2024).',
-  alumniOf: [
-    { '@type': 'CollegeOrUniversity', name: 'Indiana Institute of Technology' },
-    { '@type': 'CollegeOrUniversity', name: 'Universidad de Costa Rica' },
-  ],
-  award: 'Premio Democracia y Libertad (2025)',
-};
 ---
 <Base
   title={title}
@@ -36,7 +19,6 @@ const personLd = {
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Nosotros', url: 'https://optimizahq.com/nosotros/' }]}
 >
-  <script slot="head" type="application/ld+json" set:html={JSON.stringify(personLd)} />
   <section class="hero section">
     <div class="wrap">
       <div class="hero-grid">

@@ -34,13 +34,18 @@ const faqs = [
   { q: '¿Cómo se realizó el estudio?', a: 'Se analizaron 25 fabricantes de cocinas y muebles a medida con dominio propio del Gran Área Metropolitana en julio de 2026, con el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). 23 arrojaron datos completos.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El 88% de los fabricantes de cocinas de Costa Rica no mide su web', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['cocinas a medida Costa Rica', 'muebles a medida', 'fabricantes de cocinas', 'Meta Pixel', 'marketing construcción'], about: { '@type': 'Thing', name: 'Páginas web de fabricantes de cocinas y muebles a medida en Costa Rica' } };
-const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de fabricantes de cocinas y muebles del GAM 2026', description: 'Índice Optimiza de 23 fabricantes de cocinas y muebles a medida del Gran Área Metropolitana.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'Todos los derechos reservados — Optimiza. Uso editorial permitido con atribución.', datePublished: publishDate, dateModified: publishDate, url: canonical };
+const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de fabricantes de cocinas y muebles del GAM 2026', description: 'Índice Optimiza de 23 fabricantes de cocinas y muebles a medida del Gran Área Metropolitana.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const plus = 'M12 5v14M5 12h14';
 ---
-<Base title={title} description={description} active="analisis">
+<Base
+  title={title}
+  description={description}
+  active="analisis"
+  ogImage={ogImage}
+  breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }, { name: title, url: canonical }]}
+>
   <Fragment slot="head">
-    <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
     <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />

@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Licencia de datos — Optimiza';
+const description = 'Términos de uso de los datos publicados en los estudios y diagnósticos de Optimiza.';
+---
+<Base
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Licencia de datos', url: 'https://optimizahq.com/legal/licencia-datos/' }]}
+>
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">Legal</p>
+      <h1>Licencia de datos</h1>
+      <p class="lead">Términos de uso de los datos, hallazgos y estadísticas publicados en los estudios de <a href="/analisis">Análisis y Teardowns</a>.</p>
+      <div class="legal-body">
+        <p>Todos los derechos sobre los datos, análisis y contenido de estos estudios son de <strong>Optimiza</strong>.</p>
+        <p>Se permite el <strong>uso editorial</strong> de las cifras y hallazgos (citarlos en artículos, reportes o publicaciones) siempre que se incluya atribución clara a Optimiza y, cuando sea posible, un enlace al estudio original.</p>
+        <p>No se autoriza la reproducción completa de un estudio, ni su reventa o redistribución como producto propio, sin permiso explícito.</p>
+        <p>Para cualquier uso no cubierto aquí, escribinos a <a href="mailto:informes@optimizahq.com">informes@optimizahq.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 640px; }
+  h1 { font-size: clamp(32px, 5vw, 44px); margin-top: 14px; }
+  .lead { margin-top: 16px; }
+  .legal-body { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .legal-body p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+  .legal-body a { color: var(--violet-ink); }
+</style>

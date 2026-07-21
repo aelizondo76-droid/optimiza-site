@@ -20,7 +20,7 @@ const D = {
   secTotal: 43, secSinPixel: 95,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
-const publishDate = '2026-08-13';
+const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 const title = 'Restaurantes Costa Rica: 100% sin medición';
 const description = 'Analizamos 12 restaurantes del GAM: TODOS índice 41/100, 100% sin píxel, 100% sin analytics, 100% sin WhatsApp, 100% reprueba velocidad. Sector en crisis digital.';
@@ -35,13 +35,18 @@ const faqs = [
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 12 restaurantes del GAM (Picnic, Bulalí, Franco, etc.) con el motor de diagnóstico de Optimiza en agosto de 2026. Todos resultaron críticos.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El estado de los restaurantes en línea en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['restaurantes Costa Rica', 'web restaurante', 'reservas online', 'delivery', 'velocidad web'], about: { '@type': 'Thing', name: 'Restaurantes del GAM' } };
-const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de restaurantes 2026', description: 'Índice Optimiza de 12 restaurantes del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-08', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'Todos los derechos reservados — Optimiza. Uso editorial permitido con atribución.', datePublished: publishDate, dateModified: publishDate, url: canonical };
+const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de restaurantes 2026', description: 'Índice Optimiza de 12 restaurantes del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-08', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const plus = 'M12 5v14M5 12h14';
 ---
-<Base title={title} description={description} active="analisis">
+<Base
+  title={title}
+  description={description}
+  active="analisis"
+  ogImage={ogImage}
+  breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }, { name: title, url: canonical }]}
+>
   <Fragment slot="head">
-    <meta property="og:image" content={ogImage} />
     <meta property="article:published_time" content={publishDate} />
     <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(datasetLd)} />
