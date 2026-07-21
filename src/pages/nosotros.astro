@@ -19,6 +19,7 @@ const personLd = {
   '@id': 'https://optimizahq.com/#founder',
   name: 'Alonso Elizondo',
   jobTitle: 'Fundador',
+  image: 'https://optimizahq.com/founder/alonso-elizondo.jpg',
   worksFor: { '@id': 'https://optimizahq.com/#organization' },
   description: 'Economista con más de 25 años de experiencia liderando organizaciones empresariales, formulando estrategias económicas y participando en la construcción de políticas públicas. Director Ejecutivo de la Cámara de Comercio de Costa Rica (2006-2024).',
   alumniOf: [
@@ -50,7 +51,7 @@ const personLd = {
         </div>
         <div class="fcard reveal">
           <div class="fcard-top">
-            <div class="avatar" aria-hidden="true">AE</div>
+            <img class="avatar" src="/founder/alonso-elizondo.jpg" alt="Alonso Elizondo, fundador de Optimiza" width="72" height="72" />
             <div><p class="frole">Fundador · Optimiza</p><h2>Alonso Elizondo</h2></div>
           </div>
           <p class="ftag">"Prefiero demostrar sobre tu propio sitio antes que presumir casos ajenos. La confianza se gana mostrando."</p>
@@ -191,7 +192,7 @@ const personLd = {
 
   .fcard { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 26px; box-shadow: var(--card-shadow); }
   .fcard-top { display: flex; align-items: center; gap: 16px; }
-  .avatar { width: 72px; height: 72px; border-radius: 18px; background: linear-gradient(140deg, #E8956B, #C65D3B); display: grid; place-items: center; font-family: var(--mono); font-weight: 700; font-size: 26px; color: #2D1810; flex: none; }
+  .avatar { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex: none; border: 2px solid var(--line); }
   .fcard .frole { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cyan-ink); font-weight: 600; }
   .fcard h2 { font-size: 22px; margin: 6px 0 0; }
   .fcard .ftag { color: var(--muted); font-size: 14px; margin-top: 12px; line-height: 1.55; }
