@@ -27,14 +27,14 @@
         <svg viewBox="0 0 190 116" aria-hidden="true">
           <path d="M6 108 A89 89 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2.5" stroke-dasharray="1.5 9.5" stroke-linecap="round"></path>
           <path d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="12" stroke-linecap="round"></path>
-          <path id="gaugeArc" d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="#C7F94B" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1); filter: drop-shadow(0 0 7px rgba(199,249,75,0.55));"></path>
+          <path id="gaugeArc" d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="#4E9C7A" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1);"></path>
         </svg>
         <div class="val"><div class="num"><span id="scoreNum">0</span><small>/100</small></div><div class="cap">Puntaje Optimiza</div></div>
       </div>
       <div class="subs">
-        <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:linear-gradient(90deg,#C65D3B,#E8956B)"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">Visibilidad</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:linear-gradient(90deg,#159AAA,#34DDE6)"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">Conversión</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:linear-gradient(90deg,#C65D3B,#E8956B)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:#963A1D"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Visibilidad</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:#1F4A3E"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Conversión</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:#963A1D"></span></div></div>
       </div>
     </div>
     <div class="findings">
@@ -48,6 +48,7 @@
           <input type="email" id="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
           <input type="tel" id="gwa" inputmode="tel" placeholder="WhatsApp (+506 8888 8888)" aria-label="WhatsApp" required />
           <input type="text" id="gwa-hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+          <label class="gconsent"><input type="checkbox" id="g-consent" required /> Acepto la <a href="/legal/privacidad/" target="_blank" rel="noopener">política de privacidad</a>.</label>
           <button class="btn btn-violet" type="submit">Recibir diagnóstico</button>
         </form>
         <p class="note">Vista previa ilustrativa · el diagnóstico real analiza tu sitio en vivo.</p>
@@ -114,7 +115,7 @@
 
   .scan-progress { height: 2px; background: rgba(255,255,255,0.08); border-radius: 99px; overflow: hidden; margin-top: 14px; opacity: 0; transition: opacity .2s; }
   .scanning .scan-progress { opacity: 1; }
-  .scan-progress span { display: block; height: 100%; width: 38%; border-radius: 99px; background: linear-gradient(90deg, transparent, #C65D3B, #34DDE6, transparent); transform: translateX(-120%); }
+  .scan-progress span { display: block; height: 100%; width: 38%; border-radius: 99px; background: linear-gradient(90deg, transparent, #963A1D, #1F4A3E, transparent); transform: translateX(-120%); }
   .scanning .scan-progress span { animation: scanmove 0.9s linear infinite; }
   @keyframes scanmove { to { transform: translateX(340%); } }
 
@@ -132,7 +133,7 @@
   .gauge { position: relative; width: 246px; height: 150px; }
   .gauge svg { display: block; width: 246px; height: 150px; }
   .gauge .val { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; }
-  .gauge .num { font-family: var(--mono); font-size: 56px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; text-shadow: 0 0 24px rgba(199,249,75,0.4); }
+  .gauge .num { font-family: var(--mono); font-size: 56px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; }
   .gauge .num small { font-size: 21px; color: var(--muted); text-shadow: none; }
   .gauge .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
   .subs { display: flex; flex-direction: column; gap: 13px; width: 100%; }
@@ -148,24 +149,27 @@
   .fitem { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--text); }
   .fitem .sev { width: 8px; height: 8px; border-radius: 2px; flex: none; }
   .fitem.locked { color: var(--faint); filter: blur(0.4px); }
-  .gate { margin-top: 18px; background: #FFFFFF; border: 1px solid rgba(23,20,31,0.10); border-radius: 14px; padding: 18px;
-    --surface: #F4F3FA; --surface-2: #FBFAFF; --ink-2: #F4F3FA;
-    --text: #17141F; --muted: #615C74; --faint: #938EA6;
-    --line: rgba(23,20,31,0.12); --line-soft: rgba(23,20,31,0.06);
-    --violet: #C65D3B; --violet-ink: #A0522D; --cyan-ink: #0E96B0;
-    --vbtn-bg: #C65D3B; --vbtn-fg: #FFFFFF; }
+  .gate { margin-top: 18px; background: #FFFFFF; border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
+    --surface: #F4F4F1; --surface-2: #FBFBFA; --ink-2: #F4F4F1;
+    --text: #15171A; --muted: #4E525A; --faint: #82868D;
+    --line: rgba(21,23,26,0.14); --line-soft: rgba(21,23,26,0.07);
+    --violet: #963A1D; --violet-ink: #7C2F17; --cyan-ink: #1F4A3E;
+    --vbtn-bg: #15171A; --vbtn-fg: #FFFFFF; }
   .gate p.gt { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
   .gate .gform { display: flex; flex-direction: column; gap: 10px; }
   .gate input { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; }
   .gate .gform input, .gate .gform .btn { width: 100%; }
   .gate input:focus { border-color: var(--violet); }
+  .gconsent { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.45; cursor: pointer; }
+  .gconsent input { width: auto; flex: none; margin-top: 3px; padding: 0; }
+  .gconsent a { color: var(--violet-ink); }
   .gate .note { font-family: var(--mono); font-size: 10.5px; color: var(--faint); margin-top: 11px; letter-spacing: 0.03em; }
   .gate.done { text-align: center; }
-  .gate.done .check { color: #3B9E4E; font-family: var(--mono); font-size: 14px; }
+  .gate.done .check { color: #1E6B3E; font-family: var(--mono); font-size: 14px; }
   .gate-step2 { display: none; }
   .gate-step2.show { display: block; animation: expandIn .45s ease both; }
   @keyframes expandIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
-  .g-confirm { font-family: var(--mono); font-size: 12.5px; color: #3B9E4E; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .g-confirm { font-family: var(--mono); font-size: 12.5px; color: #1E6B3E; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
   .gt2 { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
   .q-row { margin-bottom: 10px; }
   .qinp { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; transition: border-color .16s ease; }
@@ -191,7 +195,7 @@
     const scoreNum = document.getElementById('scoreNum');
     const scanBtn = document.getElementById('scanBtn') as HTMLButtonElement;
     const errEl = document.getElementById('scanErr')!;
-    const sevColor = (ok: unknown) => (ok === false ? '#ff5c6c' : ok === 'warn' ? '#ffb454' : '#3B9E4E');
+    const sevColor = (ok: unknown) => (ok === false ? '#B0281E' : ok === 'warn' ? '#963A1D' : '#1E6B3E');
     // Escapa datos externos (host/hallazgos del sitio escaneado) antes de innerHTML.
     const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => (
       { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
@@ -246,7 +250,7 @@
       if (d.lockedCount > 0) {
         const locked = document.createElement('div');
         locked.className = 'fitem locked';
-        locked.innerHTML = `<span class="sev" style="background:#E8956B"></span><span class="txt">•••••• ${d.lockedCount} hallazgo${d.lockedCount === 1 ? '' : 's'} más — desbloquea el informe completo ••••••</span>`;
+        locked.innerHTML = `<span class="sev" style="background:#7C8087"></span><span class="txt">•••••• ${d.lockedCount} hallazgo${d.lockedCount === 1 ? '' : 's'} más — desbloquea el informe completo ••••••</span>`;
         flist.appendChild(locked);
       }
       result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });

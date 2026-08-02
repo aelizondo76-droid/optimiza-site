@@ -1,17 +1,24 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
-const publishDate = '2026-09-09';
+const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 const title = 'Estado digital de empresas en Costa Rica 2026: La crisis invisible';
 const description = 'Análisis de 386 sitios: 88% sin Meta Pixel, índice 58/100. Crisis sistémica de medición que cuesta ~$122M anuales en oportunidades perdidas.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
 ---
-<Base title={title} description={description} active="analisis">
+<Base
+  title={title}
+  description={description}
+  active="analisis"
+  ogImage={ogImage}
+  breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }, { name: title, url: canonical }]}
+>
   <Fragment slot="head">
     <meta property="article:published_time" content={publishDate} />
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Report', headline: title, description, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, about: { '@type': 'Thing', name: 'Estado digital de las empresas en Costa Rica' } })} />
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Estado digital de empresas en Costa Rica 2026 — Índice Optimiza', description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 386 sitios web de empresas costarricenses en 4 sectores: salud, construcción, e-commerce y alimentos.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026', spatialCoverage: { '@type': 'Place', name: 'Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, url: canonical })} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: title, description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, about: { '@type': 'Thing', name: 'Estado digital de las empresas en Costa Rica' } })} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Estado digital de empresas en Costa Rica 2026 — Índice Optimiza', description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 386 sitios web de empresas costarricenses en 4 sectores: salud, construcción, e-commerce y alimentos.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical })} />
   </Fragment>
 
   <article class="section">
@@ -36,7 +43,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <div class="prose">
         <h2>Prólogo: El problema invisible</h2>
         <p>Costa Rica es economía digital emergente. Startups crecen. Pymes migran a e-commerce. Profesionales lanzan sitios cada semana. Pero hay un problema invisible que afecta a todas por igual: no miden nada. Literalmente.</p>
-        <p>Entre agosto y septiembre 2026, analizamos 386 sitios web con el Índice Optimiza (velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%). Los resultados son perturbadores.</p>
+        <p>En julio 2026, analizamos 386 sitios web con el Índice Optimiza (velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%). Los resultados son perturbadores.</p>
         <p>El 88% no tienen Meta Pixel. Eso significa: una empresa invierte dinero en web, pero cuando cliente la visita, esa empresa no sabe quién fue, de dónde vino, qué buscó, por qué se fue. Es como tienda física sin cámaras, sin vendedores, sin notas. Solo paredes ciegas.</p>
 
         <h2>Los 4 sectores: Radiografía de la ceguera</h2>
@@ -127,7 +134,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .back { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 13px; text-decoration: none; margin-bottom: 32px; transition: color .2s; }
   .back:hover { color: var(--violet-ink); }
   .art-head { margin-bottom: 30px; }
-  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; color: var(--cyan-ink); background: rgba(31,74,62,0.12); }
   .art-head h1 { font-size: clamp(28px, 4.4vw, 48px); margin: 18px 0 0; line-height: 1.15; }
   .art-meta { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 16px; }
   .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; }
@@ -135,10 +142,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .tldr p { margin: 0; color: var(--text); font-size: 16px; line-height: 1.7; }
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
   @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
-  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
+  .stat { background: #101214; border-radius: 14px; padding: 20px 18px; }
   .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); line-height: 1; }
-  .stat .sn small { font-size: 16px; color: #9A95B3; }
-  .stat .sl { font-size: 12px; color: #9A95B3; margin-top: 10px; }
+  .stat .sn small { font-size: 16px; color: #9099A3; }
+  .stat .sl { font-size: 12px; color: #9099A3; margin-top: 10px; }
   .prose { margin-bottom: 40px; }
   .prose :global(h2) { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 3vw, 30px); margin: 44px 0 14px; }
   .prose :global(h3) { font-weight: 600; font-size: 18px; margin: 28px 0 12px; color: var(--text); }
@@ -151,6 +158,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
   .art-cta p { color: var(--muted); margin: 0 0 16px; }
   .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: all .2s; }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(199,249,75,0.25); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(30,90,63,0.25); }
   .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

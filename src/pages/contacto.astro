@@ -67,6 +67,7 @@ const phoneDisplay = '+1 (305) 686-9617';
               </div>
             </div>
             <div class="form-row"><label class="field-l" for="f-msg">Mensaje <span class="opt">· opcional</span></label><textarea class="inp" id="f-msg" placeholder="Cuéntanos brevemente qué te gustaría lograr…"></textarea></div>
+            <label class="consent"><input type="checkbox" id="f-consent" required /> Acepto la <a href="/legal/privacidad/" target="_blank" rel="noopener">política de privacidad</a> y el uso de mis datos para recibir el diagnóstico y seguimiento comercial.</label>
             <button class="btn btn-lime wide" type="submit" style="margin-top:6px">Enviar y recibir mi diagnóstico</button>
             <p class="form-err" id="formErr" role="alert"></p>
             <p class="form-note">Respondemos en menos de 24h · Sin spam · Tus datos están seguros</p>
@@ -83,14 +84,14 @@ const phoneDisplay = '+1 (305) 686-9617';
               <div class="mgauge">
                 <svg viewBox="0 0 130 80" aria-hidden="true">
                   <path d="M11 74 A54 54 0 0 1 119 74" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="9" stroke-linecap="round"></path>
-                  <path d="M11 74 A54 54 0 0 1 119 74" fill="none" stroke="#C7F94B" stroke-width="9" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="48"></path>
+                  <path d="M11 74 A54 54 0 0 1 119 74" fill="none" stroke="#4E9C7A" stroke-width="9" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="48"></path>
                 </svg>
                 <div class="mv"><div class="mn"><span>52</span><small>/100</small></div></div>
               </div>
               <div class="msubs">
-                <div class="msub"><div class="mst"><span>Velocidad</span><span>44</span></div><div class="mtrack"><span style="width:44%;background:#C65D3B"></span></div></div>
-                <div class="msub"><div class="mst"><span>SEO</span><span>61</span></div><div class="mtrack"><span style="width:61%;background:#34DDE6"></span></div></div>
-                <div class="msub"><div class="mst"><span>Móvil</span><span>48</span></div><div class="mtrack"><span style="width:48%;background:#C65D3B"></span></div></div>
+                <div class="msub"><div class="mst"><span>Velocidad</span><span>44</span></div><div class="mtrack"><span style="width:44%;background:#963A1D"></span></div></div>
+                <div class="msub"><div class="mst"><span>SEO</span><span>61</span></div><div class="mtrack"><span style="width:61%;background:#1F4A3E"></span></div></div>
+                <div class="msub"><div class="mst"><span>Móvil</span><span>48</span></div><div class="mtrack"><span style="width:48%;background:#963A1D"></span></div></div>
               </div>
             </div>
             <div class="mini-finds">Detectamos <b>7 oportunidades</b> · <b>3 críticas</b></div>
@@ -149,10 +150,13 @@ const phoneDisplay = '+1 (305) 686-9617';
   .form-note { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.03em; margin-top: 14px; }
   .form-err { color: #DC3B3B; font-size: 13px; margin-top: 10px; display: none; }
   .form-err.show { display: block; }
+  .consent { display: flex; align-items: flex-start; gap: 9px; font-size: 12.5px; color: var(--muted); line-height: 1.5; margin-top: 16px; cursor: pointer; }
+  .consent input { margin-top: 3px; flex: none; }
+  .consent a { color: var(--violet-ink); }
 
   .side { display: flex; flex-direction: column; gap: 16px; }
   .mini { border-radius: 18px; padding: 22px; box-shadow: var(--card-shadow); }
-  .mini.dark { background: #0B0A12; border: 1px solid var(--line); }
+  .mini.dark { background: #101214; border: 1px solid var(--line); }
   .mini-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
   .mini-head .mt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
   .mini-ico { width: 18px; height: 18px; display: block; }
@@ -186,7 +190,7 @@ const phoneDisplay = '+1 (305) 686-9617';
   a.mval.mlink:hover { color: var(--violet-ink); }
 
   .form-done { text-align: center; padding: 20px 0; }
-  .form-done .fd-ic { width: 56px; height: 56px; border-radius: 50%; background: rgba(199,249,75,0.25); display: grid; place-items: center; margin: 0 auto 18px; color: #4A5A10; }
+  .form-done .fd-ic { width: 56px; height: 56px; border-radius: 50%; background: rgba(30,107,62,0.14); display: grid; place-items: center; margin: 0 auto 18px; color: #1E6B3E; }
   .form-done h2 { font-size: 24px; }
   .form-done p { color: var(--muted); font-size: 15px; margin-top: 10px; max-width: 40ch; margin-inline: auto; }
 </style>

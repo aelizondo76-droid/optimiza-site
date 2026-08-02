@@ -13,16 +13,9 @@ const social = [
   { name: 'Instagram', href: 'https://www.instagram.com/optimizahq', icon: siInstagram },
 ];
 ---
-<!-- Hallmark · nav: N5 floating pill · differs from N1a on: detachment, shape, positioning -->
+<!-- Membrete fijo, ancho completo, sin blur ni detachment: cabecera de documento, no burbuja flotante. -->
 <header class="nav" id="nav">
-  <div class="social-top" aria-label="Redes sociales">
-    {social.map((s) => (
-      <a href={s.href} target="_blank" rel="noopener me" aria-label={s.name}>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon.path}></path></svg>
-      </a>
-    ))}
-  </div>
-  <nav class="nav-pill" aria-label="Principal">
+  <nav class="nav-bar" aria-label="Principal">
     <a class="brand" href="/" aria-label="Optimiza, inicio">
       <svg class="brandmark" viewBox="0 0 100 100" aria-hidden="true"><use href="#markB"></use></svg>
       Optimiza
@@ -32,10 +25,19 @@ const social = [
         <li><a class:list={['link', { active: active === l.key }]} href={l.href}>{l.label}</a></li>
       ))}
     </ul>
-    <a class="btn btn-violet cta-fill" href="/contacto/">Diagnóstico gratis</a>
-    <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
-      <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
-    </button>
+    <div class="nav-right">
+      <div class="social-top" aria-label="Redes sociales">
+        {social.map((s) => (
+          <a href={s.href} target="_blank" rel="noopener me" aria-label={s.name}>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d={s.icon.path}></path></svg>
+          </a>
+        ))}
+      </div>
+      <a class="btn btn-violet cta-fill" href="/contacto/">Diagnóstico gratis</a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMobile">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
   </nav>
   <div class="nav-scrim" id="navScrim"></div>
   <nav class="nav-mobile" id="navMobile" aria-label="Menú principal">
@@ -47,54 +49,37 @@ const social = [
 </header>
 
 <style>
-  header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; pointer-events: none; }
-  .nav-pill {
-    pointer-events: auto;
-    position: fixed; top: 18px; left: 50%; transform: translateX(-50%);
-    display: inline-flex; align-items: center; gap: 22px;
-    padding: 9px 10px 9px 20px;
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    backdrop-filter: blur(14px) saturate(140%);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    box-shadow: 0 12px 32px -16px rgba(20,15,10,0.28);
-    transition: box-shadow .3s ease, background .3s ease;
-    max-width: calc(100vw - 32px);
+  header.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 50; }
+  .nav-bar {
+    display: flex; align-items: center; gap: 28px;
+    padding: 16px 24px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    transition: background .2s ease;
   }
-  header.nav.scrolled .nav-pill { box-shadow: 0 16px 40px -14px rgba(20,15,10,0.36); }
-  .social-top {
-    pointer-events: auto;
-    position: fixed; top: 18px; right: 22px; z-index: 51;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .social-top a {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px; border-radius: 999px;
-    background: color-mix(in srgb, var(--surface) 82%, transparent);
-    backdrop-filter: blur(14px) saturate(140%);
-    border: 1px solid var(--line);
-    color: var(--muted);
-    transition: color .15s ease, border-color .15s ease;
-  }
-  .social-top a:hover { color: var(--text); border-color: var(--violet); }
-  .social-top svg { width: 16px; height: 16px; fill: currentColor; }
-  @media (max-width: 780px) {
-    .social-top { top: 14px; right: 16px; }
-    .social-top a { width: 30px; height: 30px; }
-    .social-top svg { width: 14px; height: 14px; }
-  }
-  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.03em; font-size: 18px; color: var(--text); white-space: nowrap; }
-  .brandmark { width: 34px; height: 34px; display: block; }
-  .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; margin: 0; padding: 0; }
+  header.nav.scrolled .nav-bar { background: var(--surface); }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.03em; font-size: 17px; color: var(--text); white-space: nowrap; }
+  .brandmark { width: 28px; height: 28px; display: block; }
+  .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; margin: 0; padding: 0; }
   .nav-links a.link { font-size: 14px; color: var(--muted); transition: color .16s ease; white-space: nowrap; }
   .nav-links a.link.active, .nav-links a.link:hover { color: var(--text); }
+  .nav-right { display: flex; align-items: center; gap: 14px; margin-left: auto; }
+  .social-top { display: inline-flex; align-items: center; gap: 6px; }
+  .social-top a {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: var(--radius-sm);
+    color: var(--muted);
+    transition: color .15s ease;
+  }
+  .social-top a:hover { color: var(--text); }
+  .social-top svg { width: 15px; height: 15px; fill: currentColor; }
   .cta-fill { padding: 9px 16px; font-size: 13.5px; white-space: nowrap; }
 
   /* Botón hamburguesa (solo móvil) */
-  .nav-toggle { display: none; width: 34px; height: 34px; align-items: center; justify-content: center; background: transparent; border: 0; cursor: pointer; color: var(--text); border-radius: 999px; flex: none; }
+  .nav-toggle { display: none; width: 34px; height: 34px; align-items: center; justify-content: center; background: transparent; border: 0; cursor: pointer; color: var(--text); border-radius: var(--radius-sm); flex: none; }
   .nav-toggle:hover { background: var(--line-soft); }
   .bars { position: relative; width: 18px; height: 13px; display: block; }
-  .bars i { position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .2s, top .3s; }
+  .bars i { position: absolute; left: 0; right: 0; height: 2px; background: currentColor; transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .2s, top .3s; }
   .bars i:nth-child(1) { top: 0; }
   .bars i:nth-child(2) { top: 5.5px; }
   .bars i:nth-child(3) { top: 11px; }
@@ -103,12 +88,11 @@ const social = [
   .nav.menu-open .bars i:nth-child(3) { top: 5.5px; transform: rotate(-45deg); }
 
   /* Panel móvil + scrim */
-  .nav-scrim { display: none; position: fixed; inset: 0; background: rgba(11,10,18,0.38); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 40; }
+  .nav-scrim { display: none; position: fixed; inset: 0; background: rgba(10,11,12,0.4); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 40; }
   .nav.menu-open .nav-scrim { opacity: 1; pointer-events: auto; }
-  .nav-mobile { display: none; position: fixed; top: 76px; left: 16px; right: 16px; z-index: 45;
-    flex-direction: column; gap: 2px; padding: 10px 20px 20px;
-    background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
-    box-shadow: 0 24px 44px -20px rgba(20,15,10,0.4);
+  .nav-mobile { display: none; position: fixed; top: 61px; left: 0; right: 0; z-index: 45;
+    flex-direction: column; gap: 2px; padding: 10px 24px 20px;
+    background: var(--surface); border-bottom: 1px solid var(--line);
     transform: translateY(-10px); opacity: 0; pointer-events: none; visibility: hidden;
     transition: transform .3s cubic-bezier(.2,.7,.2,1), opacity .22s ease, visibility .3s; }
   .nav.menu-open .nav-mobile { transform: none; opacity: 1; pointer-events: auto; visibility: visible; }
@@ -117,11 +101,10 @@ const social = [
   .m-cta { margin-top: 14px; width: 100%; }
 
   @media (max-width: 780px) {
-    .nav-links, .cta-fill { display: none; }
+    .nav-links, .cta-fill, .social-top { display: none; }
     .nav-toggle { display: inline-flex; }
     .nav-scrim, .nav-mobile { display: flex; }
-    .nav-pill { top: 14px; padding: 7px 8px 7px 16px; gap: 12px; }
-    .brandmark { width: 28px; height: 28px; }
+    .nav-bar { padding: 13px 16px; gap: 12px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .bars i, .nav-mobile, .nav-scrim { transition: none; }

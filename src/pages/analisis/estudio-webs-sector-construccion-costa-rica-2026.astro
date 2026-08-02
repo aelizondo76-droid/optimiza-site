@@ -119,7 +119,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
   .back:hover { color: var(--violet-ink); }
   .art-head { margin-bottom: 30px; }
   .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
-  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
+  .tag.res { color: var(--cyan-ink); background: rgba(31,74,62,0.12); }
   .art-head h1 { font-size: clamp(30px, 4.6vw, 46px); margin: 18px 0 0; }
   .art-meta { font-family: var(--mono); font-size: 12.5px; color: var(--faint); margin-top: 16px; }
   .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; box-shadow: var(--card-shadow); }
@@ -127,10 +127,10 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
   .tldr p:last-child { margin: 0; color: var(--text); font-size: 16.5px; line-height: 1.7; }
   .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
   @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
-  .stat { background: #0B0A12; border-radius: 14px; padding: 20px 18px; }
-  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
-  .stat .sn small { font-size: 16px; color: #9A95B3; }
-  .stat .sl { font-size: 12.5px; color: #9A95B3; margin-top: 10px; line-height: 1.4; }
+  .stat { background: #101214; border-radius: 14px; padding: 20px 18px; }
+  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: #4E9C7A; letter-spacing: -0.03em; line-height: 1; }
+  .stat .sn small { font-size: 16px; color: #9099A3; }
+  .stat .sl { font-size: 12.5px; color: #9099A3; margin-top: 10px; line-height: 1.4; }
   .prose :global(h2), .sec-h { font-family: var(--display); font-weight: 600; letter-spacing: -0.02em; font-size: clamp(22px, 3vw, 29px); margin: 44px 0 14px; color: var(--text); }
   .prose :global(p) { color: var(--muted); font-size: 17px; line-height: 1.75; margin-bottom: 18px; }
   .prose :global(ul) { margin: 0 0 20px; padding-left: 22px; color: var(--muted); }
@@ -144,7 +144,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
   .cmp-name { font-size: 15px; color: var(--text); font-weight: 500; }
   .cmp-name em { display: block; font-style: normal; font-size: 12px; color: var(--faint); margin-top: 2px; }
   .cmp-bar { display: flex; align-items: center; gap: 12px; }
-  .cmp-bar .track { flex: 1; height: 9px; background: rgba(23,20,31,0.08); border-radius: 99px; overflow: hidden; }
+  .cmp-bar .track { flex: 1; height: 9px; background: rgba(21,23,26,0.08); border-radius: 99px; overflow: hidden; }
   :global([data-theme="dark"]) .cmp-bar .track { background: rgba(255,255,255,0.09); }
   .cmp-bar .track span { display: block; height: 100%; background: var(--violet); border-radius: 99px; }
   .cmp-bar b { font-family: var(--mono); color: var(--text); font-size: 15px; }

@@ -55,8 +55,8 @@ const posts = await getAnalisis();
             <div class="j"><div class="jn good">92</div><div class="jl">Después</div></div>
             <div class="jl" style="align-self:flex-end;margin-left:6px">PageSpeed</div>
           </div>
-          <div class="barline"><div class="bl-top"><span>Carga móvil · antes</span><span>6.1s</span></div><div class="track"><span style="width:90%;background:#E24B4A"></span></div></div>
-          <div class="barline"><div class="bl-top"><span>Carga móvil · después</span><span>1.2s</span></div><div class="track"><span style="width:20%;background:#C7F94B"></span></div></div>
+          <div class="barline"><div class="bl-top"><span>Carga móvil · antes</span><span>6.1s</span></div><div class="track"><span style="width:90%;background:#B0281E"></span></div></div>
+          <div class="barline"><div class="bl-top"><span>Carga móvil · después</span><span>1.2s</span></div><div class="track"><span style="width:20%;background:#4E9C7A"></span></div></div>
           <div class="fc-metric">Proyección de conversión: <b>+31%</b> con el mismo tráfico</div>
         </div>
       </div>
@@ -93,7 +93,7 @@ const posts = await getAnalisis();
       <div class="band dark reveal" style="border: 2px solid var(--lime);">
         <div class="tband">
           <div class="thead">
-            <span class="tag res" style="background: rgba(199, 249, 75, 0.2); color: var(--lime);">Investigación maestra</span>
+            <span class="tag res" style="background: rgba(30, 90, 63, 0.16); color: var(--lime);">Investigación maestra</span>
             <h2>La crisis invisible: estado digital de empresas en Costa Rica 2026</h2>
             <p class="lead">Análisis riguroso de 386 sitios web en 4 sectores. 88% sin Meta Pixel. Crisis sistémica de medición digital que cuesta ~$122 millones anuales en oportunidades perdidas. La radiografía completa del estado actual.</p>
           </div>
@@ -232,7 +232,6 @@ const posts = await getAnalisis();
   </section>
 
   <section class="section final dark" id="final">
-    <div class="fglow"></div>
     <div class="wrap">
       <p class="eyebrow" style="justify-content:center">Tu análisis, gratis</p>
       <h2>Tu web merece su propio teardown.</h2>
@@ -250,8 +249,8 @@ const posts = await getAnalisis();
 
   .tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; padding: 5px 10px; border-radius: 7px; display: inline-block; }
   .tag.tear { color: var(--violet-ink); background: color-mix(in srgb, var(--violet) 12%, transparent); }
-  .tag.res { color: var(--cyan-ink); background: rgba(14,150,176,0.12); }
-  .tag.self { color: #4A5A10; background: rgba(199,249,75,0.30); }
+  .tag.res { color: var(--cyan-ink); background: rgba(31,74,62,0.12); }
+  .tag.self { color: #1E6B3E; background: rgba(30,90,63,0.30); }
   .tag.conv { color: #8a4b12; background: rgba(239,159,39,0.16); }
 
   .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--card-shadow); overflow: hidden; display: grid; grid-template-columns: 1.15fr 0.85fr; }
@@ -261,20 +260,20 @@ const posts = await getAnalisis();
   .fc-desc { color: var(--muted); font-size: 15.5px; margin-top: 14px; line-height: 1.6; }
   .finds { list-style: none; margin: 22px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
   .finds li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--text); }
-  .finds li svg { color: #E24B4A; flex: none; margin-top: 3px; }
+  .finds li svg { color: #B0281E; flex: none; margin-top: 3px; }
   .fc-link { margin-top: 24px; display: inline-block; font-family: var(--mono); font-size: 13px; color: var(--violet-ink); font-weight: 600; }
-  .fc-viz { background: #0B0A12; padding: clamp(24px, 3.5vw, 36px); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+  .fc-viz { background: #101214; padding: clamp(24px, 3.5vw, 36px); display: flex; flex-direction: column; justify-content: center; gap: 20px; }
   .jump { display: flex; align-items: center; gap: 16px; }
   .jump .j { text-align: center; }
   .jump .jn { font-family: var(--mono); font-size: 40px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; }
-  .jump .jn.bad { color: #E24B4A; } .jump .jn.good { color: #C7F94B; }
+  .jump .jn.bad { color: #B0281E; } .jump .jn.good { color: #4E9C7A; }
   .jump .jl { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: #6A6580; margin-top: 6px; }
-  .jump .jarrow { color: #E8956B; }
-  .barline .bl-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; margin-bottom: 6px; color: #9A95B3; }
+  .jump .jarrow { color: #C97A54; }
+  .barline .bl-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11.5px; margin-bottom: 6px; color: #9099A3; }
   .track { height: 8px; background: rgba(255,255,255,0.09); border-radius: 99px; overflow: hidden; }
   .track span { display: block; height: 100%; border-radius: 99px; }
-  .fc-metric { font-family: var(--mono); font-size: 12px; color: #9A95B3; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; }
-  .fc-metric b { color: #C7F94B; }
+  .fc-metric { font-family: var(--mono); font-size: 12px; color: #9099A3; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px; }
+  .fc-metric b { color: #4E9C7A; }
 
   .ahead { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 32px; flex-wrap: wrap; }
   .ahead h2 { font-size: clamp(24px, 3.4vw, 34px); }
@@ -293,7 +292,7 @@ const posts = await getAnalisis();
   .an-card:hover .ac-link { color: var(--violet-ink); }
 
   .band { border-radius: 22px; }
-  .band.dark { background: #0B0A12; }
+  .band.dark { background: #101214; }
   .tband { padding: clamp(28px,5vw,52px); }
   .tband .thead { max-width: 62ch; margin-bottom: 32px; }
   .tband h2 { font-size: clamp(24px, 3.4vw, 36px); }
@@ -301,18 +300,18 @@ const posts = await getAnalisis();
   .rstats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   @media (max-width: 720px) { .rstats { grid-template-columns: 1fr 1fr; } }
   .rstat { border: 1px solid var(--line); border-radius: 14px; padding: 20px; background: var(--ink-2); }
-  .rstat .rn { font-family: var(--mono); font-size: 30px; font-weight: 700; color: var(--lime); letter-spacing: -0.03em; line-height: 1; }
+  .rstat .rn { font-family: var(--mono); font-size: 30px; font-weight: 700; color: #4E9C7A; letter-spacing: -0.03em; line-height: 1; }
   .rstat .rn small { font-size: 16px; color: var(--muted); }
   .rstat .rl { font-size: 13px; color: var(--muted); margin-top: 10px; line-height: 1.4; }
   .rcta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
-  .rsub { margin-top: 16px; font-family: var(--mono); font-size: 12.5px; color: #9A95B3; }
+  .rsub { margin-top: 16px; font-family: var(--mono); font-size: 12.5px; color: #9099A3; }
   .rsub a { color: var(--lime); text-decoration: none; }
   .rsub a:hover { text-decoration: underline; }
   .btn-ghost-light { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.25); }
   .btn-ghost-light:hover { border-color: var(--lime); }
 
   .final { text-align: center; overflow: hidden; }
-  .final .fglow { position: absolute; inset: 0; z-index: 0; background: radial-gradient(600px 300px at 50% 40%, color-mix(in srgb, var(--violet) 26%, transparent), transparent 65%); pointer-events: none; }
+  .final { border-top: 1px solid var(--line); }
   .final :global(.wrap) { position: relative; z-index: 1; }
   .final h2 { font-size: clamp(28px, 4.6vw, 46px); max-width: 20ch; margin-inline: auto; }
   .scanwrap { max-width: 640px; margin: 0 auto; text-align: left; }
