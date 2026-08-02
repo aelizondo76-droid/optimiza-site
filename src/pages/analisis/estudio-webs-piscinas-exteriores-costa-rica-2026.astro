@@ -2,38 +2,38 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 24, legibles: 24, excluidas: 0, indice: 58,
+  revisadas: 24, legibles: 24, excluidas: 0, indice: 60,
   pilares: [
-    { k: 'Visibilidad', v: 68, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 68, note: 'CTA, formularios, WhatsApp' },
-    { k: 'Velocidad', v: 57, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Automatización', v: 34, note: 'Medición y retargeting' },
+    { k: 'Visibilidad', v: 65, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 74, note: 'CTA, formularios, WhatsApp' },
+    { k: 'Velocidad', v: 59, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 39, note: 'Medición y retargeting' },
   ],
-  sinPixel: 95, conPixel: 1, sinAnalytics: 50, sinWhatsApp: 50,
+  sinPixel: 96, conPixel: 4, sinAnalytics: 33, sinWhatsApp: 38,
   grados: [
-    { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
+    { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
     { g: 'B', label: '70–79 · Bien', n: 3, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 14, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 5, cls: 'gD' },
-    { g: 'E', label: '< 40 · Crítico', n: 2, cls: 'gE' },
+    { g: 'C', label: '55–69 · Regular', n: 13, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 6, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 1, cls: 'gE' },
   ],
-  secTotal: 90, secSinPixel: 93,
+  secTotal: 90, secSinPixel: 76,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Empresas de piscinas en Costa Rica: el 95% no mide su web';
-const description = 'Analizamos 24 empresas de piscinas, jardines y decks del GAM: venden un producto aspiracional, pero el 95% no tiene Meta Pixel. Datos y metodología.';
+const title = 'Empresas de piscinas en Costa Rica: el 96% no mide su web';
+const description = 'Analizamos 24 empresas de piscinas, jardines y decks del GAM: venden un producto aspiracional, pero el 96% no tiene Meta Pixel. Datos y metodología.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-piscinas.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las webs de las empresas de piscinas y exteriores en Costa Rica?', a: 'Aspiracionales pero sin medir. En un estudio de 24 empresas de piscinas, jardines y decks del Gran Área Metropolitana, el Índice Optimiza promedio fue de 58 sobre 100 (grado C). Venden un producto de deseo, pero el 95% no puede medir ni recuperar a quien lo desea.' },
-  { q: '¿Cuál es el problema más común?', a: 'La falta de medición. El 95% de las empresas no tiene el píxel de Meta y la mitad no usa Google Analytics ni ofrece WhatsApp directo. Muestran proyectos preciosos, sin capturar el interés.' },
-  { q: '¿Es igual en todo el sector construcción?', a: 'Sí. Junto a fabricantes de cocinas, constructoras y acabados, el 93% de las 90 empresas de construcción del GAM analizadas no puede medir su web.' },
+  { q: '¿Qué tan buenas son las webs de las empresas de piscinas y exteriores en Costa Rica?', a: 'Aspiracionales pero sin medir. En un estudio de 24 empresas de piscinas, jardines y decks del Gran Área Metropolitana, el Índice Optimiza promedio fue de 60 sobre 100 (grado C). Venden un producto de deseo, pero el 96% no puede medir ni recuperar a quien lo desea.' },
+  { q: '¿Cuál es el problema más común?', a: 'La falta de medición. El 96% de las empresas no tiene el píxel de Meta, y una parte importante tampoco usa Google Analytics (33%) ni ofrece WhatsApp directo (38%). Muestran proyectos preciosos, sin capturar el interés.' },
+  { q: '¿Es igual en todo el sector construcción?', a: 'Sí. Junto a fabricantes de cocinas, constructoras y acabados, el 76% de las 90 empresas de construcción del GAM analizadas no puede medir su web.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Una calificación de 0 a 100 que resume la salud de un sitio web en cuatro pilares: velocidad (30%), visibilidad o SEO (30%), conversión (20%) y automatización o medición (20%). Se calcula con la API de PageSpeed Insights de Google más un análisis del HTML.' },
   { q: '¿Cómo se realizó el estudio?', a: 'Se analizaron 24 empresas de piscinas, jardines y decks con dominio propio del Gran Área Metropolitana en julio de 2026, con el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). Las 24 arrojaron datos completos.' },
 ];
-const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El 95% de las empresas de piscinas de Costa Rica no mide su web', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['piscinas Costa Rica', 'paisajismo', 'decks', 'jardines', 'Meta Pixel', 'marketing construcción'], about: { '@type': 'Thing', name: 'Páginas web de empresas de piscinas y exteriores en Costa Rica' } };
+const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El 96% de las empresas de piscinas de Costa Rica no mide su web', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['piscinas Costa Rica', 'paisajismo', 'decks', 'jardines', 'Meta Pixel', 'marketing construcción'], about: { '@type': 'Thing', name: 'Páginas web de empresas de piscinas y exteriores en Costa Rica' } };
 const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de empresas de piscinas y exteriores del GAM 2026', description: 'Índice Optimiza de 24 empresas de piscinas, jardines y decks del Gran Área Metropolitana.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
 const plus = 'M12 5v14M5 12h14';
@@ -56,7 +56,7 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · Construcción</span>
-        <h1>El 95% de las empresas de piscinas de Costa Rica no mide su web</h1>
+        <h1>El 96% de las empresas de piscinas de Costa Rica no mide su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} empresas del Gran Área Metropolitana · Lectura 5 min</p>
       </header>
       <div class="tldr">

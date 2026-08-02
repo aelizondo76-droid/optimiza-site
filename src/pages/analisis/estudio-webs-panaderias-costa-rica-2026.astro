@@ -2,35 +2,35 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 8, legibles: 8, excluidas: 0, indice: 55,
+  revisadas: 8, legibles: 8, excluidas: 0, indice: 51,
   pilares: [
-    { k: 'Velocidad', v: 61, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 67, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 63, note: 'CTA, pedidos, conversión' },
-    { k: 'Automatización', v: 20, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 55, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 60, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 57, note: 'CTA, pedidos, conversión' },
+    { k: 'Automatización', v: 25, note: 'Medición y retargeting' },
   ],
-  sinPixel: 88, conPixel: 1, sinAnalytics: 88, sinWhatsApp: 50,
+  sinPixel: 62, conPixel: 38, sinAnalytics: 62, sinWhatsApp: 50,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
     { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
+    { g: 'C', label: '55–69 · Regular', n: 2, cls: 'gC' },
     { g: 'D', label: '40–54 · Deficiente', n: 4, cls: 'gD' },
-    { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
+    { g: 'E', label: '< 40 · Crítico', n: 1, cls: 'gE' },
   ],
-  secTotal: 43, secSinPixel: 95,
+  secTotal: 43, secSinPixel: 77,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Panaderías Costa Rica: 88% sin píxel';
-const description = 'Analizamos 8 panaderías: índice 55/100, 88% sin Meta Pixel, 50% sin WhatsApp, 1 grado B. Producen pan excelente pero venden ciego.';
+const title = 'Panaderías Costa Rica: 62% sin píxel';
+const description = 'Analizamos 8 panaderías: índice 51/100, 62% sin Meta Pixel, 50% sin WhatsApp, 1 grado B. Producen pan excelente pero buena parte vende ciego.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-panaderias.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las panaderías online?', a: 'Mixtas. Índice 55/100 (grado C). El 88% sin Meta Pixel significa: un cliente busca "pan artesanal San José", encuentra tu web, no puede hacer pedido online, se va a otra panadería. Venden pan excelente pero digitalmente están ciegos.' },
-  { q: '¿Cuál es el mayor problema?', a: 'Automatización: 20/100 (crítica). Sin píxel, sin WhatsApp en 50%, sin analytics en 88%. Es como un panadero que hace pan increíble pero no tiene teléfono — los clientes no pueden ordenar.' },
-  { q: '¿Hay excepciones?', a: 'Una panadería (Pastelería San José) tiene grado B (70/100). Las otras 7 promedian 52/100. Diferencia: 18 puntos. Esa panadería probablemente toma pedidos online o vía WhatsApp.' },
-  { q: '¿Por qué no tienen píxel si venden?', a: 'Probablemente porque los pedidos llegan vía WhatsApp, no vía web. Pero sin píxel, no pueden retargetar clientes que se van, no pueden entender qué productos interesan, no pueden medir nada.' },
+  { q: '¿Qué tan buenas son las panaderías online?', a: 'Mixtas. Índice 51/100 (grado C). El 62% sin Meta Pixel significa: un cliente busca "pan artesanal San José", encuentra tu web, no puede hacer pedido online, se va a otra panadería. Muchas venden pan excelente pero siguen digitalmente ciegas.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Automatización: 25/100 (la más débil del sector). El 62% sin píxel, el 50% sin WhatsApp. Es como un panadero que hace pan increíble pero no tiene teléfono — los clientes no pueden ordenar.' },
+  { q: '¿Hay excepciones?', a: 'Una panadería alcanza grado B (70/100). Las otras 7 promedian 48/100. Diferencia: 22 puntos. Esa panadería probablemente toma pedidos online o vía WhatsApp de forma más ordenada.' },
+  { q: '¿Por qué el 62% no tiene píxel si venden?', a: 'Probablemente porque los pedidos llegan vía WhatsApp, no vía web. Pero sin píxel, no pueden retargetar clientes que se van, no pueden entender qué productos interesan, no pueden medir nada.' },
   { q: '¿Qué debería medir una panadería?', a: 'Cuántos clientes buscan "pan integral receta antigua San José" y llegan a tu web. De esos, cuántos compran. Sin píxel, esa cifra es cero — estás produciendo en la oscuridad.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 8 panaderías y pastelerías del GAM (Cumpanis, Massa, True Flavors, etc.) en agosto de 2026.' },
 ];
@@ -62,19 +62,19 @@ const plus = 'M12 5v14M5 12h14';
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} panaderías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>88% sin Meta Pixel</strong>, 88% sin Google Analytics, 50% sin WhatsApp directo. Hacen pan excelente pero venden en la oscuridad — no miden, no saben quién compra, no pueden retargetar.</p>
+        <p>Analizamos <strong>{D.revisadas} panaderías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% sin Meta Pixel</strong>, {D.sinAnalytics}% sin Google Analytics, {D.sinWhatsApp}% sin WhatsApp directo. Hacen pan excelente pero buena parte vende en la oscuridad — no mide, no sabe quién compra, no puede retargetar.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">88<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
-        <div class="stat"><div class="sn">88<small>%</small></div><div class="sl">sin Google Analytics</div></div>
-        <div class="stat"><div class="sn">20<small>/100</small></div><div class="sl">Automatización (CRÍTICA)</div></div>
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.pilares[3].v}<small>/100</small></div><div class="sl">Automatización (débil)</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
         <h2>Pan de calidad, web ciega: como panadero sin teléfono</h2>
-        <p>Las panaderías que entrevistamos hacen pan excelente. Recetas tradicionales, masa madre, ingredientes artesanales. Pero digitalmente están muertas: 88% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, 88% sin <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a>, 50% sin WhatsApp.</p>
+        <p>Las panaderías que estudiamos hacen pan excelente. Recetas tradicionales, masa madre, ingredientes artesanales. Pero buena parte sigue digitalmente ciega: {D.sinPixel}% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, {D.sinAnalytics}% sin <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a>, {D.sinWhatsApp}% sin WhatsApp.</p>
         <p>Es como un panadero que hace pan increíble pero no tiene teléfono. Los clientes quieren comprar, pero no pueden contactar. O peor: compran, pero el panadero nunca sabe de dónde vinieron, nunca puede retargetarlos, nunca puede entender qué panes se venden más.</p>
-        <p>La ironía: el 88% podría ganar más dinero mañana con píxel + WhatsApp + analytics. Pero siguen produciendo en la oscuridad.</p>
+        <p>La oportunidad: el {D.sinPixel}% que aún no mide podría ganar más dinero mañana con píxel + WhatsApp + analytics. El resto ya lo hace.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -84,8 +84,8 @@ const plus = 'M12 5v14M5 12h14';
           ))}
         </div>
         <blockquote>Un panadero que vende 100 panes al día sin medir cuál es el más rentable, es como un marinero navegando sin brújula. El viento lo lleva a algún lado, pero no sabe a dónde.</blockquote>
-        <h2>La oportunidad perdida: automatización en 20/100</h2>
-        <p>Automatización: 20/100. Es la cifra más baja del sector alimentario. Sin píxel, sin CRM, sin WhatsApp integrado, sin nada. Los clientes llaman por teléfono para hacer pedidos. Nada se registra. Todo es manual.</p>
+        <h2>La oportunidad perdida: automatización en {D.pilares[3].v}/100</h2>
+        <p>Automatización: {D.pilares[3].v}/100. Es la cifra más baja del sector alimentario. Sin píxel, sin CRM, sin WhatsApp integrado en buena parte del sector. Muchos clientes llaman por teléfono para hacer pedidos. Nada se registra. Todo es manual.</p>
         <p>Una panadería que recibe 50 llamadas diarias, pero no registra cuál es el cliente, cuál es su pan favorito, cuándo compra. Información perdida. Dinero dejado en la mesa.</p>
         <h2>Distribución por calificación</h2>
         <div class="dist">

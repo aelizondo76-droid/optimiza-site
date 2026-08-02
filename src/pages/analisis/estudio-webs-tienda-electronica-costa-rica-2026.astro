@@ -1,12 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
-const D = { revisadas: 22, legibles: 20, indice: 57, sinPixel: 82, sinAnalytics: 50, sinWhatsApp: 68, grados: [{g:'A',n:0},{g:'B',n:2},{g:'C',n:10},{g:'D',n:6},{g:'E',n:2}] };
+const D = { revisadas: 22, legibles: 22, excluidas: 0, indice: 62, velocidad: 53, visibilidad: 69, conversion: 65, automatizacion: 60, sinPixel: 32, conPixel: 68, sinAnalytics: 23, sinWhatsApp: 64, reprVelocidad: 55, grados: [{g:'A',n:0},{g:'B',n:6},{g:'C',n:12},{g:'D',n:4},{g:'E',n:0}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-06-27';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas de electrónica en Costa Rica: 82% no mide su web';
-const description = 'Analizamos 22 tiendas de celulares, laptops y tech del GAM: 82% sin Meta Pixel, 41% reprueba velocidad. Compra urgente pero sin retargeting.';
+const title = 'Tiendas de electrónica en Costa Rica: 64% no tiene WhatsApp';
+const description = 'Analizamos 22 tiendas de celulares, laptops y tech del GAM: 64% no tiene WhatsApp para la compra urgente y 55% reprueba velocidad. La medición ya no es el problema: 68% usa píxel de Meta.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-electronica.png', Astro.site).href;
 const articleLd = {
@@ -60,23 +60,23 @@ const datasetLd = {
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · E-commerce</span>
-        <h1>El 82% de las tiendas de electrónica online no mide su web</h1>
+        <h1>El 64% de las tiendas de electrónica no tiene WhatsApp para la compra urgente</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} tiendas de celulares, laptops y tech</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene píxel de Meta</strong> y la mitad no usa Analytics. Compra urgente pero sin datos del cliente.</p>
+        <p>Analizamos <strong>{D.revisadas} tiendas de celulares, laptops y tech</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. La medición ya no es el problema —el <strong>{D.conPixel}% mide con píxel de Meta</strong>—, pero el <strong>{D.sinWhatsApp}% no tiene WhatsApp</strong> para atender la compra urgente y el {D.reprVelocidad}% reprueba velocidad.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">41<small>%</small></div><div class="sl">reprueba velocidad</div></div>
-        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.sinWhatsApp}<small>%</small></div><div class="sl">sin WhatsApp para atender</div></div>
+        <div class="stat"><div class="sn">{D.reprVelocidad}<small>%</small></div><div class="sl">reprueba velocidad</div></div>
+        <div class="stat"><div class="sn">{D.conPixel}<small>%</small></div><div class="sl">ya mide con píxel de Meta</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
-        <h2>Compra urgente, pero sin seguimiento</h2>
-        <p>Electrónica es compra reactiva: se daña el celular, compran urgente. La tienda que carga rápido y aparece en búsqueda gana. Pero sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, no pueden <a href="/analisis/glosario-digital-empresas/#retargeting">retargetar</a> a quien buscó pero no compró en ese momento.</p>
-        <blockquote>Un cliente que compara precios de laptops ($1.500+) sin píxel es un prospecto perdido. No pueden mostrarle otro modelo ni recordarle la tienda.</blockquote>
+        <h2>Compra urgente, pero lenta y sin canal directo</h2>
+        <p>Electrónica es compra reactiva: se daña el celular, compran urgente. Gana la tienda que carga rápido y puede atender de inmediato. Este subsector ya mide bien —el {D.conPixel}% tiene <a href="/analisis/glosario-digital-empresas/#pixel">píxel de Meta</a> instalado—, pero eso no resuelve lo más urgente: el {D.sinWhatsApp}% no ofrece WhatsApp para resolver dudas al momento, y el {D.reprVelocidad}% reprueba <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad de carga</a>.</p>
+        <blockquote>Un cliente que necesita reemplazar su celular hoy no espera: si el sitio tarda en cargar o no hay a quién escribirle por WhatsApp, compra en la primera tienda que sí responda.</blockquote>
         <h2>Metodología</h2>
         <ul>
           <li><strong>Muestra:</strong> {D.revisadas} tiendas de celulares, laptops, tablets, accesorios tech del GAM.</li>

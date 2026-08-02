@@ -1,0 +1,827 @@
+{
+  "leaf": {
+    "clinicas-dentales": {
+      "revisadas": 39,
+      "legibles": 39,
+      "excluidas": 0,
+      "indice": 60,
+      "velocidad": 61,
+      "visibilidad": 69,
+      "conversion": 66,
+      "automatizacion": 38,
+      "sinPixel": 82,
+      "conPixel": 18,
+      "sinAnalytics": 38,
+      "sinWhatsApp": 49,
+      "reprVelocidad": 28,
+      "grados": {
+        "A": 0,
+        "B": 9,
+        "C": 15,
+        "D": 15,
+        "E": 0
+      },
+      "n_ok": 39,
+      "n_total": 39,
+      "failed_hosts": []
+    },
+    "clinicas-esteticas": {
+      "revisadas": 33,
+      "legibles": 33,
+      "excluidas": 0,
+      "indice": 63,
+      "velocidad": 60,
+      "visibilidad": 70,
+      "conversion": 74,
+      "automatizacion": 47,
+      "sinPixel": 67,
+      "conPixel": 33,
+      "sinAnalytics": 30,
+      "sinWhatsApp": 21,
+      "reprVelocidad": 42,
+      "grados": {
+        "A": 2,
+        "B": 6,
+        "C": 18,
+        "D": 7,
+        "E": 0
+      },
+      "n_ok": 33,
+      "n_total": 33,
+      "failed_hosts": []
+    },
+    "consultorios-medicos": {
+      "revisadas": 32,
+      "legibles": 32,
+      "excluidas": 0,
+      "indice": 58,
+      "velocidad": 60,
+      "visibilidad": 64,
+      "conversion": 65,
+      "automatizacion": 40,
+      "sinPixel": 72,
+      "conPixel": 28,
+      "sinAnalytics": 31,
+      "sinWhatsApp": 53,
+      "reprVelocidad": 38,
+      "grados": {
+        "A": 0,
+        "B": 6,
+        "C": 15,
+        "D": 10,
+        "E": 1
+      },
+      "n_ok": 32,
+      "n_total": 32,
+      "failed_hosts": []
+    },
+    "acabados-instaladores": {
+      "revisadas": 18,
+      "legibles": 18,
+      "excluidas": 0,
+      "indice": 63,
+      "velocidad": 61,
+      "visibilidad": 75,
+      "conversion": 74,
+      "automatizacion": 36,
+      "sinPixel": 72,
+      "conPixel": 28,
+      "sinAnalytics": 44,
+      "sinWhatsApp": 39,
+      "reprVelocidad": 17,
+      "grados": {
+        "A": 1,
+        "B": 1,
+        "C": 13,
+        "D": 2,
+        "E": 1
+      },
+      "n_ok": 18,
+      "n_total": 18,
+      "failed_hosts": []
+    },
+    "constructoras": {
+      "revisadas": 23,
+      "legibles": 23,
+      "excluidas": 0,
+      "indice": 56,
+      "velocidad": 56,
+      "visibilidad": 60,
+      "conversion": 67,
+      "automatizacion": 40,
+      "sinPixel": 65,
+      "conPixel": 35,
+      "sinAnalytics": 39,
+      "sinWhatsApp": 65,
+      "reprVelocidad": 43,
+      "grados": {
+        "A": 0,
+        "B": 4,
+        "C": 9,
+        "D": 10,
+        "E": 0
+      },
+      "n_ok": 23,
+      "n_total": 23,
+      "failed_hosts": []
+    },
+    "cocinas-muebles": {
+      "revisadas": 25,
+      "legibles": 25,
+      "excluidas": 0,
+      "indice": 61,
+      "velocidad": 62,
+      "visibilidad": 69,
+      "conversion": 65,
+      "automatizacion": 41,
+      "sinPixel": 68,
+      "conPixel": 32,
+      "sinAnalytics": 40,
+      "sinWhatsApp": 56,
+      "reprVelocidad": 44,
+      "grados": {
+        "A": 0,
+        "B": 5,
+        "C": 15,
+        "D": 4,
+        "E": 1
+      },
+      "n_ok": 25,
+      "n_total": 25,
+      "failed_hosts": []
+    },
+    "piscinas-exteriores": {
+      "revisadas": 24,
+      "legibles": 24,
+      "excluidas": 0,
+      "indice": 60,
+      "velocidad": 59,
+      "visibilidad": 65,
+      "conversion": 74,
+      "automatizacion": 39,
+      "sinPixel": 96,
+      "conPixel": 4,
+      "sinAnalytics": 33,
+      "sinWhatsApp": 38,
+      "reprVelocidad": 25,
+      "grados": {
+        "A": 1,
+        "B": 3,
+        "C": 13,
+        "D": 6,
+        "E": 1
+      },
+      "n_ok": 24,
+      "n_total": 24,
+      "failed_hosts": []
+    },
+    "tienda-moda": {
+      "revisadas": 18,
+      "legibles": 18,
+      "excluidas": 0,
+      "indice": 62,
+      "velocidad": 55,
+      "visibilidad": 71,
+      "conversion": 67,
+      "automatizacion": 55,
+      "sinPixel": 39,
+      "conPixel": 61,
+      "sinAnalytics": 28,
+      "sinWhatsApp": 56,
+      "reprVelocidad": 61,
+      "grados": {
+        "A": 1,
+        "B": 4,
+        "C": 9,
+        "D": 3,
+        "E": 1
+      },
+      "n_ok": 18,
+      "n_total": 18,
+      "failed_hosts": []
+    },
+    "tienda-belleza": {
+      "revisadas": 15,
+      "legibles": 15,
+      "excluidas": 0,
+      "indice": 65,
+      "velocidad": 55,
+      "visibilidad": 75,
+      "conversion": 71,
+      "automatizacion": 61,
+      "sinPixel": 33,
+      "conPixel": 67,
+      "sinAnalytics": 13,
+      "sinWhatsApp": 53,
+      "reprVelocidad": 53,
+      "grados": {
+        "A": 1,
+        "B": 5,
+        "C": 7,
+        "D": 2,
+        "E": 0
+      },
+      "n_ok": 15,
+      "n_total": 15,
+      "failed_hosts": []
+    },
+    "tienda-hogar": {
+      "revisadas": 21,
+      "legibles": 21,
+      "excluidas": 0,
+      "indice": 60,
+      "velocidad": 46,
+      "visibilidad": 69,
+      "conversion": 70,
+      "automatizacion": 59,
+      "sinPixel": 52,
+      "conPixel": 48,
+      "sinAnalytics": 19,
+      "sinWhatsApp": 38,
+      "reprVelocidad": 67,
+      "grados": {
+        "A": 1,
+        "B": 4,
+        "C": 10,
+        "D": 5,
+        "E": 1
+      },
+      "n_ok": 21,
+      "n_total": 21,
+      "failed_hosts": []
+    },
+    "tienda-electronica": {
+      "revisadas": 22,
+      "legibles": 22,
+      "excluidas": 0,
+      "indice": 62,
+      "velocidad": 53,
+      "visibilidad": 69,
+      "conversion": 65,
+      "automatizacion": 60,
+      "sinPixel": 32,
+      "conPixel": 68,
+      "sinAnalytics": 23,
+      "sinWhatsApp": 64,
+      "reprVelocidad": 55,
+      "grados": {
+        "A": 0,
+        "B": 6,
+        "C": 12,
+        "D": 4,
+        "E": 0
+      },
+      "n_ok": 22,
+      "n_total": 22,
+      "failed_hosts": []
+    },
+    "tienda-alimentos": {
+      "revisadas": 18,
+      "legibles": 18,
+      "excluidas": 0,
+      "indice": 66,
+      "velocidad": 58,
+      "visibilidad": 72,
+      "conversion": 72,
+      "automatizacion": 61,
+      "sinPixel": 44,
+      "conPixel": 56,
+      "sinAnalytics": 11,
+      "sinWhatsApp": 33,
+      "reprVelocidad": 28,
+      "grados": {
+        "A": 3,
+        "B": 4,
+        "C": 7,
+        "D": 4,
+        "E": 0
+      },
+      "n_ok": 18,
+      "n_total": 18,
+      "failed_hosts": []
+    },
+    "tienda-mascotas": {
+      "revisadas": 15,
+      "legibles": 15,
+      "excluidas": 0,
+      "indice": 51,
+      "velocidad": 53,
+      "visibilidad": 57,
+      "conversion": 50,
+      "automatizacion": 42,
+      "sinPixel": 73,
+      "conPixel": 27,
+      "sinAnalytics": 60,
+      "sinWhatsApp": 73,
+      "reprVelocidad": 67,
+      "grados": {
+        "A": 0,
+        "B": 2,
+        "C": 4,
+        "D": 8,
+        "E": 1
+      },
+      "n_ok": 15,
+      "n_total": 15,
+      "failed_hosts": []
+    },
+    "restaurantes": {
+      "revisadas": 12,
+      "legibles": 12,
+      "excluidas": 0,
+      "indice": 41,
+      "velocidad": 50,
+      "visibilidad": 40,
+      "conversion": 40,
+      "automatizacion": 30,
+      "sinPixel": 100,
+      "conPixel": 0,
+      "sinAnalytics": 100,
+      "sinWhatsApp": 100,
+      "reprVelocidad": 100,
+      "grados": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 12,
+        "E": 0
+      },
+      "n_ok": 12,
+      "n_total": 12,
+      "failed_hosts": []
+    },
+    "cafeterias": {
+      "revisadas": 10,
+      "legibles": 10,
+      "excluidas": 0,
+      "indice": 57,
+      "velocidad": 50,
+      "visibilidad": 63,
+      "conversion": 62,
+      "automatizacion": 52,
+      "sinPixel": 60,
+      "conPixel": 40,
+      "sinAnalytics": 20,
+      "sinWhatsApp": 60,
+      "reprVelocidad": 70,
+      "grados": {
+        "A": 0,
+        "B": 1,
+        "C": 6,
+        "D": 2,
+        "E": 1
+      },
+      "n_ok": 10,
+      "n_total": 10,
+      "failed_hosts": []
+    },
+    "panaderias": {
+      "revisadas": 8,
+      "legibles": 8,
+      "excluidas": 0,
+      "indice": 51,
+      "velocidad": 55,
+      "visibilidad": 60,
+      "conversion": 57,
+      "automatizacion": 25,
+      "sinPixel": 62,
+      "conPixel": 38,
+      "sinAnalytics": 62,
+      "sinWhatsApp": 50,
+      "reprVelocidad": 25,
+      "grados": {
+        "A": 0,
+        "B": 1,
+        "C": 2,
+        "D": 4,
+        "E": 1
+      },
+      "n_ok": 8,
+      "n_total": 8,
+      "failed_hosts": []
+    },
+    "heladerias": {
+      "revisadas": 8,
+      "legibles": 8,
+      "excluidas": 0,
+      "indice": 55,
+      "velocidad": 54,
+      "visibilidad": 66,
+      "conversion": 55,
+      "automatizacion": 38,
+      "sinPixel": 62,
+      "conPixel": 38,
+      "sinAnalytics": 38,
+      "sinWhatsApp": 88,
+      "reprVelocidad": 38,
+      "grados": {
+        "A": 0,
+        "B": 0,
+        "C": 5,
+        "D": 3,
+        "E": 0
+      },
+      "n_ok": 8,
+      "n_total": 8,
+      "failed_hosts": []
+    },
+    "bares-discotecas": {
+      "revisadas": 5,
+      "legibles": 5,
+      "excluidas": 0,
+      "indice": 50,
+      "velocidad": 56,
+      "visibilidad": 57,
+      "conversion": 55,
+      "automatizacion": 26,
+      "sinPixel": 100,
+      "conPixel": 0,
+      "sinAnalytics": 80,
+      "sinWhatsApp": 80,
+      "reprVelocidad": 60,
+      "grados": {
+        "A": 0,
+        "B": 1,
+        "C": 0,
+        "D": 4,
+        "E": 0
+      },
+      "n_ok": 5,
+      "n_total": 5,
+      "failed_hosts": []
+    },
+    "consultoria-empresarial": {
+      "revisadas": 9,
+      "legibles": 9,
+      "excluidas": 0,
+      "indice": 60,
+      "velocidad": 57,
+      "visibilidad": 65,
+      "conversion": 65,
+      "automatizacion": 50,
+      "sinPixel": 56,
+      "conPixel": 44,
+      "sinAnalytics": 33,
+      "sinWhatsApp": 78,
+      "reprVelocidad": 33,
+      "grados": {
+        "A": 0,
+        "B": 3,
+        "C": 2,
+        "D": 4,
+        "E": 0
+      },
+      "n_ok": 9,
+      "n_total": 9,
+      "failed_hosts": []
+    },
+    "academias-cursos": {
+      "revisadas": 7,
+      "legibles": 7,
+      "excluidas": 0,
+      "indice": 58,
+      "velocidad": 64,
+      "visibilidad": 59,
+      "conversion": 57,
+      "automatizacion": 49,
+      "sinPixel": 57,
+      "conPixel": 43,
+      "sinAnalytics": 57,
+      "sinWhatsApp": 71,
+      "reprVelocidad": 57,
+      "grados": {
+        "A": 0,
+        "B": 2,
+        "C": 2,
+        "D": 3,
+        "E": 0
+      },
+      "n_ok": 7,
+      "n_total": 7,
+      "failed_hosts": []
+    },
+    "agencias-diseno": {
+      "revisadas": 9,
+      "legibles": 9,
+      "excluidas": 0,
+      "indice": 71,
+      "velocidad": 66,
+      "visibilidad": 81,
+      "conversion": 78,
+      "automatizacion": 55,
+      "sinPixel": 78,
+      "conPixel": 22,
+      "sinAnalytics": 0,
+      "sinWhatsApp": 44,
+      "reprVelocidad": 22,
+      "grados": {
+        "A": 1,
+        "B": 5,
+        "C": 2,
+        "D": 1,
+        "E": 0
+      },
+      "n_ok": 9,
+      "n_total": 9,
+      "failed_hosts": []
+    },
+    "marketing-digital": {
+      "revisadas": 9,
+      "legibles": 9,
+      "excluidas": 0,
+      "indice": 69,
+      "velocidad": 51,
+      "visibilidad": 79,
+      "conversion": 78,
+      "automatizacion": 73,
+      "sinPixel": 22,
+      "conPixel": 78,
+      "sinAnalytics": 0,
+      "sinWhatsApp": 33,
+      "reprVelocidad": 56,
+      "grados": {
+        "A": 2,
+        "B": 4,
+        "C": 2,
+        "D": 1,
+        "E": 0
+      },
+      "n_ok": 9,
+      "n_total": 9,
+      "failed_hosts": []
+    },
+    "programacion-desarrollo": {
+      "revisadas": 6,
+      "legibles": 6,
+      "excluidas": 0,
+      "indice": 59,
+      "velocidad": 56,
+      "visibilidad": 65,
+      "conversion": 65,
+      "automatizacion": 50,
+      "sinPixel": 67,
+      "conPixel": 33,
+      "sinAnalytics": 17,
+      "sinWhatsApp": 83,
+      "reprVelocidad": 67,
+      "grados": {
+        "A": 0,
+        "B": 1,
+        "C": 3,
+        "D": 2,
+        "E": 0
+      },
+      "n_ok": 6,
+      "n_total": 6,
+      "failed_hosts": []
+    }
+  },
+  "pillar": {
+    "sector-salud": {
+      "total": 104,
+      "indice": 60,
+      "sinPixel": 74,
+      "sinAnalytics": 34,
+      "sinWhatsApp": 41,
+      "gradoA": 2,
+      "grados": {
+        "A": 2,
+        "B": 21,
+        "C": 48,
+        "D": 32,
+        "E": 1
+      },
+      "sectores": [
+        {
+          "slug": "clinicas-dentales",
+          "n": 39,
+          "indice": 60,
+          "sinPixel": 82
+        },
+        {
+          "slug": "clinicas-esteticas",
+          "n": 33,
+          "indice": 63,
+          "sinPixel": 67
+        },
+        {
+          "slug": "consultorios-medicos",
+          "n": 32,
+          "indice": 58,
+          "sinPixel": 72
+        }
+      ]
+    },
+    "sector-construccion": {
+      "total": 90,
+      "indice": 60,
+      "sinPixel": 76,
+      "sinAnalytics": 39,
+      "sinWhatsApp": 50,
+      "gradoA": 2,
+      "grados": {
+        "A": 2,
+        "B": 13,
+        "C": 50,
+        "D": 22,
+        "E": 3
+      },
+      "sectores": [
+        {
+          "slug": "acabados-instaladores",
+          "n": 18,
+          "indice": 63,
+          "sinPixel": 72
+        },
+        {
+          "slug": "constructoras",
+          "n": 23,
+          "indice": 56,
+          "sinPixel": 65
+        },
+        {
+          "slug": "cocinas-muebles",
+          "n": 25,
+          "indice": 61,
+          "sinPixel": 68
+        },
+        {
+          "slug": "piscinas-exteriores",
+          "n": 24,
+          "indice": 60,
+          "sinPixel": 96
+        }
+      ]
+    },
+    "ecommerce": {
+      "total": 109,
+      "indice": 61,
+      "sinPixel": 45,
+      "sinAnalytics": 25,
+      "sinWhatsApp": 52,
+      "gradoA": 6,
+      "grados": {
+        "A": 6,
+        "B": 25,
+        "C": 49,
+        "D": 26,
+        "E": 3
+      },
+      "sectores": [
+        {
+          "slug": "tienda-moda",
+          "n": 18,
+          "indice": 62,
+          "sinPixel": 39
+        },
+        {
+          "slug": "tienda-belleza",
+          "n": 15,
+          "indice": 65,
+          "sinPixel": 33
+        },
+        {
+          "slug": "tienda-hogar",
+          "n": 21,
+          "indice": 60,
+          "sinPixel": 52
+        },
+        {
+          "slug": "tienda-electronica",
+          "n": 22,
+          "indice": 62,
+          "sinPixel": 32
+        },
+        {
+          "slug": "tienda-alimentos",
+          "n": 18,
+          "indice": 66,
+          "sinPixel": 44
+        },
+        {
+          "slug": "tienda-mascotas",
+          "n": 15,
+          "indice": 51,
+          "sinPixel": 73
+        }
+      ]
+    },
+    "alimentos-bebidas": {
+      "total": 43,
+      "indice": 50,
+      "sinPixel": 77,
+      "sinAnalytics": 60,
+      "sinWhatsApp": 77,
+      "gradoA": 0,
+      "grados": {
+        "A": 0,
+        "B": 3,
+        "C": 13,
+        "D": 25,
+        "E": 2
+      },
+      "sectores": [
+        {
+          "slug": "restaurantes",
+          "n": 12,
+          "indice": 41,
+          "sinPixel": 100
+        },
+        {
+          "slug": "cafeterias",
+          "n": 10,
+          "indice": 57,
+          "sinPixel": 60
+        },
+        {
+          "slug": "panaderias",
+          "n": 8,
+          "indice": 51,
+          "sinPixel": 62
+        },
+        {
+          "slug": "heladerias",
+          "n": 8,
+          "indice": 55,
+          "sinPixel": 62
+        },
+        {
+          "slug": "bares-discotecas",
+          "n": 5,
+          "indice": 50,
+          "sinPixel": 100
+        }
+      ]
+    },
+    "servicios-digitales": {
+      "total": 40,
+      "indice": 64,
+      "sinPixel": 55,
+      "sinAnalytics": 20,
+      "sinWhatsApp": 60,
+      "gradoA": 3,
+      "grados": {
+        "A": 3,
+        "B": 15,
+        "C": 11,
+        "D": 11,
+        "E": 0
+      },
+      "sectores": [
+        {
+          "slug": "consultoria-empresarial",
+          "n": 9,
+          "indice": 60,
+          "sinPixel": 56
+        },
+        {
+          "slug": "academias-cursos",
+          "n": 7,
+          "indice": 58,
+          "sinPixel": 57
+        },
+        {
+          "slug": "agencias-diseno",
+          "n": 9,
+          "indice": 71,
+          "sinPixel": 78
+        },
+        {
+          "slug": "marketing-digital",
+          "n": 9,
+          "indice": 69,
+          "sinPixel": 22
+        },
+        {
+          "slug": "programacion-desarrollo",
+          "n": 6,
+          "indice": 59,
+          "sinPixel": 67
+        }
+      ]
+    }
+  },
+  "master": {
+    "total_sitios": 346,
+    "indice": 59,
+    "sinPixel": 66,
+    "sector_totales": {
+      "sector-salud": 104,
+      "sector-construccion": 90,
+      "ecommerce": 109,
+      "alimentos-bebidas": 43
+    },
+    "sector_indices": {
+      "sector-salud": 60,
+      "sector-construccion": 60,
+      "ecommerce": 61,
+      "alimentos-bebidas": 50
+    },
+    "sector_sinPixel": {
+      "sector-salud": 74,
+      "sector-construccion": 76,
+      "ecommerce": 45,
+      "alimentos-bebidas": 77
+    }
+  }
+}

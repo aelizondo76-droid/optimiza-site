@@ -2,35 +2,35 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 9, legibles: 9, excluidas: 0, indice: 68,
+  revisadas: 9, legibles: 9, excluidas: 0, indice: 71,
   pilares: [
-    { k: 'Velocidad', v: 62, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 82, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 72, note: 'CTA, formularios, conversión' },
-    { k: 'Automatización', v: 51, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 66, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 81, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 78, note: 'CTA, formularios, conversión' },
+    { k: 'Automatización', v: 55, note: 'Medición y retargeting' },
   ],
-  sinPixel: 78, conPixel: 2, sinAnalytics: 11, sinWhatsApp: 56,
+  sinPixel: 78, conPixel: 22, sinAnalytics: 0, sinWhatsApp: 44, reprVelocidad: 22,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 4, cls: 'gB' },
+    { g: 'B', label: '70–79 · Bien', n: 5, cls: 'gB' },
     { g: 'C', label: '55–69 · Regular', n: 2, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 2, cls: 'gD' },
+    { g: 'D', label: '40–54 · Deficiente', n: 1, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 40, secSinPixel: 87,
+  secTotal: 40, secSinPixel: 55,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-20';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Agencias web en Costa Rica: 78% sin medición';
-const description = 'Analizamos 9 agencias de diseño web del GAM: 78% sin Meta Pixel, velocidad promedio 62/100, pero excelente en SEO. Estudio 2026.';
+const title = 'Agencias web en Costa Rica: 78% sin medición propia';
+const description = 'Analizamos 9 agencias de diseño web del GAM: 78% sin Meta Pixel, velocidad promedio 66/100, pero excelente en SEO. Estudio 2026.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-agencias-diseno.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buena es la calidad web de las agencias diseñadoras en Costa Rica?', a: 'Mixta. Paradoja: aunque diseñan bonito para otros, el 78% no tiene Meta Pixel en su propia web. Índice Optimiza promedio: 68/100 (grado B). El 44% reprueba velocidad móvil. Una agencia que no mide su propia conversión, ¿cómo asesoraría a un cliente de e-commerce?' },
-  { q: '¿Cuál es el mayor problema?', a: 'La medición. Aunque el 82% tiene SEO decente, el 78% carece de Meta Pixel. Esto significa que no pueden retargetar visitantes, no saben cuántos contactos convierten, y no pueden optimizar basado en datos. Es como conducir de noche sin faros.' },
-  { q: '¿Hay excepciones? ¿Quiénes sí miden?', a: 'Una agencia (11%) tiene Meta Pixel implementado. Esa agencia también tiene índice 91/100 (grado A+) — la mejor del lote. Correlación clara: medición = mejor rendimiento general.' },
-  { q: '¿Cómo se compara con otros sectores?', a: 'Agencias está entre e-commerce (82% sin píxel) y consultoría (100% sin píxel). Pero agencias tienen mejor SEO (82 vs 72 en consultoría), porque venden su capacidad de posicionar, no sus servicios directos.' },
+  { q: '¿Qué tan buena es la calidad web de las agencias diseñadoras en Costa Rica?', a: 'Mixta. Paradoja: aunque diseñan bonito para otros, el 78% no tiene Meta Pixel en su propia web. Índice Optimiza promedio: 71/100 (grado B). El 22% reprueba velocidad móvil. Una agencia que no mide su propia conversión, ¿cómo asesoraría a un cliente de e-commerce?' },
+  { q: '¿Cuál es el mayor problema?', a: 'La medición. Aunque el 81% tiene SEO decente, el 78% carece de Meta Pixel. Esto significa que no pueden retargetar visitantes, no saben cuántos contactos convierten, y no pueden optimizar basado en datos para la mayoría del sector.' },
+  { q: '¿Hay excepciones? ¿Quiénes sí miden?', a: '2 de 9 agencias (22%) tienen Meta Pixel implementado. Una de ellas también tiene índice 91/100 (grado A+) — el mejor del lote.' },
+  { q: '¿Cómo se compara con otros sectores?', a: 'Agencias mide peor que el promedio de servicios digitales (55% sin píxel), pero tiene mejor SEO y conversión que la mayoría de esos sub-sectores, porque venden su propia capacidad de posicionar.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para agencias, la visibilidad es crítica — si no rankean en Google, ¿cómo venden?' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 9 agencias web con dominio propio del GAM en julio de 2026, con el motor de diagnóstico de Optimiza. Todas arrojaron datos completos.' },
 ];
@@ -62,17 +62,17 @@ const plus = 'M12 5v14M5 12h14';
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} agencias web y diseño</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong>, aunque paradójicamente el 82% tiene buena visibilidad en SEO. Solo 1 agencia (11%) mide conversión correctamente, y es también la única con grado A+. Diseñan para otros, pero no se miden a sí mismas.</p>
+        <p>Analizamos <strong>{D.revisadas} agencias web y diseño</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong>, aunque paradójicamente el {D.pilares[1].v}% tiene buena visibilidad en SEO. Solo 2 de 9 agencias miden conversión con píxel propio, y una de ellas es también la de grado A+ del grupo. Diseñan para otros, pero la mayoría no se mide a sí misma.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
-        <div class="stat"><div class="sn">82<small>/100</small></div><div class="sl">SEO promedio</div></div>
+        <div class="stat"><div class="sn">{D.pilares[1].v}<small>/100</small></div><div class="sl">SEO promedio</div></div>
         <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado B)</div></div>
       </div>
       <div class="prose">
         <h2>El herrador sin zapatos: predicar sin practicar</h2>
-        <p>Las agencias web diseñan bonito. Su <a href="/analisis/glosario-digital-empresas/#seo">SEO</a> es bueno (82/100). Pero el 78% no tiene <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> en su propia web. Es la paradoja clásica: predicar sin practicar. Es como ir a un dentista que no tiene dientes, a un personal trainer que está obeso, a un nutricionista que come comida ultraprocesada. Las agencias venden "<a href="/analisis/glosario-digital-empresas/#conversion">conversión</a> optimizada" pero sus propias webs son ciegas digitalmente.</p>
+        <p>Las agencias web diseñan bonito. Su <a href="/analisis/glosario-digital-empresas/#seo">SEO</a> es bueno ({D.pilares[1].v}/100). Pero el {D.sinPixel}% no tiene <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> en su propia web. Es la paradoja clásica: predicar sin practicar. Es como ir a un dentista que no tiene dientes, a un personal trainer que está obeso, a un nutricionista que come comida ultraprocesada. Las agencias venden "<a href="/analisis/glosario-digital-empresas/#conversion">conversión</a> optimizada" pero sus propias webs son ciegas digitalmente.</p>
         <p>Peor aún: si el 78% no tiene píxel, significa que no pueden <a href="/analisis/glosario-digital-empresas/#retargeting">retargetar</a> sus propios <a href="/analisis/glosario-digital-empresas/#lead">leads</a>, no pueden recuperar prospectos que se van sin contactar, no pueden medir si su web genera dinero. Son agencias de diseño digital que no entienden cómo funciona un negocio digital.</p>
         <div class="bars">
           {D.pilares.map((p) => (
@@ -82,11 +82,11 @@ const plus = 'M12 5v14M5 12h14';
             </div>
           ))}
         </div>
-        <blockquote>Una agencia que no mide su propia web es como un contador que no usa hojas de cálculo. El 11% que sí mide (1 agencia) tiene índice 91/100. Los otros 89% promedian 62/100 en velocidad.</blockquote>
+        <blockquote>Una agencia que no mide su propia web es como un contador que no usa hojas de cálculo. El 22% que sí mide (2 agencias) incluye la de mejor índice del grupo (91/100). Las otras 7 promedian 61/100 en velocidad.</blockquote>
         <h2>SEO vs. Conversión: la brecha que venden pero no cierran</h2>
-        <p>Las agencias brillan en SEO (82/100), pero fracasan en conversión (72/100). El {D.sinPixel}% sin píxel significa: sin retargeting, sin seguimiento de leads, sin optimización del funnel. Son especialistas en llevar tráfico, pero ciegas en convertir visitantes en clientes.</p>
-        <p>Esto es crucial: una agencia sin píxel no puede responder la pregunta más importante del negocio digital: "¿De mis 1,000 visitantes mensuales, cuántos se convierten en clientes?" Sin esa respuesta, están tomando decisiones a ciegas. Venden "SEO que trae tráfico", pero si el tráfico no convierte, es tráfico muerto.</p>
-        <p>Comparado con el pilar de servicios digitales ({D.secTotal} empresas, {D.secSinPixel}% sin píxel), agencias están ligeramente mejor en SEO pero igual de malas en medición. Y eso es grave, porque el SEO sin conversión es un gasto, no una inversión.</p>
+        <p>Las agencias brillan en SEO ({D.pilares[1].v}/100) y conversión ({D.pilares[2].v}/100). Pero el {D.sinPixel}% sin píxel significa: sin retargeting, sin seguimiento de leads, sin optimización del funnel para la mayoría. Son especialistas en llevar tráfico, pero la mayoría sigue ciega para convertir visitantes en clientes medibles.</p>
+        <p>Esto es crucial: una agencia sin píxel no puede responder la pregunta más importante del negocio digital: "¿De mis 1,000 visitantes mensuales, cuántos se convierten en clientes?" Sin esa respuesta, están tomando decisiones a ciegas. Venden "SEO que trae tráfico", pero si el tráfico no se mide, es difícil saber si convierte.</p>
+        <p>Comparado con el pilar de servicios digitales ({D.secTotal} empresas, {D.secSinPixel}% sin píxel), agencias miden peor que el promedio del sector, aunque destacan en SEO y conversión.</p>
         <h2>¿Cómo saber si una agencia predica con el ejemplo?</h2>
         <p>Una verdadera agencia digital debería poder responder estas preguntas sobre su propia web:</p>
         <ul>

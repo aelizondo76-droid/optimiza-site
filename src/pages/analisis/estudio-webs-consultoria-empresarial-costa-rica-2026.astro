@@ -2,35 +2,35 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 9, legibles: 9, excluidas: 0, indice: 56,
+  revisadas: 9, legibles: 9, excluidas: 0, indice: 60,
   pilares: [
-    { k: 'Velocidad', v: 53, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 72, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 56, note: 'CTA, formularios, conversión' },
-    { k: 'Automatización', v: 35, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 57, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 65, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 65, note: 'CTA, formularios, conversión' },
+    { k: 'Automatización', v: 50, note: 'Medición y retargeting' },
   ],
-  sinPixel: 100, conPixel: 0, sinAnalytics: 56, sinWhatsApp: 78,
+  sinPixel: 56, conPixel: 44, sinAnalytics: 33, sinWhatsApp: 78,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
     { g: 'B', label: '70–79 · Bien', n: 3, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 3, cls: 'gD' },
+    { g: 'C', label: '55–69 · Regular', n: 2, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 4, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 40, secSinPixel: 87,
+  secTotal: 40, secSinPixel: 55,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'El 100% de las consultoría en CR no mide convertidores';
-const description = 'Analizamos 9 consultoría empresariales: 100% sin Meta Pixel (0 píxeles), velocidad 53/100 crítica, 0 grado A. Venden estrategia sin medir resultados.';
+const title = 'Consultoría empresarial en CR: 56% aún no mide sus leads';
+const description = 'Analizamos 9 firmas de consultoría empresarial: 56% sin Meta Pixel, índice 60/100, ninguna alcanza grado A. El 78% tampoco ofrece WhatsApp directo — el ciclo de venta largo se pierde por falta de seguimiento.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-consultoria-empresarial.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las consultoría de estrategia en Costa Rica?', a: 'Paradójica. Índice Optimiza promedio: 56/100 (grado C). El 100% sin Meta Pixel — es el peor del estudio. CERO consultoría mide a sus propios leads. Venden "estrategia de crecimiento" pero no tienen forma de medir si su web genera leads. Hipocresía corporativa a nivel empresarial.' },
-  { q: '¿Por qué el 100% sin píxel?', a: 'Probablemente por sesgo generacional: muchas consultoría son lideradas por ejecutivos mayores que ven la web como "vitrina corporativa", no como "motor de leads". No reconocen que cada contacto es un prospecto a retargetar. Falta mentalidad de crecimiento digital.' },
-  { q: '¿Hay algo que hagan bien?', a: 'SEO/Visibilidad: 72/100. Es su fortaleza. Aparecen en búsquedas "consultoría empresarial" o "empresa de consultoría". Pero sin píxel, no pueden retargetar los que buscan pero no contactan. Pérdida de oportunidad.' },
-  { q: '¿Cuál es la consecuencia?', a: 'Un prospecto grande busca "consultoría empresarial Costa Rica", visita 3 webs (de estas consultoría), y ninguna puede retargetarlo. 2 meses después, cuando decide contratar, esas 3 consultoría no pueden recuperarlo porque lo "perdieron" de vista.' },
+  { q: '¿Qué tan buenas son las consultoría de estrategia en Costa Rica?', a: 'Mixta, y mejor de lo que sugería el diagnóstico inicial. Índice Optimiza promedio: 60/100 (grado C). El 56% sigue sin Meta Pixel, pero el 44% ya lo tiene — no es la "cero medición" reportada antes. Su debilidad más consistente es otra: el 78% no ofrece WhatsApp directo, crítico en un ciclo de venta B2B tan largo.' },
+  { q: '¿Por qué se creyó antes que el 100% no tenía píxel?', a: 'El diagnóstico original solo leía el HTML estático de cada sitio. Varias consultoría instalan Meta Pixel vía Google Tag Manager, que se carga por JavaScript después de la carga inicial — invisible para ese análisis. Al leer también el contenedor de GTM, la cifra real bajó de 100% a 56% sin píxel.' },
+  { q: '¿Hay algo que hagan bien?', a: 'Visibilidad: 65/100, junto con conversión (65/100), son sus pilares más fuertes. Aparecen razonablemente en búsquedas como "consultoría empresarial Costa Rica". Pero el 56% sin píxel no puede retargetar a quien busca y no contacta de inmediato.' },
+  { q: '¿Cuál es la consecuencia real?', a: 'Un prospecto busca "consultoría de transformación digital", visita varias webs del sector, y más de la mitad no puede retargetarlo si no contacta enseguida. En un ciclo de venta de meses, ese margen de recuperación importa.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para consultoría (negocio B2B), la automatización es crítica — cada lead tarda meses en convertir y requiere múltiples touchpoints.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 9 consultoría empresariales, asesorías y firmas de consultoría del GAM en agosto de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
@@ -57,23 +57,23 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · Servicios profesionales</span>
-        <h1>El 100% de las consultoría no miden sus propios prospectos</h1>
+        <h1>Más de la mitad de las consultoría aún no mide sus propios prospectos</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} consultoría del Gran Área Metropolitana · Lectura 5 min</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} consultoría empresariales</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>100% sin Meta Pixel</strong> — es la única industria donde NINGUNA empresa mide conversión. Venden estrategia de crecimiento, pero su propia web es ciega. 0 grado A, 3 grado B, 3 grado C, 3 grado D.</p>
+        <p>Analizamos <strong>{D.revisadas} consultoría empresariales</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% sigue sin Meta Pixel</strong> — casi la mitad ya lo tiene, pero la mayoría (78%) sigue sin WhatsApp directo, crítico en un ciclo de venta B2B largo. 0 grado A, 3 grado B, 2 grado C, 4 grado D.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">100<small>%</small></div><div class="sl">sin Meta Pixel (0/9)</div></div>
-        <div class="stat"><div class="sn">53<small>/100</small></div><div class="sl">Velocidad móvil</div></div>
-        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">{D.pilares[0].v}<small>/100</small></div><div class="sl">Velocidad móvil</div></div>
+        <div class="stat"><div class="sn">{D.sinWhatsApp}<small>%</small></div><div class="sl">sin WhatsApp directo</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
-        <h2>Venden estrategia sin medir la suya</h2>
-        <p>El 100% de consultoría analizadas carece de <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>. CERO. Es la cifra más anómala del estudio: ninguna otra industria tiene 100% sin píxel. Venden "estrategia digital" a clientes, pero su propia web no tiene un pixel de <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>. Es como vender antivirus sin actualizar los antivirus.</p>
-        <p><a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio: 56/100 (grado C). <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> reprueba (53/100). Ninguna alcanza grado A. 56% no tiene Google <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a>. Venden crecimiento a otros, pero miden cero de su propio crecimiento.</p>
+        <h2>Casi la mitad ya mide su propia estrategia</h2>
+        <p>El {D.sinPixel}% de consultoría analizadas carece de <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>; el {D.conPixel}% restante sí lo tiene. Sigue siendo alto para una industria que vende "estrategia de crecimiento" a otras empresas, pero está lejos del 100% que sugería el diagnóstico original —un falso negativo del motor anterior, que no leía píxeles inyectados por Google Tag Manager.</p>
+        <p><a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio: {D.indice}/100 (grado C). <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> sigue siendo débil ({D.pilares[0].v}/100). Ninguna alcanza grado A. El {D.sinAnalytics}% no tiene Google <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a> — mejor que antes, pero todavía una de cada tres.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -82,10 +82,10 @@ const plus = 'M12 5v14M5 12h14';
             </div>
           ))}
         </div>
-        <blockquote>Una consultoría sin Meta Pixel es un médico sin estetoscopio. Supuestamente sana empresas, pero no puede auscultar su propio negocio.</blockquote>
-        <h2>El ciclo largo de B2B</h2>
-        <p>En consultoría, el ciclo de venta es largo: 3–6 meses desde primer contacto hasta contrato. Sin píxel, sin retargeting, sin automación, los prospectos se "pierden". Un CEO busca "consultoría de transformación digital", visita la web de 3 consultoría, y ninguna puede retargetarlo cuando decida buscar presupuestos.</p>
-        <p>Peor aún: 78% sin WhatsApp directo. Un prospecto que quiere hablar ahora, no puede. Tiene que llenar un formulario y esperar respuesta. Contacto perdido.</p>
+        <blockquote>Una consultoría sin Meta Pixel es un médico sin estetoscopio. Supuestamente sana empresas, pero no puede auscultar del todo su propio negocio.</blockquote>
+        <h2>El ciclo largo de B2B, y el punto donde sí se pierden prospectos</h2>
+        <p>En consultoría, el ciclo de venta es largo: 3–6 meses desde primer contacto hasta contrato. El {D.sinPixel}% sin píxel no puede retargetar a quien visita y no contacta de inmediato — y en un ciclo tan largo, eso pesa.</p>
+        <p>El punto más débil, sin embargo, es otro: {D.sinWhatsApp}% sin WhatsApp directo. Un prospecto que quiere hablar ahora, no puede. Tiene que llenar un formulario y esperar respuesta. Contacto perdido.</p>
         <h2>Distribución por calificación</h2>
         <div class="dist">
           {D.grados.map((g) => (

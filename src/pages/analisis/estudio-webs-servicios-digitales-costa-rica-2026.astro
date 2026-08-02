@@ -1,35 +1,37 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
+// Recalculado 2026-08-02 con el motor v2 (corrige falsos negativos de
+// sitemap, píxeles inyectados por GTM, y sitios bloqueados por anti-bot).
 const D = {
-  revisadas: 40, legibles: 40, excluidas: 0, indice: 60,
+  revisadas: 40, legibles: 40, excluidas: 0, indice: 64,
   pilares: [
-    { k: 'Velocidad', v: 58, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 72, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 62, note: 'CTA, formularios, conversión' },
-    { k: 'Automatización', v: 42, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 59, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 71, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 69, note: 'CTA, formularios, conversión' },
+    { k: 'Automatización', v: 56, note: 'Medición y retargeting' },
   ],
-  sinPixel: 87, conPixel: 3, sinAnalytics: 50, sinWhatsApp: 70,
+  sinPixel: 55, conPixel: 45, sinAnalytics: 20, sinWhatsApp: 60,
   grados: [
-    { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 5, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 17, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 12, cls: 'gD' },
+    { g: 'A', label: '≥ 80 · Excelente', n: 3, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 15, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 11, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 11, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Servicios digitales en Costa Rica: 87% sin píxel';
-const description = 'Analizamos 40 empresas de servicios digitales (agencias, marketing, software, educación, consultoría): 87% sin Meta Pixel, índice 60/100. Sector desmoralizado.';
+const title = 'Servicios digitales en Costa Rica: 55% aún sin píxel';
+const description = 'Analizamos 40 empresas de servicios digitales (agencias, marketing, software, educación, consultoría): 55% sin Meta Pixel, índice 64/100. El sector con mejor índice de los estudiados, con brechas desparejas por sub-sector.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-servicios-digitales.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan bueno es el sector de servicios digitales en Costa Rica?', a: 'Desmoralizado. Índice Optimiza promedio: 60/100 (grado C). El 87% sin Meta Pixel — venden soluciones digitales pero no miden la suya. Venden retargeting, Meta Pixel, automatización a clientes, pero el 87% de sus propias webs no tienen implementado. Es hipocresía sistémica del sector.' },
-  { q: '¿Cuál es el mayor problema?', a: 'La automatización: 42/100 (FALLA). Sin píxel, sin analytics en muchos casos, sin WhatsApp. El sector que más debería medir su propio negocio, es el que menos lo hace. Es como vender paracaídas sin usarlos.' },
-  { q: '¿Hay excepciones? ¿Quiénes sí miden?', a: 'Solo 1 agencia de 40 (2.5%) tiene píxel. Esa agencia tiene índice 91/100 (grado A+). Diferencia: 31 puntos de índice. Correlación perfecta: medición = mejor negocio. Pero el 87% prefiere ignorarla.' },
-  { q: '¿Cómo se distribuyen los sub-sectores?', a: 'Agencias web (mejor): 68/100. Programación: 61/100. Marketing: 59/100. Educación: 58/100. Consultoría (peor): 56/100 con 100% sin píxel. Cuanto más "empresarial B2B", peor la medición.' },
+  { q: '¿Qué tan bueno es el sector de servicios digitales en Costa Rica?', a: 'Mejor de lo reportado inicialmente. Índice Optimiza promedio: 64/100 (grado B), el más alto de los sectores estudiados. El 55% sin Meta Pixel — muy por debajo del 87% que sugería el diagnóstico original, que no leía píxeles inyectados por Google Tag Manager.' },
+  { q: '¿Cuál es el mayor problema?', a: 'La velocidad: 59/100, el pilar más débil del sector. La automatización mejoró bastante (56/100) frente a lo reportado antes.' },
+  { q: '¿Hay excepciones? ¿Quiénes sí miden?', a: 'El mejor índice del grupo es 91/100 (grado A+), con píxel activo. En total, 3 de 40 empresas alcanzan grado A y 45% del sector ya tiene Meta Pixel.' },
+  { q: '¿Cómo se distribuyen los sub-sectores?', a: 'Por índice: agencias de diseño (71/100), marketing digital (69), consultoría empresarial (60), programación (59) y academias/cursos (58). Por medición, el orden se invierte: marketing digital mide mejor (22% sin píxel) y agencias de diseño peor (78% sin píxel), pese a tener el mejor índice.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para servicios digitales, la automatización es crítica — venden lo que no implementan.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 40 empresas de servicios digitales (9 agencias web, 9 marketing, 6 programación, 7 educación, 9 consultoría) del GAM en julio-agosto de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
@@ -56,23 +58,23 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · Servicios digitales</span>
-        <h1>El 87% de empresas de servicios digitales no mide sus propios leads</h1>
+        <h1>Servicios digitales: el 55% aún no mide sus propios leads</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} empresas del Gran Área Metropolitana · Lectura 6 min</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} empresas de servicios digitales</strong> del GAM (agencias, marketing, software, educación, consultoría). Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% no tiene Meta Pixel</strong> — venden digitalización pero no implementan su propia transformación. Solo 1 empresa (2.5%) mide correctamente: tiene índice 91/100 (grado A+). Hipocresía sistémica del sector.</p>
+        <p>Analizamos <strong>{D.revisadas} empresas de servicios digitales</strong> del GAM (agencias, marketing, software, educación, consultoría). Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado B), el más alto entre los sectores estudiados. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong> — mejor que lo reportado inicialmente, pero desparejo: el sub-sector con mejor índice (agencias de diseño) es también el que peor mide.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
-        <div class="stat"><div class="sn">42<small>/100</small></div><div class="sl">Automatización (FALLA)</div></div>
+        <div class="stat"><div class="sn">{D.pilares[3].v}<small>/100</small></div><div class="sl">Automatización</div></div>
         <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
-        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado B)</div></div>
       </div>
       <div class="prose">
-        <h2>Venden lo que no usan</h2>
-        <p>El sector de servicios digitales en Costa Rica es una contradicción: venden transformación digital, <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>, <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>, <a href="/analisis/glosario-digital-empresas/#automation">automatización</a> a clientes, pero el 87% no tiene Meta Pixel en su propia web. Es hipocresía sistémica: "haz lo que yo digo, no lo que yo hago".</p>
-        <p><a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio: 60/100 (grado C). <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a>: 58/100 (deficiente). Automatización: 42/100 (FALLA crítica). Solo 1 de 40 empresas (2.5%) tiene píxel y grado A. Los otros 39 promedian 57/100.</p>
+        <h2>La paradoja no desapareció, solo cambió de forma</h2>
+        <p>El sector de servicios digitales en Costa Rica vende transformación digital, <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>, <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> y <a href="/analisis/glosario-digital-empresas/#automation">automatización</a> a sus clientes. El diagnóstico original —que no leía píxeles inyectados por Google Tag Manager— sugería que casi todo el sector no practicaba lo que vendía. La cifra real es mejor: {D.sinPixel}% sigue sin Meta Pixel, pero el resto ya mide.</p>
+        <p><a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio: {D.indice}/100 (grado B) — el más alto de los sectores estudiados. <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a>: {D.pilares[0].v}/100, el pilar más débil. Automatización: {D.pilares[3].v}/100, con mejora notable frente al diagnóstico anterior. 3 de 40 empresas ya alcanzan grado A.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -81,11 +83,11 @@ const plus = 'M12 5v14M5 12h14';
             </div>
           ))}
         </div>
-        <blockquote>El 87% del sector de servicios digitales vende soluciones digitales sin medir si funcionan en su propio negocio. Es como un personal trainer que vende planes de fitness pero está en mala condición física.</blockquote>
-        <h2>La brecha entre sub-sectores</h2>
-        <p>Agencias web encabezan (68/100). Programación sigue (61/100). Marketing está en la media (59/100). Educación baja (58/100). Consultoría está al fondo (56/100, 100% sin píxel).</p>
-        <p>Patrón: cuanto más "vendedor de soluciones empresariales", menos medición propia. Agencias diseñan para otros, al menos se miden. Consultoría vende "transformación de negocios" pero no transforma la suya.</p>
-        <h2>Distribución por calificación: 0 grado A en 40 empresas (excepto 1)</h2>
+        <blockquote>El sub-sector con mejor índice del grupo (agencias de diseño) es también el que peor mide su propia web: 78% sin píxel. Diseñar bien y medirse bien no son la misma habilidad.</blockquote>
+        <h2>La brecha entre sub-sectores ahora es sobre medición, no sobre calidad</h2>
+        <p>Por índice: agencias de diseño encabezan (71/100), seguidas de marketing digital (69), consultoría empresarial (60), programación (59) y academias/cursos (58). Todos con diferencias de solo 12 puntos entre el mejor y el peor.</p>
+        <p>Por medición es otra historia: marketing digital es el mejor (22% sin píxel), seguido de consultoría (56%) y academias (57%). Programación (67%) y, sorprendentemente, agencias de diseño (78%) son las que menos miden su propia web pese a ser las de mejor índice.</p>
+        <h2>Distribución por calificación</h2>
         <div class="dist">
           {D.grados.map((g) => (
             <div class="drow">

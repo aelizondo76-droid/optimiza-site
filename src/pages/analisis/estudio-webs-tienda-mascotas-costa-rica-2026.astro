@@ -1,12 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
-const D = { revisadas: 15, legibles: 14, indice: 56, sinPixel: 87, sinAnalytics: 80, sinWhatsApp: 67, grados: [{g:'A',n:0},{g:'B',n:3},{g:'C',n:7},{g:'D',n:3},{g:'E',n:1}] };
+const D = { revisadas: 15, legibles: 15, excluidas: 0, indice: 51, velocidad: 53, visibilidad: 57, conversion: 50, automatizacion: 42, sinPixel: 73, conPixel: 27, sinAnalytics: 60, sinWhatsApp: 73, reprVelocidad: 67, grados: [{g:'A',n:0},{g:'B',n:2},{g:'C',n:4},{g:'D',n:8},{g:'E',n:1}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-07-08';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas de mascotas en Costa Rica: 87% no mide su web';
-const description = 'Analizamos 15 tiendas de alimento y accesorios para mascotas del GAM: 87% sin Meta Pixel, 80% sin Analytics. Compra mensual, cero datos.';
+const title = 'Tiendas de mascotas en Costa Rica: 73% no mide su web';
+const description = 'Analizamos 15 tiendas de alimento y accesorios para mascotas del GAM: 73% sin Meta Pixel, 60% sin Analytics. Compra mensual, cero datos.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-mascotas.png', Astro.site).href;
 const articleLd = {
@@ -60,7 +60,7 @@ const datasetLd = {
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · E-commerce</span>
-        <h1>El 87% de las tiendas de mascotas online no mide su web</h1>
+        <h1>El 73% de las tiendas de mascotas online no mide su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas</p>
       </header>
       <div class="tldr">
@@ -69,9 +69,9 @@ const datasetLd = {
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">80<small>%</small></div><div class="sl">sin Google Analytics</div></div>
-        <div class="stat"><div class="sn">40<small>%</small></div><div class="sl">reprueba velocidad</div></div>
-        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
+        <div class="stat"><div class="sn">60<small>%</small></div><div class="sl">sin Google Analytics</div></div>
+        <div class="stat"><div class="sn">67<small>%</small></div><div class="sl">reprueba velocidad</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado D)</div></div>
       </div>
       <div class="prose">
         <h2>Cliente leal, pero fantasma</h2>

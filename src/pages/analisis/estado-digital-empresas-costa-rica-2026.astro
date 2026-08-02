@@ -3,8 +3,8 @@ import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Estado digital de empresas en Costa Rica 2026: La crisis invisible';
-const description = 'Análisis de 386 sitios: 88% sin Meta Pixel, índice 58/100. Crisis sistémica de medición que cuesta ~$122M anuales en oportunidades perdidas.';
+const title = 'Estado digital de empresas en Costa Rica 2026: la brecha de medición';
+const description = 'Análisis de 346 sitios: 66% sin Meta Pixel, índice 59/100. Brecha sistémica de medición que cuesta ~$82M anuales en oportunidades perdidas.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
 ---
@@ -18,7 +18,7 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
   <Fragment slot="head">
     <meta property="article:published_time" content={publishDate} />
     <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: title, description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, about: { '@type': 'Thing', name: 'Estado digital de las empresas en Costa Rica' } })} />
-    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Estado digital de empresas en Costa Rica 2026 — Índice Optimiza', description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 386 sitios web de empresas costarricenses en 4 sectores: salud, construcción, e-commerce y alimentos.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical })} />
+    <script type="application/ld+json" set:html={JSON.stringify({ '@context': 'https://schema.org', '@type': 'Dataset', name: 'Estado digital de empresas en Costa Rica 2026 — Índice Optimiza', description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 346 sitios web de empresas costarricenses en 4 sectores: salud, construcción, e-commerce y alimentos.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-07', spatialCoverage: { '@type': 'Place', name: 'Costa Rica' }, measurementTechnique: 'PageSpeed Insights API (Lighthouse) y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad (SEO)', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical })} />
   </Fragment>
 
   <article class="section">
@@ -26,47 +26,48 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
       <a class="back" href="/analisis/">← Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · Mercado Digital</span>
-        <h1>La crisis invisible: estado digital de empresas en Costa Rica 2026</h1>
-        <p class="art-meta">{dateHuman} · Análisis de 386 sitios · Lectura 18 min</p>
+        <h1>La brecha de medición: estado digital de empresas en Costa Rica 2026</h1>
+        <p class="art-meta">{dateHuman} · Análisis de 346 sitios · Lectura 18 min</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">Hallazgo central</p>
-        <p>Analizamos 386 sitios en 4 sectores: salud, construcción, e-commerce, alimentos. Índice Optimiza promedio: 58/100 (deficiente). El 88% sin Meta Pixel. Crisis sistémica: las empresas invierten en web pero no miden, no aprenden, no optimizan. Costo estimado: $122 millones anuales en oportunidades perdidas.</p>
+        <p>Analizamos 346 sitios en 4 sectores: salud, construcción, e-commerce, alimentos. Índice Optimiza promedio: 59/100 (deficiente). El 66% sin Meta Pixel. Brecha sistémica: buena parte de las empresas invierte en web pero no mide, no aprende, no optimiza. Costo estimado: $82 millones anuales en oportunidades perdidas.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">386</div><div class="sl">sitios analizados</div></div>
-        <div class="stat"><div class="sn">88<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">58<small>/100</small></div><div class="sl">índice Optimiza promedio</div></div>
-        <div class="stat"><div class="sn">4</div><div class="sl">sectores críticos</div></div>
+        <div class="stat"><div class="sn">346</div><div class="sl">sitios analizados</div></div>
+        <div class="stat"><div class="sn">66<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
+        <div class="stat"><div class="sn">59<small>/100</small></div><div class="sl">índice Optimiza promedio</div></div>
+        <div class="stat"><div class="sn">4</div><div class="sl">sectores estudiados</div></div>
       </div>
 
       <div class="prose">
-        <h2>Prólogo: El problema invisible</h2>
-        <p>Costa Rica es economía digital emergente. Startups crecen. Pymes migran a e-commerce. Profesionales lanzan sitios cada semana. Pero hay un problema invisible que afecta a todas por igual: no miden nada. Literalmente.</p>
-        <p>En julio 2026, analizamos 386 sitios web con el Índice Optimiza (velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%). Los resultados son perturbadores.</p>
-        <p>El 88% no tienen Meta Pixel. Eso significa: una empresa invierte dinero en web, pero cuando cliente la visita, esa empresa no sabe quién fue, de dónde vino, qué buscó, por qué se fue. Es como tienda física sin cámaras, sin vendedores, sin notas. Solo paredes ciegas.</p>
+        <h2>Prólogo: una brecha, no un colapso</h2>
+        <p>Costa Rica es economía digital emergente. Startups crecen. Pymes migran a e-commerce. Profesionales lanzan sitios cada semana. Hay un problema que afecta a buena parte de ellas: dos de cada tres todavía no miden lo que pasa en su propia web.</p>
+        <p>En julio-agosto de 2026 analizamos 346 sitios web con el Índice Optimiza (velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%). Una primera pasada del motor de diagnóstico —que no leía píxeles inyectados por Google Tag Manager, sitemaps declarados solo en robots.txt, ni sitios protegidos por anti-bot— sugería una cifra más alta. Al corregir esos falsos negativos, el panorama real es este.</p>
+        <p>El 66% no tiene Meta Pixel. Eso significa: una empresa invierte dinero en web, pero cuando el cliente la visita, esa empresa no sabe quién fue, de dónde vino, qué buscó, por qué se fue. El 34% restante sí puede responder esas preguntas — y esa brecha, no la ceguera total, es el hallazgo central de este estudio.</p>
+        <p><em>Nota de transparencia:</em> la primera versión de este estudio citaba 386 sitios analizados. Al sumar los cuatro sectores que componen la muestra (104 + 90 + 109 + 43) el total real es 346; corregimos la cifra junto con el resto de los datos.</p>
 
-        <h2>Los 4 sectores: Radiografía de la ceguera</h2>
+        <h2>Los 4 sectores: radiografía por rubro</h2>
 
-        <h3>Salud (104 sitios · Índice 56 · 94% sin píxel)</h3>
-        <p>Clínicas dentales, medicina estética, consultorios. El sector más regulado, pero digitalmente más ciego. 94% sin <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> significa: paciente potencial busca "dentista San José", ve tu sitio, se va. Nunca sabes quién fue.</p>
-        <p>Velocidad 55/100. Visibilidad 59/100. <a href="/analisis/glosario-digital-empresas/#automation">Automatización</a> 26/100 (crítica). Las clínicas no <a href="/analisis/glosario-digital-empresas/#retargeting">retargetan</a>, no automatizan follow-ups, no miden qué paciente <a href="/analisis/glosario-digital-empresas/#conversion">convierte</a>. Trabajo manual puro en era de automatización.</p>
-        <p>Implicación: dentista invierte $5k en sitio, consigue 100 visitas/mes, pero no sabe cuál paciente es "caliente" (cerca de convertir) y cuál es "frío" (curiosidad). Sin data, pierde oportunidades de retargeting inteligente.</p>
+        <h3>Salud (104 sitios · Índice 60 · 74% sin píxel)</h3>
+        <p>Clínicas dentales, medicina estética, consultorios. El sector más regulado, y todavía por detrás en medición. 74% sin <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> significa: paciente potencial busca "dentista San José", ve tu sitio, se va. La clínica no sabe quién fue.</p>
+        <p>Velocidad 60/100. Visibilidad 67/100. <a href="/analisis/glosario-digital-empresas/#automation">Automatización</a> 42/100, el pilar más débil del sector. La mayoría de clínicas no <a href="/analisis/glosario-digital-empresas/#retargeting">retargetan</a>, no automatizan follow-ups, no miden bien qué paciente <a href="/analisis/glosario-digital-empresas/#conversion">convierte</a>.</p>
+        <p>Implicación: dentista invierte $5k en sitio, consigue 100 visitas/mes, pero sin píxel no sabe cuál paciente es "caliente" (cerca de convertir) y cuál es "frío" (curiosidad). Sin data, pierde oportunidades de retargeting inteligente.</p>
 
-        <h3>Construcción (90 sitios · Índice 54 · 93% sin píxel)</h3>
-        <p>Cocinas a medida, constructoras, acabados, instaladores. Empresas que venden complejidad (diseño personalizado, timelines largos, presupuestos altos). Y 93% no pueden medir quién está interesado.</p>
-        <p>Visibilidad bien (61/100), pero velocidad deficiente (54/100) y conversión baja (52/100). Convertir en construcción requiere proceso: cliente ve, consulta, presupuesto, decide. Sin píxel, pierden registro del viaje completo. Cliente que pide 3 presupuestos y elige competidor: nunca sabes por qué.</p>
-        <p>Implicación: constructoras gastan en Google Ads, llevan clientes al sitio, pero no pueden retargetar a quienes no convirtieron. Dinero en publicidad, cero retorno medible.</p>
+        <h3>Construcción (90 sitios · Índice 60 · 76% sin píxel)</h3>
+        <p>Cocinas a medida, constructoras, acabados, instaladores. Empresas que venden complejidad (diseño personalizado, timelines largos, presupuestos altos). El 76% no puede medir quién está interesado.</p>
+        <p>Conversión sorprendentemente sólida (70/100) y visibilidad bien (67/100), pero velocidad deficiente (59/100) y automatización floja (39/100, el pilar más débil). Convertir en construcción requiere proceso: cliente ve, consulta, presupuesto, decide. Sin píxel, se pierde registro del viaje completo.</p>
+        <p>Implicación: constructoras gastan en Google Ads, llevan clientes al sitio, pero la mayoría no puede retargetar a quienes no convirtieron. Dinero en publicidad, retorno parcialmente medible.</p>
 
-        <h3>E-commerce (109 sitios · Índice 61 · 82% sin píxel)</h3>
-        <p>Mejor sector del análisis (<a href="/analisis/glosario-digital-empresas/#indice">índice</a> 61). Moda, belleza, hogar, electrónica. Porqué mejor: e-commerce invierte más en tecnología. Pero incluso con 61/100 es deficiente. Y 82% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> sigue siendo catastrófico.</p>
-        <p>Problema simple: <a href="/analisis/glosario-digital-empresas/#carrito-abandonado">carrito abandonado</a>. Cliente ve producto, agrega carrito, se arrepiente, se va. Sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, esa tienda no puede mostrar anuncio <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>: "Espera, tu bolsa está esperándote". Dinero perdido en cada visita.</p>
-        <p>Implicación: tienda online con 10k visitas/mes pierde $50k+ en carritos no recuperados (1% conversión sin retargeting vs. 2.5% con retargeting). Eso es $600k/año por no instalar código en sitio.</p>
+        <h3>E-commerce (109 sitios · Índice 61 · 45% sin píxel)</h3>
+        <p>El mejor sector del análisis, tanto en <a href="/analisis/glosario-digital-empresas/#indice">índice</a> (61) como en medición. Moda, belleza, hogar, electrónica, alimentos, mascotas. El 45% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> sigue siendo alto, pero es record de menor ceguera entre los cuatro sectores — y varios sub-nichos (electrónica, belleza) ya miden mejor que la mitad.</p>
+        <p>El problema restante sigue siendo el <a href="/analisis/glosario-digital-empresas/#carrito-abandonado">carrito abandonado</a>: cliente ve producto, agrega carrito, se arrepiente, se va. El 45% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> no puede mostrarle un anuncio de <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a> — "Espera, tu bolsa está esperándote". Para esas tiendas, es dinero perdido en cada visita que no vuelve.</p>
+        <p>Implicación: una tienda de ese 45% con 10k visitas/mes sigue perdiendo carritos no recuperados por no instalar el código. El resto del sector ya lo está capturando.</p>
 
-        <h3>Alimentos y Bebidas (43 sitios · Índice 50 · 95% sin píxel)</h3>
-        <p>Peor sector analizado. Restaurantes, cafeterías, panaderías, heladerías, bares. Ninguno alcanzó grado A. Solo 1 en grado B. Resto: C y D.</p>
-        <p>Velocidad 53/100. Visibilidad 60/100. <a href="/analisis/glosario-digital-empresas/#conversion">Conversión</a> 50/100. <a href="/analisis/glosario-digital-empresas/#automation">Automatización</a> 31/100 (prácticamente no existe). Y 95% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>.</p>
-        <p>Problema: estos negocios venden productos físicos. Sin píxel, un restaurante no sabe: "mis clientes cenan más viernes", "plato X clickeado más", "qué grupo etario me busca". Es adivinanza pura. Restaurante que vende $300k/año pero no sabe cuál plato es estrella, deja dinero sobre mesa por pura ignorancia.</p>
+        <h3>Alimentos y Bebidas (43 sitios · Índice 50 · 77% sin píxel)</h3>
+        <p>El sector con peor índice del análisis. Restaurantes, cafeterías, panaderías, heladerías, bares. Ninguno alcanza grado A; 3 llegan a grado B. El resto: C y D, con restaurantes y bares al fondo (100% sin píxel cada uno).</p>
+        <p>Velocidad 53/100. Visibilidad 56/100. <a href="/analisis/glosario-digital-empresas/#conversion">Conversión</a> 53/100. <a href="/analisis/glosario-digital-empresas/#automation">Automatización</a> 35/100, la más débil de los cuatro sectores. Y 77% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>.</p>
+        <p>Problema: estos negocios venden productos físicos. Sin píxel, un restaurante no sabe: "mis clientes cenan más viernes", "qué plato genera más clics", "qué grupo etario me busca". Restaurante que vende $300k/año pero no sabe cuál plato es estrella, deja dinero sobre la mesa por falta de datos.</p>
 
         <h2>El costo económico real</h2>
 
@@ -82,7 +83,7 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
         <p><strong>Sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>:</strong> 60k visitas × 0.8% = 480 <a href="/analisis/glosario-digital-empresas/#conversion">conversiones</a> × $500 = $240k/año.</p>
         <p><strong>Con <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>:</strong> 60k visitas × 2.0% = 1,200 <a href="/analisis/glosario-digital-empresas/#conversion">conversiones</a> × $500 = $600k/año.</p>
         <p><strong>Diferencia: $360k/año por no instalar código.</strong></p>
-        <p>Multiplicado por 340 empresas sin píxel (88% de 386): <strong>Costa Rica pierde ~$122 millones anuales</strong> en oportunidades de conversión no recuperadas. Eso es mitad del PIB sector software costarricense.</p>
+        <p>Multiplicado por 228 empresas sin píxel (66% de 346): <strong>Costa Rica pierde ~$82 millones anuales</strong> en oportunidades de conversión no recuperadas entre las empresas que aún no miden.</p>
 
         <h2>¿Por qué sucede?</h2>
 
@@ -98,8 +99,8 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
 
         <h2>Comparativa internacional</h2>
 
-        <p>HubSpot (2025): en mercados desarrollados (USA, UK, Alemania), 70% de empresas tienen píxel. En LATAM, apenas 35%. Costa Rica, basado en nuestro análisis: 12%. Estamos 3x peor que promedio regional.</p>
-        <p>Esto sugiere que Costa Rica tiene talento en software (muchos devs freelancers, startups), pero falta de sistematización en adopción de mejores prácticas. Sabemos cómo hacer píxel, pero no lo hacemos a escala.</p>
+        <p>HubSpot (2025): en mercados desarrollados (USA, UK, Alemania), 70% de empresas tienen píxel. En LATAM, apenas 35%. Costa Rica, según nuestro análisis corregido: 34% con píxel — prácticamente en línea con el promedio regional, aunque todavía lejos de los mercados desarrollados.</p>
+        <p>Esto sugiere que Costa Rica no está peor que sus vecinos regionales en adopción de medición básica, pero sí tiene una brecha clara frente a mercados desarrollados. El talento en software existe (muchos devs freelancers, startups); lo que falta es sistematizar la adopción de estas prácticas en el resto del sitio.</p>
 
         <h2>5 leyes para recuperarse</h2>
 
@@ -115,9 +116,9 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
 
         <h2>Conclusión</h2>
 
-        <p>386 sitios. 88% ciegos. Índice promedio 58/100. Pérdida estimada: $122 millones anuales en oportunidades no recuperadas.</p>
-        <p>Costa Rica tiene talento. Tiene tecnología. Tiene capital. Lo que no tiene es disciplina de medir, aprender, iterar. Mientras otros países optimizan, Costa Rica sigue lanzando sitios sin píxel, esperando magia.</p>
-        <p>Este no es problema de tecnología. Es problema de cultura. Y cultura se cambia con datos, transparencia y ejemplo.</p>
+        <p>346 sitios. 66% sin medir. Índice promedio 59/100. Pérdida estimada: $82 millones anuales en oportunidades no recuperadas entre quienes aún no miden.</p>
+        <p>Costa Rica tiene talento, tecnología y capital. Un tercio de las empresas analizadas ya lo demuestra: miden, retargetan, optimizan. La brecha real es que ese tercio todavía no es la norma.</p>
+        <p>Este no es solo un problema de tecnología. Es un problema de disciplina y ejemplo. Y se cierra con datos, transparencia y adopción, no con lanzar sitios más bonitos.</p>
         <p><strong>Tu competidor que instala píxel hoy, te vencerá mañana. No por ser más grande. Por ser más medido.</strong></p>
       </div>
 

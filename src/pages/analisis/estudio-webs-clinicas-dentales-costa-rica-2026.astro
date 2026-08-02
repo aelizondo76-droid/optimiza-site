@@ -5,27 +5,27 @@ import Scanner from '../../components/Scanner.astro';
 // ── Estudio: datos verificados (motor Optimiza, julio 2026) ──
 const D = {
   revisadas: 39,
-  legibles: 36,
-  excluidas: 3,
+  legibles: 39,
+  excluidas: 0,
   premium: 4,
-  indice: 57,
+  indice: 60,
   pilares: [
-    { k: 'Visibilidad', v: 71, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 60, note: 'CTA, formularios, WhatsApp' },
-    { k: 'Velocidad', v: 60, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Automatización', v: 26, note: 'Medición y retargeting' },
+    { k: 'Visibilidad', v: 69, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 66, note: 'CTA, formularios, WhatsApp' },
+    { k: 'Velocidad', v: 61, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 38, note: 'Medición y retargeting' },
   ],
-  sinPixel: 97,
-  sinAnalytics: 63,
-  sinWhatsApp: 58,
-  reprEvelocidad: 19,
+  sinPixel: 82,
+  sinAnalytics: 38,
+  sinWhatsApp: 49,
+  reprEvelocidad: 28,
   premIndice: 62,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 5, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 18, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 11, cls: 'gD' },
-    { g: 'E', label: '< 40 · Crítico', n: 2, cls: 'gE' },
+    { g: 'B', label: '70–79 · Bien', n: 9, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 15, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 15, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
@@ -33,8 +33,8 @@ const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const title = 'Clínicas dentales de Costa Rica: el 97% no mide su web';
-const description = 'Analizamos 36 clínicas dentales del Gran Área Metropolitana: el 97% no tiene Meta Pixel y el 63% no usa Google Analytics. Datos, metodología y hallazgos.';
+const title = 'Clínicas dentales de Costa Rica: el 82% no mide su web';
+const description = 'Analizamos 39 clínicas dentales del Gran Área Metropolitana: el 82% no tiene Meta Pixel y el 38% no usa Google Analytics. Datos, metodología y hallazgos.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-clinicas-dentales.png', Astro.site).href;
 
@@ -42,15 +42,15 @@ const ogImage = new URL('/og/estudio-clinicas-dentales.png', Astro.site).href;
 const faqs = [
   {
     q: '¿Qué tan buenas son las páginas web de las clínicas dentales en Costa Rica?',
-    a: 'Son mediocres de forma generalizada. En un estudio de 36 clínicas dentales del Gran Área Metropolitana, el Índice Optimiza promedio fue de 57 sobre 100 (grado C). Ninguna alcanzó el grado A y solo 5 llegaron a B. El punto más débil es la automatización y medición: el 97% no puede medir ni recuperar a los pacientes que visitan su web.',
+    a: 'Son mediocres de forma generalizada. En un estudio de 39 clínicas dentales del Gran Área Metropolitana, el Índice Optimiza promedio fue de 60 sobre 100 (grado C). Ninguna alcanzó el grado A y solo 9 llegaron a B. El punto más débil es la automatización y medición: el 82% no puede medir ni recuperar a los pacientes que visitan su web.',
   },
   {
     q: '¿Cuál es el problema más común en las webs de clínicas dentales?',
-    a: 'La falta de medición. El 97% de las clínicas analizadas no tiene el píxel de Meta instalado y el 63% no usa Google Analytics. Sin estas herramientas, la clínica no sabe de dónde vienen sus pacientes ni puede volver a impactar a quien visitó su web sin agendar.',
+    a: 'La falta de medición. El 82% de las clínicas analizadas no tiene el píxel de Meta instalado y el 38% no usa Google Analytics. Sin estas herramientas, la clínica no sabe de dónde vienen sus pacientes ni puede volver a impactar a quien visitó su web sin agendar.',
   },
   {
     q: '¿Las clínicas dentales premium tienen mejores páginas web?',
-    a: 'Apenas. Las clínicas premium y reconocidas del estudio promediaron 62 sobre 100, solo 5 puntos por encima del promedio general. Incluso las clínicas más caras y con más trayectoria comparten los mismos vacíos de medición y automatización.',
+    a: 'Apenas. Las clínicas premium y reconocidas del estudio promediaron 62 sobre 100, solo 2 puntos por encima del promedio general. Incluso las clínicas más caras y con más trayectoria comparten los mismos vacíos de medición y automatización.',
   },
   {
     q: '¿Qué es el Índice Optimiza?',
@@ -58,14 +58,14 @@ const faqs = [
   },
   {
     q: '¿Cómo se realizó el estudio de clínicas dentales?',
-    a: 'Se analizaron 39 clínicas dentales con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). De ellas, 36 arrojaron datos completos; 3 no pudieron leerse por bloqueo de bots o por depender de JavaScript.',
+    a: 'Se analizaron 39 clínicas dentales con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). Las 39 arrojaron datos completos y legibles.',
   },
 ];
 
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': ['Report', 'Article'],
-  headline: 'El 97% de las clínicas dentales de Costa Rica no puede medir su web',
+  headline: 'El 82% de las clínicas dentales de Costa Rica no puede medir su web',
   description,
   image: ogImage,
   datePublished: publishDate,
@@ -87,7 +87,7 @@ const datasetLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
   name: 'Diagnóstico web de clínicas dentales del GAM 2026',
-  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 36 clínicas dentales del Gran Área Metropolitana de Costa Rica.',
+  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 39 clínicas dentales del Gran Área Metropolitana de Costa Rica.',
   creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
   temporalCoverage: '2026-07',
   spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
@@ -130,7 +130,7 @@ const plus = 'M12 5v14M5 12h14';
 
       <header class="art-head">
         <span class="tag res">Investigación propia</span>
-        <h1>El 97% de las clínicas dentales de Costa Rica no puede medir su web</h1>
+        <h1>El 82% de las clínicas dentales de Costa Rica no puede medir su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} clínicas del Gran Área Metropolitana · Lectura 6 min</p>
       </header>
 
@@ -168,7 +168,7 @@ const plus = 'M12 5v14M5 12h14';
           <li>No puede <strong>volver a impactar</strong> a quien entró a su web y se fue sin agendar.</li>
           <li>Invierte en publicidad <strong>sin saber qué funciona</strong> y qué es dinero tirado.</li>
         </ul>
-        <blockquote>De las {D.legibles} clínicas analizadas, solo una tenía el píxel de Meta instalado. El resto —el {D.sinPixel}%— no puede recuperar a un solo paciente que visita su web sin agendar.</blockquote>
+        <blockquote>De las {D.legibles} clínicas analizadas, solo 7 tenían el píxel de Meta instalado. El resto —el {D.sinPixel}%— no puede recuperar a un solo paciente que visita su web sin agendar.</blockquote>
 
         <h2>Ni las mejores se salvan</h2>
         <p>Incluimos cuatro clínicas premium y reconocidas como referencia de contraste. Su promedio fue de <strong>{D.premIndice}/100</strong>: apenas <strong>{D.premIndice - D.indice} puntos</strong> por encima del promedio general. La conclusión es contundente:</p>
@@ -223,7 +223,7 @@ const plus = 'M12 5v14M5 12h14';
       </div>
 
       <div class="art-cta dark">
-        <p>¿Tu clínica está en el 97% que vuela a ciegas? Descúbrelo en 30 segundos.</p>
+        <p>¿Tu clínica está en el 82% que vuela a ciegas? Descúbrelo en 30 segundos.</p>
         <div class="scanwrap"><Scanner /></div>
       </div>
     </div>

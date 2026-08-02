@@ -2,35 +2,35 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 6, legibles: 6, excluidas: 0, indice: 61,
+  revisadas: 6, legibles: 6, excluidas: 0, indice: 59,
   pilares: [
-    { k: 'Velocidad', v: 65, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 66, note: 'SEO y datos estructurados' },
+    { k: 'Velocidad', v: 56, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 65, note: 'SEO y datos estructurados' },
     { k: 'Conversión', v: 65, note: 'CTA, formularios, conversión' },
-    { k: 'Automatización', v: 44, note: 'Medición y retargeting' },
+    { k: 'Automatización', v: 50, note: 'Medición y retargeting' },
   ],
-  sinPixel: 83, conPixel: 1, sinAnalytics: 17, sinWhatsApp: 83,
+  sinPixel: 67, conPixel: 33, sinAnalytics: 17, sinWhatsApp: 83, reprVelocidad: 67,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 0, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 5, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 1, cls: 'gD' },
+    { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 2, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 40, secSinPixel: 87,
+  secTotal: 40, secSinPixel: 55,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Empresas de software en Costa Rica: 83% sin seguimiento';
-const description = 'Analizamos 6 empresas de programación y desarrollo: 83% sin Meta Pixel, velocidad promedio 65/100, pero sin grado A. Todos grado C o D.';
+const title = 'Empresas de software en Costa Rica: 67% sin seguimiento';
+const description = 'Analizamos 6 empresas de programación y desarrollo: 67% sin Meta Pixel, velocidad floja (56/100), sin grado A. La mayoría en grado C.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-programacion-desarrollo.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buena es la calidad web de empresas de software?', a: 'Regular (61/100, grado C). Programadores saben código, pero no saben negocio web. El 83% sin Meta Pixel. 50% reprueba velocidad. Ninguna tiene grado A. Irónicamente, una empresa que vende software debería tener la web más rápida del mercado.' },
-  { q: '¿Cuál es el mayor problema?', a: 'Automatización (44/100). Sin píxel, sin analytics en muchos casos, sin WhatsApp. Venden "soluciones de software" pero su propia conversión está ciega. Es como vender antivirus sin protección.' },
+  { q: '¿Qué tan buena es la calidad web de empresas de software?', a: 'Regular (59/100, grado C). Programadores saben código, pero no siempre saben negocio web. El 67% sin Meta Pixel. El 67% reprueba velocidad. Ninguna tiene grado A. Irónicamente, una empresa que vende software debería tener la web más rápida del mercado.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Automatización (50/100) y velocidad (56/100). El 67% sigue sin píxel. Venden "soluciones de software" pero buena parte de su propia conversión está ciega.' },
   { q: '¿Las empresas de software no usan WhatsApp?', a: 'El 83% no tiene WhatsApp directo en su web. En Costa Rica, WhatsApp es el canal de contacto #1. No tenerlo es perder leads directos. Un link a WhatsApp toma 30 minutos de configuración.' },
-  { q: '¿Hay excepciones?', a: 'Velocidad está bien (65/100 promedio). Visibilidad también (66/100). El problema es la automatización: sin píxel, sin WhatsApp, sin forma de capturar y retargetar leads. Venden B2B pero no cierran contratos en línea.' },
+  { q: '¿Hay excepciones?', a: 'Visibilidad y conversión están razonablemente bien (65/100 cada una). El problema es la combinación de velocidad floja y automatización débil: sin píxel en dos de cada tres, sin WhatsApp en la mayoría. Venden B2B pero no cierran contratos en línea.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para software, la automatización es crítica — cada lead debe ser rastreado y nurturado.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 6 empresas de programación, desarrollo web y software del GAM en julio de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
@@ -62,17 +62,17 @@ const plus = 'M12 5v14M5 12h14';
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} empresas de programación y software</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% no tiene Meta Pixel</strong>. Ninguna alcanza grado A o B. Venden soluciones de software pero no pueden rastrear ni retargetar sus propios leads. Automatización: 44/100 (FALLA).</p>
+        <p>Analizamos <strong>{D.revisadas} empresas de programación y software</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% no tiene Meta Pixel</strong>. Ninguna alcanza grado A. Venden soluciones de software pero un tercio no puede rastrear ni retargetar sus propios leads. Automatización: {D.pilares[3].v}/100.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
-        <div class="stat"><div class="sn">65<small>/100</small></div><div class="sl">Velocidad promedio</div></div>
+        <div class="stat"><div class="sn">{D.pilares[0].v}<small>/100</small></div><div class="sl">Velocidad promedio</div></div>
         <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
         <h2>Excelentes en código, terribles en <a href="/analisis/glosario-digital-empresas/#conversion">conversión</a></h2>
-        <p>Las empresas de software tienen <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> y <a href="/analisis/glosario-digital-empresas/#seo">SEO</a> decentes (65 y 66/100). Pero sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> (83%), sin WhatsApp (83%), sin <a href="/analisis/glosario-digital-empresas/#automation">automatización</a> (44/100), sus webs son digitalmente ciegas. Un programador puede hacer código perfecto, pero eso no vende. En B2B software, cada contacto es una oportunidad: debe ser rastreado, nurturado, retargeado.</p>
+        <p>Las empresas de software tienen <a href="/analisis/glosario-digital-empresas/#seo">SEO</a> decente ({D.pilares[1].v}/100), pero la <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> es floja ({D.pilares[0].v}/100). Con {D.sinPixel}% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, {D.sinWhatsApp}% sin WhatsApp y <a href="/analisis/glosario-digital-empresas/#automation">automatización</a> apenas en {D.pilares[3].v}/100, buena parte de sus webs siguen digitalmente ciegas. Un programador puede hacer código perfecto, pero eso no vende. En B2B software, cada contacto es una oportunidad: debe ser rastreado, nurturado, retargeado.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -83,7 +83,7 @@ const plus = 'M12 5v14M5 12h14';
         </div>
         <blockquote>Una empresa de software sin píxel es como vender VPN sin seguridad. Saben cómo proteger datos de otros, pero los suyos propios están desprotegidos.</blockquote>
         <h2>El problema de B2B</h2>
-        <p>En B2B, el ciclo de ventas es largo. Un lead tarda semanas o meses en convertir. Sin píxel, sin retargeting, sin email automation, se pierden en el camino. El 83% sin WhatsApp directo significa que los prospectos que quieren contactar, no encuentran forma rápida de hacerlo.</p>
+        <p>En B2B, el ciclo de ventas es largo. Un lead tarda semanas o meses en convertir. Sin píxel, sin retargeting, sin email automation, se pierden en el camino. El {D.sinWhatsApp}% sin WhatsApp directo significa que los prospectos que quieren contactar, no encuentran forma rápida de hacerlo.</p>
         <p>Resultado: empresas que venden software por millones, pero pierden leads porque su web no tiene un botón de WhatsApp.</p>
         <h2>Distribución por calificación</h2>
         <div class="dist">

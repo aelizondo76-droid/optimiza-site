@@ -4,10 +4,10 @@ import Scanner from '../../components/Scanner.astro';
 const D = {
   revisadas: 5, legibles: 5, excluidas: 0, indice: 50,
   pilares: [
-    { k: 'Velocidad', v: 55, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 60, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 48, note: 'CTA, reservas, eventos' },
-    { k: 'Automatización', v: 33, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 56, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 57, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 55, note: 'CTA, reservas, eventos' },
+    { k: 'Automatización', v: 26, note: 'Medición y retargeting' },
   ],
   sinPixel: 100, conPixel: 0, sinAnalytics: 80, sinWhatsApp: 80,
   grados: [
@@ -17,22 +17,22 @@ const D = {
     { g: 'D', label: '40–54 · Deficiente', n: 4, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 43, secSinPixel: 95,
+  secTotal: 43, secSinPixel: 77,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 const title = 'Bares y discotecas: 100% sin píxel';
-const description = 'Analizamos 5 bares del GAM: índice 50/100, 100% sin Meta Pixel, 80% sin WhatsApp, 60% sin eventos schema. Sector más ciego del alimentos.';
+const description = 'Analizamos 5 bares del GAM: índice 50/100, 100% sin Meta Pixel, 80% sin WhatsApp, 100% sin Event schema. Sector más ciego del alimentos.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-bares.png', Astro.site).href;
 const faqs = [
   { q: '¿Qué tan malos son los bares en web?', a: 'Críticos: 100% sin Meta Pixel, 80% sin WhatsApp, 80% sin analytics. Índice 50/100. Es como un cantinero que no sabe quién es cliente habitual, cuál es el trago favorito, a qué hora llena el bar. Todo es desorden.' },
   { q: '¿Cuál es el mayor problema?', a: '100% sin píxel. Un cliente llama para reserva privada, se va sin reservar, nunca puede ser retargeado. Para eventos, NO hay Event schema — Google no entiende que tienes "DJ Night Viernes 10pm". Es invisibilidad total.' },
-  { q: '¿Hay algún bar que sea excepcional?', a: 'Republik Costa Rica tiene grado B (70/100). Probablemente porque gestiona reservas y eventos de forma profesional. Los otros 4, grado D. Es la diferencia entre "tener web" y "vender por web".' },
+  { q: '¿Hay algún bar que sea excepcional?', a: 'Uno de los 5 bares analizados (no revelamos identidad) alcanza grado B (70/100), probablemente porque gestiona reservas y eventos de forma más profesional. Los otros 4 quedan en grado D. Es la diferencia entre "tener web" y "vender por web".' },
   { q: '¿Por qué sin Event schema es problema?', a: 'Con schema, Google entiende: "Bar X tiene DJ Night viernes a las 10pm, cover $10". Sin ella, Google ve una web genérica. Clientes que buscan "DJ friday San José" no te encuentran.' },
   { q: '¿Qué debería medir un bar?', a: 'Cuántos buscan eventos viernes vs sábado, quién hace reserva, duración promedio de estadía, consumo promedio por cliente. Sin píxel, imposible. Están ciegos.' },
-  { q: '¿Cómo se analizaron?', a: 'Se escanearon 5 bares, discotecas y cantinas del GAM en agosto de 2026. Castro\'s Bar, Utopía Club, Republik, etc.' },
+  { q: '¿Cómo se analizaron?', a: 'Se escanearon 5 bares, discotecas y cantinas del GAM en agosto de 2026, con un motor de diagnóstico propio (no publicamos identidades individuales).' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El estado de los bares online en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['bares Costa Rica', 'discoteca online', 'reserva eventos', 'nightlife'], about: { '@type': 'Thing', name: 'Bares y discotecas del GAM' } };
 const datasetLd = { '@context': 'https://schema.org', '@type': 'Dataset', name: 'Diagnóstico web de bares 2026', description: 'Índice Optimiza de 5 bares y discotecas del GAM.', creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, temporalCoverage: '2026-08', spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' }, measurementTechnique: 'PageSpeed Insights API y análisis de HTML', variableMeasured: ['Velocidad', 'Visibilidad', 'Conversión', 'Automatización', 'Índice Optimiza'], isAccessibleForFree: true, license: 'https://optimizahq.com/legal/licencia-datos/', datePublished: publishDate, dateModified: publishDate, url: canonical };

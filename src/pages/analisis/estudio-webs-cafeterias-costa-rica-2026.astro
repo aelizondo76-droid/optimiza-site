@@ -2,36 +2,36 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 10, legibles: 10, excluidas: 0, indice: 52,
+  revisadas: 10, legibles: 10, excluidas: 0, indice: 57,
   pilares: [
-    { k: 'Velocidad', v: 42, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Visibilidad', v: 65, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 61, note: 'CTA, pedidos, conversión' },
-    { k: 'Automatización', v: 37, note: 'Medición y retargeting' },
+    { k: 'Velocidad', v: 50, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Visibilidad', v: 63, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 62, note: 'CTA, pedidos, conversión' },
+    { k: 'Automatización', v: 52, note: 'Medición y retargeting' },
   ],
-  sinPixel: 100, conPixel: 0, sinAnalytics: 40, sinWhatsApp: 60,
+  sinPixel: 60, conPixel: 40, sinAnalytics: 20, sinWhatsApp: 60,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 0, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 7, cls: 'gD' },
-    { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
+    { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 6, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 2, cls: 'gD' },
+    { g: 'E', label: '< 40 · Crítico', n: 1, cls: 'gE' },
   ],
-  secTotal: 43, secSinPixel: 95,
+  secTotal: 43, secSinPixel: 77,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Cafeterías Costa Rica: 90% reprueba velocidad';
-const description = 'Analizamos 10 cafeterías: índice 52/100, 100% sin píxel, 90% reprueba velocidad móvil (peor métrica del sector alimentario). Un cliente con prisa que carga tu web y tarda 5s, se va.';
+const title = 'Cafeterías Costa Rica: 70% reprueba velocidad';
+const description = 'Analizamos 10 cafeterías: índice 57/100, 60% sin píxel, 70% reprueba velocidad móvil (la métrica más débil del sector alimentario). Un cliente con prisa que carga tu web y tarda 5s, se va.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-cafeterias.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan malas son las cafeterías en web?', a: 'Críticas en velocidad: 90% reprueba (peor que restaurantes). Índice 52/100 (grado C). El 100% sin píxel significa: cliente entra, no puede hacer pedido online, se va a Starbucks. Sin medición, no saben cuántos clientes potenciales pierden cada día.' },
-  { q: '¿Cuál es el mayor problema?', a: 'Velocidad: 42/100 es catastrófico. Un cliente que busca "café cerca de mí" en Google, abre tu web en móvil, carga en 5+ segundos, y cambia a otra cafetería. Es como un barista que tarda 15 minutos en hacer un espresso — el cliente se va.' },
-  { q: '¿Por qué 90% reprueba velocidad?', a: 'Probablemente por imágenes de café sin comprimir. Fotos bonitas pero pesadas. La web es hermosa pero lenta. En un sitio de café, el 80% del tráfico es móvil: gente buscando dónde tomar café. Si cargas lento en móvil, pierdes ese cliente.' },
-  { q: '¿Hay excepciones?', a: '3 cafeterías alcanzaron grado C (55-69). Café Rojo, Café a la Moda, De Café en Café. Los otros 7, grado D. Ninguno tiene píxel, así que ninguno puede retargetar.' },
-  { q: '¿Qué debería medir una cafetería?', a: 'Cuántos clientes buscan "café espresso San José" en Google y llegan a tu web. De esos, cuántos compran un suscriptor mensual o hacen un pedido. Sin píxel, esa cifra es cero — están ciegos a su propio negocio.' },
+  { q: '¿Qué tan malas son las cafeterías en web?', a: 'Críticas en velocidad: 70% reprueba (peor que restaurantes). Índice 57/100 (grado C). El 60% sin píxel significa: cliente entra, no puede hacer pedido online, se va a Starbucks. Sin medición, no saben cuántos clientes potenciales pierden cada día.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Velocidad: 50/100 en promedio, la más débil de los cuatro pilares. Un cliente que busca "café cerca de mí" en Google, abre tu web en móvil, carga en 5+ segundos, y cambia a otra cafetería. Es como un barista que tarda 15 minutos en hacer un espresso — el cliente se va.' },
+  { q: '¿Por qué 70% reprueba velocidad?', a: 'Probablemente por imágenes de café sin comprimir. Fotos bonitas pero pesadas. La web es hermosa pero lenta. En un sitio de café, el 80% del tráfico es móvil: gente buscando dónde tomar café. Si cargas lento en móvil, pierdes ese cliente.' },
+  { q: '¿Hay excepciones?', a: '6 de las 10 cafeterías alcanzaron grado C (55-69) y una llegó a grado B. Las otras 3 quedaron en D o E. El 40% sí tiene píxel de Meta, así que ese grupo ya puede retargetar a quien visitó su web.' },
+  { q: '¿Qué debería medir una cafetería?', a: 'Cuántos clientes buscan "café espresso San José" en Google y llegan a tu web. De esos, cuántos compran un suscriptor mensual o hacen un pedido. El 60% sin píxel no puede responder esa pregunta — están ciegos a esa parte de su negocio.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 10 cafeterías del GAM (Café 1820, Café Britt, Café de Altura, etc.) en agosto de 2026 con el motor de diagnóstico de Optimiza.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El estado de las cafeterías en línea en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['cafeterías Costa Rica', 'café online', 'pedidos café', 'suscripción café'], about: { '@type': 'Thing', name: 'Cafeterías del GAM' } };
@@ -57,23 +57,23 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · Gastronomía</span>
-        <h1>Cafeterías: 90% reprueba velocidad</h1>
+        <h1>Cafeterías: 70% reprueba velocidad</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} cafeterías del Gran Área Metropolitana · Lectura 5 min</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} cafeterías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>90% reprueba velocidad móvil</strong> — la peor métrica del sector alimentario. El <strong>100% sin Meta Pixel</strong>. Es como un barista que tarda 15 minutos en hacer un espresso — el cliente se cansa y se va a Starbucks.</p>
+        <p>Analizamos <strong>{D.revisadas} cafeterías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>70% reprueba velocidad móvil</strong> — la métrica más débil del sector alimentario. El <strong>60% sigue sin Meta Pixel</strong>. Es como un barista que tarda 15 minutos en hacer un espresso — el cliente se cansa y se va a Starbucks.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">90<small>%</small></div><div class="sl">reprueba velocidad móvil</div></div>
-        <div class="stat"><div class="sn">100<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
-        <div class="stat"><div class="sn">42<small>/100</small></div><div class="sl">Velocidad (catastrófica)</div></div>
+        <div class="stat"><div class="sn">70<small>%</small></div><div class="sl">reprueba velocidad móvil</div></div>
+        <div class="stat"><div class="sn">60<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">50<small>/100</small></div><div class="sl">Velocidad (pilar más débil)</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
         <h2>Fotos bonitas, sitios lentos: como un barista lento</h2>
         <p>Las cafeterías venden experiencia. La web debería reflejar eso: fotos de café artesanal, descripción de orígenes, storytelling del tostador. Pero en lugar de eso, cargan en 5+ segundos en móvil.</p>
-        <p>Es la peor métrica del sector alimentario: 90% reprueba <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a>. Un cliente en la calle buscando "café cerca" en Google, abre tu web, ve que tarda, y cierra. Va a Starbucks en lugar de tu café artesanal. Sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, no puedes ni retargetarlo después.</p>
+        <p>Es la métrica más débil del sector alimentario: 70% reprueba <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a>. Un cliente en la calle buscando "café cerca" en Google, abre tu web, ve que tarda, y cierra. Va a Starbucks en lugar de tu café artesanal. El 60% que sigue sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> no puede ni retargetarlo después.</p>
         <p>Es como ir a una cafetería donde el barista es amable, pero tarda 15 minutos en hacer un espresso. El cliente se cansa y se va. La experiencia importa más que la calidad si la ejecución es lenta.</p>
         <div class="bars">
           {D.pilares.map((p) => (

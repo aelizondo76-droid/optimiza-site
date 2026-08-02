@@ -4,34 +4,34 @@ import Scanner from '../../components/Scanner.astro';
 const D = {
   revisadas: 7, legibles: 7, excluidas: 0, indice: 58,
   pilares: [
-    { k: 'Velocidad', v: 68, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Velocidad', v: 64, note: 'PageSpeed móvil (Lighthouse)' },
     { k: 'Visibilidad', v: 59, note: 'SEO y datos estructurados' },
     { k: 'Conversión', v: 57, note: 'CTA, formularios, conversión' },
-    { k: 'Automatización', v: 44, note: 'Medición y retargeting' },
+    { k: 'Automatización', v: 49, note: 'Medición y retargeting' },
   ],
-  sinPixel: 86, conPixel: 1, sinAnalytics: 57, sinWhatsApp: 71,
+  sinPixel: 57, conPixel: 43, sinAnalytics: 57, sinWhatsApp: 71,
   grados: [
-    { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 1, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 3, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 2, cls: 'gD' },
+    { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 2, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 2, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 3, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 40, secSinPixel: 87,
+  secTotal: 40, secSinPixel: 55,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Plataformas de cursos online: 86% sin retargeting';
-const description = 'Analizamos 7 academias y plataformas de educación digital: 86% sin Meta Pixel, 1 grado A, velocidad 68/100, pero faltan datos estructurados.';
+const title = 'Plataformas de cursos online: 57% sin retargeting';
+const description = 'Analizamos 7 academias y plataformas de educación digital: 57% sin Meta Pixel, ninguna alcanza grado A, velocidad 64/100, pero faltan datos estructurados.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-academias-cursos.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las plataformas educativas online en Costa Rica?', a: 'Mixta. Índice Optimiza promedio: 58/100 (grado C). Velocidad es su fortaleza (68/100), pero el 86% no tiene Meta Pixel para retargetar estudiantes que abandonan. Solo 1 academia tiene grado A (76/100). Venden educación online, pero pierden inscritos porque su web no retargeta.' },
-  { q: '¿Cuál es el mayor problema?', a: 'Datos estructurados: el 100% carece de esquema educativo (Course, CourseInstance, etc.). Google no entiende qué cursos ofrecen. Además, sin píxel, no pueden rastrear "beginners que vieron el curso pero no se inscribieron" y recuperarlos con anuncios.' },
-  { q: '¿Hay excepciones buenas?', a: 'Una academia tiene índice 76/100 (grado B), otra 71/100 (grado B). Ambas tienen velocidad decente (>70). El problema es que incluso las buenas (86% de ellas) carecen de Meta Pixel. Solo 1 lo tiene.' },
-  { q: '¿En qué se diferencian de otros sectores?', a: 'Academias tienen mejor velocidad (68/100) que marketing (52/100) o consultoría (53/100). Pero la visibilidad es peor (59/100 vs 78/100 en marketing). Y todas necesitan retargeting porque un estudiante tarda días en decidirse a inscribirse.' },
-  { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para educación, la visibilidad es crítica — el 57% de academias no aparece bien en búsquedas de "cursos online Costa Rica".' },
+  { q: '¿Qué tan buenas son las plataformas educativas online en Costa Rica?', a: 'Mixta. Índice Optimiza promedio: 58/100 (grado C). Velocidad es su fortaleza relativa (64/100), pero el 57% no tiene Meta Pixel para retargetar estudiantes que abandonan. Ninguna academia alcanza grado A; la mejor llega a 74/100 (grado B). Venden educación online, pero pierden inscritos porque su web no retargeta.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Datos estructurados: el 100% carece de esquema educativo (Course, CourseInstance, etc.). Google no entiende qué cursos ofrecen. Además, el 57% sin píxel no puede rastrear "estudiantes que vieron el curso pero no se inscribieron" y recuperarlos con anuncios.' },
+  { q: '¿Hay excepciones buenas?', a: 'Dos academias alcanzan grado B: 74/100 y 71/100. Ambas tienen mejor velocidad que el resto. El problema es que incluso las mejores no están exentas del vacío de medición: el 57% del sector sigue sin Meta Pixel.' },
+  { q: '¿En qué se diferencian de otros sectores?', a: 'Academias tienen mejor velocidad (64/100) que marketing digital o consultoría empresarial. Pero la visibilidad es peor (59/100 vs 72-82 en otros sectores). Y todas necesitan retargeting porque un estudiante tarda días en decidirse a inscribirse.' },
+  { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para educación, la visibilidad es crítica — más de la mitad de las academias no aparece bien en búsquedas de "cursos online Costa Rica".' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 7 academias, universidades online y plataformas de educación digital del GAM en agosto de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'El estado de las academias y cursos online en Costa Rica', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical, keywords: ['cursos online', 'academia digital', 'educación Costa Rica', 'plataforma e-learning', 'inscripción'], about: { '@type': 'Thing', name: 'Plataformas de educación digital del GAM' } };
@@ -62,7 +62,7 @@ const plus = 'M12 5v14M5 12h14';
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} plataformas educativas y academias</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong> para retargetar estudiantes interesados. El 100% carece de esquema Course (datos estructurados educativos). Solo 1 academia tiene grado A. Velocidad es buena (68/100), pero la automatización es crítica para educación.</p>
+        <p>Analizamos <strong>{D.revisadas} plataformas educativas y academias</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene Meta Pixel</strong> para retargetar estudiantes interesados. El 100% carece de esquema Course (datos estructurados educativos). Ninguna academia alcanza grado A; dos llegan a grado B. Velocidad es decente (64/100), pero la automatización sigue siendo crítica para educación.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
@@ -72,8 +72,8 @@ const plus = 'M12 5v14M5 12h14';
       </div>
       <div class="prose">
         <h2>Inscritos que se escapan</h2>
-        <p>El 86% de academias online no tiene <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>. Significa: un estudiante visita "Curso de Marketing Digital", sale sin inscribirse, y desaparece. Sin píxel, no puede ser retargeado. 3 días después, cuando cae el precio, la academia no sabe cómo recuperarlo.</p>
-        <p><a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> es buena (68/100), lo que ayuda. Pero sin <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>, cada visitante perdido es dinero perdido. Una academia que pierde 20 inscritos mensuales por abandono = $5,000+ en ingresos anuales sin rastrear.</p>
+        <p>El 57% de academias online no tiene <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>. Significa: un estudiante visita "Curso de Marketing Digital", sale sin inscribirse, y desaparece. Sin píxel, no puede ser retargeado. 3 días después, cuando cae el precio, la academia no sabe cómo recuperarlo.</p>
+        <p><a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> es decente (64/100), lo que ayuda. Pero sin <a href="/analisis/glosario-digital-empresas/#retargeting">retargeting</a>, cada visitante perdido es dinero perdido. Una academia que pierde 20 inscritos mensuales por abandono = $5,000+ en ingresos anuales sin rastrear.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -85,7 +85,7 @@ const plus = 'M12 5v14M5 12h14';
         <blockquote>Un curso cuesta $50–$200. Si la academia pierde 20 interesados mensuales sin píxel, eso es $12,000–$48,000 anuales en ingresos no recuperados. Todo por no instalar Meta Pixel.</blockquote>
         <h2>Schema Course: la brecha invisible</h2>
         <p>El 100% de academias carece de esquema educativo (Course, CourseInstance, Instructor). Resultado: Google no entiende qué cursos ofrecen. Un buscador que quiere "Curso de Python" no ve estas academias en los resultados ricos.</p>
-        <p>Comparado con servicios digitales (87% sin píxel), educación está igual en medición pero peor en visibilidad: 59/100 vs 72-82 en otros sectores.</p>
+        <p>Comparado con servicios digitales (55% sin píxel), educación mide un poco peor y también pierde en visibilidad: 59/100 vs 72-82 en otros sectores.</p>
         <h2>Distribución por calificación</h2>
         <div class="dist">
           {D.grados.map((g) => (

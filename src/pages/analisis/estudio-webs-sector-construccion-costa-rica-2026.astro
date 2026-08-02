@@ -1,26 +1,28 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
+// Recalculado 2026-08-02 con el motor v2 (corrige falsos negativos de
+// sitemap, píxeles inyectados por GTM, y sitios bloqueados por anti-bot).
 const D = {
-  total: 90, legibles: 85, indice: 59,
-  sinPixel: 93, sinAnalytics: 56, sinWhatsApp: 56, gradoA: 0,
+  total: 90, legibles: 90, indice: 60,
+  sinPixel: 76, sinAnalytics: 39, sinWhatsApp: 50, gradoA: 2,
   sectores: [
-    { name: 'Acabados e instaladores', slug: 'estudio-webs-acabados-instaladores-costa-rica-2026', n: 18, indice: 61, sinPixel: 94, note: 'Buena visibilidad, pero lead-gen sin medir.' },
-    { name: 'Cocinas y muebles a medida', slug: 'estudio-webs-cocinas-muebles-costa-rica-2026', n: 25, indice: 59, sinPixel: 88, note: 'Producto hermoso, web que no capta el lead.' },
-    { name: 'Piscinas y exteriores', slug: 'estudio-webs-piscinas-exteriores-costa-rica-2026', n: 24, indice: 58, sinPixel: 95, note: 'Venden el sueño, sin medir el deseo.' },
-    { name: 'Constructoras', slug: 'estudio-webs-constructoras-costa-rica-2026', n: 23, indice: 57, sinPixel: 96, note: 'Proyectos de millones, medición cero.' },
+    { name: 'Acabados e instaladores', slug: 'estudio-webs-acabados-instaladores-costa-rica-2026', n: 18, indice: 63, sinPixel: 72, note: 'Buena visibilidad; todavía uno de cada tres no mide.' },
+    { name: 'Cocinas y muebles a medida', slug: 'estudio-webs-cocinas-muebles-costa-rica-2026', n: 25, indice: 61, sinPixel: 68, note: 'Producto hermoso, un tercio sin captar el lead.' },
+    { name: 'Piscinas y exteriores', slug: 'estudio-webs-piscinas-exteriores-costa-rica-2026', n: 24, indice: 60, sinPixel: 96, note: 'Venden el sueño, casi ninguno mide el deseo.' },
+    { name: 'Constructoras', slug: 'estudio-webs-constructoras-costa-rica-2026', n: 23, indice: 56, sinPixel: 65, note: 'Proyectos de millones, medición todavía floja.' },
   ],
 };
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Webs del sector construcción en Costa Rica: 93% no mide';
-const description = 'Analizamos 90 empresas de construcción del GAM —cocinas, constructoras, acabados y piscinas—. El 93% no puede medir su web. El estudio completo, por sub-nicho.';
+const title = 'Webs del sector construcción en Costa Rica: 76% no mide';
+const description = 'Analizamos 90 empresas de construcción del GAM —cocinas, constructoras, acabados y piscinas—. El 76% no puede medir su web. El estudio completo, por sub-nicho.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-sector-construccion.png', Astro.site).href;
 const faqs = [
-  { q: '¿Cómo están las páginas web del sector construcción en Costa Rica?', a: 'Deficientes en medición. Analizamos 90 empresas de construcción del Gran Área Metropolitana (cocinas, constructoras, acabados y piscinas): el Índice Optimiza promedio fue de 59 sobre 100 y ninguna alcanzó el grado A. El 93% no tiene el píxel de Meta y el 56% no usa Google Analytics.' },
-  { q: '¿Cuál es el problema más común de las empresas de construcción en su web?', a: 'La falta de medición. El 93% no puede medir ni recuperar a los prospectos que visitan su web, porque no tienen instaladas herramientas como el píxel de Meta o Google Analytics. Invierten en proyectos visuales sin saber qué genera cotizaciones.' },
-  { q: '¿Qué sub-nicho de construcción tiene las mejores webs?', a: 'Los instaladores de acabados, con un Índice Optimiza promedio de 61 gracias a su buena visibilidad en Google. Le siguen cocinas y muebles (59), piscinas (58) y constructoras (57). Todos comparten el mismo vacío de medición.' },
+  { q: '¿Cómo están las páginas web del sector construcción en Costa Rica?', a: 'Deficientes en medición, aunque menos que lo reportado inicialmente. Analizamos 90 empresas de construcción del Gran Área Metropolitana (cocinas, constructoras, acabados y piscinas): el Índice Optimiza promedio fue de 60 sobre 100 y 2 alcanzaron el grado A. El 76% no tiene el píxel de Meta y el 39% no usa Google Analytics.' },
+  { q: '¿Cuál es el problema más común de las empresas de construcción en su web?', a: 'La falta de medición. El 76% no puede medir ni recuperar a los prospectos que visitan su web, porque no tienen instaladas herramientas como el píxel de Meta o Google Analytics. Invierten en proyectos visuales sin saber qué genera cotizaciones.' },
+  { q: '¿Qué sub-nicho de construcción tiene las mejores webs?', a: 'Los instaladores de acabados, con un Índice Optimiza promedio de 63 gracias a su buena visibilidad en Google. Le siguen cocinas y muebles (61), piscinas (60) y constructoras (56). Piscinas es la excepción en medición: 96% sin píxel, muy por encima del resto.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Una calificación de 0 a 100 que resume la salud de un sitio web en cuatro pilares: velocidad (30%), visibilidad o SEO (30%), conversión (20%) y automatización o medición (20%). Se calcula con la API de PageSpeed Insights de Google más un análisis del HTML.' },
   { q: '¿Cómo se realizó el estudio del sector construcción?', a: 'Se analizaron 90 empresas de construcción con dominio propio del Gran Área Metropolitana en julio de 2026, en cuatro estudios independientes (cocinas y muebles, constructoras, acabados e instaladores, piscinas y exteriores), con el motor de diagnóstico de Optimiza: PageSpeed Insights API y análisis de HTML.' },
 ];
@@ -52,7 +54,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.total} empresas de construcción</strong> del Gran Área Metropolitana en cuatro sub-nichos —cocinas y muebles, constructoras, acabados y piscinas—. El Índice Optimiza promedio fue de <strong>{D.indice}/100</strong> y ninguna alcanzó el grado A. El hallazgo es transversal: <strong>el {D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta) y el {D.sinAnalytics}% no usa Google Analytics.</p>
+        <p>Analizamos <strong>{D.total} empresas de construcción</strong> del Gran Área Metropolitana en cuatro sub-nichos —cocinas y muebles, constructoras, acabados y piscinas—. El Índice Optimiza promedio fue de <strong>{D.indice}/100</strong> y solo {D.gradoA} de {D.total} alcanzaron el grado A. El hallazgo sigue siendo transversal: <strong>el {D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta) y el {D.sinAnalytics}% no usa Google Analytics.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.total}</div><div class="sl">empresas de construcción analizadas</div></div>
@@ -107,7 +109,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
         ))}
       </div>
       <div class="art-cta dark">
-        <p>¿Tu empresa está en el 93% que no mide? Descubrilo gratis en 30 segundos.</p>
+        <p>¿Tu empresa está en el 76% que no mide? Descubrilo gratis en 30 segundos.</p>
         <div class="scanwrap"><Scanner /></div>
       </div>
     </div>

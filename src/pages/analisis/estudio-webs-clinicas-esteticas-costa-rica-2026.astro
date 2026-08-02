@@ -5,53 +5,53 @@ import Scanner from '../../components/Scanner.astro';
 // ── Estudio: datos verificados (motor Optimiza, julio 2026) ──
 const D = {
   revisadas: 33,
-  legibles: 30,
-  excluidas: 3,
+  legibles: 33,
+  excluidas: 0,
   indice: 63,
   pilares: [
-    { k: 'Conversión', v: 72, note: 'CTA, formularios, WhatsApp' },
-    { k: 'Visibilidad', v: 71, note: 'SEO y datos estructurados' },
-    { k: 'Velocidad', v: 64, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Automatización', v: 39, note: 'Medición y retargeting' },
+    { k: 'Conversión', v: 74, note: 'CTA, formularios, WhatsApp' },
+    { k: 'Visibilidad', v: 70, note: 'SEO y datos estructurados' },
+    { k: 'Velocidad', v: 60, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 47, note: 'Medición y retargeting' },
   ],
-  sinPixel: 90,
-  conPixel: 3,
-  sinAnalytics: 40,
-  sinWhatsApp: 20,
-  reprEvelocidad: 21,
+  sinPixel: 67,
+  conPixel: 33,
+  sinAnalytics: 30,
+  sinWhatsApp: 21,
+  reprEvelocidad: 42,
   grados: [
-    { g: 'A', label: '≥ 80 · Excelente', n: 1, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 8, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 14, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 10, cls: 'gD' },
+    { g: 'A', label: '≥ 80 · Excelente', n: 2, cls: 'gA' },
+    { g: 'B', label: '70–79 · Bien', n: 6, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 18, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 7, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
   // Tesis transversal (dental + estéticas + médicos)
   saludTotal: 104,
-  saludSinPixel: 94,
+  saludSinPixel: 74,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const title = 'Medicina estética en Costa Rica: el 90% no mide su web';
-const description = 'Analizamos 33 clínicas de medicina estética del Gran Área Metropolitana: se ven bien y convierten, pero el 90% no tiene Meta Pixel. Datos y metodología.';
+const title = 'Medicina estética en Costa Rica: el 67% no mide su web';
+const description = 'Analizamos 33 clínicas de medicina estética del Gran Área Metropolitana: se ven bien y convierten, pero el 67% no tiene Meta Pixel. Datos y metodología.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-clinicas-esteticas.png', Astro.site).href;
 
 const faqs = [
   {
     q: '¿Qué tan buenas son las páginas web de las clínicas de medicina estética en Costa Rica?',
-    a: 'Son mejores que el promedio del sector salud, pero con un vacío grave. En un estudio de 33 clínicas de medicina estética del Gran Área Metropolitana, el Índice Optimiza promedio fue de 63 sobre 100 (grado C). Se ven bien y convierten bien, pero el 90% no puede medir ni recuperar a los pacientes que visitan su web.',
+    a: 'Son mejores que el promedio del sector salud, pero con un vacío grave. En un estudio de 33 clínicas de medicina estética del Gran Área Metropolitana, el Índice Optimiza promedio fue de 63 sobre 100 (grado C). Se ven bien y convierten bien, pero el 67% no puede medir ni recuperar a los pacientes que visitan su web.',
   },
   {
     q: '¿Cuál es el problema más común en las webs de clínicas estéticas?',
-    a: 'La falta de medición. El 90% de las clínicas estéticas analizadas no tiene el píxel de Meta instalado (solo 3 de 33) y el 40% no usa Google Analytics. Invierten en verse premium, pero sin saber qué campañas funcionan ni poder volver a impactar a quien visitó su web.',
+    a: 'La falta de medición. El 67% de las clínicas estéticas analizadas no tiene el píxel de Meta instalado (solo el 33% sí lo tiene) y el 30% no usa Google Analytics. Invierten en verse premium, pero sin saber qué campañas funcionan ni poder volver a impactar a quien visitó su web.',
   },
   {
     q: '¿Las webs de estética son mejores que las de otras clínicas?',
-    a: 'Sí en forma, no en fondo. Comparadas con las clínicas dentales, las estéticas cargan mejor, convierten más y casi todas tienen WhatsApp. Pero comparten exactamente el mismo punto ciego: la medición. Entre clínicas dentales y estéticas del GAM, cerca del 94% no puede medir su web.',
+    a: 'Sí en forma, no en fondo. Comparadas con las clínicas dentales, las estéticas cargan mejor, convierten más y casi todas tienen WhatsApp. Pero comparten exactamente el mismo punto ciego: la medición. Entre clínicas dentales y estéticas del GAM, cerca del 74% no puede medir su web.',
   },
   {
     q: '¿Qué es el Índice Optimiza?',
@@ -59,14 +59,14 @@ const faqs = [
   },
   {
     q: '¿Cómo se realizó el estudio de clínicas estéticas?',
-    a: 'Se analizaron 33 clínicas de medicina estética con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). De ellas, 30 arrojaron datos completos; 3 no pudieron leerse por bloqueo de bots o por depender de JavaScript.',
+    a: 'Se analizaron 33 clínicas de medicina estética con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). Las 33 arrojaron datos completos, sin exclusiones.',
   },
 ];
 
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': ['Report', 'Article'],
-  headline: 'El 90% de las clínicas de medicina estética de Costa Rica no puede medir su web',
+  headline: 'El 67% de las clínicas de medicina estética de Costa Rica no puede medir su web',
   description,
   image: ogImage,
   datePublished: publishDate,
@@ -88,7 +88,7 @@ const datasetLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
   name: 'Diagnóstico web de clínicas de medicina estética del GAM 2026',
-  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 30 clínicas de medicina estética del Gran Área Metropolitana de Costa Rica.',
+  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 33 clínicas de medicina estética del Gran Área Metropolitana de Costa Rica.',
   creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
   temporalCoverage: '2026-07',
   spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
@@ -131,13 +131,13 @@ const plus = 'M12 5v14M5 12h14';
 
       <header class="art-head">
         <span class="tag res">Investigación propia</span>
-        <h1>El 90% de las clínicas de medicina estética de Costa Rica no puede medir su web</h1>
+        <h1>El 67% de las clínicas de medicina estética de Costa Rica no puede medir su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} clínicas del Gran Área Metropolitana · Lectura 6 min</p>
       </header>
 
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.legibles} clínicas de medicina estética</strong> del Gran Área Metropolitana. A diferencia de otros sectores, <strong>se ven bien, cargan bien y convierten bien</strong> (Índice promedio {D.indice}/100). Pero comparten el mismo punto ciego: <strong>el {D.sinPixel}% no tiene el píxel de Meta</strong> (solo {D.conPixel} de {D.revisadas}). Invierten en verse premium… sin poder medir ni recuperar a un solo paciente.</p>
+        <p>Analizamos <strong>{D.legibles} clínicas de medicina estética</strong> del Gran Área Metropolitana. A diferencia de otros sectores, <strong>se ven bien, cargan bien y convierten bien</strong> (Índice promedio {D.indice}/100). Pero comparten el mismo punto ciego: <strong>el {D.sinPixel}% no tiene el píxel de Meta</strong> (solo el {D.conPixel}% sí lo tiene). Invierten en verse premium… sin poder medir ni recuperar a un solo paciente.</p>
       </div>
 
       <div class="stats">
@@ -160,16 +160,16 @@ const plus = 'M12 5v14M5 12h14';
           ))}
         </div>
 
-        <p>La <strong>conversión (72) y la visibilidad (71)</strong> están sólidas. La <strong>automatización se desploma a 39</strong>. Traducido: tienen la vitrina impecable, pero nadie está contando quién entra, quién compra y de dónde viene.</p>
+        <p>La <strong>conversión (74) y la visibilidad (70)</strong> están sólidas. La <strong>automatización se desploma a 47</strong>. Traducido: tienen la vitrina impecable, pero nadie está contando quién entra, quién compra y de dónde viene.</p>
 
         <h2>El punto ciego: el píxel de Meta</h2>
-        <p>De {D.revisadas} clínicas estéticas, <strong>solo {D.conPixel} tienen el píxel de Meta instalado</strong>. Sin él, una clínica no puede:</p>
+        <p>De {D.revisadas} clínicas estéticas, <strong>solo el {D.conPixel}% tiene el píxel de Meta instalado</strong>. Sin él, una clínica no puede:</p>
         <ul>
           <li><strong>Volver a impactar</strong> a quien vio sus tratamientos y no agendó.</li>
           <li>Saber <strong>qué anuncio de Instagram</strong> trajo pacientes reales y cuál solo gastó presupuesto.</li>
           <li>Construir audiencias de <strong>personas parecidas a sus mejores pacientes</strong>.</li>
         </ul>
-        <blockquote>En un sector que vive de la imagen y de la publicidad en redes, el 90% está invirtiendo en anuncios sin poder medir ni un solo resultado.</blockquote>
+        <blockquote>En un sector que vive de la imagen y de la publicidad en redes, el 67% está invirtiendo en anuncios sin poder medir ni un solo resultado.</blockquote>
 
         <h2>No es solo estética: es todo el sector salud</h2>
         <p>Es parte de una serie. Cuando lo cruzamos con nuestros estudios de <a href="/analisis/estudio-webs-clinicas-dentales-costa-rica-2026/">clínicas dentales</a> y <a href="/analisis/estudio-webs-consultorios-medicos-costa-rica-2026/">consultorios médicos</a>, el patrón se vuelve contundente:</p>
@@ -180,7 +180,7 @@ const plus = 'M12 5v14M5 12h14';
         <p>No es un descuido de un par de clínicas. Es un <strong>vacío de toda la categoría.</strong> Y para una clínica, ahí está la oportunidad: la medición es la ventaja competitiva que casi nadie tiene.</p>
 
         <h2>Distribución por calificación</h2>
-        <p>Mejor repartición que en otros sectores —una clínica alcanzó el grado A— pero el grueso sigue en regular y deficiente.</p>
+        <p>Mejor repartición que en otros sectores —dos clínicas alcanzaron el grado A— pero el grueso sigue en regular y deficiente.</p>
         <div class="dist">
           {D.grados.map((g) => (
             <div class="drow">

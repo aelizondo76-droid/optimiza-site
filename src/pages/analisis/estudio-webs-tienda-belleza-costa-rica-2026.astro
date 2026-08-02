@@ -2,36 +2,36 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 15, legibles: 14, excluidas: 1, indice: 56,
+  revisadas: 15, legibles: 15, excluidas: 0, indice: 65,
   pilares: [
-    { k: 'Visibilidad', v: 77, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 59, note: 'CTA, checkout, carrito' },
-    { k: 'Velocidad', v: 52, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Automatización', v: 30, note: 'Medición y retargeting' },
+    { k: 'Visibilidad', v: 75, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 71, note: 'CTA, checkout, carrito' },
+    { k: 'Velocidad', v: 55, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 61, note: 'Medición y retargeting' },
   ],
-  sinPixel: 87, conPixel: 1, sinAnalytics: 60, sinWhatsApp: 73,
+  sinPixel: 33, conPixel: 67, sinAnalytics: 13, sinWhatsApp: 53,
   grados: [
-    { g: 'A', label: '≥ 80', n: 0, cls: 'gA' },
-    { g: 'B', label: '70–79', n: 0, cls: 'gB' },
-    { g: 'C', label: '55–69', n: 10, cls: 'gC' },
-    { g: 'D', label: '40–54', n: 3, cls: 'gD' },
-    { g: 'E', label: '< 40', n: 1, cls: 'gE' },
+    { g: 'A', label: '≥ 80', n: 1, cls: 'gA' },
+    { g: 'B', label: '70–79', n: 5, cls: 'gB' },
+    { g: 'C', label: '55–69', n: 7, cls: 'gC' },
+    { g: 'D', label: '40–54', n: 2, cls: 'gD' },
+    { g: 'E', label: '< 40', n: 0, cls: 'gE' },
   ],
-  secTotal: 109, secSinPixel: 82,
+  secTotal: 109, secSinPixel: 45,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-06-19';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas de belleza en Costa Rica: 87% no mide su web';
-const description = 'Analizamos 15 tiendas de cosméticos y skincare en línea del GAM: el 87% sin Meta Pixel. Velocidad moderada pero conversión baja.';
+const title = 'Tiendas de belleza en Costa Rica: 33% aún no mide su web';
+const description = 'Analizamos 15 tiendas de cosméticos y skincare en línea del GAM: 33% sin Meta Pixel, índice 65/100 (el más alto del e-commerce estudiado), pero la velocidad móvil sigue floja.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-belleza.png', Astro.site).href;
 const faqs = [
-  { q: '¿Cómo están las tiendas de belleza online en Costa Rica?', a: 'Desconectadas del cliente. Analizamos 15 tiendas de cosméticos y skincare del GAM: Índice Optimiza 56/100 (grado C), el 87% sin píxel de Meta y 60% sin Google Analytics. Venden productos de alto margen, sin capturar datos del comprador.' },
-  { q: '¿Cuál es el riesgo?', a: 'Belleza es compra repetitiva. Sin píxel, no pueden retargetar al cliente que compró una vez. Una botella de skincare es $50+ y dura 1-2 meses; perder al cliente en la recompra cuesta miles al año por tienda.' },
-  { q: '¿Cómo se compara con otros sub-nichos de e-commerce?', a: 'Belleza está en el promedio del pilar e-commerce (82% sin píxel). Pero la diferencia es que aquí el cliente es más leal y compra más veces. Sin retargeting, pierden clientes que ya les compraron.' },
+  { q: '¿Cómo están las tiendas de belleza online en Costa Rica?', a: 'Mejor de lo reportado antes. Analizamos 15 tiendas de cosméticos y skincare del GAM: Índice Optimiza 65/100 (grado C, el más alto de e-commerce), 33% sin píxel de Meta y 13% sin Google Analytics. La mayoría ya captura datos del comprador; a un tercio todavía le falta.' },
+  { q: '¿Cuál es el riesgo para el tercio que no mide?', a: 'Belleza es compra repetitiva. Sin píxel, esas tiendas no pueden retargetar al cliente que compró una vez. Una botella de skincare es $50+ y dura 1-2 meses; perder al cliente en la recompra cuesta miles al año por tienda.' },
+  { q: '¿Cómo se compara con otros sub-nichos de e-commerce?', a: 'Belleza mide mejor que el promedio del pilar e-commerce (45% sin píxel) y tiene el índice más alto del grupo. La razón probable: aquí el cliente es más leal y compra más veces, lo que empuja a más tiendas a invertir en medición.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Mide tanto la experiencia como la medición.' },
-  { q: '¿Cómo se analizaron?', a: 'Se escanearon 15 tiendas de cosméticos, skincare y maquillaje del GAM en junio 2026. 14 completaron el escaneo.' },
+  { q: '¿Cómo se analizaron?', a: 'Se escanearon 15 tiendas de cosméticos, skincare y maquillaje del GAM en junio 2026. Las 15 completaron el escaneo.' },
 ];
 const articleLd = { '@context': 'https://schema.org', '@type': ['Report', 'Article'], headline: 'Tiendas de belleza en línea de Costa Rica: análisis 2026', description, image: ogImage, datePublished: publishDate, dateModified: publishDate, inLanguage: 'es-CR', author: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' }, publisher: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com', logo: { '@type': 'ImageObject', url: 'https://optimizahq.com/favicon.svg' } }, mainEntityOfPage: canonical };
 const faqLd = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) };
@@ -55,22 +55,22 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · E-commerce</span>
-        <h1>El 87% de las tiendas de belleza online no mide su web</h1>
+        <h1>El 33% de las tiendas de belleza online aún no mide su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas · Lectura 5 min</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} tiendas de cosméticos y skincare</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene píxel de Meta</strong>: no pueden retargetar al cliente que ya compró. En belleza, eso es dinero dejado en la mesa cada mes.</p>
+        <p>Analizamos <strong>{D.revisadas} tiendas de cosméticos y skincare</strong> del GAM. Índice: <strong>{D.indice}/100</strong>, el más alto entre los sub-nichos de e-commerce estudiados. El <strong>{D.sinPixel}% no tiene píxel de Meta</strong>: no pueden retargetar al cliente que ya compró. En belleza —compra repetitiva— eso sigue siendo dinero dejado en la mesa cada mes, aunque dos de cada tres tiendas ya lo resolvieron.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">60<small>%</small></div><div class="sl">sin Google Analytics</div></div>
-        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin medición</div></div>
+        <div class="stat"><div class="sn">{D.sinWhatsApp}<small>%</small></div><div class="sl">sin WhatsApp directo</div></div>
+        <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
-        <h2>Cliente leal, pero sin datos</h2>
-        <p>Belleza es compra repetitiva: skincare cada mes, maquillaje cada trimestre. Pero el {D.sinPixel}% de tiendas no puede rastrear al cliente que compró una vez, así que pierden la oportunidad de retargetarlo cuando necesita recomprar.</p>
+        <h2>Cliente leal, medición mejorando</h2>
+        <p>Belleza es compra repetitiva: skincare cada mes, maquillaje cada trimestre. El {D.sinPixel}% de tiendas todavía no puede rastrear al cliente que compró una vez, así que pierden la oportunidad de retargetarlo cuando necesita recomprar. El resto —dos de cada tres— ya lo mide. El punto flojo real ya no es la medición: es la velocidad móvil (55/100), que sigue por debajo del resto de sus pilares.</p>
         <div class="bars">
           {D.pilares.map((p) => (
             <div class="bar">
@@ -79,7 +79,7 @@ const plus = 'M12 5v14M5 12h14';
             </div>
           ))}
         </div>
-        <blockquote>Una tienda que recibe 100 primeras compras al mes sin píxel pierde ~60 recompras al mes siguiente. Con ticket promedio de $60, eso es $3.600/mes en oportunidades perdidas.</blockquote>
+        <blockquote>Una tienda que recibe 100 primeras compras al mes y sigue sin píxel pierde ~33 recompras al mes siguiente. Con ticket promedio de $60, eso es cerca de $2.000/mes en oportunidades perdidas.</blockquote>
         <h2>Distribución por calificación</h2>
         <div class="dist">
           {D.grados.map((g) => (

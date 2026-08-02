@@ -5,49 +5,49 @@ import Scanner from '../../components/Scanner.astro';
 // ── Estudio: datos verificados (motor Optimiza, julio 2026) ──
 const D = {
   revisadas: 32,
-  legibles: 29,
-  excluidas: 3,
-  indice: 57,
+  legibles: 32,
+  excluidas: 0,
+  indice: 58,
   pilares: [
-    { k: 'Visibilidad', v: 68, note: 'SEO y datos estructurados' },
-    { k: 'Conversión', v: 64, note: 'CTA, formularios, WhatsApp' },
-    { k: 'Velocidad', v: 57, note: 'PageSpeed móvil (Lighthouse)' },
-    { k: 'Automatización', v: 32, note: 'Medición y retargeting' },
+    { k: 'Visibilidad', v: 64, note: 'SEO y datos estructurados' },
+    { k: 'Conversión', v: 65, note: 'CTA, formularios, WhatsApp' },
+    { k: 'Velocidad', v: 60, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Automatización', v: 40, note: 'Medición y retargeting' },
   ],
-  sinPixel: 94,
-  conPixel: 2,
-  sinAnalytics: 48,
-  sinWhatsApp: 55,
-  reprEvelocidad: 44,
+  sinPixel: 72,
+  conPixel: 9,
+  sinAnalytics: 31,
+  sinWhatsApp: 53,
+  reprVelocidad: 38,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
-    { g: 'B', label: '70–79 · Bien', n: 2, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 18, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 11, cls: 'gD' },
+    { g: 'B', label: '70–79 · Bien', n: 6, cls: 'gB' },
+    { g: 'C', label: '55–69 · Regular', n: 15, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 10, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 1, cls: 'gE' },
   ],
   // Tesis transversal (dental + estéticas + médicos)
   saludTotal: 104,
-  saludSinPixel: 94,
+  saludSinPixel: 74,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const title = 'Consultorios médicos en Costa Rica: el 94% no mide su web';
-const description = 'Analizamos 32 consultorios y especialidades médicas del GAM: el 94% no tiene Meta Pixel y casi la mitad no usa Google Analytics. Datos, metodología y hallazgos.';
+const title = 'Consultorios médicos en Costa Rica: el 72% no mide su web';
+const description = 'Analizamos 32 consultorios y especialidades médicas del GAM: el 72% no tiene Meta Pixel y casi un tercio no usa Google Analytics. Datos, metodología y hallazgos.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-consultorios-medicos.png', Astro.site).href;
 
 const faqs = [
   {
     q: '¿Qué tan buenas son las páginas web de los consultorios médicos en Costa Rica?',
-    a: 'Son deficientes en promedio. En un estudio de 32 consultorios y especialidades médicas del Gran Área Metropolitana, el Índice Optimiza promedio fue de 57 sobre 100 (grado C). Ninguno alcanzó el grado A. El punto más débil es la automatización y medición: el 94% no puede medir ni recuperar a los pacientes que visitan su web.',
+    a: 'Son deficientes en promedio. En un estudio de 32 consultorios y especialidades médicas del Gran Área Metropolitana, el Índice Optimiza promedio fue de 58 sobre 100 (grado C). Ninguno alcanzó el grado A. El punto más débil es la automatización y medición: el 72% no puede medir ni recuperar a los pacientes que visitan su web.',
   },
   {
     q: '¿Cuál es el problema más común en las webs de los médicos especialistas?',
-    a: 'La falta de medición y la lentitud. El 94% de los consultorios analizados no tiene el píxel de Meta, casi la mitad no usa Google Analytics y el 44% reprueba en velocidad de carga móvil. Además, más de la mitad no ofrece un WhatsApp directo para agendar.',
+    a: 'La falta de medición y la lentitud. El 72% de los consultorios analizados no tiene el píxel de Meta, casi un tercio no usa Google Analytics y el 38% reprueba en velocidad de carga móvil. Además, más de la mitad no ofrece un WhatsApp directo para agendar.',
   },
   {
     q: '¿Es igual en todas las especialidades médicas?',
@@ -59,14 +59,14 @@ const faqs = [
   },
   {
     q: '¿Cómo se realizó el estudio de consultorios médicos?',
-    a: 'Se analizaron 32 consultorios y centros de especialidades médicas con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). De ellos, 29 arrojaron datos completos; 3 no pudieron leerse por bloqueo de bots o por depender de JavaScript.',
+    a: 'Se analizaron 32 consultorios y centros de especialidades médicas con dominio propio del Gran Área Metropolitana en julio de 2026, usando el motor de diagnóstico de Optimiza (PageSpeed Insights API y análisis de HTML). Los 32 arrojaron datos completos, sin exclusiones por bloqueo de bots o dependencia de JavaScript.',
   },
 ];
 
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': ['Report', 'Article'],
-  headline: 'El 94% de los consultorios médicos de Costa Rica no puede medir su web',
+  headline: 'El 72% de los consultorios médicos de Costa Rica no puede medir su web',
   description,
   image: ogImage,
   datePublished: publishDate,
@@ -88,7 +88,7 @@ const datasetLd = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
   name: 'Diagnóstico web de consultorios médicos del GAM 2026',
-  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 29 consultorios y especialidades médicas del Gran Área Metropolitana de Costa Rica.',
+  description: 'Puntajes del Índice Optimiza (velocidad, visibilidad, conversión y automatización) de 32 consultorios y especialidades médicas del Gran Área Metropolitana de Costa Rica.',
   creator: { '@type': 'Organization', name: 'Optimiza', url: 'https://optimizahq.com' },
   temporalCoverage: '2026-07',
   spatialCoverage: { '@type': 'Place', name: 'Gran Área Metropolitana, Costa Rica' },
@@ -131,13 +131,13 @@ const plus = 'M12 5v14M5 12h14';
 
       <header class="art-head">
         <span class="tag res">Investigación propia</span>
-        <h1>El 94% de los consultorios médicos de Costa Rica no puede medir su web</h1>
+        <h1>El 72% de los consultorios médicos de Costa Rica no puede medir su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} consultorios del Gran Área Metropolitana · Lectura 6 min</p>
       </header>
 
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.legibles} consultorios y especialidades médicas</strong> del Gran Área Metropolitana. El Índice Optimiza promedio fue de <strong>{D.indice}/100 (grado C)</strong> y ninguno alcanzó el grado A. El patrón del sector se repite: <strong>el {D.sinPixel}% no tiene el píxel de Meta</strong> (solo {D.conPixel} de {D.revisadas}), casi la mitad no usa Analytics y el {D.reprEvelocidad}% carga lento. Consultorios que viven de las referencias, invisibles a su propia medición.</p>
+        <p>Analizamos <strong>{D.legibles} consultorios y especialidades médicas</strong> del Gran Área Metropolitana. El Índice Optimiza promedio fue de <strong>{D.indice}/100 (grado C)</strong> y ninguno alcanzó el grado A. El patrón del sector se repite: <strong>el {D.sinPixel}% no tiene el píxel de Meta</strong> (solo {D.conPixel} de {D.revisadas}), el {D.sinAnalytics}% no usa Analytics y el {D.reprVelocidad}% carga lento. Consultorios que viven de las referencias, invisibles a su propia medición.</p>
       </div>
 
       <div class="stats">
@@ -160,10 +160,10 @@ const plus = 'M12 5v14M5 12h14';
           ))}
         </div>
 
-        <p>La <strong>velocidad (57) y la automatización (32)</strong> son las más débiles. Muchos sitios corren sobre plantillas antiguas y pesadas, y casi ninguno tiene instalada una sola herramienta de medición.</p>
+        <p>La <strong>velocidad (60) y la automatización (40)</strong> son las más débiles. Muchos sitios corren sobre plantillas antiguas y pesadas, y casi ninguno tiene instalada una sola herramienta de medición.</p>
 
         <h2>El punto ciego: nadie mide</h2>
-        <p>De {D.revisadas} consultorios, <strong>solo {D.conPixel} tienen el píxel de Meta</strong> y menos de la mitad usa Google Analytics. Sin medición, un consultorio no sabe:</p>
+        <p>De {D.revisadas} consultorios, <strong>solo {D.conPixel} tienen el píxel de Meta</strong> y el {D.sinAnalytics}% no usa Google Analytics. Sin medición, un consultorio no sabe:</p>
         <ul>
           <li>Cuántas personas <strong>buscan su especialidad</strong> y terminan agendando con otro.</li>
           <li>Si su inversión en publicidad <strong>trae pacientes reales</strong> o solo clics.</li>

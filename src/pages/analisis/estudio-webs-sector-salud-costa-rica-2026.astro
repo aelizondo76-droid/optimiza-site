@@ -3,41 +3,43 @@ import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 
 // ── Estudio pilar: sector salud (3 estudios combinados) ──
+// Recalculado 2026-08-02 con el motor v2 (corrige falsos negativos de
+// sitemap, píxeles inyectados por GTM, y sitios bloqueados por anti-bot).
 const D = {
   total: 104,
-  legibles: 95,
-  indice: 59,
-  sinPixel: 94,
-  sinAnalytics: 56,
-  sinWhatsApp: 50,
-  gradoA: 1,
+  legibles: 104,
+  indice: 60,
+  sinPixel: 74,
+  sinAnalytics: 34,
+  sinWhatsApp: 41,
+  gradoA: 2,
   sectores: [
-    { name: 'Medicina estética', slug: 'estudio-webs-clinicas-esteticas-costa-rica-2026', n: 33, indice: 63, sinPixel: 90, note: 'Las más pro: se ven bien y convierten. Aun así, el 90% no mide.' },
-    { name: 'Clínicas dentales', slug: 'estudio-webs-clinicas-dentales-costa-rica-2026', n: 39, indice: 57, sinPixel: 97, note: 'Las más ciegas del sector: solo 1 de 39 tenía el píxel de Meta.' },
-    { name: 'Consultorios médicos', slug: 'estudio-webs-consultorios-medicos-costa-rica-2026', n: 32, indice: 57, sinPixel: 94, note: 'Cargan lento y dependen del boca a boca; casi ninguno mide.' },
+    { name: 'Medicina estética', slug: 'estudio-webs-clinicas-esteticas-costa-rica-2026', n: 33, indice: 63, sinPixel: 67, note: 'Las más pro: se ven bien y convierten. Aun así, dos de cada tres no mide.' },
+    { name: 'Clínicas dentales', slug: 'estudio-webs-clinicas-dentales-costa-rica-2026', n: 39, indice: 60, sinPixel: 82, note: 'Las más ciegas del sector: solo 7 de 39 tenían el píxel de Meta.' },
+    { name: 'Consultorios médicos', slug: 'estudio-webs-consultorios-medicos-costa-rica-2026', n: 32, indice: 58, sinPixel: 72, note: 'Cargan lento y dependen del boca a boca; la mayoría no mide.' },
   ],
 };
 
 const publishDate = '2026-07-16';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const title = 'Webs del sector salud en Costa Rica: el 94% no mide';
-const description = 'Analizamos 104 clínicas de salud del GAM —dentales, estéticas y consultorios médicos—. El 94% no puede medir su web. El estudio completo, por sector.';
+const title = 'Webs del sector salud en Costa Rica: el 74% no mide';
+const description = 'Analizamos 104 clínicas de salud del GAM —dentales, estéticas y consultorios médicos—. El 74% no puede medir su web. El estudio completo, por sector.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-sector-salud.png', Astro.site).href;
 
 const faqs = [
   {
     q: '¿Cómo están las páginas web del sector salud en Costa Rica?',
-    a: 'Deficientes en un punto clave. Analizamos 104 clínicas de salud del Gran Área Metropolitana (dentales, estéticas y consultorios médicos): el Índice Optimiza promedio fue de 59 sobre 100 y solo una alcanzó el grado A. El problema transversal es la medición: el 94% no tiene el píxel de Meta y el 56% no usa Google Analytics.',
+    a: 'Deficientes en un punto clave. Analizamos 104 clínicas de salud del Gran Área Metropolitana (dentales, estéticas y consultorios médicos): el Índice Optimiza promedio fue de 60 sobre 100 y solo 2 alcanzaron el grado A. El problema transversal es la medición: el 74% no tiene el píxel de Meta y el 34% no usa Google Analytics.',
   },
   {
     q: '¿Cuál es el problema más común de las clínicas en su web?',
-    a: 'La falta de medición. El 94% de las clínicas de salud analizadas no puede medir ni recuperar a los pacientes que visitan su web, porque no tienen instaladas herramientas como el píxel de Meta o Google Analytics. Invierten en publicidad sin saber qué funciona.',
+    a: 'La falta de medición, aunque menos extendida de lo que se pensaba inicialmente. El 74% de las clínicas de salud analizadas no puede medir ni recuperar a los pacientes que visitan su web, porque no tienen instaladas herramientas como el píxel de Meta o Google Analytics. Invierten en publicidad sin saber qué funciona.',
   },
   {
     q: '¿Qué sector de salud tiene las mejores páginas web en Costa Rica?',
-    a: 'La medicina estética. Con un Índice Optimiza promedio de 63, sus webs cargan mejor y convierten más que las de clínicas dentales (57) y consultorios médicos (57). Sin embargo, comparten el mismo vacío: el 90% de las estéticas tampoco tiene el píxel de Meta.',
+    a: 'La medicina estética. Con un Índice Optimiza promedio de 63, sus webs cargan mejor y convierten más que las de clínicas dentales (60) y consultorios médicos (58). En medición es la mejor posicionada también: 67% sin píxel, frente al 82% de las dentales.',
   },
   {
     q: '¿Qué es el Índice Optimiza?',
@@ -106,7 +108,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
 
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.total} clínicas de salud</strong> del Gran Área Metropolitana en tres sectores —dentales, estéticas y consultorios médicos—. El Índice Optimiza promedio fue de <strong>{D.indice}/100</strong> y solo una alcanzó el grado A. El hallazgo es transversal: <strong>el {D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta) y el {D.sinAnalytics}% no usa Google Analytics. Cambia el sector; el punto ciego es el mismo.</p>
+        <p>Analizamos <strong>{D.total} clínicas de salud</strong> del Gran Área Metropolitana en tres sectores —dentales, estéticas y consultorios médicos—. El Índice Optimiza promedio fue de <strong>{D.indice}/100</strong> y solo {D.gradoA} de {D.total} alcanzaron el grado A. El hallazgo es transversal: <strong>el {D.sinPixel}% no puede medir su web</strong> (sin píxel de Meta) y el {D.sinAnalytics}% no usa Google Analytics. Cambia el sector; el punto ciego es el mismo.</p>
       </div>
 
       <div class="stats">
@@ -171,7 +173,7 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
       </div>
 
       <div class="art-cta dark">
-        <p>¿Tu clínica está en el 94% que no mide? Descubrilo en 30 segundos, gratis.</p>
+        <p>¿Tu clínica está en el 74% que no mide? Descubrilo en 30 segundos, gratis.</p>
         <div class="scanwrap"><Scanner /></div>
       </div>
     </div>

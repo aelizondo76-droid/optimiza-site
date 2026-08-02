@@ -1,12 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
-const D = { revisadas: 21, legibles: 20, indice: 58, sinPixel: 81, sinAnalytics: 33, sinWhatsApp: 38, grados: [{g:'A',n:1},{g:'B',n:4},{g:'C',n:10},{g:'D',n:4},{g:'E',n:2}] };
+const D = { revisadas: 21, legibles: 21, excluidas: 0, indice: 60, velocidad: 46, visibilidad: 69, conversion: 70, automatizacion: 59, sinPixel: 52, conPixel: 48, sinAnalytics: 19, sinWhatsApp: 38, reprVelocidad: 67, grados: [{g:'A',n:1},{g:'B',n:4},{g:'C',n:10},{g:'D',n:5},{g:'E',n:1}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-06-23';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas de hogar en Costa Rica: 81% no mide su web';
-const description = 'Analizamos 21 tiendas de muebles y decoración del GAM: 67% reprueba velocidad móvil, 81% sin Meta Pixel. Compra de alto ticket sin medición.';
+const title = 'Tiendas de hogar en Costa Rica: 67% reprueba velocidad móvil';
+const description = 'Analizamos 21 tiendas de muebles y decoración del GAM: velocidad promedio 46/100 (67% reprueba), 52% sin Meta Pixel. Compra de alto ticket que se pierde por lentitud y falta de medición.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-hogar.png', Astro.site).href;
 const articleLd = {
@@ -61,23 +61,23 @@ const plus = 'M12 5v14M5 12h14';
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · E-commerce</span>
-        <h1>El 81% de las tiendas de hogar online no mide su web</h1>
+        <h1>El 67% de las tiendas de hogar online reprueba velocidad móvil</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} tiendas de muebles y decoración</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. El <strong>{D.sinPixel}% no tiene píxel de Meta</strong>, el <strong>67% reprueba velocidad</strong> y el {D.sinAnalytics}% no usa Analytics. En hogar, cada compra vale $500-5.000: perder medición es costoso.</p>
+        <p>Analizamos <strong>{D.revisadas} tiendas de muebles y decoración</strong> del GAM. Índice: <strong>{D.indice}/100</strong>. El <strong>{D.reprVelocidad}% reprueba velocidad móvil</strong> (promedio de {D.velocidad}/100), el <strong>{D.sinPixel}% no tiene píxel de Meta</strong> y el {D.sinAnalytics}% no usa Analytics. En hogar, cada compra vale $500-5.000: una web lenta pierde al cliente antes de que vea el catálogo, y sin medición esa pérdida ni se nota.</p>
       </div>
       <div class="stats">
+        <div class="stat"><div class="sn">{D.reprVelocidad}<small>%</small></div><div class="sl">reprueba velocidad móvil</div></div>
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">67<small>%</small></div><div class="sl">reprueba velocidad móvil</div></div>
         <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
         <h2>Compra cara, decisión lenta, sitio rápido = venta</h2>
-        <p>Hogar es compra de reflexión: sofás, mesas, decoración. El cliente visita muchas veces antes de decidir. Si la tienda es lenta, se va a la competencia. Si carga bien pero no tiene <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a>, pierde la oportunidad de retargetarlo después con ese sofá que vio.</p>
-        <blockquote>El {D.sinPixel}% de tiendas analizadas no puede volver a mostrarle al cliente ese sofá de $2.000 que vio 3 veces y no compró.</blockquote>
+        <p>Hogar es compra de reflexión: sofás, mesas, decoración. El cliente visita muchas veces antes de decidir, y si la tienda carga lento se va antes de terminar de ver el catálogo: el {D.reprVelocidad}% de las tiendas analizadas reprueba velocidad móvil, con un promedio de apenas {D.velocidad}/100. A eso se suma que el {D.sinPixel}% ni siquiera tiene <a href="/analisis/glosario-digital-empresas/#pixel">píxel de Meta</a>, así que aunque el cliente vuelva, no hay forma de retargetarlo con ese sofá que vio.</p>
+        <blockquote>El {D.reprVelocidad}% de las tiendas reprueba velocidad móvil: antes de que el cliente vea el sofá, la página ya lo perdió.</blockquote>
         <h2>Distribución por calificación</h2>
         <div class="dist">
           {D.grados.map((g) => (

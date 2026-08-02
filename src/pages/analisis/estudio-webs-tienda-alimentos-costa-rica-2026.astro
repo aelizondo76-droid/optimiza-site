@@ -1,12 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
-const D = { revisadas: 18, legibles: 18, indice: 62, sinPixel: 83, sinAnalytics: 44, sinWhatsApp: 33, grados: [{g:'A',n:2},{g:'B',n:3},{g:'C',n:10},{g:'D',n:2},{g:'E',n:1}] };
+const D = { revisadas: 18, legibles: 18, excluidas: 0, indice: 66, velocidad: 58, visibilidad: 72, conversion: 72, automatizacion: 61, sinPixel: 44, conPixel: 56, sinAnalytics: 11, sinWhatsApp: 33, reprVelocidad: 28, grados: [{g:'A',n:3},{g:'B',n:4},{g:'C',n:7},{g:'D',n:4},{g:'E',n:0}] };
 const totalGrados = D.grados.reduce((s,x) => s + x.n, 0);
 const publishDate = '2026-07-03';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas de alimentos gourmet en Costa Rica: 83% no mide su web';
-const description = 'Analizamos 18 tiendas de café, chocolate y alimentos artesanales del GAM: la mejor en medición (índice 62), pero 83% sin Meta Pixel.';
+const title = 'Tiendas de alimentos gourmet en Costa Rica: 44% no mide su web';
+const description = 'Analizamos 18 tiendas de café, chocolate y alimentos artesanales del GAM: la mejor en medición (índice 66), pero 44% sin Meta Pixel.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-tienda-alimentos.png', Astro.site).href;
 const articleLd = {
@@ -60,23 +60,33 @@ const datasetLd = {
       <a class="back" href="/analisis/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Análisis y teardowns</a>
       <header class="art-head">
         <span class="tag res">Investigación · E-commerce</span>
-        <h1>El 83% de las tiendas de alimentos gourmet no mide su web</h1>
+        <h1>El 44% de las tiendas de alimentos gourmet no mide su web</h1>
         <p class="art-meta">{dateHuman} · Estudio de {D.legibles} tiendas</p>
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} tiendas de café, chocolate y alimentos artesanales</strong> del GAM. Índice: <strong>{D.indice}/100</strong> — la mejor del pillar e-commerce. Pero el <strong>{D.sinPixel}% no tiene píxel de Meta</strong>. Compra repetitiva pero sin datos.</p>
+        <p>Analizamos <strong>{D.revisadas} tiendas de café, chocolate y alimentos artesanales</strong> del GAM. Índice: <strong>{D.indice}/100</strong> — el más alto de los 6 sub-nichos de e-commerce estudiados. Aun así, el <strong>{D.sinPixel}% no tiene píxel de Meta</strong> y el {D.reprVelocidad}% reprueba velocidad móvil. Es el sector que mejor mide, pero todavía no le sobra margen.</p>
       </div>
       <div class="stats">
         <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin píxel de Meta</div></div>
-        <div class="stat"><div class="sn">28<small>%</small></div><div class="sl">reprueba velocidad</div></div>
+        <div class="stat"><div class="sn">{D.reprVelocidad}<small>%</small></div><div class="sl">reprueba velocidad</div></div>
         <div class="stat"><div class="sn">{D.sinAnalytics}<small>%</small></div><div class="sl">sin Google Analytics</div></div>
-        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado B+)</div></div>
+        <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
-        <h2>Calidad sin datos</h2>
-        <p>Alimentos gourmet es el sub-nicho con mejor <a href="/analisis/glosario-digital-empresas/#indice">índice</a> (62/100). Las tiendas se ven bien, cargan rápido. Pero el {D.sinPixel}% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> significa que no pueden <a href="/analisis/glosario-digital-empresas/#retargeting">retargetar</a> a quien compró café una vez. En compra repetitiva, eso cuesta miles al año por tienda.</p>
+        <h2>El mejor índice del e-commerce, con pendientes claros</h2>
+        <p>Alimentos gourmet es el sub-nicho con mejor <a href="/analisis/glosario-digital-empresas/#indice">índice</a> del e-commerce estudiado (66/100): más de la mitad de las tiendas ya tiene <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> de Meta y la mayoría mide con Analytics. Pero la velocidad móvil es su punto más débil (promedio {D.velocidad}/100, {D.reprVelocidad}% reprueba) y el {D.sinPixel}% restante todavía no puede <a href="/analisis/glosario-digital-empresas/#retargeting">retargetar</a> a quien compró café una vez. En compra repetitiva, esa combinación cuesta miles al año por tienda.</p>
         <blockquote>Una tienda de café que pierda 50 clientes repetidores al mes pierde $500 × 50 = $25.000 en oportunidades de recompra anuales.</blockquote>
+        <h2>Distribución por calificación</h2>
+        <div class="dist">
+          {D.grados.map((g) => (
+            <div class="drow">
+              <div class="dg">{g.g}</div>
+              <div class="dtrack"><span style={`width:${totalGrados ? (g.n / totalGrados) * 100 : 0}%`}></span></div>
+              <div class="dn">{g.n}</div>
+            </div>
+          ))}
+        </div>
         <h2>Metodología</h2>
         <ul>
           <li><strong>Muestra:</strong> {D.revisadas} tiendas de café, chocolate, alimentos orgánicos y gourmet del GAM.</li>
@@ -112,6 +122,12 @@ const datasetLd = {
   .prose :global(li) { margin-bottom: 10px; font-size: 16.5px; color: var(--muted); }
   .prose :global(strong) { color: var(--text); font-weight: 600; }
   .prose :global(blockquote) { border-left: 3px solid var(--violet); padding: 4px 0 4px 20px; margin: 24px 0; color: var(--text); font-style: italic; font-size: 18px; }
+  .dist { display: flex; flex-direction: column; gap: 10px; margin: 22px 0; }
+  .drow { display: grid; grid-template-columns: 50px 1fr 30px; align-items: center; gap: 14px; }
+  .dg { font-family: var(--mono); font-weight: 700; color: var(--text); }
+  .dtrack { height: 20px; background: rgba(21,23,26,0.08); border-radius: 7px; overflow: hidden; }
+  .dtrack span { display: block; height: 100%; border-radius: 7px; background: var(--violet); }
+  .dn { font-family: var(--mono); font-weight: 700; color: var(--text); text-align: right; }
   .art-cta { margin-top: 44px; padding-top: 32px; border-top: 1px solid var(--line); text-align: center; }
   .art-cta p { color: var(--text); font-size: 18px; font-weight: 500; margin-bottom: 18px; }
   .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }

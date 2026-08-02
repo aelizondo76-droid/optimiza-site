@@ -1,29 +1,31 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
+// Recalculado 2026-08-02 con el motor v2 (corrige falsos negativos de
+// sitemap, píxeles inyectados por GTM, y sitios bloqueados por anti-bot).
 const D = {
-  total: 109, legibles: 101, indice: 60,
-  sinPixel: 82, sinAnalytics: 50, sinWhatsApp: 53, gradoA: 3,
+  total: 109, legibles: 109, indice: 61,
+  sinPixel: 45, sinAnalytics: 25, sinWhatsApp: 52, gradoA: 6,
   sectores: [
-    { name: 'Alimentos y gourmet', slug: 'estudio-webs-tienda-alimentos-costa-rica-2026', n: 18, indice: 62, sinPixel: 83, nota: 'Mejor índice, pero sin medición.' },
-    { name: 'Moda y accesorios', slug: 'estudio-webs-tienda-moda-costa-rica-2026', n: 18, indice: 60, sinPixel: 78, nota: '83% reprueba velocidad móvil.' },
-    { name: 'Hogar y decoración', slug: 'estudio-webs-tienda-hogar-costa-rica-2026', n: 21, indice: 58, sinPixel: 81, nota: 'Compra cara sin datos del cliente.' },
-    { name: 'Mascotas', slug: 'estudio-webs-tienda-mascotas-costa-rica-2026', n: 15, indice: 56, sinPixel: 87, nota: 'Compra repetitiva, cliente fantasma.' },
-    { name: 'Belleza y cosméticos', slug: 'estudio-webs-tienda-belleza-costa-rica-2026', n: 15, indice: 56, sinPixel: 87, nota: 'Cliente leal, pero sin retargeting.' },
-    { name: 'Electrónica', slug: 'estudio-webs-tienda-electronica-costa-rica-2026', n: 22, indice: 57, sinPixel: 82, nota: 'Compra urgente, sin seguimiento.' },
+    { name: 'Alimentos y gourmet', slug: 'estudio-webs-tienda-alimentos-costa-rica-2026', n: 18, indice: 66, sinPixel: 44, nota: 'Mejor índice del grupo; casi la mitad ya mide.' },
+    { name: 'Moda y accesorios', slug: 'estudio-webs-tienda-moda-costa-rica-2026', n: 18, indice: 62, sinPixel: 39, nota: '61% reprueba velocidad móvil.' },
+    { name: 'Hogar y decoración', slug: 'estudio-webs-tienda-hogar-costa-rica-2026', n: 21, indice: 60, sinPixel: 52, nota: 'Compra cara, medición todavía despareja.' },
+    { name: 'Mascotas', slug: 'estudio-webs-tienda-mascotas-costa-rica-2026', n: 15, indice: 51, sinPixel: 73, nota: 'El más rezagado: compra repetitiva, cliente fantasma.' },
+    { name: 'Belleza y cosméticos', slug: 'estudio-webs-tienda-belleza-costa-rica-2026', n: 15, indice: 65, sinPixel: 33, nota: 'El que mejor mide: dos de cada tres ya usan píxel.' },
+    { name: 'Electrónica', slug: 'estudio-webs-tienda-electronica-costa-rica-2026', n: 22, indice: 62, sinPixel: 32, nota: 'Compra urgente; la mayoría ya da seguimiento.' },
   ],
 };
 const publishDate = '2026-07-12';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Tiendas en línea de Costa Rica: 82% no mide su web';
-const description = 'Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos, mascotas. 82% sin Meta Pixel.';
+const title = 'Tiendas en línea de Costa Rica: 45% aún no mide su web';
+const description = 'Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos, mascotas. 45% sin Meta Pixel — el sector que mejor mide de los estudiados.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-ecommerce.png', Astro.site).href;
 const faqs = [
-  { q: '¿Cómo están las tiendas en línea de Costa Rica?', a: 'Sin medición. Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos y mascotas. El Índice Optimiza promedio fue 60/100 (grado C). El 82% no tiene el píxel de Meta, lo que significa que no pueden retargetar, no pueden recuperar carritos abandonados, no pueden volver a mostrar el producto que vio el cliente.' },
-  { q: '¿Qué sub-nicho está mejor?', a: 'Alimentos y gourmet (índice 62), seguido por moda (60). Pero incluso el mejor sub-nicho tiene 83% sin píxel. La diferencia real está en la *urgencia* de compra: alimentos es repetitivo (necesita retargeting más), moda es por impulso (se olvida fácilmente).' },
-  { q: '¿Cuál es el problema más grave?', a: 'Multifacético: (1) 82% sin píxel = sin retargeting; (2) velocidad: moda 83% reprueba, hogar 67%; (3) conversión: ningún sub-nicho supera 72 en conversión; (4) automatización: promedio 39/100.' },
-  { q: '¿Cómo se compara con salud y construcción?', a: 'Salud: 94% sin píxel (peor en medición). Construcción: 93% sin píxel (peor). E-commerce: 82% sin píxel (mejor). PERO e-commerce tiene un problema que los otros no: la velocidad es crítica. En construcción/salud, el cliente tolera 5 segundos. En e-commerce, pierde 7% de conversión en 1 segundo extra.' },
+  { q: '¿Cómo están las tiendas en línea de Costa Rica?', a: 'Mejor de lo reportado inicialmente. Analizamos 109 tiendas de e-commerce del GAM en 6 sub-nichos: moda, belleza, hogar, electrónica, alimentos y mascotas. El Índice Optimiza promedio fue 61/100 (grado C). El 45% no tiene el píxel de Meta — el sector con mejor medición de los estudiados — pero ese 45% sigue sin poder retargetar, recuperar carritos abandonados, ni volver a mostrar el producto que vio el cliente.' },
+  { q: '¿Qué sub-nicho está mejor?', a: 'Alimentos y gourmet tiene el mejor índice (66), pero belleza y electrónica miden mejor: 33% y 32% sin píxel respectivamente. Mascotas es el más rezagado, con índice 51 y 73% sin píxel.' },
+  { q: '¿Cuál es el problema más grave?', a: 'Ya no es la medición en general: (1) 45% sin píxel, concentrado sobre todo en mascotas y hogar; (2) velocidad: moda 61% reprueba; (3) automatización, todavía el pilar más débil del sector.' },
+  { q: '¿Cómo se compara con salud y construcción?', a: 'Salud: 74% sin píxel. Construcción: 76% sin píxel. E-commerce: 45% sin píxel — claramente el mejor de los tres. Pero e-commerce tiene un problema que los otros no tienen con la misma intensidad: la velocidad es crítica. En construcción/salud, el cliente tolera más espera. En e-commerce, cada segundo extra cuesta conversión.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100 que mide: velocidad (30%), visibilidad/SEO (30%), conversión (20%), automatización/medición (20%). Métrica propia que resume la salud web.' },
   { q: '¿Cómo se realizó?', a: 'Analizamos 109 tiendas en línea con dominio propio del GAM (18-22 por sub-nicho) en junio-julio de 2026, con el motor de diagnóstico de Optimiza: PageSpeed Insights API + análisis de HTML.' },
 ];
@@ -91,9 +93,9 @@ const maxN = Math.max(...D.sectores.map((s) => s.indice));
       <div class="prose">
         <h2>Comparación: salud vs construcción vs e-commerce</h2>
         <ul>
-          <li><strong>Salud (104 tiendas):</strong> 94% sin píxel. Compra reflexiva de bajo riesgo percibido. Se pierden pacientes pero es tolerable.</li>
-          <li><strong>Construcción (90 tiendas):</strong> 93% sin píxel. Compra de alto ticket pero lenta. Se pierden proyectos de $50.000+ sin saber por qué.</li>
-          <li><strong>E-commerce (109 tiendas):</strong> 82% sin píxel (mejor), pero con problema de velocidad. Compra impulsiva/urgente. Pierden todo en 3 segundos.</li>
+          <li><strong>Salud (104 clínicas):</strong> 74% sin píxel. Compra reflexiva de bajo riesgo percibido.</li>
+          <li><strong>Construcción (90 empresas):</strong> 76% sin píxel. Compra de alto ticket pero lenta.</li>
+          <li><strong>E-commerce (109 tiendas):</strong> 45% sin píxel — el mejor de los tres — pero con problema de velocidad. Compra impulsiva/urgente, donde cada segundo extra cuesta conversión.</li>
         </ul>
         <h2>Preguntas frecuentes</h2>
       </div>

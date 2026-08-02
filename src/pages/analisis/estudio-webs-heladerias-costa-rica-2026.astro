@@ -2,34 +2,34 @@
 import Base from '../../layouts/Base.astro';
 import Scanner from '../../components/Scanner.astro';
 const D = {
-  revisadas: 8, legibles: 8, excluidas: 0, indice: 53,
+  revisadas: 8, legibles: 8, excluidas: 0, indice: 55,
   pilares: [
-    { k: 'Velocidad', v: 53, note: 'PageSpeed móvil (Lighthouse)' },
+    { k: 'Velocidad', v: 54, note: 'PageSpeed móvil (Lighthouse)' },
     { k: 'Visibilidad', v: 66, note: 'SEO y datos estructurados' },
     { k: 'Conversión', v: 55, note: 'CTA, pedidos, conversión' },
-    { k: 'Automatización', v: 30, note: 'Medición y retargeting' },
+    { k: 'Automatización', v: 38, note: 'Medición y retargeting' },
   ],
-  sinPixel: 88, conPixel: 1, sinAnalytics: 50, sinWhatsApp: 88,
+  sinPixel: 62, conPixel: 38, sinAnalytics: 38, sinWhatsApp: 88,
   grados: [
     { g: 'A', label: '≥ 80 · Excelente', n: 0, cls: 'gA' },
     { g: 'B', label: '70–79 · Bien', n: 0, cls: 'gB' },
-    { g: 'C', label: '55–69 · Regular', n: 4, cls: 'gC' },
-    { g: 'D', label: '40–54 · Deficiente', n: 4, cls: 'gD' },
+    { g: 'C', label: '55–69 · Regular', n: 5, cls: 'gC' },
+    { g: 'D', label: '40–54 · Deficiente', n: 3, cls: 'gD' },
     { g: 'E', label: '< 40 · Crítico', n: 0, cls: 'gE' },
   ],
-  secTotal: 43, secSinPixel: 95,
+  secTotal: 43, secSinPixel: 77,
 };
 const totalGrados = D.grados.reduce((s, x) => s + x.n, 0);
 const publishDate = '2026-07-17';
 const dateHuman = new Date(publishDate + 'T12:00:00').toLocaleDateString('es-CR', { year: 'numeric', month: 'long', day: 'numeric' });
-const title = 'Heladerías Costa Rica: 88% sin tracking';
-const description = 'Analizamos 8 heladerías: índice 53/100, 88% sin Meta Pixel, 50% sin schema de producto. Venden helado pero no saben quién compra.';
+const title = 'Heladerías Costa Rica: 62% sin tracking';
+const description = 'Analizamos 8 heladerías: índice 55/100, 62% sin Meta Pixel, 50% sin schema de producto. Venden helado pero buena parte no sabe quién compra.';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-heladerias.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan malas son las heladerías online?', a: 'Críticas: 88% sin Meta Pixel. Índice 53/100 (grado C/D). Es como un heladero que hace gelato increíble pero no sabe cuál sabor se vende más. El 50% sin schema Product — Google no entiende qué helados ofreces.' },
-  { q: '¿Cuál es el mayor problema?', a: 'Automatización (30/100) + schema faltante (50%). Clientes no pueden comprar sabores específicos online, Google no ve tus productos en búsquedas, no hay píxel para retargetar. Ventas perdidas en todos lados.' },
-  { q: '¿Hay excepciones?', a: '1 heladería tiene píxel (Ice Green probablemente). Las otras 7 son ciegas. Sin medición, no pueden responder: "¿Cuál sabor de verano es el más buscado?" Es información valiosa perdida.' },
+  { q: '¿Qué tan malas son las heladerías online?', a: 'Regulares: 62% sin Meta Pixel. Índice 55/100 (grado C). Es como un heladero que hace gelato increíble pero no sabe cuál sabor se vende más. El 50% sin schema Product — Google no entiende qué helados ofreces.' },
+  { q: '¿Cuál es el mayor problema?', a: 'Automatización (38/100) + schema faltante (50%). Muchos clientes no pueden comprar sabores específicos online, Google no ve esos productos en búsquedas, y el 62% sin píxel no puede retargetar.' },
+  { q: '¿Hay excepciones?', a: '3 de 8 heladerías ya tienen píxel de Meta. Las otras 5 siguen ciegas. Sin medición, no pueden responder: "¿Cuál sabor de verano es el más buscado?" Es información valiosa perdida.' },
   { q: '¿Por qué es crítico el schema de producto?', a: 'Con schema, Google entiende que ofreces "Helado Pistacho" a $5. Sin él, Google ve una web genérica. Clientes que buscan "helado pistacho San José" no te encuentran en resultados ricos de Google.' },
   { q: '¿Qué debería medir una heladería?', a: 'Variación por estación (verano vs invierno), sabor más vendido, análisis por temperatura (días calurosos = más ventas), retargeting de visitantes. Sin píxel, imposible.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 8 heladerías del GAM (Oso Polar, Gelati0039, Cremrica, etc.) en agosto de 2026.' },
@@ -62,17 +62,17 @@ const plus = 'M12 5v14M5 12h14';
       </header>
       <div class="tldr">
         <p class="tldr-k">En resumen</p>
-        <p>Analizamos <strong>{D.revisadas} heladerías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>88% sin Meta Pixel</strong>, 50% sin schema de producto, 88% sin WhatsApp. Hacen helado excelente pero no miden quién compra. Es como un heladero que desconoce cuál sabor es favorito en verano.</p>
+        <p>Analizamos <strong>{D.revisadas} heladerías</strong> del GAM. Índice Optimiza promedio: <strong>{D.indice}/100</strong> (grado C). El <strong>{D.sinPixel}% sin Meta Pixel</strong>, 50% sin schema de producto, {D.sinWhatsApp}% sin WhatsApp. Muchas hacen helado excelente pero no miden quién compra. Es como un heladero que desconoce cuál sabor es favorito en verano.</p>
       </div>
       <div class="stats">
-        <div class="stat"><div class="sn">88<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
+        <div class="stat"><div class="sn">{D.sinPixel}<small>%</small></div><div class="sl">sin Meta Pixel</div></div>
         <div class="stat"><div class="sn">50<small>%</small></div><div class="sl">sin schema de producto</div></div>
-        <div class="stat"><div class="sn">30<small>/100</small></div><div class="sl">Automatización</div></div>
+        <div class="stat"><div class="sn">{D.pilares[3].v}<small>/100</small></div><div class="sl">Automatización</div></div>
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado C)</div></div>
       </div>
       <div class="prose">
         <h2>Gelato perfecto, <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a> ciego: como heladero sin termómetro</h2>
-        <p>Las heladerías hacen gelato excelente. Pero 88% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> significa: un cliente busca "gelato artesanal verano San José", tu sitio no aparece en resultados ricos (50% sin <a href="/analisis/glosario-digital-empresas/#schema">schema</a>), y aunque visite, no puedes retargetarlo. Es ceguera triple.</p>
+        <p>Las heladerías hacen gelato excelente. Pero el {D.sinPixel}% sin <a href="/analisis/glosario-digital-empresas/#pixel">píxel</a> significa: un cliente busca "gelato artesanal verano San José", tu sitio no aparece en resultados ricos (50% sin <a href="/analisis/glosario-digital-empresas/#schema">schema</a>), y aunque visite, no puedes retargetarlo.</p>
         <p>Es como un heladero que no mide temperatura ambiente. ¿Cuándo venden más? ¿Verano vs invierno? ¿Qué sabor pide más gente en julio? Sin datos, adivinanza. Una heladería que vende 200 helados al día pero no sabe cuál sabor genera más dinero, está perdiendo información valiosa.</p>
         <p>Peor: sin píxel, no pueden <a href="/analisis/glosario-digital-empresas/#retargeting">retargetar</a> al cliente que vio "Gelato Pistacho" pero no compró. Ese cliente desaparece. Dinero perdido.</p>
         <div class="bars">
