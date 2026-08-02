@@ -157,7 +157,7 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
   .prose :global(a:hover) { color: var(--lime); }
   .art-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
   .art-cta p { color: var(--muted); margin: 0 0 16px; }
-  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: all .2s; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: transform .2s ease, box-shadow .2s ease; }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(30,90,63,0.25); }
   .scanwrap { max-width: 560px; margin: 24px auto 0; text-align: left; }
 </style>

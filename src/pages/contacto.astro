@@ -41,17 +41,17 @@ const phoneDisplay = '+1 (305) 686-9617';
           <form id="leadForm">
             <input type="text" id="hp-field" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
             <div class="form-row two">
-              <div><label class="field-l" for="f-name">Nombre</label><input class="inp" id="f-name" type="text" placeholder="Tu nombre" required /></div>
-              <div><label class="field-l" for="f-empresa">Empresa</label><input class="inp" id="f-empresa" type="text" placeholder="Tu empresa" /></div>
+              <div><label class="field-l" for="f-name">Nombre</label><input class="inp" id="f-name" name="name" autocomplete="name" type="text" placeholder="Tu nombre" required /></div>
+              <div><label class="field-l" for="f-empresa">Empresa</label><input class="inp" id="f-empresa" name="organization" autocomplete="organization" type="text" placeholder="Tu empresa" /></div>
             </div>
             <div class="form-row two">
-              <div><label class="field-l" for="f-email">Correo</label><input class="inp" id="f-email" type="email" placeholder="nombre@empresa.com" required /></div>
-              <div><label class="field-l" for="f-tel">WhatsApp</label><input class="inp" id="f-tel" type="tel" inputmode="tel" placeholder="+506 8888 8888" required /></div>
+              <div><label class="field-l" for="f-email">Correo</label><input class="inp" id="f-email" name="email" autocomplete="email" type="email" placeholder="nombre@empresa.com" required /></div>
+              <div><label class="field-l" for="f-tel">WhatsApp</label><input class="inp" id="f-tel" name="tel" autocomplete="tel" type="tel" inputmode="tel" placeholder="+506 8888 8888" required /></div>
             </div>
-            <div class="form-row"><label class="field-l" for="f-web">Sitio web</label><input class="inp" id="f-web" type="text" placeholder="tu-sitio.com" required /></div>
+            <div class="form-row"><label class="field-l" for="f-web">Sitio web</label><input class="inp" id="f-web" name="website" inputmode="url" autocomplete="url" type="text" placeholder="tu-sitio.com" required /></div>
             <div class="form-row">
               <label class="field-l" for="f-goal">¿Cuál es tu meta principal?</label>
-              <select class="inp" id="f-goal">
+              <select class="inp" id="f-goal" name="goal">
                 <option value="">Elige una…</option>
                 <option>Vender más</option><option>Conseguir más leads</option>
                 <option>Aparecer primero (visibilidad)</option><option>Automatizar y ahorrar tiempo</option>
@@ -66,7 +66,7 @@ const phoneDisplay = '+1 (305) 686-9617';
                 <label class="pill"><input type="radio" name="ads" value="pronto" />Pronto</label>
               </div>
             </div>
-            <div class="form-row"><label class="field-l" for="f-msg">Mensaje <span class="opt">· opcional</span></label><textarea class="inp" id="f-msg" placeholder="Cuéntanos brevemente qué te gustaría lograr…"></textarea></div>
+            <div class="form-row"><label class="field-l" for="f-msg">Mensaje <span class="opt">· opcional</span></label><textarea class="inp" id="f-msg" name="message" placeholder="Cuéntanos brevemente qué te gustaría lograr…"></textarea></div>
             <label class="consent"><input type="checkbox" id="f-consent" required /> Acepto la <a href="/legal/privacidad/" target="_blank" rel="noopener">política de privacidad</a> y el uso de mis datos para recibir el diagnóstico y seguimiento comercial.</label>
             <button class="btn btn-lime wide" type="submit" style="margin-top:6px">Enviar y recibir mi diagnóstico</button>
             <p class="form-err" id="formErr" role="alert"></p>
@@ -140,7 +140,7 @@ const phoneDisplay = '+1 (305) 686-9617';
   .field-l .opt { color: var(--faint); font-weight: 400; }
   .inp { width: 100%; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; font-family: var(--sans); font-size: 15px; color: var(--text); outline: none; transition: border-color .16s ease; }
   .inp::placeholder { color: var(--faint); }
-  .inp:focus { border-color: var(--violet); }
+  .inp:focus-visible { border-color: var(--violet); box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 16%, transparent); outline: none; }
   textarea.inp { min-height: 96px; resize: vertical; line-height: 1.5; }
   select.inp { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23615C74' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; cursor: pointer; }
   .pills { display: flex; gap: 10px; flex-wrap: wrap; }

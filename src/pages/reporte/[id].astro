@@ -228,7 +228,7 @@ const description = report
         {report.screenshot && (
           <div class="sp-shot">
             <p class="shot-cap">Así ve Google tu sitio en móvil</p>
-            <img src={report.screenshot} alt={`Captura de ${report.host} en móvil`} loading="lazy" />
+            <img src={report.screenshot} alt={`Captura de ${report.host} en móvil`} width="360" height="640" loading="lazy" />
           </div>
         )}
       </div>
@@ -309,7 +309,7 @@ const description = report
 
   .sp-shot { margin-top: 28px; }
   .shot-cap { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--muted); margin-bottom: 12px; }
-  .sp-shot img { max-width: 300px; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--card-shadow); }
+  .sp-shot img { max-width: 300px; width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--line); box-shadow: var(--card-shadow); }
 
   .cta-band { text-align: center; border: 1px solid var(--line); border-radius: 22px; padding: clamp(32px, 5vw, 56px); background: linear-gradient(135deg, var(--surface), var(--surface-2)); box-shadow: var(--card-shadow); }
   .cta-eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-ink); margin-bottom: 16px; }

@@ -117,12 +117,21 @@ const social = [
   const panel = document.getElementById('navMobile');
   const scrim = document.getElementById('navScrim');
   if (nav && toggle && panel && scrim) {
+    // El resto de la página (incluido el FAB de WhatsApp, que flota por encima
+    // del scrim) queda inerte mientras el menú móvil está abierto, para que Tab
+    // no escape hacia contenido tapado.
+    const inertTargets = [
+      document.getElementById('main'),
+      document.querySelector('footer.ft'),
+      document.querySelector('.wa-fab'),
+    ].filter(Boolean) as HTMLElement[];
     const setOpen = (open: boolean) => {
       nav.classList.toggle('menu-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
       if (open) panel.removeAttribute('inert');
       else panel.setAttribute('inert', '');
+      inertTargets.forEach((el) => (open ? el.setAttribute('inert', '') : el.removeAttribute('inert')));
       document.body.style.overflow = open ? 'hidden' : '';
     };
     setOpen(false);

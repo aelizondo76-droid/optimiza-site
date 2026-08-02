@@ -10,11 +10,12 @@
   </div>
   <form class="scan-input" id="scanForm">
     <label class="field" for="url"><span class="prefix">https://</span>
-      <input type="text" id="url" placeholder="tu-sitio.com" autocomplete="off" spellcheck="false" aria-label="URL de tu sitio" />
+      <input type="text" id="url" name="site-url" inputmode="url" placeholder="tu-sitio.com" autocomplete="off" spellcheck="false" aria-label="URL de tu sitio" />
     </label>
     <button class="btn btn-lime" type="submit" id="scanBtn">Analizar mi web</button>
   </form>
   <p class="scan-err" id="scanErr" role="alert"></p>
+  <p class="sr-only" id="scanStatusLive" aria-live="polite"></p>
   <div class="scan-progress" aria-hidden="true"><span></span></div>
   <div class="scan-meta" aria-hidden="true">
     <span class="sm-live"><i></i>Análisis en tiempo real</span>
@@ -45,8 +46,8 @@
       <div id="gateStep1">
         <p class="gt">Recibe el diagnóstico completo + un plan de acción priorizado por impacto.</p>
         <form class="gform" id="gateForm">
-          <input type="email" id="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
-          <input type="tel" id="gwa" inputmode="tel" placeholder="WhatsApp (+506 8888 8888)" aria-label="WhatsApp" required />
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="nombre@tuempresa.com" aria-label="Correo" required />
+          <input type="tel" id="gwa" name="whatsapp" inputmode="tel" autocomplete="tel" placeholder="WhatsApp (+506 8888 8888)" aria-label="WhatsApp" required />
           <input type="text" id="gwa-hp" name="company_website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
           <label class="gconsent"><input type="checkbox" id="g-consent" required /> Acepto la <a href="/legal/privacidad/" target="_blank" rel="noopener">política de privacidad</a>.</label>
           <button class="btn btn-violet" type="submit">Recibir diagnóstico</button>
@@ -58,7 +59,7 @@
         <a class="btn btn-violet report-link" id="reportLink" href="#" target="_blank" rel="noopener">Ver tu informe completo →</a>
         <p class="gt2">¿Quieres que tu plan sea más preciso? Cuéntanos 3 cosas — opcional:</p>
         <form id="qualForm">
-          <div class="q-row"><input class="qinp" id="q-name" type="text" placeholder="Tu nombre" /></div>
+          <div class="q-row"><input class="qinp" id="q-name" name="name" autocomplete="name" type="text" placeholder="Tu nombre" /></div>
           <div class="q-row">
             <select class="qinp" id="q-goal">
               <option value="">¿Cuál es tu meta principal?</option>
@@ -151,7 +152,7 @@
   .fitem.locked { color: var(--faint); filter: blur(0.4px); }
   .gate { margin-top: 18px; background: #FFFFFF; border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
     --surface: #F4F4F1; --surface-2: #FBFBFA; --ink-2: #F4F4F1;
-    --text: #15171A; --muted: #4E525A; --faint: #82868D;
+    --text: #15171A; --muted: #4E525A; --faint: #63676E;
     --line: rgba(21,23,26,0.14); --line-soft: rgba(21,23,26,0.07);
     --violet: #963A1D; --violet-ink: #7C2F17; --cyan-ink: #1F4A3E;
     --vbtn-bg: #15171A; --vbtn-fg: #FFFFFF; }
@@ -159,7 +160,7 @@
   .gate .gform { display: flex; flex-direction: column; gap: 10px; }
   .gate input { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 13px 14px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; }
   .gate .gform input, .gate .gform .btn { width: 100%; }
-  .gate input:focus { border-color: var(--violet); }
+  .gate input:focus-visible { border-color: var(--violet); box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 20%, transparent); outline: none; }
   .gconsent { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.45; cursor: pointer; }
   .gconsent input { width: auto; flex: none; margin-top: 3px; padding: 0; }
   .gconsent a { color: var(--violet-ink); }
@@ -173,7 +174,7 @@
   .gt2 { font-size: 13.5px; color: var(--muted); margin-bottom: 12px; }
   .q-row { margin-bottom: 10px; }
   .qinp { width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 13px; color: var(--text); font-family: var(--sans); font-size: 14px; outline: none; transition: border-color .16s ease; }
-  .qinp:focus { border-color: var(--violet); }
+  .qinp:focus-visible { border-color: var(--violet); box-shadow: 0 0 0 3px color-mix(in srgb, var(--violet) 20%, transparent); outline: none; }
   select.qinp { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A95B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 38px; cursor: pointer; }
   .q-label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
   .qpills { display: flex; gap: 8px; }
@@ -195,7 +196,11 @@
     const scoreNum = document.getElementById('scoreNum');
     const scanBtn = document.getElementById('scanBtn') as HTMLButtonElement;
     const errEl = document.getElementById('scanErr')!;
+    const statusLive = document.getElementById('scanStatusLive');
     const sevColor = (ok: unknown) => (ok === false ? '#B0281E' : ok === 'warn' ? '#963A1D' : '#1E6B3E');
+    // La severidad no puede depender solo del color del punto: cada hallazgo
+    // lleva además una etiqueta accesible (crítico/atención/bien).
+    const sevLabel = (ok: unknown) => (ok === false ? 'Crítico' : ok === 'warn' ? 'Atención' : 'Bien');
     // Escapa datos externos (host/hallazgos del sitio escaneado) antes de innerHTML.
     const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => (
       { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
@@ -244,15 +249,16 @@
       for (const f of d.preview) {
         const item = document.createElement('div');
         item.className = 'fitem';
-        item.innerHTML = `<span class="sev" style="background:${sevColor(f.ok)}"></span><span class="txt">${esc(f.title)}${f.detail ? ' <em>— ' + esc(f.detail) + '</em>' : ''}</span>`;
+        item.innerHTML = `<span class="sev" style="background:${sevColor(f.ok)}" aria-hidden="true"></span><span class="sr-only">${sevLabel(f.ok)}: </span><span class="txt">${esc(f.title)}${f.detail ? ' <em>— ' + esc(f.detail) + '</em>' : ''}</span>`;
         flist.appendChild(item);
       }
       if (d.lockedCount > 0) {
         const locked = document.createElement('div');
         locked.className = 'fitem locked';
-        locked.innerHTML = `<span class="sev" style="background:#7C8087"></span><span class="txt">•••••• ${d.lockedCount} hallazgo${d.lockedCount === 1 ? '' : 's'} más — desbloquea el informe completo ••••••</span>`;
+        locked.innerHTML = `<span class="sev" style="background:#7C8087" aria-hidden="true"></span><span class="txt">•••••• ${d.lockedCount} hallazgo${d.lockedCount === 1 ? '' : 's'} más — desbloquea el informe completo ••••••</span>`;
         flist.appendChild(locked);
       }
+      if (statusLive) statusLive.textContent = `Análisis completo: ${Number(d.totalFindings) || 0} oportunidades detectadas en ${d.host}.`;
       result.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
     };
 
@@ -261,6 +267,7 @@
     const runScan = async (url: string) => {
       errEl.classList.remove('show');
       scanBtn.disabled = true; scanner.classList.add('scanning'); startStatus();
+      if (statusLive) statusLive.textContent = 'Analizando tu sitio, esto puede tardar unos segundos…';
       try {
         const res = await fetch('/api/scan', {
           method: 'POST',

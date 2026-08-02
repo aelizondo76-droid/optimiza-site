@@ -54,11 +54,11 @@ const faqLd = {
       <div class="scanwrap"><Scanner /></div>
       <p class="hero-sub">Sin registro para ver tu puntaje · esto mismo acabas de correrlo sobre optimizahq.com.</p>
 
-      <div class="ledger-row" role="table" aria-label="Estado digital de las empresas en Costa Rica, 2026">
-        <div class="lg-cell" role="row"><span class="lg-n">386</span><span class="lg-l">sitios analizados</span></div>
-        <div class="lg-cell lg-warn" role="row"><span class="lg-n">88%</span><span class="lg-l">sin Meta Pixel</span></div>
-        <div class="lg-cell lg-crit" role="row"><span class="lg-n">$122M</span><span class="lg-l">pérdida anual estimada</span></div>
-      </div>
+      <dl class="ledger-row" aria-label="Estado digital de las empresas en Costa Rica, 2026">
+        <div class="lg-cell"><dt class="lg-l">sitios analizados</dt><dd class="lg-n">386</dd></div>
+        <div class="lg-cell lg-warn"><dt class="lg-l">sin Meta Pixel</dt><dd class="lg-n">88%</dd></div>
+        <div class="lg-cell lg-crit"><dt class="lg-l">pérdida anual estimada</dt><dd class="lg-n">$122M</dd></div>
+      </dl>
 
       <div class="hero-cta-row">
         <a class="btn btn-ghost" href="#metodo">Ver cómo trabajamos</a>
@@ -196,9 +196,10 @@ const faqLd = {
 
   /* Ledger: fila de datos, no tarjetas flotantes — la prueba se lee como un renglón de reporte. */
   .ledger-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0; margin: 48px auto 0; max-width: 720px; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); }
-  .lg-cell { flex: 1; min-width: 160px; padding: 20px 16px; display: flex; flex-direction: column; align-items: center; gap: 6px; border-left: 1px solid rgba(255,255,255,0.14); }
+  .lg-cell { flex: 1; min-width: 160px; padding: 20px 16px; display: flex; flex-direction: column-reverse; align-items: center; gap: 6px; border-left: 1px solid rgba(255,255,255,0.14); }
   .lg-cell:first-child { border-left: none; }
   @media (max-width: 560px) { .lg-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.14); } .lg-cell:first-child { border-top: none; } }
+  .lg-cell dt, .lg-cell dd { margin: 0; }
   .lg-n { font-family: var(--mono); font-size: clamp(24px, 3.6vw, 32px); font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
   .lg-cell.lg-warn .lg-n { color: var(--violet-ink); }
   .lg-cell.lg-crit .lg-n { color: var(--violet-ink); }

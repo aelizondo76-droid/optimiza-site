@@ -544,7 +544,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .glos-intro p:last-child { margin: 0; }
   .glos-intro strong { color: var(--text); font-weight: 600; }
   .glos-terms { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
-  .term { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px; transition: all 0.2s; }
+  .term { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 28px; transition: border-color .2s ease, background-color .2s ease; }
   .term:hover { border-color: var(--lime); background: rgba(30,90,63,0.02); }
   .term-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
   .term-header h3 { font-size: 20px; font-weight: 600; color: var(--text); margin: 0; }
@@ -559,7 +559,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
   .term-footer strong { color: var(--text); font-weight: 600; }
   .glos-cta { text-align: center; padding: 32px; background: var(--surface); border-radius: 16px; margin-top: 40px; }
   .glos-cta p { color: var(--muted); margin: 0 0 16px; }
-  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: all .2s; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; background: var(--lime); color: var(--lime-fg); transition: transform .2s ease, box-shadow .2s ease; }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 12px 24px rgba(30,90,63,0.25); }
   @media (max-width: 640px) {
     .term-header { flex-direction: column; align-items: flex-start; gap: 8px; }

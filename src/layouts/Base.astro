@@ -110,6 +110,8 @@ const crumbLd = breadcrumbs?.length
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#F1F1EC" />
+    <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
     <script type="application/ld+json" set:html={JSON.stringify(founderLd)} />
@@ -118,6 +120,7 @@ const crumbLd = breadcrumbs?.length
     <slot name="head" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Saltar al contenido</a>
     <Defs />
     <Nav active={active} />
     <main id="main">
