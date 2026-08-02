@@ -48,6 +48,8 @@ export interface SpeedResult {
     metaPixel: boolean;
     tiktok: boolean;
     hotjarClarity: boolean;
+    /** Widget de chat/CRM de captura visto en la red del render. */
+    captureWidget: boolean;
   } | null;
 }
 
@@ -79,6 +81,10 @@ export interface Diagnosis {
   };
   conversion: {
     forms: number;
+    /** Formulario embebido de terceros (Typeform, Tally, HubSpot, Google Forms…). */
+    formEmbed: boolean;
+    /** Widget de chat/CRM que captura leads inyectándose en runtime (Clientify, Intercom, Tawk…). */
+    captureWidget: boolean;
     whatsapp: boolean;
     tel: boolean;
     mailto: boolean;
@@ -270,6 +276,7 @@ async function runPsi(
           metaPixel: saw(/connect\.facebook\.net|facebook\.com\/tr[/?]/i),
           tiktok: saw(/analytics\.tiktok\.com/i),
           hotjarClarity: saw(/static\.hotjar\.com|clarity\.ms/i),
+          captureWidget: saw(/clientify\.(net|com)|hs-scripts\.com|js\.hsforms\.net|intercom\.io|crisp\.chat|tidio\.co|tawk\.to|drift\.com|zopim|zdassets|manychat|amocrm|kommo|bitrix24|jivosite|smartsupp|livechatinc/i),
         }
       : null;
 
@@ -495,6 +502,17 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
     stack = 'Next.js';
   else if (gen) stack = gen.split(' ')[0];
 
+  // Captura de leads más allá del <form> clásico:
+  // apps client-side (inputs sin <form>), embeds de terceros y widgets
+  // de chat/CRM cuyo formulario solo existe tras ejecutar su script.
+  const looseInputs = root.querySelectorAll(
+    'input[type="email"], input[type="tel"], input[name*="email" i], input[name*="phone" i], input[name*="tel" i]'
+  ).length;
+  const formEmbed =
+    /typeform\.com|jotform\.com|tally\.so|forms\.gle|docs\.google\.com\/forms|js\.hsforms\.net|hsforms\.com|list-manage\.com|flodesk\.com/i.test(lower);
+  const captureWidget =
+    /clientify\.(net|com)|hs-scripts\.com|intercom\.io|widget\.intercom|crisp\.chat|tidio\.co|tawk\.to|drift\.com|zopim|zdassets|manychat|amocrm|kommo\.com|bitrix24|jivosite|smartsupp|livechatinc|wati\.io/i.test(lower);
+
   return {
     finalUrl,
     host,
@@ -519,7 +537,9 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
       lang: root.querySelector('html')?.getAttribute('lang') || null,
     },
     conversion: {
-      forms: root.querySelectorAll('form').length,
+      forms: root.querySelectorAll('form').length || (looseInputs >= 2 ? 1 : 0),
+      formEmbed,
+      captureWidget,
       whatsapp,
       tel,
       mailto,
@@ -627,7 +647,13 @@ function buildPillars(
   if (html) {
     const c = html.conversion;
     addC(c.ctaButtons > 0, 22, c.ctaButtons ? `${c.ctaButtons} llamados a la acción (CTA)` : 'Sin CTA visibles', c.ctaButtons ? undefined : 'El visitante no sabe qué hacer', 'cta');
-    addC(c.forms > 0, 18, c.forms ? `${c.forms} formulario(s) de captura` : 'Sin formularios de captura de leads', undefined, 'forms');
+    const hasCapture = c.forms > 0 || c.formEmbed || c.captureWidget;
+    addC(hasCapture, 18,
+      c.forms > 0 ? `${c.forms} formulario(s) de captura`
+        : c.captureWidget ? 'Captura de leads vía chat/widget (se inyecta al cargar)'
+        : c.formEmbed ? 'Formulario embebido de terceros'
+        : 'No detectamos formularios ni widget de captura de leads',
+      undefined, 'forms');
     addC(c.whatsapp, 16, c.whatsapp ? 'WhatsApp click-to-chat' : 'Sin WhatsApp directo', c.whatsapp ? undefined : 'Canal #1 en Costa Rica', 'whatsapp');
     addC(c.tel || c.mailto, 10, c.tel || c.mailto ? 'Contacto directo (teléfono/email)' : 'Sin contacto directo visible', undefined, 'contacto');
     addC(html.meta.h1.length >= 1, 12, html.meta.h1.length ? 'Propuesta de valor en H1' : 'Sin titular claro (H1)', undefined, 'h1-valor');
@@ -660,7 +686,8 @@ function buildPillars(
     addA(t.hotjarClarity, 10, t.hotjarClarity ? 'Mapas de calor (Hotjar/Clarity)' : 'No detectamos análisis de comportamiento', 'heatmap');
     if (html) {
       addA(html.conversion.whatsapp, 16, html.conversion.whatsapp ? 'Canal WhatsApp para automatizar' : 'Sin WhatsApp para flujos automáticos', 'wa-auto');
-      addA(html.conversion.forms > 0, 10, html.conversion.forms ? 'Formulario conectable a CRM' : 'Sin formulario para alimentar un CRM', 'form-crm');
+      const crmCapture = html.conversion.forms > 0 || html.conversion.formEmbed || html.conversion.captureWidget;
+      addA(crmCapture, 10, crmCapture ? (html.conversion.captureWidget && !html.conversion.forms ? 'Widget de captura conectado a CRM' : 'Formulario conectable a CRM') : 'No detectamos formulario ni widget para alimentar un CRM', 'form-crm');
     } else {
       automatizacion += 13; // mitad de los 26 pts de WhatsApp+formulario: no verificables
       aFindings.push({ ok: 'warn', title: 'WhatsApp y formularios no verificables (lectura HTML bloqueada)' });
@@ -715,6 +742,7 @@ export async function diagnose(rawUrl: string): Promise<Diagnosis> {
     html.tracking.metaPixel ||= t.metaPixel;
     html.tracking.tiktok ||= t.tiktok;
     html.tracking.hotjarClarity ||= t.hotjarClarity;
+    html.conversion.captureWidget ||= t.captureWidget;
     html.tracking.any =
       html.tracking.ga4 || html.tracking.gtm || html.tracking.metaPixel ||
       html.tracking.tiktok || html.tracking.hotjarClarity;
@@ -743,7 +771,7 @@ export async function diagnose(rawUrl: string): Promise<Diagnosis> {
       ({ title: null, titleLen: 0, description: null, descLen: 0, h1: [], canonical: false, og: false, schema: [], hreflang: false, viewport: false, robots: false, sitemap: false, llms: false, favicon: false, lang: null } as Diagnosis['meta']),
     conversion:
       html?.conversion ??
-      { forms: 0, whatsapp: false, tel: false, mailto: false, ctaButtons: 0, imgCount: 0, imgNoAlt: 0 },
+      { forms: 0, formEmbed: false, captureWidget: mobile?.trackers?.captureWidget ?? false, whatsapp: false, tel: false, mailto: false, ctaButtons: 0, imgCount: 0, imgNoAlt: 0 },
     tracking:
       html?.tracking ??
       (mobile?.trackers
