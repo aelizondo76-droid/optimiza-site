@@ -144,7 +144,9 @@
   .fitem { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--text); }
   .fitem .sev { width: 8px; height: 8px; border-radius: 2px; flex: none; }
   .fitem.locked { color: var(--faint); filter: blur(0.4px); }
-  .gate { margin-top: 18px; background: #FCFCF9; border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
+  /* color: se declara explícito porque el gate vive dentro de la sección .dark —
+     sin esto, cualquier texto sin color propio hereda la tinta clara del fondo oscuro. */
+  .gate { margin-top: 18px; background: #FCFCF9; color: var(--text); border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
     --surface: #F4F4F1; --surface-2: #FBFBFA; --ink-2: #F4F4F1;
     --text: #15171A; --muted: #4E525A; --faint: #63676E;
     --line: rgba(21,23,26,0.14); --line-soft: rgba(21,23,26,0.07);
