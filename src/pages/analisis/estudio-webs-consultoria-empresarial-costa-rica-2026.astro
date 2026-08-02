@@ -27,8 +27,7 @@ const description = 'Analizamos 9 firmas de consultoría empresarial: 56% sin Me
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-consultoria-empresarial.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las consultoría de estrategia en Costa Rica?', a: 'Mixta, y mejor de lo que sugería el diagnóstico inicial. Índice Optimiza promedio: 60/100 (grado C). El 56% sigue sin Meta Pixel, pero el 44% ya lo tiene — no es la "cero medición" reportada antes. Su debilidad más consistente es otra: el 78% no ofrece WhatsApp directo, crítico en un ciclo de venta B2B tan largo.' },
-  { q: '¿Por qué se creyó antes que el 100% no tenía píxel?', a: 'El diagnóstico original solo leía el HTML estático de cada sitio. Varias consultoría instalan Meta Pixel vía Google Tag Manager, que se carga por JavaScript después de la carga inicial — invisible para ese análisis. Al leer también el contenedor de GTM, la cifra real bajó de 100% a 56% sin píxel.' },
+  { q: '¿Qué tan buenas son las consultoría de estrategia en Costa Rica?', a: 'Mixta. Índice Optimiza promedio: 60/100 (grado C). El 56% sigue sin Meta Pixel, pero el 44% ya lo tiene. Su debilidad más consistente es otra: el 78% no ofrece WhatsApp directo, crítico en un ciclo de venta B2B tan largo.' },
   { q: '¿Hay algo que hagan bien?', a: 'Visibilidad: 65/100, junto con conversión (65/100), son sus pilares más fuertes. Aparecen razonablemente en búsquedas como "consultoría empresarial Costa Rica". Pero el 56% sin píxel no puede retargetar a quien busca y no contacta de inmediato.' },
   { q: '¿Cuál es la consecuencia real?', a: 'Un prospecto busca "consultoría de transformación digital", visita varias webs del sector, y más de la mitad no puede retargetarlo si no contacta enseguida. En un ciclo de venta de meses, ese margen de recuperación importa.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para consultoría (negocio B2B), la automatización es crítica — cada lead tarda meses en convertir y requiere múltiples touchpoints.' },
@@ -72,7 +71,7 @@ const plus = 'M12 5v14M5 12h14';
       </div>
       <div class="prose">
         <h2>Casi la mitad ya mide su propia estrategia</h2>
-        <p>El {D.sinPixel}% de consultoría analizadas carece de <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>; el {D.conPixel}% restante sí lo tiene. Sigue siendo alto para una industria que vende "estrategia de crecimiento" a otras empresas, pero está lejos del 100% que sugería el diagnóstico original —un falso negativo del motor anterior, que no leía píxeles inyectados por Google Tag Manager.</p>
+        <p>El {D.sinPixel}% de consultoría analizadas carece de <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a>; el {D.conPixel}% restante sí lo tiene. Sigue siendo alto para una industria que vende "estrategia de crecimiento" a otras empresas.</p>
         <p><a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio: {D.indice}/100 (grado C). <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> sigue siendo débil ({D.pilares[0].v}/100). Ninguna alcanza grado A. El {D.sinAnalytics}% no tiene Google <a href="/analisis/glosario-digital-empresas/#analitycs">Analytics</a> — mejor que antes, pero todavía una de cada tres.</p>
         <div class="bars">
           {D.pilares.map((p) => (

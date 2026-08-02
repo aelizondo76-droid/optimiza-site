@@ -27,10 +27,9 @@ const description = 'Analizamos 9 agencias de marketing digital del GAM: 78% tie
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImage = new URL('/og/estudio-marketing-digital.png', Astro.site).href;
 const faqs = [
-  { q: '¿Qué tan buenas son las agencias de marketing digital en Costa Rica?', a: 'Mejor de lo que sugería el diagnóstico inicial. El 78% tiene Meta Pixel en su propia web — el porcentaje más alto de los sectores estudiados. Índice Optimiza promedio: 69/100 (grado B), también el más alto entre servicios digitales. Su debilidad real no es la medición: es la velocidad móvil.' },
+  { q: '¿Qué tan buenas son las agencias de marketing digital en Costa Rica?', a: 'El 78% tiene Meta Pixel en su propia web — el porcentaje más alto de los sectores estudiados. Índice Optimiza promedio: 69/100 (grado B), también el más alto entre servicios digitales. Su debilidad real no es la medición: es la velocidad móvil.' },
   { q: '¿Cuál es el problema más grave?', a: 'La velocidad: 51/100, el pilar más débil del sector con diferencia. Un visitante que llega desde un anuncio pagado — el propio negocio de estas agencias — espera una landing rápida. Si tarda, se va antes de conocer el pitch.' },
   { q: '¿Todas las agencias que se miden tienen mejor desempeño?', a: 'No de forma perfecta. El mejor índice del grupo es 87/100, con velocidad excelente y píxel activo. Pero la segunda mejor (83/100) no tiene píxel, y una de las que sí lo tiene cae hasta 46/100 por velocidad crítica. Tener píxel ayuda a medir, pero no sustituye una web rápida.' },
-  { q: '¿Por qué se pensó antes que el sector no se medía a sí mismo?', a: 'El diagnóstico original solo leía el HTML estático de cada sitio. Varias agencias instalan Meta Pixel a través de Google Tag Manager, que se carga por JavaScript después de la carga inicial — invisible para un análisis de solo-HTML. Al añadir lectura del contenedor de GTM, la cifra real de píxeles subió de 11% a 78%.' },
   { q: '¿Qué es el Índice Optimiza?', a: 'Calificación 0-100: velocidad 30%, visibilidad 30%, conversión 20%, automatización 20%. Para agencias de marketing, la velocidad es crítica — cada segundo perdido es lead perdido.' },
   { q: '¿Cómo se analizaron?', a: 'Se escanearon 9 agencias de marketing digital, consultoría digital y publicidad del GAM en julio de 2026, con el motor de diagnóstico de Optimiza.' },
 ];
@@ -71,8 +70,8 @@ const plus = 'M12 5v14M5 12h14';
         <div class="stat"><div class="sn">{D.indice}<small>/100</small></div><div class="sl">Índice Optimiza (grado B)</div></div>
       </div>
       <div class="prose">
-        <h2>La sospecha no se confirmó: la mayoría sí mide</h2>
-        <p>El diagnóstico original —con un motor que no leía los píxeles inyectados por Google Tag Manager— sugería que el 89% de las agencias de marketing digital no tenía <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a> en su propia web. Al revalidar con un motor que sí lee esos contenedores, la cifra real es otra: el <strong>{D.sinPixel}% sigue sin píxel</strong>, pero el 78% restante sí lo tiene — el porcentaje más alto de cualquier sector estudiado hasta ahora.</p>
+        <h2>La mayoría sí practica lo que vende</h2>
+        <p>El <strong>{D.sinPixel}% sigue sin <a href="/analisis/glosario-digital-empresas/#pixel">Meta Pixel</a></strong> en su propia web, pero el 78% restante sí lo tiene — el porcentaje más alto de cualquier sector estudiado.</p>
         <p>Esto no vuelve perfecto al sector. El <a href="/analisis/glosario-digital-empresas/#indice">Índice Optimiza</a> promedio (69/100, grado B) es el más alto entre los estudios de servicios digitales, pero dos de cada nueve agencias siguen sin píxel, y el pilar más débil del grupo —con diferencia— sigue siendo la <a href="/analisis/glosario-digital-empresas/#velocidad">velocidad</a> móvil: 51/100.</p>
         <p>El ciclo de riesgo real ya no es "vender retargeting sin usarlo": es que un prospecto que llega desde un anuncio pagado —el propio negocio de estas agencias— puede perder la paciencia antes de que la landing termine de cargar. El sector mide bien; todavía no carga rápido.</p>
         <div class="bars">
@@ -86,7 +85,7 @@ const plus = 'M12 5v14M5 12h14';
         <blockquote>Una agencia de marketing que carga su propia web en más de 4 segundos en móvil está perdiendo leads antes de que su prospecto vea el pitch — el mismo problema que le factura a sus clientes por resolver.</blockquote>
         <h2>La velocidad, no el píxel, es el punto ciego real</h2>
         <p>Con casi 8 de cada 10 agencias midiendo con píxel, el problema que sí persiste es la velocidad: 51/100, el pilar más bajo del sector y la única métrica donde el grupo reprueba de forma consistente. Un visitante que llega desde un anuncio pagado espera una landing rápida. Si tarda, se va antes de conocer el pitch.</p>
-        <p>La automatización, en cambio, es sólida: 73/100, muy por encima de lo que sugería el diagnóstico anterior. El WhatsApp directo también está más extendido de lo reportado: {100 - D.sinWhatsApp}% de las agencias lo ofrece.</p>
+        <p>La automatización, en cambio, es sólida: 73/100. El WhatsApp directo también está bastante extendido: {100 - D.sinWhatsApp}% de las agencias lo ofrece.</p>
         <h2>¿Cómo elegir una agencia que predica con el ejemplo?</h2>
         <p>Antes de contratar, pregúntale a la agencia estas preguntas sobre su propia web — la mayoría del sector ya las responde bien, pero no todas:</p>
         <ul>
