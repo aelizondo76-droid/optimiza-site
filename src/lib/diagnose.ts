@@ -39,6 +39,16 @@ export interface SpeedResult {
   fieldCls: number | null;
   opportunities: { title: string; savingsMs: number }[];
   screenshot?: string | null; // solo en móvil: render final (data URI)
+  /** Trackers observados en las peticiones de red REALES del render de Lighthouse.
+   *  Es la señal más fiable: ve lo que el navegador cargó, incluido lo que
+   *  inyecta GTM u otro script en runtime (el HTML estático no lo ve). */
+  trackers?: {
+    ga4: boolean;
+    gtm: boolean;
+    metaPixel: boolean;
+    tiktok: boolean;
+    hotjarClarity: boolean;
+  } | null;
 }
 
 export interface Diagnosis {
@@ -91,6 +101,11 @@ export interface Diagnosis {
 
 const UA =
   'Mozilla/5.0 (compatible; OptimizaBot/1.0; +https://optimizahq.com/scanner)';
+// Fallback cuando un WAF filtra UAs de bot: nos identificamos primero como
+// OptimizaBot (cortesía), y solo si el sitio rechaza esa lectura reintentamos
+// como navegador para no emitir un diagnóstico falso por un bloqueo de UA.
+const BROWSER_UA =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36';
 
 /** Normaliza input del usuario a una URL http(s) válida. */
 export function normalizeUrl(raw: string): string | null {
@@ -244,7 +259,22 @@ async function runPsi(
     const field = data.loadingExperience?.metrics || {};
     const fieldMs = (m: any) => (m ? m.percentile : null);
 
+    // Peticiones de red del render real (Lighthouse las registra todas).
+    const netUrls: string[] = (audits['network-requests']?.details?.items ?? [])
+      .map((i: any) => String(i?.url || ''));
+    const saw = (re: RegExp) => netUrls.some((u) => re.test(u));
+    const trackers = netUrls.length
+      ? {
+          ga4: saw(/google-analytics\.com|googletagmanager\.com\/gtag\/js/i),
+          gtm: saw(/googletagmanager\.com\/gtm\.js/i),
+          metaPixel: saw(/connect\.facebook\.net|facebook\.com\/tr[/?]/i),
+          tiktok: saw(/analytics\.tiktok\.com/i),
+          hotjarClarity: saw(/static\.hotjar\.com|clarity\.ms/i),
+        }
+      : null;
+
     return {
+      trackers,
       performance: s(cat.performance?.score),
       accessibility: s(cat.accessibility?.score),
       bestPractices: s(cat['best-practices']?.score),
@@ -292,16 +322,25 @@ interface HtmlLayer {
 }
 
 async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
-  let res: Response;
-  let finalUrl: string;
-  try {
-    const r = await safeFetch(url, 20000, { headers: { accept: 'text/html' } });
-    res = r.res;
-    finalUrl = r.finalUrl;
-  } catch {
-    return null;
+  let res: Response | null = null;
+  let finalUrl = url;
+  let ua = UA;
+  for (const agent of [UA, BROWSER_UA]) {
+    try {
+      const r = await safeFetch(url, 20000, {
+        headers: { accept: 'text/html', 'user-agent': agent },
+      });
+      if (r.res.ok) {
+        res = r.res;
+        finalUrl = r.finalUrl;
+        ua = agent;
+        break;
+      }
+    } catch {
+      /* siguiente UA */
+    }
   }
-  if (!res.ok) return null;
+  if (!res) return null;
   const origin = new URL(finalUrl).origin;
   const host = new URL(finalUrl).host.replace(/^www\./, '');
   const html = await res.text();
@@ -332,25 +371,58 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
     if (t) schema.add(t);
   });
 
-  // Recursos externos (existencia)
-  const exists = async (path: string, mustInclude?: RegExp) => {
+  // Recursos externos. `mustInclude` valida el contenido para no dar por
+  // existente un soft-404 (hosts que devuelven 200 con una página HTML).
+  const fetchText = async (absUrl: string, maxChars = 8000): Promise<string | null> => {
     try {
-      const { res: r } = await safeFetch(origin + path, 8000);
-      if (!r.ok) return false;
-      if (mustInclude) {
-        const txt = (await r.text()).slice(0, 4000);
-        return mustInclude.test(txt);
-      }
-      return true;
+      // Reutiliza el UA que el sitio SÍ aceptó para el HTML principal.
+      const { res: r } = await safeFetch(absUrl, 8000, { headers: { 'user-agent': ua } });
+      if (!r.ok) return null;
+      return (await r.text()).slice(0, maxChars);
+    } catch {
+      return null;
+    }
+  };
+  const exists = async (path: string, mustInclude?: RegExp) => {
+    const txt = await fetchText(origin + path);
+    if (txt == null) return false;
+    return mustInclude ? mustInclude.test(txt) : true;
+  };
+
+  // robots.txt: se lee el TEXTO (no solo existencia) porque sus directivas
+  // `Sitemap:` son la fuente canónica de dónde vive el sitemap — muchos CMS
+  // no lo sirven en /sitemap.xml (Astro usa /sitemap-index.xml, Yoast
+  // /sitemap_index.xml, otros rutas propias).
+  const robotsTxt = await fetchText(origin + '/robots.txt');
+  const robots = robotsTxt != null && /user-agent\s*:/i.test(robotsTxt);
+  const declaredSitemaps = (robotsTxt?.match(/^\s*sitemap\s*:\s*(\S+)/gim) || [])
+    .map((l) => l.replace(/^\s*sitemap\s*:\s*/i, '').trim())
+    .filter((u) => /^https?:\/\//i.test(u))
+    .slice(0, 3);
+
+  const isSitemapXml = /<\s*(urlset|sitemapindex)[\s>]/i;
+  const checkSitemapUrl = async (absUrl: string) => {
+    try {
+      const u = new URL(absUrl);
+      if (u.host.replace(/^www\./, '') !== host) return false; // no salir del dominio
     } catch {
       return false;
     }
+    const txt = await fetchText(absUrl);
+    return txt != null && isSitemapXml.test(txt);
   };
-  const [robots, sitemap, llms] = await Promise.all([
-    exists('/robots.txt'),
-    exists('/sitemap.xml').then((ok) => ok || exists('/sitemap_index.xml')),
-    exists('/llms.txt'),
-  ]);
+  const sitemapCandidates = [
+    ...declaredSitemaps,
+    origin + '/sitemap.xml',
+    origin + '/sitemap_index.xml',
+    origin + '/sitemap-index.xml',
+  ];
+  let sitemap = false;
+  for (const cand of [...new Set(sitemapCandidates)]) {
+    if (await checkSitemapUrl(cand)) { sitemap = true; break; }
+  }
+
+  const llms = await exists('/llms.txt');
 
   const title = root.querySelector('title')?.text?.trim() || null;
   const description = attr('meta[name="description"]', 'content');
@@ -378,7 +450,7 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
     ...links.filter((n) => ctaWords.test(n.text)),
   ].length;
 
-  // Medición / tracking
+  // Medición / tracking — capa 1: HTML estático.
   const tracking = {
     ga4: /gtag\('config'|googletagmanager\.com\/gtag|google-analytics\.com\/g\/collect/.test(lower),
     gtm: /googletagmanager\.com\/gtm\.js|dataLayer/.test(lower),
@@ -387,6 +459,27 @@ async function analyzeHtml(url: string): Promise<HtmlLayer | null> {
     hotjarClarity: /static\.hotjar\.com|clarity\.ms/.test(lower),
     any: false,
   };
+
+  // Capa 2: si hay GTM, los píxeles suelen inyectarse en runtime y NO aparecen
+  // en el HTML — se leen las firmas dentro del JS público del contenedor
+  // (googletagmanager.com/gtm.js?id=...), que describe los tags configurados.
+  const gtmIds = [...new Set(html.match(/GTM-[A-Z0-9]{4,10}/g) || [])].slice(0, 3);
+  if (gtmIds.length) {
+    tracking.gtm = true;
+    const containers = await Promise.all(
+      gtmIds.map((id) =>
+        // el contenedor pesa 100–300KB — se lee completo para no perder firmas
+        fetchText(`https://www.googletagmanager.com/gtm.js?id=${id}`, 500_000).then((t) => t ?? '')
+      )
+    );
+    const cjs = containers.join('\n');
+    if (cjs) {
+      tracking.metaPixel ||= /connect\.facebook\.net|fbevents\.js|facebook\.com\/tr/i.test(cjs);
+      tracking.tiktok ||= /analytics\.tiktok\.com|ttq\./i.test(cjs);
+      tracking.ga4 ||= /google-analytics\.com|gtag\/js\?id=G-|"G-[A-Z0-9]{6,}"/i.test(cjs);
+      tracking.hotjarClarity ||= /hotjar|clarity\.ms/i.test(cjs);
+    }
+  }
   tracking.any =
     tracking.ga4 || tracking.gtm || tracking.metaPixel || tracking.tiktok || tracking.hotjarClarity;
 
@@ -447,7 +540,8 @@ function clamp(n: number) {
 
 function buildPillars(
   mobile: SpeedResult | null,
-  html: HtmlLayer | null
+  html: HtmlLayer | null,
+  netTrackers: SpeedResult['trackers'] = null
 ): Pillar[] {
   // ── VELOCIDAD ──
   const vFindings: Finding[] = [];
@@ -508,7 +602,7 @@ function buildPillars(
     addV(m.og, 10, m.og ? 'Open Graph (previews en redes)' : 'Sin Open Graph', undefined, 'og');
     addV(m.schema.length > 0, 12,
       m.schema.length ? `Schema.org: ${m.schema.slice(0, 4).join(', ')}` : 'Sin datos estructurados (Schema.org)', undefined, 'schema');
-    addV(m.sitemap, 8, m.sitemap ? 'sitemap.xml presente' : 'Sin sitemap.xml', undefined, 'sitemap');
+    addV(m.sitemap, 8, m.sitemap ? 'Sitemap XML presente' : 'No detectamos sitemap XML', m.sitemap ? undefined : 'Se revisó robots.txt y las rutas comunes', 'sitemap');
     addV(m.robots, 6, m.robots ? 'robots.txt presente' : 'Sin robots.txt', undefined, 'robots');
     addV(m.viewport, 6, m.viewport ? 'Viewport móvil configurado' : 'Sin viewport (no responsive)', undefined, 'viewport');
     addV(!!m.lang, 4, m.lang ? `Idioma declarado: ${m.lang}` : 'Sin atributo lang', undefined, 'lang');
@@ -519,7 +613,7 @@ function buildPillars(
       viFindings.push({ ok: mobile.seo >= 90, title: `SEO técnico (Lighthouse): ${mobile.seo}/100`, term: 'seo-lh' });
   } else {
     visibilidad = mobile?.seo ?? 40;
-    viFindings.push({ ok: 'warn', title: 'No se pudo leer el HTML para el análisis SEO/GEO' });
+    viFindings.push({ ok: 'warn', title: 'El sitio bloqueó la lectura directa del HTML (protección anti-bots)', detail: 'El análisis SEO/GEO detallado no fue posible; se usa el SEO de Lighthouse' });
   }
   visibilidad = clamp(visibilidad);
 
@@ -542,25 +636,35 @@ function buildPillars(
     addC(altOk, 10, altOk ? 'Imágenes con texto alternativo' : `${c.imgNoAlt}/${c.imgCount} imágenes sin alt`, undefined, 'alt');
   } else {
     conversion = 40;
-    cFindings.push({ ok: 'warn' as const, title: 'No se pudo analizar la conversión' } as Finding);
+    cFindings.push({ ok: 'warn' as const, title: 'El sitio bloqueó la lectura directa del HTML — conversión no verificable', detail: 'Puntaje neutro asignado; no significa que falte nada' } as Finding);
   }
   conversion = clamp(conversion);
 
   // ── AUTOMATIZACIÓN / MEDICIÓN ──
+  // Si el sitio bloqueó la lectura del HTML, la medición aún puede evaluarse
+  // con las peticiones de red del render de Lighthouse (netTrackers) — mejor
+  // una detección parcial honesta que ceros falsos.
   const aFindings: Finding[] = [];
   let automatizacion = 0;
-  if (html) {
-    const t = html.tracking;
+  const t = html?.tracking ?? (netTrackers
+    ? { ...netTrackers, any: netTrackers.ga4 || netTrackers.gtm || netTrackers.metaPixel || netTrackers.tiktok || netTrackers.hotjarClarity }
+    : null);
+  if (t) {
     const addA = (cond: boolean, pts: number, title: string, term?: string) => {
       if (cond) automatizacion += pts;
       aFindings.push({ ok: cond, title, term });
     };
-    addA(t.ga4 || t.gtm, 30, t.ga4 || t.gtm ? 'Google Analytics / Tag Manager' : 'Sin Google Analytics — vuelas a ciegas', 'ga');
-    addA(t.metaPixel, 26, t.metaPixel ? 'Meta Pixel (retargeting)' : 'Sin Meta Pixel — no puedes reimpactar', 'meta-pixel');
-    addA(t.tiktok, 8, t.tiktok ? 'TikTok Pixel' : 'Sin TikTok Pixel', 'tiktok');
-    addA(t.hotjarClarity, 10, t.hotjarClarity ? 'Mapas de calor (Hotjar/Clarity)' : 'Sin análisis de comportamiento', 'heatmap');
-    addA(html.conversion.whatsapp, 16, html.conversion.whatsapp ? 'Canal WhatsApp para automatizar' : 'Sin WhatsApp para flujos automáticos', 'wa-auto');
-    addA(html.conversion.forms > 0, 10, html.conversion.forms ? 'Formulario conectable a CRM' : 'Sin formulario para alimentar un CRM', 'form-crm');
+    addA(t.ga4 || t.gtm, 30, t.ga4 || t.gtm ? 'Google Analytics / Tag Manager' : 'No detectamos Google Analytics — vuelas a ciegas', 'ga');
+    addA(t.metaPixel, 26, t.metaPixel ? 'Meta Pixel (retargeting)' : 'No detectamos Meta Pixel — no puedes reimpactar', 'meta-pixel');
+    addA(t.tiktok, 8, t.tiktok ? 'TikTok Pixel' : 'No detectamos TikTok Pixel', 'tiktok');
+    addA(t.hotjarClarity, 10, t.hotjarClarity ? 'Mapas de calor (Hotjar/Clarity)' : 'No detectamos análisis de comportamiento', 'heatmap');
+    if (html) {
+      addA(html.conversion.whatsapp, 16, html.conversion.whatsapp ? 'Canal WhatsApp para automatizar' : 'Sin WhatsApp para flujos automáticos', 'wa-auto');
+      addA(html.conversion.forms > 0, 10, html.conversion.forms ? 'Formulario conectable a CRM' : 'Sin formulario para alimentar un CRM', 'form-crm');
+    } else {
+      automatizacion += 13; // mitad de los 26 pts de WhatsApp+formulario: no verificables
+      aFindings.push({ ok: 'warn', title: 'WhatsApp y formularios no verificables (lectura HTML bloqueada)' });
+    }
     if (!t.any)
       aFindings.unshift({ ok: false, title: 'No se detectó NINGUNA herramienta de medición', detail: 'No sabes de dónde vienen tus ventas', term: 'sin-medicion' });
   } else {
@@ -601,7 +705,22 @@ export async function diagnose(rawUrl: string): Promise<Diagnosis> {
   const desktop: SpeedResult | null = null;
   const screenshot = mobile?.screenshot ?? null;
 
-  const pillars = buildPillars(mobile, html);
+  // Capa 3 de tracking: las peticiones de red del render REAL de Lighthouse.
+  // Cubre lo que ni el HTML ni el contenedor GTM revelan (inyección por
+  // cualquier script en runtime). Se mezcla con OR: cada capa solo suma.
+  if (html && mobile?.trackers) {
+    const t = mobile.trackers;
+    html.tracking.ga4 ||= t.ga4;
+    html.tracking.gtm ||= t.gtm;
+    html.tracking.metaPixel ||= t.metaPixel;
+    html.tracking.tiktok ||= t.tiktok;
+    html.tracking.hotjarClarity ||= t.hotjarClarity;
+    html.tracking.any =
+      html.tracking.ga4 || html.tracking.gtm || html.tracking.metaPixel ||
+      html.tracking.tiktok || html.tracking.hotjarClarity;
+  }
+
+  const pillars = buildPillars(mobile, html, mobile?.trackers ?? null);
   // Índice Optimiza: promedio ponderado (velocidad 30, visibilidad 30, conversión 20, automatización 20)
   const weights: Record<Pillar['key'], number> = {
     velocidad: 0.3, visibilidad: 0.3, conversion: 0.2, automatizacion: 0.2,
@@ -627,7 +746,9 @@ export async function diagnose(rawUrl: string): Promise<Diagnosis> {
       { forms: 0, whatsapp: false, tel: false, mailto: false, ctaButtons: 0, imgCount: 0, imgNoAlt: 0 },
     tracking:
       html?.tracking ??
-      { ga4: false, gtm: false, metaPixel: false, tiktok: false, hotjarClarity: false, any: false },
+      (mobile?.trackers
+        ? { ...mobile.trackers, any: mobile.trackers.ga4 || mobile.trackers.gtm || mobile.trackers.metaPixel || mobile.trackers.tiktok || mobile.trackers.hotjarClarity }
+        : { ga4: false, gtm: false, metaPixel: false, tiktok: false, hotjarClarity: false, any: false }),
     stack: html?.stack ?? null,
     screenshot: screenshot ? `data:image/jpeg;base64,${screenshot.replace(/^data:image\/[a-z]+;base64,/, '')}` : null,
     error: !mobile && !html ? 'No se pudo analizar el sitio' : undefined,
