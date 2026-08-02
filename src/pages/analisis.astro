@@ -23,7 +23,6 @@ const posts = await getAnalisis();
   <section class="hero section">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Análisis y teardowns</p>
         <h1>No prometemos resultados. Los <em>mostramos</em>.</h1>
         <p class="lead">Auditamos sitios reales —incluido el nuestro— en público, publicamos datos propios y enseñamos el antes/después de cada optimización. Así ves cómo trabajamos antes de contratarnos.</p>
         <div class="hero-cta">
@@ -36,7 +35,7 @@ const posts = await getAnalisis();
 
   <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="feature reveal">
+      <div class="feature">
         <div class="fc-body">
           <span class="tag tear">Teardown destacado</span>
           <h2>Tienda de moda online: 5 fugas que drenaban sus ventas cada día.</h2>
@@ -65,15 +64,15 @@ const posts = await getAnalisis();
 
   <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="ahead reveal">
-        <div><p class="eyebrow">La biblioteca</p><h2>Análisis, teardowns e investigación.</h2></div>
+      <div class="ahead">
+        <div><h2>Análisis, teardowns e investigación.</h2></div>
         <a class="btn btn-ghost" href="#final">Pedir el análisis de tu web</a>
       </div>
       <div class="an-grid">
         {posts.map((p) => {
           const cat = categoryMeta[p.entry.category] ?? categoryMeta.teardown;
           return (
-            <article class="an-card reveal">
+            <article class="an-card">
               <span class={`tag ${cat.cls}`}>{cat.label}</span>
               <h3>{p.entry.title}</h3>
               <p class="ac-desc">{p.entry.excerpt}</p>
@@ -90,7 +89,7 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion-maestra">
     <div class="wrap">
-      <div class="band dark reveal" style="border: 2px solid var(--lime);">
+      <div class="band dark" style="border: 2px solid var(--lime);">
         <div class="tband">
           <div class="thead">
             <span class="tag res" style="background: rgba(30, 90, 63, 0.16); color: var(--lime);">Investigación maestra</span>
@@ -113,10 +112,9 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion">
     <div class="wrap">
-      <div class="band dark reveal">
+      <div class="band dark">
         <div class="tband">
           <div class="thead">
-            <p class="eyebrow">Investigación propia</p>
             <h2>Analizamos 104 clínicas de salud del GAM. El 94% vuela a ciegas.</h2>
             <p class="lead">Datos originales, no opiniones. Radiografiamos las webs de clínicas dentales, estéticas y consultorios médicos del Gran Área Metropolitana con nuestro motor de diagnóstico. El hallazgo transversal: casi ninguna puede medir ni recuperar a los pacientes que las visitan.</p>
           </div>
@@ -137,10 +135,9 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion-construccion" style="padding-top:0">
     <div class="wrap">
-      <div class="band dark reveal">
+      <div class="band dark">
         <div class="tband">
           <div class="thead">
-            <p class="eyebrow">Investigación propia</p>
             <h2>Analizamos 90 empresas de construcción del GAM. El 93% no mide su web.</h2>
             <p class="lead">Cocinas y muebles a medida, constructoras, acabados e instaladores, piscinas y exteriores. Cambia el sub-nicho; el punto ciego es el mismo: casi nadie puede medir ni recuperar a los prospectos que visitan su web.</p>
           </div>
@@ -161,10 +158,9 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion-ecommerce" style="padding-top:0">
     <div class="wrap">
-      <div class="band dark reveal">
+      <div class="band dark">
         <div class="tband">
           <div class="thead">
-            <p class="eyebrow">Investigación propia</p>
             <h2>Analizamos 109 tiendas en línea del GAM. El 82% no mide su web.</h2>
             <p class="lead">Moda, belleza, hogar, electrónica, alimentos, mascotas. E-commerce enfrenta un triple reto: velocidad crítica, medición ausente y conversión baja. Sin el píxel de Meta, pierden carritos abandonados y no pueden retargetar.</p>
           </div>
@@ -185,10 +181,9 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion-servicios" style="padding-top:0">
     <div class="wrap">
-      <div class="band dark reveal">
+      <div class="band dark">
         <div class="tband">
           <div class="thead">
-            <p class="eyebrow">Investigación propia</p>
             <h2>Analizamos 40 empresas de servicios digitales del GAM. El 87% no mide su web.</h2>
             <p class="lead">Agencias web, marketing digital, programación, educación y consultoría. El sector que más vende soluciones digitales, es el que menos las implementa en su propio negocio. Hipocresía sistémica: venden píxel de Meta, pero el 87% no lo tiene.</p>
           </div>
@@ -209,10 +204,9 @@ const posts = await getAnalisis();
 
   <section class="section" id="investigacion-alimentos" style="padding-top:0">
     <div class="wrap">
-      <div class="band dark reveal">
+      <div class="band dark">
         <div class="tband">
           <div class="thead">
-            <p class="eyebrow">Investigación propia</p>
             <h2>Analizamos 43 negocios de gastronomía del GAM. El 95% no mide su web.</h2>
             <p class="lead">Restaurantes, cafeterías, panaderías, heladerías, bares. El sector gastronómico hace productos excelentes pero opera digitalmente en la oscuridad. Sin píxel, sin retargeting, sin data. Vende comida pero no sabe quién compra.</p>
           </div>
@@ -233,7 +227,6 @@ const posts = await getAnalisis();
 
   <section class="section final dark" id="final">
     <div class="wrap">
-      <p class="eyebrow" style="justify-content:center">Tu análisis, gratis</p>
       <h2>Tu web merece su propio teardown.</h2>
       <p class="lead" style="margin:18px auto 22px">Nuestro escáner es tu primer análisis — en segundos, sobre tu sitio. Sin registro para empezar.</p>
       <div class="scanwrap"><Scanner /></div>

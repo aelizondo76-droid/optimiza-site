@@ -4,7 +4,6 @@
 ---
 <div class="scanner" id="scanner">
   <div class="scan-chrome">
-    <span class="scan-dots" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="tag"><svg class="scan-ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#markA"></use></svg>Escáner Optimiza</span>
     <span class="scan-live"><i class="pulse"></i>EN VIVO</span>
   </div>
@@ -94,12 +93,7 @@
   .scanner > .scan-input { padding-top: 20px; }
   .scanner > .result { padding-bottom: 24px; }
   .scan-chrome { display: flex; align-items: center; gap: 12px; padding: 13px 18px; border-bottom: 1px solid var(--line-soft); background: rgba(255,255,255,0.02); }
-  .scan-dots { display: inline-flex; gap: 6px; }
-  .scan-dots i { width: 10px; height: 10px; border-radius: 50%; display: block; }
-  .scan-dots i:nth-child(1) { background: #ff5f57; }
-  .scan-dots i:nth-child(2) { background: #febc2e; }
-  .scan-dots i:nth-child(3) { background: #28c840; }
-  .scan-chrome .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 9px; margin-left: 4px; }
+  .scan-chrome .tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); display: inline-flex; align-items: center; gap: 9px; }
   .scan-ico { width: 22px; height: 20px; display: block; }
   .scan-chrome .scan-live { margin-left: auto; display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 10.5px; color: var(--cyan-ink); letter-spacing: 0.14em; }
   .scan-live .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--cyan-ink); animation: pulse 2s infinite; }
@@ -150,7 +144,7 @@
   .fitem { display: flex; align-items: center; gap: 11px; font-size: 14px; color: var(--text); }
   .fitem .sev { width: 8px; height: 8px; border-radius: 2px; flex: none; }
   .fitem.locked { color: var(--faint); filter: blur(0.4px); }
-  .gate { margin-top: 18px; background: #FFFFFF; border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
+  .gate { margin-top: 18px; background: #FCFCF9; border: 1px solid rgba(21,23,26,0.12); border-radius: var(--radius-md); padding: 18px;
     --surface: #F4F4F1; --surface-2: #FBFBFA; --ink-2: #F4F4F1;
     --text: #15171A; --muted: #4E525A; --faint: #63676E;
     --line: rgba(21,23,26,0.14); --line-soft: rgba(21,23,26,0.07);

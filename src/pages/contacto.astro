@@ -25,7 +25,6 @@ const phoneDisplay = '+1 (305) 686-9617';
   <section class="hero section" style="padding-bottom:0">
     <div class="wrap">
       <div>
-        <p class="eyebrow">Contacto</p>
         <h1>Tu diagnóstico es solo el <em>principio</em>.</h1>
         <p class="lead">Cuéntanos de tu negocio y te enviamos el análisis completo con un plan de acción priorizado — o agenda 15 minutos directo con el fundador. Respondemos en menos de 24 horas.</p>
       </div>
@@ -35,7 +34,7 @@ const phoneDisplay = '+1 (305) 686-9617';
   <section class="section">
     <div class="wrap">
       <div class="cgrid">
-        <div class="form-card reveal" id="formCard">
+        <div class="form-card" id="formCard">
           <h2>Solicita tu diagnóstico completo</h2>
           <p class="fsub">Entre más nos cuentes, más específico será tu plan. Solo lo esencial.</p>
           <form id="leadForm">
@@ -75,7 +74,7 @@ const phoneDisplay = '+1 (305) 686-9617';
         </div>
 
         <div class="side">
-          <div class="mini dark reveal">
+          <div class="mini dark">
             <div class="mini-head">
               <span class="mt"><svg class="mini-ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#markA"></use></svg>Tu diagnóstico</span>
               <span class="badge">VISTA PREVIA</span>
@@ -98,7 +97,7 @@ const phoneDisplay = '+1 (305) 686-9617';
             <p class="mini-note">Se llena automáticamente con tu escaneo · el análisis completo llega por correo.</p>
           </div>
 
-          <div class="scard reveal" id="agenda">
+          <div class="scard" id="agenda">
             <h3>¿Prefieres hablar directo?</h3>
             <p>Agenda 15 minutos con el fundador. Sin guion de ventas — revisamos tu caso y te decimos si podemos ayudarte.</p>
             <a
@@ -109,7 +108,7 @@ const phoneDisplay = '+1 (305) 686-9617';
             >Agenda 15 min ↗</a>
           </div>
 
-          <div class="scard reveal">
+          <div class="scard">
             <div class="methods">
               <div class="method"><span class="mi"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span><div><div class="ml">Correo</div><a class="mval mlink" href="mailto:informes@optimizahq.com">informes@optimizahq.com</a></div></div>
               {waHref && <div class="method"><span class="mi wa"><svg width="17" height="17" viewBox="0 0 24 24"><path d={siWhatsapp.path} fill={`#${siWhatsapp.hex}`}></path></svg></span><div><div class="ml">WhatsApp</div><a class="mval mlink" href={waHref} target="_blank" rel="noopener">{waDisplay}</a></div></div>}

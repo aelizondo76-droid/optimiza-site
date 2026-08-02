@@ -1,12 +1,12 @@
+/* Hallmark · genre: editorial-técnico · theme: custom "Instrumento" · design-system: design.md · designed-as-app
+ * pre-emit critique: P4 H4 E4 S5 R5 V4
+ * Sistema "Instrumento de diagnóstico": ink/paper monocromático + color
+ * reservado exclusivamente como señal de dato (crítico/bueno), nunca como
+ * decoración de marca. Sin serif editorial, sin crema, sin neón, sin reveals.
+ */
 *, *::before, *::after { box-sizing: border-box; }
-
-/*
-  Sistema "Instrumento de diagnóstico": ink/paper monocromático + color
-  reservado exclusivamente como señal de dato (crítico/bueno), nunca como
-  decoración de marca. Sin serif editorial, sin crema, sin neón.
-*/
 :root {
-  --bg: #F1F1EC; --surface: #FFFFFF; --surface-2: #E7E7E0; --ink-2: #FFFFFF;
+  --bg: #F1F1EC; --surface: #FAFAF6; --surface-2: #E7E7E0; --ink-2: #FCFCF9;
   --text: #15171A; --muted: #4E525A; --faint: #63676E;
   --line: rgba(21,23,26,0.14); --line-soft: rgba(21,23,26,0.07);
   --violet: #963A1D; --violet-ink: #7C2F17; --cyan-ink: #1F4A3E; --lime: #1E5A3F; --lime-fg: #F1F1EC;
@@ -68,6 +68,3 @@ img { max-width: 100%; display: block; }
 }
 .skip-link:focus-visible { top: 12px; }
 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
