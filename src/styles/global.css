@@ -1,8 +1,8 @@
 /* Hallmark · genre: editorial-técnico · theme: "Instrumento" v2 · design-system: design.md
  * pre-emit critique: P5 H4 E5 S5 R4 V5
  * "El instrumento sobre el papel": papel técnico claro en todo el sitio; el
- * único objeto oscuro es el escáner. Archivo (expandida para display) +
- * IBM Plex Mono solo para datos. Color exclusivamente como señal de dato.
+ * único objeto oscuro es el escáner. Archivo Variable como ÚNICA familia
+ * (v2.5: la monoespaciada eliminada). Color exclusivamente como señal de dato.
  * La regleta calibrada (.regla) es la firma visual del sitio.
  */
 *, *::before, *::after { box-sizing: border-box; }
@@ -22,7 +22,10 @@
   --instrument-shadow: 0 1px 2px rgba(20,22,26,0.18), 0 12px 32px -12px rgba(20,22,26,0.35);
   --sans: "Archivo Variable", "Archivo", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --display: "Archivo Variable", "Archivo", system-ui, sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  /* v2.5: la monoespaciada ELIMINADA del sitio ("esa tipografía la odio" —
+     Alonso; es el tell genérico #1). --mono se conserva como alias para no
+     tocar 40 archivos, pero resuelve a Archivo. Prohibido reintroducirla. */
+  --mono: "Archivo Variable", "Archivo", system-ui, sans-serif;
   --radius-sm: 6px; --radius-md: 10px; --radius-lg: 14px;
   --maxw: 1080px;
 }
@@ -53,7 +56,7 @@ img { max-width: 100%; display: block; }
 .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 24px; }
 .section { padding-block: clamp(64px, 9vw, 104px); position: relative; }
 .hero.section { padding-top: clamp(96px, 13vw, 140px); }
-.eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin: 0 0 18px; display: inline-flex; align-items: center; gap: 10px; font-weight: 600; }
+.eyebrow { font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); margin: 0 0 18px; display: inline-flex; align-items: center; gap: 10px; font-weight: 680; }
 .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--faint); }
 .lead { color: var(--muted); font-size: clamp(17px, 2vw, 19px); max-width: 60ch; line-height: 1.65; }
 :focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 2px; }

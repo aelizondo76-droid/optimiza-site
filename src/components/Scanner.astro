@@ -31,9 +31,8 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
         <svg viewBox="0 0 190 116" aria-hidden="true">
           <defs>
             <linearGradient id="gradArc" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stop-color="#3D8A66"></stop>
-              <stop offset="0.65" stop-color="#6FCB9A"></stop>
-              <stop offset="1" stop-color="#A5EFC7"></stop>
+              <stop offset="0" stop-color="#47936E"></stop>
+              <stop offset="1" stop-color="#8FD4AC"></stop>
             </linearGradient>
           </defs>
           <path d="M6 108 A89 89 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-dasharray="1.5 9.5" stroke-linecap="round"></path>
@@ -99,7 +98,7 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
     background:
       linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
       linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
-      radial-gradient(120% 90% at 50% -20%, #262B31 0%, #1B1F24 45%, #12151A 100%); }
+      linear-gradient(180deg, #1E2126, #131519); }
   .scanner > *:not(.scan-chrome) { padding-inline: 24px; }
   .scanner > .scan-input { padding-top: 20px; }
   .scanner > .result { padding-bottom: 24px; }
@@ -132,7 +131,6 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   .scan-meta .sm-live i { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-ink); animation: blink 1.4s ease-in-out infinite; }
   @keyframes blink { 50% { opacity: 0.25; } }
 
-  #gaugeArc { filter: drop-shadow(0 0 7px rgba(111,203,154,0.45)); }
   @media (prefers-reduced-motion: reduce) {
     #gaugeArc { transition: none !important; }
     .bar span { transition: none; }
@@ -150,7 +148,7 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   .gauge { position: relative; width: 246px; height: 150px; }
   .gauge svg { display: block; width: 246px; height: 150px; }
   .gauge .val { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; }
-  .gauge .num { font-family: var(--display); font-variation-settings: "wdth" 120; font-size: 58px; font-weight: 780; color: #A5EFC7; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 22px rgba(111,203,154,0.35); }
+  .gauge .num { font-family: var(--display); font-variation-settings: "wdth" 120; font-size: 58px; font-weight: 780; color: #8FD4AC; line-height: 1; letter-spacing: -0.02em; }
   .gauge .num small { font-family: var(--display); font-variation-settings: "wdth" 108; font-size: 19px; font-weight: 500; color: var(--muted); text-shadow: none; }
   .gauge .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line-soft); display: inline-block; }
   .subs { display: flex; flex-direction: column; gap: 13px; width: 100%; }

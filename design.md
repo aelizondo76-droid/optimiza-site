@@ -58,13 +58,21 @@ Reglas de color:
 
 ## Typography
 
-- Display: **Archivo Variable, wdth 120–125, wght 750–800** — expandida,
-  técnica, con carácter. Roman siempre (sin itálicas en headings).
-- Body: **Archivo Variable, wdth 100, wght 400–600** (17px, alta legibilidad 40+).
-- Datos: **IBM Plex Mono 400/600** — cifras, labels de instrumento, kickers.
-  Nunca para titulares ni párrafos.
+**v2.5 (2026-08-21): UNA sola familia — Archivo Variable en todo el sitio.**
+La monoespaciada (IBM Plex Mono) fue ELIMINADA por dirección de Alonso
+("esa tipografía la odio, es la tipografía genérica que destroza un sitio").
+El eje wdth de Archivo da todas las voces necesarias:
+
+- Display: **wdth 120–125, wght 750–800** — expandida, técnica.
+  Roman siempre (sin itálicas en headings).
+- Body: **wdth 100, wght 400–600** (17px, alta legibilidad 40+).
+- Cifras grandes: **wdth 116–122, wght 700–780** (mismo display, tamaño dato).
+- Labels/kickers/chips: **wdth 100, wght 650–700, uppercase,
+  letter-spacing 0.06–0.10em** (nunca los 0.14–0.18em de la era mono).
+- El token `--mono` sigue existiendo como alias pero resuelve a Archivo.
+  PROHIBIDO reintroducir cualquier monoespaciada en UI visible.
 - H1 ≤ una oración. H1 40–60px, H2 26–36px.
-- Inter y Space Mono quedan PROHIBIDAS (par por defecto de sitio generado).
+- Inter, Space Mono e IBM Plex Mono quedan PROHIBIDAS.
 
 ## Firma visual — la hoja viva
 
@@ -92,6 +100,14 @@ gris #BDB8B1, con sus tintes wash (--wash-*) como fondos de panel.
 Regla de armonía: máximo 2 tintes wash visibles por viewport; las
 señales de dato siguen siendo exclusivamente crit/ok.
 
+## El Índice — instrumento sobrio, no velocímetro
+
+El escáner es luminoso pero SOBRIO: numerales en Archivo display, arco con
+gradiente verde de dos tonos, barras con gradiente. RECHAZADO el look
+"dash de vehículo de alta gama" (glow text-shadow en el numeral,
+drop-shadow en el arco, panel retroiluminado radial): demasiado literal.
+La calidad viene de la tipografía y la jerarquía, no de efectos de luz.
+
 ## El footer — tinta, no acuarela
 
 El footer NO repite la acuarela del hero (SpeedCurve clona sus formas en
@@ -107,7 +123,7 @@ Toda estadística clave (porcentaje o puntaje 0–100) se muestra sobre una
 aguja de 2px en el valor, en color señal. Componente global `.regla`
 (global.css) con `--val` y `--sig`. La aguja anima desde 0 al cargar
 (@starting-style; respeta reduced-motion). Conteos y dinero NO llevan regla
-(no son posiciones en una escala) — van como cifra mono simple.
+(no son posiciones en una escala) — van como cifra Archivo simple.
 Las tarjetas-estadística oscuras (fondo #101214) quedan prohibidas: los datos
 van en **fichas claras** (`.stat` global: superficie papel, filete izquierdo
 en color señal) o sobre regletas.
@@ -160,8 +176,8 @@ Sombra: plano total, salvo la única sombra física del instrumento
 
 ## What pages MUST share
 
-Wordmark, tokens completos, Archivo + IBM Plex Mono, voz de CTA, regleta como
-lenguaje de dato, fichas claras, footer colofón, nav membrete.
+Wordmark, tokens completos, Archivo Variable (única familia), voz de CTA,
+regleta como lenguaje de dato, fichas claras, footer colofón, nav membrete.
 
 ## What pages MAY differ on
 
