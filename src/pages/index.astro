@@ -40,16 +40,6 @@ const faqLd = {
 <Base title={title} description={description} ogImage={seo.ogImage}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   <section class="hero section hero-data portada">
-    <svg class="ondas" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0 560 C300 480 560 640 880 560 C1140 496 1300 560 1440 500 L1440 820 L0 820 Z" fill="#E7E5D8" fill-opacity="0.9"/>
-      <path d="M0 640 C280 550 540 700 880 620 C1150 558 1310 630 1440 570 L1440 820 L0 820 Z" fill="#C97A54" fill-opacity="0.32"/>
-      <path d="M0 726 C320 640 640 780 960 706 C1200 652 1330 716 1440 672 L1440 820 L0 820 Z" fill="#2E7A55" fill-opacity="0.34"/>
-      <path d="M0 792 C360 724 700 832 1040 774 C1260 736 1360 778 1440 748 L1440 820 L0 820 Z" fill="#1E5A3F" fill-opacity="0.88"/>
-      <g fill="none" stroke="#191A17" stroke-opacity="0.14" stroke-width="1">
-        <path d="M0 520 C300 440 560 600 880 520 C1140 456 1300 520 1440 460"/>
-        <path d="M0 496 C300 416 560 576 880 496 C1140 432 1300 496 1440 436"/>
-      </g>
-    </svg>
     <SheetMarks label="Optimiza · Índice 2026 · Hoja 01" />
     <div class="hero-cinta"><RegistroCinta /></div>
     <div class="wrap">
@@ -232,11 +222,7 @@ const faqLd = {
 <style>
   /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
   .hero-data.portada { overflow: hidden; padding-top: clamp(84px, 8vw, 100px); padding-bottom: clamp(150px, 17vw, 200px);
-    background:
-      linear-gradient(rgba(25,26,23,0.042) 1px, transparent 1px) 0 0 / 26px 26px,
-      linear-gradient(90deg, rgba(25,26,23,0.042) 1px, transparent 1px) 0 0 / 26px 26px,
-      linear-gradient(180deg, #F6F5EF 0%, #F1F0E9 55%, #EDECE2 100%); }
-  .ondas { position: absolute; inset: auto 0 0 0; width: 100%; height: 66%; z-index: 0; pointer-events: none; }
+    background: url('/hero/opt-a.webp') bottom center / cover no-repeat, #F1F0E9; }
   .portada .wrap, .portada .hero-cinta { position: relative; z-index: 1; }
   .hero-cinta { margin-bottom: clamp(36px, 5vw, 54px); }
   @media (max-width: 940px) {
