@@ -41,6 +41,7 @@ const faqLd = {
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   <section class="hero section hero-data">
     <SheetMarks label="Optimiza · Índice 2026 · Hoja 01" />
+    <div class="hero-cinta"><RegistroCinta /></div>
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -78,7 +79,6 @@ const faqLd = {
         </div>
       </dl>
     </div>
-    <div class="hero-cinta"><RegistroCinta /></div>
   </section>
 
   <section class="section statband">
@@ -227,6 +227,11 @@ const faqLd = {
   /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
   .hero-data { overflow: hidden; padding-bottom: clamp(110px, 14vw, 150px); }
   .hero-cinta { position: absolute; left: 0; right: 0; bottom: 0; }
+  @media (max-width: 940px) {
+    .hero-data { padding-top: 70px; padding-bottom: 56px; }
+    .hero-cinta { position: static; margin-bottom: 36px; }
+    .hero-data :global(.sheet) { --sheet-top: 122px; }
+  }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
   @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
   h1.hero-title { font-size: clamp(34px, 4.2vw, 54px); margin-bottom: 20px; overflow-wrap: anywhere; min-width: 0; }

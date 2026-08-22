@@ -18,5 +18,5 @@ const { label, top = 78 } = Astro.props;
   .sheet .bl { bottom: 0; left: 0; border-bottom-width: 1.5px; border-left-width: 1.5px; }
   .sheet .br { bottom: 0; right: 0; border-bottom-width: 1.5px; border-right-width: 1.5px; }
   .sheet-label { position: absolute; top: -3px; right: 24px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
-  @media (max-width: 640px) { .sheet-label { display: none; } .sheet { inset: 12px; } }
+  @media (max-width: 640px) { .sheet-label { display: none; } .sheet { inset: var(--sheet-top, 16px) 12px 12px; } }
 </style>
