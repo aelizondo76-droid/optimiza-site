@@ -18,7 +18,7 @@ const check = 'M20 6 9 17l-5-5';
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Servicios', url: 'https://optimizahq.com/servicios/' }]}
 >
-  <section class="hero section dark">
+  <section class="hero section">
     <div class="wrap">
       <h1>Cuatro palancas. Un objetivo: que tu negocio <span class="hl">venda</span>.</h1>
       <p class="lead">Velocidad, visibilidad, conversión y automatización trabajan juntas. No vendemos tareas técnicas sueltas — cada servicio existe para mover una métrica de negocio, y lo medimos en dinero.</p>
@@ -158,7 +158,7 @@ const check = 'M20 6 9 17l-5-5';
           <svg class="flowsvg" viewBox="0 0 460 306" role="img" aria-label="Leads de Meta Ads, Google Ads, WhatsApp, formulario web y SEO convergen en un CRM central y fluyen a seguimiento, nurturing y venta.">
             <defs><pattern id="fgrid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="rgba(21,23,26,0.05)" stroke-width="1"></path></pattern></defs>
             <rect x="0" y="0" width="460" height="306" fill="url(#fgrid)"></rect>
-            <g font-family="'Inter Variable', ui-sans-serif, system-ui, sans-serif" font-size="11.5">
+            <g font-family="'Archivo Variable', ui-sans-serif, system-ui, sans-serif" font-size="11.5">
               <g fill="#FFFFFF" stroke="rgba(21,23,26,0.13)">
                 <rect x="6" y="24" width="134" height="32" rx="10"></rect><rect x="6" y="84" width="134" height="32" rx="10"></rect><rect x="6" y="144" width="134" height="32" rx="10"></rect><rect x="6" y="204" width="134" height="32" rx="10"></rect><rect x="6" y="264" width="134" height="32" rx="10"></rect>
               </g>
@@ -264,7 +264,7 @@ const check = 'M20 6 9 17l-5-5';
 
   <section class="section">
     <div class="wrap">
-      <div class="band dark">
+      <div class="band">
         <div class="tband">
           <div>
             <h2>Cada peso que inviertes, justificado por su impacto.</h2>
@@ -293,7 +293,7 @@ const check = 'M20 6 9 17l-5-5';
     </div>
   </section>
 
-  <section class="section final dark" id="final">
+  <section class="section final" id="final">
     <div class="wrap">
       <h2>Descubre qué pilar te está costando más ventas.</h2>
       <p class="lead" style="margin:18px auto 22px">El diagnóstico es gratis y llega en 48h. Sin compromiso, sin tarjeta.</p>
@@ -306,7 +306,7 @@ const check = 'M20 6 9 17l-5-5';
 <style>
   .hero { padding-block: clamp(64px, 9vw, 104px) clamp(56px, 8vw, 92px); }
   .hero h1 { font-size: clamp(36px, 5.2vw, 58px); max-width: 16ch; }
-  .hero h1 .hl { color: var(--violet-ink); }
+  .hero h1 .hl { color: var(--crit-ink); }
   .hero .lead { margin-top: 20px; }
   .pillnav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; font-family: var(--mono); }
   .pillnav .pn { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 500; color: var(--text); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 9px 16px 9px 12px; transition: border-color .18s, background .18s; }
@@ -453,8 +453,7 @@ const check = 'M20 6 9 17l-5-5';
   .tier .cta { margin-top: 18px; }
   .tier .cta a { font-family: var(--mono); font-size: 12px; color: var(--violet-ink); }
 
-  .band { border-radius: 22px; }
-  .band.dark { background: #101214; }
+  .band { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: var(--radius-sm); }
   .tband { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; padding: clamp(28px,5vw,52px); }
   @media (max-width: 780px) { .tband { grid-template-columns: 1fr; gap: 26px; } }
   .tband h2 { font-size: clamp(24px, 3.5vw, 34px); }

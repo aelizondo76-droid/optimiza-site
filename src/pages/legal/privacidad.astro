@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const title = 'Política de privacidad — Optimiza';
+const description = 'Qué datos recopila Optimiza a través del diagnóstico y el formulario de contacto, cómo se usan, dónde se almacenan y con quién se comparten.';
+---
+<Base
+  title={title}
+  description={description}
+  breadcrumbs={[{ name: 'Privacidad', url: 'https://optimizahq.com/legal/privacidad/' }]}
+>
+  <section class="section">
+    <div class="wrap narrow">
+      <p class="eyebrow">Legal</p>
+      <h1>Política de privacidad</h1>
+      <p class="lead">Cómo tratamos los datos que nos das al usar el diagnóstico gratuito o el formulario de contacto.</p>
+      <div class="legal-body">
+        <p><strong>Responsable.</strong> Optimiza. Contacto: <a href="mailto:informes@optimizahq.com">informes@optimizahq.com</a>.</p>
+
+        <p><strong>Qué datos recopilamos.</strong> Cuando usás el escáner de diagnóstico o el formulario de contacto: nombre, correo electrónico, número de WhatsApp, el sitio web que querés analizar, si invertís en publicidad digital, tu meta principal y cualquier mensaje que escribas. También guardamos el resultado del diagnóstico (índice y hallazgos de tu sitio) y tu dirección IP, usada para prevenir abuso del formulario.</p>
+
+        <p><strong>Para qué los usamos.</strong> Para enviarte el informe de diagnóstico por correo, darte seguimiento comercial (por correo o WhatsApp) y personalizar la propuesta a tu negocio. No vendemos tus datos a terceros ni los usamos para fines distintos a estos.</p>
+
+        <p><strong>Dónde se almacenan.</strong> Los datos de diagnóstico (el reporte técnico de tu sitio) se guardan en nuestra base de datos (Upstash Redis) por 90 días y luego se eliminan automáticamente. Los datos de contacto (nombre, correo, WhatsApp) se conservan mientras exista una relación comercial activa o potencial, hasta que solicites su eliminación.</p>
+
+        <p><strong>Con quién los compartimos.</strong> Usamos <strong>Resend</strong> para enviar el correo con tu diagnóstico, y <strong>Clientify</strong> (nuestro CRM) para dar seguimiento comercial a leads reales. Ambos actúan como encargados de tratamiento, no como dueños de tus datos. No compartimos tu información con nadie más.</p>
+
+        <p><strong>Medición y publicidad.</strong> Usamos Google Analytics (GA4), Meta Pixel y Microsoft Clarity para entender cómo se usa el sitio y medir el rendimiento de nuestras campañas de anuncios. Estas herramientas usan cookies o tecnología similar y son operadas por Google, Meta y Microsoft respectivamente, bajo sus propias políticas de privacidad.</p>
+
+        <p><strong>Tus derechos.</strong> Podés pedirnos acceder, corregir o eliminar tus datos en cualquier momento escribiendo a <a href="mailto:informes@optimizahq.com">informes@optimizahq.com</a>. Respondemos en menos de 5 días hábiles.</p>
+
+        <p><strong>Base legal.</strong> Tratamos tus datos con tu consentimiento explícito, otorgado al marcar la casilla correspondiente antes de enviar el formulario, conforme a los principios de la Ley de Protección de la Persona frente al Tratamiento de sus Datos Personales de Costa Rica (Ley 8968).</p>
+
+        <p>Última actualización: julio 2026. Ver también nuestra <a href="/legal/licencia-datos/">licencia de datos</a> para el uso de las cifras publicadas en los estudios de <a href="/analisis/">Análisis y Teardowns</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .narrow { max-width: 640px; }
+  h1 { font-size: clamp(32px, 5vw, 44px); margin-top: 14px; }
+  .lead { margin-top: 16px; }
+  .legal-body { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+  .legal-body p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+  .legal-body a { color: var(--violet-ink); }
+</style>

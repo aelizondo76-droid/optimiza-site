@@ -94,7 +94,7 @@ const chk = 'M20 6 9 17l-5-5';
 
   <section class="section" id="confianza">
     <div class="wrap">
-      <div class="band dark">
+      <div class="band">
         <div class="tband">
           <div class="thead">
             <h2>No te pedimos fe. Te damos pruebas.</h2>
@@ -127,7 +127,7 @@ const chk = 'M20 6 9 17l-5-5';
 
   <section class="section">
     <div class="wrap">
-      <div class="founder-band dark">
+      <div class="founder-band">
         <div class="fb-grid">
           <div>
             <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
@@ -146,7 +146,7 @@ const chk = 'M20 6 9 17l-5-5';
     </div>
   </section>
 
-  <section class="section final dark">
+  <section class="section final">
     <div class="wrap">
       <h2>¿Conversamos sobre tu web?</h2>
       <p class="lead" style="margin:18px auto 0">Empieza por un diagnóstico gratis, o agenda 15 minutos directamente con el fundador. Sin compromiso.</p>
@@ -203,8 +203,7 @@ const chk = 'M20 6 9 17l-5-5';
   .vcard h3 { font-size: 18px; }
   .vcard p { color: var(--muted); font-size: 14.5px; margin-top: 9px; line-height: 1.55; }
 
-  .band { border-radius: 22px; }
-  .band.dark { background: #101214; }
+  .band { background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--text); border-radius: var(--radius-sm); }
   .tband { padding: clamp(28px,5vw,52px); }
   .tband .thead { max-width: 60ch; margin-bottom: 30px; }
   .tband h2 { font-size: clamp(24px, 3.4vw, 34px); }
@@ -213,7 +212,7 @@ const chk = 'M20 6 9 17l-5-5';
   @media (max-width: 780px) { .tgrid { grid-template-columns: 1fr; gap: 24px; } }
   .certs-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 14px; }
   .certs { display: flex; flex-wrap: wrap; gap: 10px; }
-  .cert { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 6px 15px 6px 6px; background: rgba(255,255,255,0.03); }
+  .cert { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--text); border: 1px solid var(--line); border-radius: 99px; padding: 6px 15px 6px 6px; background: var(--bg); }
   .cert .cl { width: 25px; height: 25px; border-radius: 50%; background: #fff; display: grid; place-items: center; flex: none; }
   .cert .cl svg { width: 15px; height: 15px; display: block; }
   .glist { display: flex; flex-direction: column; gap: 14px; margin-top: 24px; }
@@ -223,13 +222,12 @@ const chk = 'M20 6 9 17l-5-5';
   .readout-cta:hover { border-color: var(--lime); }
   .readout-cta svg { flex: none; color: var(--lime); }
 
-  .founder-band { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(28px,5vw,52px); position: relative; overflow: hidden; }
-  .founder-band.dark { background: #101214; }
+  .founder-band { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--crit); border-radius: var(--radius-sm); padding: clamp(28px,5vw,52px); position: relative; overflow: hidden; }
   .fb-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 780px) { .fb-grid { grid-template-columns: 1fr; gap: 26px; } }
   .fb-slots { display: flex; gap: 8px; margin: 22px 0; }
   .slot { flex: 1; height: 6px; border-radius: 99px; background: var(--violet); }
-  .slot.taken { background: rgba(255,255,255,0.12); }
+  .slot.taken { background: var(--line); }
   .fb-count { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .fb-guarantee { display: flex; flex-direction: column; gap: 14px; }
 

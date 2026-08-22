@@ -1,8 +1,8 @@
 ---
-// Escáner de diagnóstico de 2 pasos, estilo instrumento. Colocar dentro de una
-// sección .dark. En producción llamará la API de Google PageSpeed vía serverless.
+// El instrumento: escáner de diagnóstico de 2 pasos. Autónomo — trae su propio
+// ámbito oscuro (.dark) y es el ÚNICO objeto oscuro permitido sobre el papel.
 ---
-<div class="scanner" id="scanner">
+<div class="scanner dark" id="scanner">
   <div class="scan-chrome">
     <span class="tag"><svg class="scan-ico" viewBox="0 0 100 100" aria-hidden="true"><use href="#markA"></use></svg>Escáner Optimiza</span>
     <span class="scan-live"><i class="pulse"></i>EN VIVO</span>
@@ -84,7 +84,7 @@
 </div>
 
 <style>
-  .scanner { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 20px; padding: 0; box-shadow: var(--card-shadow), 0 0 0 1px color-mix(in srgb, var(--violet) 8%, transparent);
+  .scanner { position: relative; min-width: 0; overflow: hidden; border: 1px solid rgba(0,0,0,0.5); border-radius: 16px; padding: 0; box-shadow: var(--instrument-shadow);
     background:
       linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
       linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,

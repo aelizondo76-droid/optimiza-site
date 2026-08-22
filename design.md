@@ -1,84 +1,114 @@
-# Design — Optimiza (optimizahq.com)
+# Design — Optimiza (optimizahq.com) · v2
 
 Sistema de diseño bloqueado para este sitio. Toda edición visual lee este
 archivo antes de emitir código. No se regenera por página — se extiende o
 enmienda aquí cuando el sistema necesite crecer.
 
+v2 (2026-08-02): muerte del look "terminal oscuro" (hero dark + verde ácido +
+titular mono = cliché IA). Nace "el instrumento sobre el papel".
+
 ## Concepto
 
-**"Instrumento de diagnóstico."** El sitio se lee como el informe técnico que
-Optimiza vende: tinta sobre papel, monoespaciada para datos, color solo como
-señal de dato (crítico/atención/bien), nunca como decoración de marca.
+**"El instrumento sobre el papel."** El sitio es un informe técnico impreso en
+papel claro. El ÚNICO objeto oscuro de cada página es el instrumento (el
+escáner) — un dispositivo físico descansando sobre el papel. Esa relación
+figura-fondo es la identidad: papel plano y tranquilo, instrumento denso y
+con peso (única sombra real permitida del sitio).
 
 ## Genre
 
-editorial-técnico (editorial con voz de reporte/instrumento)
+editorial-técnico (informe de laboratorio, no terminal de developer —
+la audiencia son empresarios costarricenses 40+, no programadores)
 
 ## Macrostructure family
 
-- Home (marketing): **Stat-Led asimétrico** — copy izquierda / instrumento (escáner) derecha, ledger de datos reales debajo.
-- Servicios (marketing): **Long Document** — pilares numerados (Pilar 01–04, genuinamente ordinales), paneles de datos con etiqueta "escenario ilustrativo".
-- Nosotros / Contacto: documento con sesgo lateral; tarjeta del fundador como ficha.
-- /analisis (contenido): artículo-informe (TL;DR, stats, metodología, FAQ).
+- Home (marketing): **Stat-Led asimétrico** — copy izquierda / instrumento derecha, regleta-ledger de datos reales debajo. Fondo papel, nunca oscuro.
+- Servicios: **Long Document** — pilares numerados solo si genuinamente ordinales.
+- Nosotros / Contacto: documento con sesgo lateral; ficha del fundador.
+- /analisis: artículo-informe (TL;DR, fichas de dato, metodología, FAQ).
 
-## Theme — custom "Instrumento"
+## Theme — "Instrumento" v2 (papel primero)
 
-- `--bg`       #F1F1EC (papel tibio) · dark #101214
-- `--surface`  #FAFAF6 (nunca blanco puro) · dark #17191C
-- `--text`     #15171A · dark #ECEDE9
-- `--muted`    #4E525A · dark #A2A6AC
-- `--faint`    #63676E (AA 5:1 sobre bg) · dark #82868D
-- `--violet`   #963A1D (óxido — señal crítico/atención) · dark #C97A54
-- `--lime`     #1E5A3F (verde tinta — señal bien) · dark #4E9C7A
-- `--cyan-ink` #1F4A3E · dark #4E9C8C
+- `--bg`       #F1F0E9 (papel técnico tibio)
+- `--surface`  #FAF9F3
+- `--text`     #191A17 · `--muted` #4C4F49 · `--faint` #64675F (AA sobre bg)
+- `--crit`     #963A1D (óxido — señal crítico/atención)
+- `--ok`       #1E5A3F (verde tinta — señal bien)
+- Instrumento (solo dentro del escáner): fondo #14161A, tokens dark propios.
+- Alias legacy: `--violet`→óxido, `--lime`→verde. No introducir colores nuevos.
 
-Regla de acento: el óxido/verde marcan **datos**, no decoración. ≤5% del viewport.
+Reglas de color:
+1. Óxido/verde marcan **datos**, nunca decoración. ≤5% del viewport.
+2. **Prohibido el fondo oscuro** en secciones de marketing/contenido. Dark
+   vive únicamente dentro de `.scanner` (el instrumento). El footer es papel
+   con colofón de cierre de informe.
 
 ## Typography
 
-- Display: Inter Variable, weight 800, roman siempre (sin itálicas en headings)
-- Body: Inter Variable, weight 400–600
-- Mono: Space Mono — datos, cifras, labels de instrumento, H1 de home
-- H1 ≤ una oración; escala contenida: H1 34–44px, H2 26–38px (la home no supera al resto del sitio)
+- Display: **Archivo Variable, wdth 120–125, wght 750–800** — expandida,
+  técnica, con carácter. Roman siempre (sin itálicas en headings).
+- Body: **Archivo Variable, wdth 100, wght 400–600** (17px, alta legibilidad 40+).
+- Datos: **IBM Plex Mono 400/600** — cifras, labels de instrumento, kickers.
+  Nunca para titulares ni párrafos.
+- H1 ≤ una oración. H1 40–60px, H2 26–36px.
+- Inter y Space Mono quedan PROHIBIDAS (par por defecto de sitio generado).
+
+## Firma visual — la regleta calibrada
+
+Toda estadística clave (porcentaje o puntaje 0–100) se muestra sobre una
+**regla calibrada**: baseline con ticks cada 10%, ticks mayores en 0/50/100,
+aguja de 2px en el valor, en color señal. Componente global `.regla`
+(global.css) con `--val` y `--sig`. La aguja anima desde 0 al cargar
+(@starting-style; respeta reduced-motion). Conteos y dinero NO llevan regla
+(no son posiciones en una escala) — van como cifra mono simple.
+Las tarjetas-estadística oscuras (fondo #101214) quedan prohibidas: los datos
+van en **fichas claras** (`.stat` global: superficie papel, filete izquierdo
+en color señal) o sobre regletas.
 
 ## Spacing
 
-Escala 4pt. `--radius-sm 6 / -md 10 / -lg 14`. Bordes hairline `--line`, sombra máxima `--card-shadow` (1px).
+Escala 4pt. `--radius-sm 6 / -md 10 / -lg 14`. Bordes hairline `--line`.
+Sombra: plano total, salvo la única sombra física del instrumento
+(`--instrument-shadow`).
 
 ## Motion
 
-- Easings nombrados, sin bounce. `prefers-reduced-motion` respetado.
-- **Sin reveals on-scroll.** El contenido simplemente está. Animación solo en el instrumento (gauge, barras, progreso del escaneo) — es dato en movimiento, no decoración.
-- Focus rings instantáneos, `box-shadow` 3px en inputs.
+- Sin reveals on-scroll. El contenido simplemente está.
+- Animación solo en dato en movimiento: aguja de regleta, gauge y barras del
+  escáner. `prefers-reduced-motion` respetado siempre.
 
-## Microinteractions stance
+## Microinteractions
 
 - Éxito silencioso; toasts solo para fallos.
-- Hover: una sola señal por elemento (fondo O flecha, no ambos + lift + sombra).
+- Hover: una sola señal por elemento.
 
 ## CTA voice
 
-- Primario: fondo tinta (`--vbtn-bg`), radio 6px, label específico ("Analizar mi web", "Recibir diagnóstico" — nunca "Continuar").
+- Primario: fondo tinta, radio 6px, label específico ("Analizar mi web").
 - Secundario: ghost con borde hairline.
 
 ## Copy — honestidad no negociable
 
-- Cero métricas inventadas. La firma es nueva y lo dice: los paneles de resultados se etiquetan "escenario ilustrativo" y los resultados se formulan como "el estándar que perseguimos", nunca "resultado típico".
-- Datos reales permitidos: los del Índice Optimiza (386 sitios, 88%, $122M) con fuente citada.
+- Cero métricas inventadas. Paneles ilustrativos etiquetados como tales.
+- Datos reales permitidos: Índice Optimiza (346 sitios, 66%, $82M) con fuente.
 - Comillas tipográficas, `…`, `—`. Español de Costa Rica, tuteo.
 
 ## Prohibido (anti-patterns bloqueados)
 
-- Chrome redibujado (puntos de ventana macOS, marcos de browser falsos).
-- Eyebrows decorativos — máx. 1 por página y solo si es cita de dato/ordinal real.
-- Grid de 3 tarjetas icono-arriba iguales; icono-en-cuadro-de-color.
-- Glow radial, gradiente morado, blanco/negro puros, serif editorial (era el sistema viejo).
+- Secciones/bandas de marketing con fondo oscuro (cliché IA #1 de 2026).
+- Titulares en monospace. Inter. Space Mono.
+- Tarjetas-estadística oscuras con número verde en grid.
+- Chrome redibujado (puntos macOS, marcos de browser falsos).
+- Iconos-en-círculo/cuadro decorativos; grid de 3 tarjetas icono-arriba.
+- Glow radial, gradiente morado, blanco/negro puros, serif editorial.
 - Reveal-on-scroll universal; `transition: all`; itálicas en headings.
+- Eyebrows decorativos — máx. 1 por página y solo si es cita de dato real.
 
 ## What pages MUST share
 
-Wordmark, tokens completos, Inter+Space Mono, voz de CTA, ritmo de reglas hairline, footer Ft5 statement, nav membrete.
+Wordmark, tokens completos, Archivo + IBM Plex Mono, voz de CTA, regleta como
+lenguaje de dato, fichas claras, footer colofón, nav membrete.
 
 ## What pages MAY differ on
 
-Macroestructura dentro de su familia; paneles de datos propios de cada página; densidad tipográfica en /analisis.
+Macroestructura dentro de su familia; densidad tipográfica en /analisis.

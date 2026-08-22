@@ -37,12 +37,12 @@ const faqLd = {
 ---
 <Base title={title} description={description} ogImage={seo.ogImage}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
-  <section class="hero section hero-data dark">
+  <section class="hero section hero-data">
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">Índice Optimiza · Costa Rica 2026</p>
-          <h1 class="hero-title">Tu competidor que empiece a medir su web, te va a vencer.</h1>
+          <h1 class="hero-title">Tu competidor que empiece a <em class="medido">medir</em> su web, te va a vencer.</h1>
           <p class="hero-lead">No importará su tamaño. Importará su estrategia web. Analiza la tuya ahora mismo — el mismo escáner que usamos para medir 346 empresas costarricenses.</p>
           <div class="hero-cta-row">
             <a class="btn btn-ghost" href="#metodo">Ver cómo trabajamos</a>
@@ -55,17 +55,36 @@ const faqLd = {
       </div>
 
       <dl class="ledger-row" aria-label="Estado digital de las empresas en Costa Rica, 2026">
-        <div class="lg-cell"><dt class="lg-l">sitios analizados</dt><dd class="lg-n">346</dd></div>
-        <div class="lg-cell lg-warn"><dt class="lg-l">sin Meta Pixel</dt><dd class="lg-n">66%</dd></div>
-        <div class="lg-cell lg-crit"><dt class="lg-l">pérdida anual estimada</dt><dd class="lg-n">$82M</dd></div>
+        <div class="lg-cell">
+          <dt class="lg-l">sitios analizados</dt>
+          <dd class="lg-n">346</dd>
+        </div>
+        <div class="lg-cell lg-crit">
+          <dt class="lg-l">sin Meta Pixel</dt>
+          <dd class="lg-n">66%</dd>
+          <div class="regla" style="--val:66; --sig:var(--crit)" role="img" aria-label="66 por ciento, en una escala de 0 a 100"><i class="aguja"></i></div>
+        </div>
+        <div class="lg-cell lg-crit">
+          <dt class="lg-l">pérdida anual estimada</dt>
+          <dd class="lg-n">$82M</dd>
+        </div>
       </dl>
     </div>
   </section>
 
   <section class="section statband">
     <div class="wrap">
-      <p class="big">El 66% de las empresas no puede ver quién visita su web, ni volver a contactarlo. <em>Eso es lo que de verdad cuesta ventas</em> — no un segundo más de carga.</p>
-      <p class="src">Fuente: Índice Optimiza · 346 sitios analizados, Costa Rica 2026</p>
+      <div class="sb-grid">
+        <div class="sb-reading">
+          <div class="sb-num" aria-hidden="true">66<small>%</small></div>
+          <div class="regla sb-regla" style="--val:66; --sig:var(--crit)" role="img" aria-label="66 por ciento de las empresas, en una escala de 0 a 100"><i class="aguja"></i></div>
+          <div class="sb-scale" aria-hidden="true"><span>0</span><span>50</span><span>100</span></div>
+        </div>
+        <div class="sb-claim">
+          <p class="big">de las empresas no puede ver quién visita su web, ni volver a contactarlo. <em>Eso es lo que de verdad cuesta ventas</em> — no un segundo más de carga.</p>
+          <p class="src">Fuente: Índice Optimiza · 346 sitios analizados, Costa Rica 2026</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -113,10 +132,10 @@ const faqLd = {
             <p class="lead">Un proceso claro, en cuatro pasos, donde cada acción se justifica por su impacto en ventas — no por horas facturadas.</p>
           </div>
           <ol class="timeline">
-            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg></span><div><div class="sn">01 · Diagnosticamos</div><p>Auditoría técnica completa de velocidad, SEO y conversión.</p></div></li>
-            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg></span><div><div class="sn">02 · Priorizamos</div><p>Ordenamos cada mejora por impacto en tus ventas, no por dificultad.</p></div></li>
-            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path></svg></span><div><div class="sn">03 · Ejecutamos</div><p>Implementamos rápido, con reportes claros en cada paso.</p></div></li>
-            <li><span class="step-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span><div><div class="sn">04 · Medimos</div><p>Reportamos resultados en la métrica que importa: dinero.</p></div></li>
+            <li><span class="step-n" aria-hidden="true">01</span><div><div class="sn">Diagnosticamos</div><p>Auditoría técnica completa de velocidad, SEO y conversión.</p></div></li>
+            <li><span class="step-n" aria-hidden="true">02</span><div><div class="sn">Priorizamos</div><p>Ordenamos cada mejora por impacto en tus ventas, no por dificultad.</p></div></li>
+            <li><span class="step-n" aria-hidden="true">03</span><div><div class="sn">Ejecutamos</div><p>Implementamos rápido, con reportes claros en cada paso.</p></div></li>
+            <li><span class="step-n" aria-hidden="true">04</span><div><div class="sn">Medimos</div><p>Reportamos resultados en la métrica que importa: dinero.</p></div></li>
           </ol>
         </div>
 
@@ -138,14 +157,14 @@ const faqLd = {
 
   <section class="section" style="padding-block:clamp(80px,11vw,130px)">
     <div class="wrap">
-      <div class="founder-band dark">
+      <div class="founder-band">
         <div class="fb-grid">
           <div>
             <h2 style="font-size:clamp(26px,4vw,40px)">5 empresas. Precio de fundador. Resultados garantizados.</h2>
             <p class="lead" style="margin-top:14px">Buscamos cinco negocios en crecimiento para trabajar de cerca a cambio de precio preferente y un caso de éxito compartido. Entra temprano en algo bueno.</p>
             <div class="fb-slots" aria-hidden="true" set:html={founder.dotsHtml} />
             <p class="fb-count">{founder.label}</p>
-            <div class="hero-cta-row"><a class="btn btn-lime" href="/contacto/">Aplicar al Programa Fundador</a></div>
+            <div class="hero-cta-row"><a class="btn btn-violet" href="/contacto/">Aplicar al Programa Fundador</a></div>
           </div>
           <div class="fb-guarantee">
             <div class="g"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 12 l5 5 9-11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Precio fundador, congelado mientras seas cliente.</span></div>
@@ -171,7 +190,7 @@ const faqLd = {
         <div class="closer-cta">
           <h2>¿Listo para ver cuánto puede crecer tu web?</h2>
           <div class="cta-row">
-            <a class="btn btn-lime" href="#scanner">Analizar mi web gratis</a>
+            <a class="btn btn-violet" href="#scanner">Analizar mi web gratis</a>
             <a class="btn btn-ghost" href="/contacto/">Agenda una llamada</a>
           </div>
         </div>
@@ -181,26 +200,33 @@ const faqLd = {
 </Base>
 
 <style>
+  /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
   .hero-data { overflow: hidden; }
-  /* Sesgo deliberado: copy a la izquierda, instrumento a la derecha — nada centrado. */
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
-  @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
-  h1.hero-title { font-family: var(--mono); font-weight: 700; letter-spacing: -0.02em; font-size: clamp(27px, 3.2vw, 38px); margin-bottom: 18px; line-height: 1.22; overflow-wrap: anywhere; min-width: 0; }
-  .hero-lead { color: var(--muted); font-size: clamp(15.5px, 1.6vw, 17px); max-width: 46ch; }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+  @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
+  h1.hero-title { font-size: clamp(34px, 4.2vw, 54px); margin-bottom: 20px; overflow-wrap: anywhere; min-width: 0; }
+  /* La palabra medida: subrayado de regleta — tipografía como instrumento. */
+  .medido { font-style: normal; position: relative; white-space: nowrap; padding-bottom: 2px;
+    background-image:
+      linear-gradient(var(--crit) 0 0),
+      repeating-linear-gradient(90deg, var(--crit) 0 1.5px, transparent 1.5px 14.28%);
+    background-size: 100% 2px, calc(100% + 1.5px) 7px;
+    background-position: bottom left, bottom left;
+    background-repeat: no-repeat, no-repeat; }
+  .hero-lead { color: var(--muted); font-size: clamp(16px, 1.7vw, 18px); max-width: 46ch; }
   .hero-instrument { min-width: 0; }
-  .hero-sub { font-size: 12.5px; color: var(--faint); margin-top: 12px; }
+  .hero-sub { font-size: 12.5px; color: var(--faint); margin-top: 14px; }
 
-  /* Ledger: fila de datos, no tarjetas flotantes — la prueba se lee como un renglón de reporte. */
-  .ledger-row { display: flex; flex-wrap: wrap; gap: 0; margin: clamp(40px, 6vw, 64px) 0 0; border-top: 1px solid rgba(255,255,255,0.14); border-bottom: 1px solid rgba(255,255,255,0.14); }
-  .lg-cell { flex: 1; min-width: 160px; padding: 20px 24px 20px 0; display: flex; flex-direction: column-reverse; align-items: flex-start; gap: 6px; border-left: 1px solid rgba(255,255,255,0.14); }
-  .lg-cell + .lg-cell { padding-left: 24px; }
-  .lg-cell:first-child { border-left: none; }
-  @media (max-width: 560px) { .lg-cell { border-left: none; border-top: 1px solid rgba(255,255,255,0.14); } .lg-cell:first-child { border-top: none; } }
+  /* Regleta-ledger: renglón de lecturas del informe. */
+  .ledger-row { display: flex; flex-wrap: wrap; gap: 0; margin: clamp(44px, 6vw, 68px) 0 0; border-top: 1.5px solid var(--line-strong); }
+  .lg-cell { flex: 1; min-width: 180px; padding: 18px 28px 4px 0; display: flex; flex-direction: column; gap: 4px; }
+  .lg-cell + .lg-cell { padding-left: 28px; border-left: 1px solid var(--line); }
+  @media (max-width: 620px) { .lg-cell + .lg-cell { border-left: none; padding-left: 0; } .lg-cell { min-width: 100%; padding-right: 0; } }
   .lg-cell dt, .lg-cell dd { margin: 0; }
-  .lg-n { font-family: var(--mono); font-size: clamp(24px, 3.6vw, 32px); font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
-  .lg-cell.lg-warn .lg-n { color: var(--violet-ink); }
-  .lg-cell.lg-crit .lg-n { color: var(--violet-ink); }
-  .lg-l { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.04em; }
+  .lg-l { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.08em; text-transform: uppercase; order: 1; }
+  .lg-n { font-family: var(--mono); font-size: clamp(26px, 3.6vw, 34px); font-weight: 600; letter-spacing: -0.03em; color: var(--text); order: 2; line-height: 1.1; }
+  .lg-cell.lg-crit .lg-n { color: var(--crit-ink); }
+  .lg-cell .regla { order: 3; margin-top: 8px; }
 
   .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
 
@@ -208,16 +234,24 @@ const faqLd = {
   .shead h2 { font-size: clamp(26px, 3vw, 34px); }
   .shead p { margin-top: 16px; }
 
-  .statband { text-align: center; padding-block: clamp(40px, 6vw, 64px); }
-  .statband .big { font-size: clamp(30px, 5vw, 52px); font-weight: 700; letter-spacing: -0.03em; max-width: 20ch; margin-inline: auto; }
-  .statband .big em { color: var(--violet-ink); font-style: normal; }
-  .statband .src { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 20px; letter-spacing: 0.06em; }
+  /* Statband: la lectura del instrumento a página completa. */
+  .statband { padding-block: clamp(48px, 7vw, 84px); border-block: 1px solid var(--line); background: var(--surface); }
+  .sb-grid { display: grid; grid-template-columns: minmax(240px, 0.9fr) 1.1fr; gap: clamp(32px, 6vw, 72px); align-items: center; }
+  @media (max-width: 860px) { .sb-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .sb-num { font-family: var(--mono); font-weight: 600; font-size: clamp(84px, 12vw, 148px); line-height: 0.9; letter-spacing: -0.05em; color: var(--crit-ink); }
+  .sb-num small { font-size: 0.36em; color: var(--faint); font-weight: 400; letter-spacing: 0; }
+  .sb-regla { margin-top: 22px; height: 32px; }
+  .sb-regla .aguja { height: 26px; }
+  .sb-scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 6px; }
+  .sb-claim .big { font-family: var(--display); font-variation-settings: "wdth" 116; font-size: clamp(22px, 2.8vw, 30px); font-weight: 700; letter-spacing: -0.015em; line-height: 1.25; text-wrap: balance; }
+  .sb-claim .big em { color: var(--crit-ink); font-style: normal; }
+  .sb-claim .src { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 18px; letter-spacing: 0.04em; }
 
   /* Pilares: índice de filas con regla — lenguaje de informe, no feature-grid. */
-  .pillar-index { border-top: 1px solid var(--line); }
-  .pi-row { display: grid; grid-template-columns: 200px 220px minmax(0, 1fr) auto; gap: 24px; align-items: baseline; padding: 26px 4px; border-bottom: 1px solid var(--line); color: inherit; transition: background-color .18s ease, padding-left .18s ease; }
+  .pillar-index { border-top: 1.5px solid var(--line-strong); }
+  .pi-row { display: grid; grid-template-columns: 210px 220px minmax(0, 1fr) auto; gap: 24px; align-items: baseline; padding: 26px 4px; border-bottom: 1px solid var(--line); color: inherit; transition: background-color .18s ease, padding-left .18s ease; }
   .pi-row:hover { background: var(--surface); padding-left: 12px; }
-  .pi-name { font-size: 21px; letter-spacing: -0.02em; margin: 0; }
+  .pi-name { font-size: 22px; margin: 0; }
   .pi-hook { color: var(--text); font-size: 14px; font-weight: 600; margin: 0; }
   .pi-desc { color: var(--muted); font-size: 14px; line-height: 1.55; margin: 0; }
   .pi-arrow { font-family: var(--mono); color: var(--faint); transition: color .18s ease, transform .18s ease; }
@@ -235,36 +269,36 @@ const faqLd = {
   @media (max-width: 900px) { .method-grid { grid-template-columns: 1fr; gap: 64px; } }
   .method-col .shead { margin-bottom: 32px; }
 
-  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0; }
-  .timeline li { display: flex; gap: 18px; padding-block: 18px; border-left: 2px solid var(--line); padding-left: 22px; margin-left: 20px; position: relative; }
-  .timeline li:last-child { border-left-color: transparent; }
-  .step-ic { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--bg); border: 1px solid var(--line); color: var(--text); flex: none; margin-left: -41px; margin-top: -2px; }
-  .step-ic svg { width: 18px; height: 18px; }
-  .timeline .sn { font-family: var(--mono); font-size: 12px; color: var(--cyan-ink); letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase; }
-  .timeline p { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+  /* Pasos con ordinal mono (secuencia genuina) — sin iconos decorativos. */
+  .timeline { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .timeline li { display: flex; gap: 20px; padding-block: 20px; border-bottom: 1px solid var(--line-soft); }
+  .timeline li:last-child { border-bottom: none; }
+  .step-n { font-family: var(--mono); font-size: 15px; font-weight: 600; color: var(--crit-ink); flex: none; padding-top: 2px; min-width: 34px; }
+  .timeline .sn { font-family: var(--display); font-variation-settings: "wdth" 116; font-size: 17px; font-weight: 700; letter-spacing: -0.01em; color: var(--text); }
+  .timeline p { color: var(--muted); font-size: 14px; margin-top: 5px; line-height: 1.55; }
 
   .ladder-v { display: flex; flex-direction: column; gap: 12px; }
-  .rung-v { background: var(--surface); border: 1px solid var(--line-soft); border-radius: 14px; padding: 18px 22px; box-shadow: var(--card-shadow); transition: border-color .2s, transform .2s; }
-  .rung-v:hover { border-color: var(--violet); transform: translateX(3px); }
-  .rung-v.free { border-color: color-mix(in srgb, var(--violet) 45%, transparent); }
+  .rung-v { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-md); padding: 18px 22px; transition: border-color .2s, transform .2s; }
+  .rung-v:hover { border-color: var(--crit); transform: translateX(3px); }
+  .rung-v.free { border-color: color-mix(in srgb, var(--crit) 45%, transparent); }
   .rv-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-  .rung-v .lvl { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.14em; text-transform: uppercase; }
-  .rung-v .kind { font-family: var(--mono); font-size: 10.5px; color: var(--cyan-ink); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; letter-spacing: 0.05em; }
-  .rung-v.free .kind { background: var(--lime); color: var(--lime-fg); border-color: transparent; }
+  .rung-v .lvl { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; }
+  .rung-v .kind { font-family: var(--mono); font-size: 10.5px; color: var(--ok-ink); border: 1px solid var(--line); border-radius: 99px; padding: 3px 10px; letter-spacing: 0.05em; }
+  .rung-v.free .kind { background: var(--ok); color: var(--lime-fg); border-color: transparent; }
   .rung-v h3 { font-size: 18px; }
   .rung-v .for { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
 
-  .founder-band { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(28px, 5vw, 52px); position: relative; overflow: hidden; }
-  .founder-band.dark { background: var(--ink-2, #0A0B0C); }
+  /* Banda fundador: papel con filete óxido — sin fondo oscuro. */
+  .founder-band { border: 1px solid var(--line); border-left: 4px solid var(--crit); border-radius: var(--radius-sm); background: var(--surface); padding: clamp(28px, 5vw, 52px); position: relative; overflow: hidden; }
   .fb-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; position: relative; z-index: 1; }
   @media (max-width: 780px) { .fb-grid { grid-template-columns: 1fr; gap: 26px; } }
   .fb-slots { display: flex; gap: 8px; margin: 22px 0; }
-  .slot { flex: 1; height: 6px; border-radius: 99px; background: var(--violet); }
-  .slot.taken { background: rgba(255,255,255,0.12); }
+  .fb-slots :global(.slot) { flex: 1; height: 6px; border-radius: 99px; background: var(--crit); }
+  .fb-slots :global(.slot.taken) { background: var(--line); }
   .fb-count { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .fb-guarantee { display: flex; flex-direction: column; gap: 14px; }
   .fb-guarantee .g { display: flex; gap: 12px; align-items: flex-start; font-size: 14.5px; color: var(--text); }
-  .fb-guarantee .g svg { color: var(--lime); flex: none; margin-top: 2px; }
+  .fb-guarantee .g svg { color: var(--ok); flex: none; margin-top: 2px; }
 
   /* FAQ + CTA final fusionados */
   .closer-grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: clamp(40px, 6vw, 72px); align-items: start; }
@@ -273,14 +307,14 @@ const faqLd = {
   .faq { margin-top: 32px; }
   .qa { border-bottom: 1px solid var(--line); }
   .qa button.q { width: 100%; background: none; border: 0; color: var(--text); font-family: var(--sans); font-size: 16px; font-weight: 600; text-align: left; padding: 20px 36px 20px 0; cursor: pointer; position: relative; letter-spacing: -0.01em; }
-  .qa button.q .ic { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 17px; font-weight: 700; color: var(--faint); }
+  .qa button.q .ic { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: 17px; font-weight: 600; color: var(--faint); }
   .qa button.q .ic::before { content: "+"; }
   .qa.open button.q .ic::before { content: "\2212"; }
   .qa.open button.q .ic { color: var(--text); }
   .qa .a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
   .qa .a p { color: var(--muted); font-size: 14.5px; line-height: 1.6; padding: 0 36px 20px 0; }
 
-  .closer-cta { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--card-shadow); }
+  .closer-cta { background: var(--surface); border: 1px solid var(--line-soft); border-radius: var(--radius-md); padding: 32px; }
   .closer-cta h2 { margin-top: 0; }
   .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
 </style>

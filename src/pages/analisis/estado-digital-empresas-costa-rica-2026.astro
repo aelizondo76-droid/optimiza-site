@@ -121,7 +121,7 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
         <p><strong>Tu competidor que instala píxel hoy, te vencerá mañana. No por ser más grande. Por ser más medido.</strong></p>
       </div>
 
-      <div class="art-cta dark">
+      <div class="art-cta">
         <p>¿Cuál es tu índice digital?</p>
         <div class="scanwrap"><Scanner /></div>
       </div>
@@ -140,12 +140,6 @@ const ogImage = new URL('/og/estudio-estado-digital.png', Astro.site).href;
   .tldr { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--violet); border-radius: 14px; padding: 22px 24px; margin-bottom: 28px; }
   .tldr-k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--violet-ink); margin: 0 0 10px; font-weight: 700; }
   .tldr p { margin: 0; color: var(--text); font-size: 16px; line-height: 1.7; }
-  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
-  @media (max-width: 640px) { .stats { grid-template-columns: 1fr 1fr; } }
-  .stat { background: #101214; border-radius: 14px; padding: 20px 18px; }
-  .stat .sn { font-family: var(--mono); font-size: 34px; font-weight: 700; color: var(--lime); line-height: 1; }
-  .stat .sn small { font-size: 16px; color: #9099A3; }
-  .stat .sl { font-size: 12px; color: #9099A3; margin-top: 10px; }
   .prose { margin-bottom: 40px; }
   .prose :global(h2) { font-family: var(--display); font-weight: 600; font-size: clamp(22px, 3vw, 30px); margin: 44px 0 14px; }
   .prose :global(h3) { font-weight: 600; font-size: 18px; margin: 28px 0 12px; color: var(--text); }

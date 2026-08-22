@@ -1,9 +1,9 @@
 ---
-import '@fontsource-variable/inter';
-import '@fontsource/space-mono/400.css';
-import '@fontsource/space-mono/700.css';
-import interUrl from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import spaceMonoUrl from '@fontsource/space-mono/files/space-mono-latin-400-normal.woff2?url';
+import '@fontsource-variable/archivo/wdth.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/600.css';
+import archivoUrl from '@fontsource-variable/archivo/files/archivo-latin-wdth-normal.woff2?url';
+import plexMonoUrl from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
@@ -96,8 +96,8 @@ const crumbLd = breadcrumbs?.length
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href={interUrl} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={spaceMonoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={archivoUrl} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={plexMonoUrl} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
@@ -110,7 +110,7 @@ const crumbLd = breadcrumbs?.length
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={ogImageUrl} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#F1F1EC" />
+    <meta name="theme-color" content="#F1F0E9" />
     <script type="application/ld+json" set:html={JSON.stringify(org)} />
     <script type="application/ld+json" set:html={JSON.stringify(website)} />
     <script type="application/ld+json" set:html={JSON.stringify(founderLd)} />

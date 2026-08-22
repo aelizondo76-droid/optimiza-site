@@ -37,6 +37,7 @@ function buildCoreLastmodMap() {
     ['https://optimizahq.com/analisis/glosario-digital-empresas/', 'src/pages/analisis/glosario-digital-empresas.astro'],
     ['https://optimizahq.com/analisis/tienda-de-moda-online/', 'src/content/analisis/tienda-de-moda-online.mdoc'],
     ['https://optimizahq.com/legal/licencia-datos/', 'src/pages/legal/licencia-datos.astro'],
+    ['https://optimizahq.com/legal/privacidad/', 'src/pages/legal/privacidad.astro'],
   ];
   for (const [url, path] of entries) {
     try {
