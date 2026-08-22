@@ -40,15 +40,21 @@ la audiencia son empresarios costarricenses 40+, no programadores)
 Reglas de color:
 1. Óxido/verde marcan **datos**, nunca decoración. ≤5% del viewport
    (excepción única: las ondas de la portada, abajo).
-2. **La portada LUMINOSA** (v2.2, dirección de arte de Alonso): el hero de
-   la HOME es la única sección-escena — papel claro luminoso
-   (#F6F5EF→#EDECE2) con milimetrado al 4% y ondas de color en capas al
-   pie (arena #E7E5D8 · coral #C97A54 · verde vivo #2E7A55 · verde tinta
-   #1E5A3F), clase `portada`. Como la portada de un informe anual bien
-   impreso: fresca, limpia, con color. La versión OSCURA de portada se
-   probó y fue RECHAZADA por el cliente ("oscuro y triste, poco
-   profesional") — prohibido volver a ella. Dark sigue viviendo solo
-   dentro de `.scanner`.
+2. **Las portadas de ACUARELA** (v2.3, dirección de arte de Alonso,
+   confirmada sobre la opción D): cada hero lleva una acuarela DISTINTA
+   de la misma familia como fondo (`public/hero/acuarela-*.webp`,
+   generadas con el skill banana/Gemini): lavados suaves de salvia,
+   verde mar y terracota sobre papel, con líneas de contorno de
+   cartógrafo. Home=equilibrada · Servicios=corriente verde ·
+   Nosotros=terracota cálida · Contacto=bruma mínima ·
+   /analisis=cartográfica con bloom terracota. Los lavados viven en el
+   TERCIO INFERIOR; el texto siempre sobre papel limpio. Regenerar
+   nuevas piezas con el mismo prompt-base (misma línea, pieza nueva).
+   RECHAZADOS: portada oscura ("oscuro y triste"), ondas SVG planas a
+   mano ("diseño de los 80s"), listones vectoriales rígidos
+   ("acartonado"). El porqué de los colores: verde=bien y óxido=crítico
+   son las señales del Índice — la acuarela es el lenguaje del
+   instrumento diluido en agua. Dark solo dentro de `.scanner`.
 
 ## Typography
 
@@ -71,8 +77,10 @@ mostrar el producto vivo), sin copiar su atmósfera azul:
    hero (home bajo el nav; /analisis al pie) que desfila lecturas REALES
    anonimizadas de los 346 sitios medidos. Datos reales en movimiento —
    nunca actividad simulada. Pausa on-hover; estática con reduced-motion.
-3. **Las ondas de color**: capas orgánicas al pie de la portada (arena,
-   coral, verde vivo, verde tinta) — nuestras "curvas". Solo portada.
+3. **Ilustraciones generadas** (skill banana): diagramas y artwork se
+   generan como piezas editoriales (ej. diagrama CRM de servicios:
+   listones de seda + CRM como dispositivo), nunca SVG de cajitas a
+   mano. Texto de diagramas: verificar erratas SIEMPRE antes de usar.
 4. **El instrumento llega encendido**: el escáner precarga la lectura real
    de optimizahq.com (constante SELF en Scanner.astro, fechada).
 

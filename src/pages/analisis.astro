@@ -22,7 +22,7 @@ const posts = await getAnalisis();
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }]}
 >
-  <section class="hero section">
+  <section class="hero section portada">
     <SheetMarks label="Optimiza · Hoja 05 · Investigación" />
     <div class="hero-cinta"><RegistroCinta /></div>
     <div class="wrap">
@@ -239,6 +239,7 @@ const posts = await getAnalisis();
 </Base>
 
 <style>
+  .hero.portada { background: url('/hero/acuarela-analisis.webp') center bottom / 100% auto no-repeat, #F1F0E9; padding-bottom: clamp(170px, 19vw, 240px); }
   .hero { padding-bottom: clamp(104px, 13vw, 140px); }
   .hero-cinta { position: absolute; left: 0; right: 0; bottom: 0; }
   @media (max-width: 940px) {

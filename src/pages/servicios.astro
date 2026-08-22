@@ -19,7 +19,7 @@ const check = 'M20 6 9 17l-5-5';
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Servicios', url: 'https://optimizahq.com/servicios/' }]}
 >
-  <section class="hero section">
+  <section class="hero section portada">
     <SheetMarks label="Optimiza · Hoja 02 · Servicios" />
     <div class="wrap">
       <h1>Cuatro palancas. Un objetivo: que tu negocio <span class="hl">venda</span>.</h1>
@@ -269,12 +269,13 @@ const check = 'M20 6 9 17l-5-5';
 </Base>
 
 <style>
+  .hero.portada { background: url('/hero/acuarela-servicios.webp') center bottom / 100% auto no-repeat, #F1F0E9; padding-bottom: clamp(170px, 19vw, 240px); }
   .hero { padding-block: clamp(64px, 9vw, 104px) clamp(56px, 8vw, 92px); }
   .hero h1 { font-size: clamp(36px, 5.2vw, 58px); max-width: 16ch; }
   .hero h1 .hl { color: var(--crit-ink); }
   .hero .lead { margin-top: 20px; }
-  .pillnav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; font-family: var(--mono); }
-  .pillnav .pn { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 500; color: var(--text); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 9px 16px 9px 12px; transition: border-color .18s, background .18s; }
+  .pillnav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+  .pillnav .pn { display: inline-flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 620; font-variation-settings: "wdth" 108; color: var(--text); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 9px 16px 9px 12px; transition: border-color .18s, background .18s; }
   .pillnav .pn:hover { border-color: var(--text); }
 
   .lad-head { max-width: 60ch; margin-bottom: 44px; }
@@ -319,7 +320,9 @@ const check = 'M20 6 9 17l-5-5';
   .presult b { font-family: var(--mono); font-size: 13px; font-weight: 600; color: var(--ok-ink); }
 
   .panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 24px; box-shadow: var(--card-shadow); }
-  .panel .ptitle { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 18px; display: flex; justify-content: space-between; }
+  .panel .ptitle { margin-bottom: 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 14px; }
+  .panel .ptitle span:first-child { font-family: var(--display); font-variation-settings: "wdth" 118; font-weight: 700; font-size: 14.5px; letter-spacing: 0; color: var(--text); }
+  .panel .ptitle span:last-child { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); white-space: nowrap; }
   .barline { margin-bottom: 16px; }
   .barline .bl-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; margin-bottom: 7px; }
   .barline .bl-top .lab { color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-size: 10.5px; }

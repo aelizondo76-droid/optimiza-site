@@ -20,7 +20,7 @@ const chk = 'M20 6 9 17l-5-5';
   ogImage={seo.ogImage}
   breadcrumbs={[{ name: 'Nosotros', url: 'https://optimizahq.com/nosotros/' }]}
 >
-  <section class="hero section">
+  <section class="hero section portada">
     <SheetMarks label="Optimiza · Hoja 03 · Nosotros" />
     <div class="wrap">
       <div class="hero-grid">
@@ -161,6 +161,7 @@ const chk = 'M20 6 9 17l-5-5';
 </Base>
 
 <style>
+  .hero.portada { background: url('/hero/acuarela-nosotros.webp') center bottom / 100% auto no-repeat, #F1F0E9; padding-bottom: clamp(170px, 19vw, 240px); }
   .narrow { max-width: 720px; }
   .hero-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
   @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 36px; } }
