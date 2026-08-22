@@ -1,6 +1,9 @@
 ---
 // El instrumento: escáner de diagnóstico de 2 pasos. Autónomo — trae su propio
 // ámbito oscuro (.dark) y es el ÚNICO objeto oscuro permitido sobre el papel.
+// Llega ENCENDIDO: precargado con la lectura real de optimizahq.com (mediana
+// de 3 corridas del motor v2). Actualizar SELF al re-medir el sitio propio.
+const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
 ---
 <div class="scanner dark" id="scanner">
   <div class="scan-chrome">
@@ -21,7 +24,8 @@
     <span>47 métricas</span><span>Core Web Vitals</span><span>SEO</span><span>Conversión</span>
   </div>
 
-  <div class="result" id="result" aria-live="polite">
+  <div class="result show self" id="result" aria-live="polite" data-self={JSON.stringify(SELF)}>
+    <p class="self-note">Lectura real de <b>optimizahq.com</b> · {SELF.fecha} — escribe tu URL arriba para comparar tu sitio.</p>
     <div class="gauge-row">
       <div class="gauge">
         <svg viewBox="0 0 190 116" aria-hidden="true">
@@ -123,6 +127,12 @@
 
   .result { margin-top: 22px; display: none; }
   .result.show { display: block; }
+  /* Modo auto-lectura: el instrumento llega encendido con el puntaje propio;
+     hallazgos y gate aparecen solo tras un escaneo real del visitante. */
+  .result.self .findings, .result.self .gate { display: none; }
+  .self-note { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--faint); margin-bottom: 16px; line-height: 1.5; }
+  .self-note b { color: var(--ok); font-weight: 600; }
+  .result:not(.self) .self-note { display: none; }
   .gauge-row { display: grid; grid-template-columns: 246px 1fr; gap: 26px; align-items: center; }
   @media (max-width: 560px) { .gauge-row { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
   .gauge { position: relative; width: 246px; height: 150px; }
@@ -218,6 +228,18 @@
       animateNumber(num, v, 1200);
     };
 
+    // Auto-lectura: el instrumento llega encendido con el puntaje real propio.
+    const selfData = result.dataset.self ? JSON.parse(result.dataset.self) : null;
+    if (selfData && result.classList.contains('self')) {
+      requestAnimationFrame(() => {
+        if (arc) arc.style.strokeDashoffset = String(100 - selfData.index);
+        if (scoreNum) animateNumber(scoreNum, selfData.index, 1300);
+        setBar('b-vel', 'n-vel', selfData.vel);
+        setBar('b-seo', 'n-seo', selfData.seo);
+        setBar('b-mob', 'n-mob', selfData.conv);
+      });
+    }
+
     const statusMsgs = ['Midiendo velocidad real…', 'Analizando SEO y visibilidad…', 'Revisando conversión…', 'Detectando tu medición…'];
     let statusTimer = 0;
     const startStatus = () => {
@@ -227,6 +249,7 @@
     const stopStatus = (label: string) => { clearInterval(statusTimer); scanBtn.textContent = label; };
 
     const renderResult = (d: any) => {
+      result.classList.remove('self');
       result.classList.add('show');
       const byKey: Record<string, number> = {};
       for (const p of d.pillars) byKey[p.key] = p.score;

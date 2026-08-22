@@ -50,7 +50,7 @@ const faqLd = {
         </div>
         <div class="hero-instrument">
           <Scanner />
-          <p class="hero-sub">Sin registro para ver tu puntaje · esto mismo acabas de correrlo sobre optimizahq.com.</p>
+          <p class="hero-sub">Sin registro para ver tu puntaje · el instrumento llega encendido con nuestra propia lectura.</p>
         </div>
       </div>
 
@@ -150,6 +150,21 @@ const faqLd = {
             <article class="rung-v"><div class="rv-top"><span class="lvl">Nivel 2</span><span class="kind">Retainer</span></div><h3>Aceleración</h3><p class="for">Para crecer ventas mes a mes: tráfico y conversión.</p></article>
             <article class="rung-v"><div class="rv-top"><span class="lvl">Nivel 3</span><span class="kind">Premium</span></div><h3>Autopilot</h3><p class="for">Para que el crecimiento no dependa de ti: automatización total.</p></article>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section firma" id="fundador">
+    <div class="wrap">
+      <div class="firma-grid">
+        <img class="firma-foto" src="/founder/alonso-elizondo.jpg" alt="Alonso Elizondo, fundador de Optimiza" width="480" height="480" loading="lazy" />
+        <div class="firma-body">
+          <h2>Quién firma cada informe.</h2>
+          <p class="firma-nombre">Alonso Elizondo</p>
+          <p class="firma-cred">Economista. Director Ejecutivo de la Cámara de Comercio de Costa Rica durante 18 años (2006–2024).</p>
+          <p class="firma-linea">La misma disciplina con la que se mide una economía, aplicada a tu web: cada recomendación sale de un dato, y cada resultado se reporta en la métrica que te importa — ventas.</p>
+          <a class="btn btn-ghost" href="/nosotros/">Conoce cómo trabajamos</a>
         </div>
       </div>
     </div>
@@ -287,6 +302,17 @@ const faqLd = {
   .rung-v.free .kind { background: var(--ok); color: var(--lime-fg); border-color: transparent; }
   .rung-v h3 { font-size: 18px; }
   .rung-v .for { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }
+
+  /* Quién firma el informe: la credencial real, con cara. */
+  .firma { border-top: 1px solid var(--line); padding-block: clamp(56px, 8vw, 88px); }
+  .firma-grid { display: grid; grid-template-columns: minmax(200px, 300px) 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  @media (max-width: 720px) { .firma-grid { grid-template-columns: 1fr; gap: 28px; } .firma-foto { max-width: 240px; } }
+  .firma-foto { width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius-sm); filter: grayscale(0.15); }
+  .firma-body h2 { font-size: clamp(26px, 3vw, 34px); }
+  .firma-nombre { font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--crit-ink); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 20px; }
+  .firma-cred { color: var(--text); font-weight: 600; font-size: 17px; margin-top: 8px; max-width: 46ch; line-height: 1.55; }
+  .firma-linea { color: var(--muted); font-size: 16px; margin-top: 12px; max-width: 52ch; line-height: 1.65; }
+  .firma-body .btn { margin-top: 24px; }
 
   /* Banda fundador: papel con filete óxido — sin fondo oscuro. */
   .founder-band { border: 1px solid var(--line); border-left: 4px solid var(--crit); border-radius: var(--radius-sm); background: var(--surface); padding: clamp(28px, 5vw, 52px); position: relative; overflow: hidden; }

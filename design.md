@@ -87,6 +87,13 @@ Sombra: plano total, salvo la única sombra física del instrumento
 - Primario: fondo tinta, radio 6px, label específico ("Analizar mi web").
 - Secundario: ghost con borde hairline.
 
+## Patrones aprobados (aún no activos)
+
+- **Cita con dato resaltado** (estudiado de SpeedCurve): cuando existan
+  testimonios REALES con métrica verificable, la frase del dato lleva
+  marcador (fondo señal suave), foto real, nombre y empresa verificable.
+  Prohibido activarlo con testimonios inventados o sin métrica.
+
 ## Copy — honestidad no negociable
 
 - Cero métricas inventadas. Paneles ilustrativos etiquetados como tales.
