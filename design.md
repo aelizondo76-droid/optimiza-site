@@ -40,14 +40,15 @@ la audiencia son empresarios costarricenses 40+, no programadores)
 Reglas de color:
 1. Óxido/verde marcan **datos**, nunca decoración. ≤5% del viewport
    (excepción única: las ondas de la portada, abajo).
-2. **La portada entintada** (v2.1, dirección de arte de Alonso sobre el
-   modelo SpeedCurve): el hero de la HOME es la única sección inmersiva —
-   campo profundo de verde tinta (#16241D→#0C1410) con papel milimetrado
-   al 3% y ondas de calibración en capas (verde/óxido/papel translúcidos),
-   clase `dark portada`. Metáfora: los informes tienen portada entintada
-   y páginas de papel. El resto del sitio sigue la regla original: dark
-   solo dentro de `.scanner`. Prohibido extender la portada a más
-   secciones o volver al near-black + verde neón.
+2. **La portada LUMINOSA** (v2.2, dirección de arte de Alonso): el hero de
+   la HOME es la única sección-escena — papel claro luminoso
+   (#F6F5EF→#EDECE2) con milimetrado al 4% y ondas de color en capas al
+   pie (arena #E7E5D8 · coral #C97A54 · verde vivo #2E7A55 · verde tinta
+   #1E5A3F), clase `portada`. Como la portada de un informe anual bien
+   impreso: fresca, limpia, con color. La versión OSCURA de portada se
+   probó y fue RECHAZADA por el cliente ("oscuro y triste, poco
+   profesional") — prohibido volver a ella. Dark sigue viviendo solo
+   dentro de `.scanner`.
 
 ## Typography
 
@@ -70,8 +71,8 @@ mostrar el producto vivo), sin copiar su atmósfera azul:
    hero (home bajo el nav; /analisis al pie) que desfila lecturas REALES
    anonimizadas de los 346 sitios medidos. Datos reales en movimiento —
    nunca actividad simulada. Pausa on-hover; estática con reduced-motion.
-3. **Las ondas de calibración**: capas orgánicas translúcidas al pie de la
-   portada (verde #2E7A55, óxido, papel) — nuestras "curvas". Solo portada.
+3. **Las ondas de color**: capas orgánicas al pie de la portada (arena,
+   coral, verde vivo, verde tinta) — nuestras "curvas". Solo portada.
 4. **El instrumento llega encendido**: el escáner precarga la lectura real
    de optimizahq.com (constante SELF en Scanner.astro, fechada).
 

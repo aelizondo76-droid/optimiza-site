@@ -39,13 +39,13 @@ const faqLd = {
 ---
 <Base title={title} description={description} ogImage={seo.ogImage}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
-  <section class="hero section hero-data dark portada">
+  <section class="hero section hero-data portada">
     <svg class="ondas" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
-      <path d="M0 560 C300 480 560 640 880 560 C1140 496 1300 560 1440 500 L1440 820 L0 820 Z" fill="#F1F0E9" fill-opacity="0.045"/>
-      <path d="M0 640 C280 550 540 700 880 620 C1150 558 1310 630 1440 570 L1440 820 L0 820 Z" fill="#2E7A55" fill-opacity="0.22"/>
-      <path d="M0 726 C320 640 640 780 960 706 C1200 652 1330 716 1440 672 L1440 820 L0 820 Z" fill="#963A1D" fill-opacity="0.30"/>
-      <path d="M0 788 C360 720 700 830 1040 770 C1260 732 1360 774 1440 744 L1440 820 L0 820 Z" fill="#0C1410" fill-opacity="0.55"/>
-      <g fill="none" stroke="#F1F0E9" stroke-opacity="0.16" stroke-width="1">
+      <path d="M0 560 C300 480 560 640 880 560 C1140 496 1300 560 1440 500 L1440 820 L0 820 Z" fill="#E7E5D8" fill-opacity="0.9"/>
+      <path d="M0 640 C280 550 540 700 880 620 C1150 558 1310 630 1440 570 L1440 820 L0 820 Z" fill="#C97A54" fill-opacity="0.32"/>
+      <path d="M0 726 C320 640 640 780 960 706 C1200 652 1330 716 1440 672 L1440 820 L0 820 Z" fill="#2E7A55" fill-opacity="0.34"/>
+      <path d="M0 792 C360 724 700 832 1040 774 C1260 736 1360 778 1440 748 L1440 820 L0 820 Z" fill="#1E5A3F" fill-opacity="0.88"/>
+      <g fill="none" stroke="#191A17" stroke-opacity="0.14" stroke-width="1">
         <path d="M0 520 C300 440 560 600 880 520 C1140 456 1300 520 1440 460"/>
         <path d="M0 496 C300 416 560 576 880 496 C1140 432 1300 496 1440 436"/>
       </g>
@@ -231,15 +231,13 @@ const faqLd = {
 
 <style>
   /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
-  .hero-data.portada { overflow: hidden; padding-top: clamp(84px, 8vw, 100px); padding-bottom: clamp(130px, 15vw, 170px);
+  .hero-data.portada { overflow: hidden; padding-top: clamp(84px, 8vw, 100px); padding-bottom: clamp(150px, 17vw, 200px);
     background:
-      linear-gradient(rgba(241,240,233,0.028) 1px, transparent 1px) 0 0 / 26px 26px,
-      linear-gradient(90deg, rgba(241,240,233,0.028) 1px, transparent 1px) 0 0 / 26px 26px,
-      linear-gradient(168deg, #16241D 0%, #101B15 46%, #0C1410 100%); }
-  .ondas { position: absolute; inset: auto 0 0 0; width: 100%; height: 72%; z-index: 0; pointer-events: none; }
+      linear-gradient(rgba(25,26,23,0.042) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(90deg, rgba(25,26,23,0.042) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(180deg, #F6F5EF 0%, #F1F0E9 55%, #EDECE2 100%); }
+  .ondas { position: absolute; inset: auto 0 0 0; width: 100%; height: 66%; z-index: 0; pointer-events: none; }
   .portada .wrap, .portada .hero-cinta { position: relative; z-index: 1; }
-  .portada :global(.scanner) { border-color: rgba(241,240,233,0.14); box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 18px 44px -14px rgba(0,0,0,0.6); }
-  .portada .ledger-row { border-top-color: rgba(241,240,233,0.4); }
   .hero-cinta { margin-bottom: clamp(36px, 5vw, 54px); }
   @media (max-width: 940px) {
     .hero-data { padding-top: 68px; padding-bottom: 120px; }
