@@ -66,8 +66,9 @@ const faqLd = {
         </div>
         <div class="lg-cell lg-crit">
           <dt class="lg-l">sin Meta Pixel</dt>
-          <dd class="lg-n">66%</dd>
-          <div class="regla" style="--val:66; --sig:var(--crit)" role="img" aria-label="66 por ciento, en una escala de 0 a 100"><i class="aguja"></i></div>
+          <dd class="lg-n">66%
+            <span class="regla" style="--val:66; --sig:var(--crit)" role="img" aria-label="66 por ciento, en una escala de 0 a 100"><i class="aguja"></i></span>
+          </dd>
         </div>
         <div class="lg-cell lg-crit">
           <dt class="lg-l">pérdida anual estimada</dt>
@@ -254,7 +255,7 @@ const faqLd = {
   .lg-l { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.08em; text-transform: uppercase; order: 1; }
   .lg-n { font-family: var(--mono); font-size: clamp(26px, 3.6vw, 34px); font-weight: 600; letter-spacing: -0.03em; color: var(--text); order: 2; line-height: 1.1; }
   .lg-cell.lg-crit .lg-n { color: var(--crit-ink); }
-  .lg-cell .regla { order: 3; margin-top: 8px; }
+  .lg-n .regla { display: block; margin-top: 8px; }
 
   .hero-cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; align-items: center; }
 
