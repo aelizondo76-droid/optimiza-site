@@ -46,9 +46,9 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 a { color: inherit; text-decoration: none; }
-h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 780; font-variation-settings: "wdth" 122; letter-spacing: -0.015em; text-wrap: balance; line-height: 1.04; }
-h1 { font-size: clamp(38px, 5.4vw, 60px); }
-h2 { font-size: clamp(26px, 3.2vw, 36px); }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 720; font-variation-settings: "wdth" 118; letter-spacing: -0.01em; text-wrap: balance; line-height: 1.07; }
+h1 { font-size: clamp(38px, 5.4vw, 66px); }
+h2 { font-size: clamp(28px, 3.4vw, 40px); }
 h3 { font-size: clamp(20px, 2.6vw, 26px); font-weight: 700; }
 p { margin: 0; font-family: var(--sans); }
 img { max-width: 100%; display: block; }

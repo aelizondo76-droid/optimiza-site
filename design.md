@@ -71,7 +71,14 @@ El eje wdth de Archivo da todas las voces necesarias:
   letter-spacing 0.06–0.10em** (nunca los 0.14–0.18em de la era mono).
 - El token `--mono` sigue existiendo como alias pero resuelve a Archivo.
   PROHIBIDO reintroducir cualquier monoespaciada en UI visible.
-- H1 ≤ una oración. H1 40–60px, H2 26–36px.
+- **v2.6 — voz de título premium (patrón verificado en SpeedCurve:
+  H1 70px / wght 700 / tracking normal):** lo caro es MÁS tamaño con
+  MENOS densidad. H1 hasta 66px, wght 720 (no 780), wdth 118 (no 122),
+  letter-spacing -0.01em, line-height 1.07. H2 28–40px.
+  Regla de longitud: un H1 a escala display exige copy CORTO (≤ ~30
+  caracteres); un titular largo en columna angosta se apila en torre y
+  abarata todo — ahí se acorta el copy o se baja la escala, nunca se
+  aprieta la tipografía.
 - **Escala de datos — anti-gigantismo (v2.5, dirección de Alonso):** la
   cifra destacada más grande del sitio no supera ~1.2× el H1 (tope duro
   68px; el statband estaba en 148px y "parecía landing de venta de
