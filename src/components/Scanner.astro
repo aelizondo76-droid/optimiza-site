@@ -29,16 +29,23 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
     <div class="gauge-row">
       <div class="gauge">
         <svg viewBox="0 0 190 116" aria-hidden="true">
-          <path d="M6 108 A89 89 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="2.5" stroke-dasharray="1.5 9.5" stroke-linecap="round"></path>
-          <path d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="12" stroke-linecap="round"></path>
-          <path id="gaugeArc" d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="#4E9C7A" stroke-width="12" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1);"></path>
+          <defs>
+            <linearGradient id="gradArc" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#3D8A66"></stop>
+              <stop offset="0.65" stop-color="#6FCB9A"></stop>
+              <stop offset="1" stop-color="#A5EFC7"></stop>
+            </linearGradient>
+          </defs>
+          <path d="M6 108 A89 89 0 0 1 184 108" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="2" stroke-dasharray="1.5 9.5" stroke-linecap="round"></path>
+          <path d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="11" stroke-linecap="round"></path>
+          <path id="gaugeArc" d="M15 108 A80 80 0 0 1 175 108" fill="none" stroke="url(#gradArc)" stroke-width="11" stroke-linecap="round" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100" style="transition: stroke-dashoffset 1.3s cubic-bezier(.2,.7,.2,1);"></path>
         </svg>
         <div class="val"><div class="num"><span id="scoreNum">0</span><small>/100</small></div><div class="cap">Puntaje Optimiza</div></div>
       </div>
       <div class="subs">
-        <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:#963A1D"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">Visibilidad</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:#1F4A3E"></span></div></div>
-        <div class="sub"><div class="sub-top"><span class="lbl">Conversión</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:#963A1D"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Velocidad</span><span class="n" id="n-vel">—</span></div><div class="bar"><span id="b-vel" style="background:linear-gradient(90deg,#8A3A1E,#D08560)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Visibilidad</span><span class="n" id="n-seo">—</span></div><div class="bar"><span id="b-seo" style="background:linear-gradient(90deg,#2E6B4F,#6FCB9A)"></span></div></div>
+        <div class="sub"><div class="sub-top"><span class="lbl">Conversión</span><span class="n" id="n-mob">—</span></div><div class="bar"><span id="b-mob" style="background:linear-gradient(90deg,#8A3A1E,#D08560)"></span></div></div>
       </div>
     </div>
     <div class="findings">
@@ -92,7 +99,7 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
     background:
       linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
       linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px) 0 0 / 24px 24px,
-      linear-gradient(180deg, var(--surface-2), var(--surface)); }
+      radial-gradient(120% 90% at 50% -20%, #262B31 0%, #1B1F24 45%, #12151A 100%); }
   .scanner > *:not(.scan-chrome) { padding-inline: 24px; }
   .scanner > .scan-input { padding-top: 20px; }
   .scanner > .result { padding-bottom: 24px; }
@@ -125,6 +132,7 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   .scan-meta .sm-live i { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-ink); animation: blink 1.4s ease-in-out infinite; }
   @keyframes blink { 50% { opacity: 0.25; } }
 
+  #gaugeArc { filter: drop-shadow(0 0 7px rgba(111,203,154,0.45)); }
   @media (prefers-reduced-motion: reduce) {
     #gaugeArc { transition: none !important; }
     .bar span { transition: none; }
@@ -134,21 +142,21 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   /* Modo auto-lectura: el instrumento llega encendido con el puntaje propio;
      hallazgos y gate aparecen solo tras un escaneo real del visitante. */
   .result.self .findings, .result.self .gate { display: none; }
-  .self-note { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--faint); margin-bottom: 16px; line-height: 1.5; }
-  .self-note b { color: var(--ok); font-weight: 600; }
+  .self-note { font-family: var(--sans); font-size: 12.5px; color: #9BA1A8; margin-bottom: 16px; line-height: 1.5; }
+  .self-note b { color: #6FCB9A; font-weight: 620; }
   .result:not(.self) .self-note { display: none; }
   .gauge-row { display: grid; grid-template-columns: 246px 1fr; gap: 26px; align-items: center; }
   @media (max-width: 560px) { .gauge-row { grid-template-columns: 1fr; justify-items: center; text-align: center; } }
   .gauge { position: relative; width: 246px; height: 150px; }
   .gauge svg { display: block; width: 246px; height: 150px; }
   .gauge .val { position: absolute; left: 0; right: 0; bottom: 8px; text-align: center; }
-  .gauge .num { font-family: var(--mono); font-size: 56px; font-weight: 700; color: var(--lime); line-height: 1; letter-spacing: -0.03em; }
-  .gauge .num small { font-size: 21px; color: var(--muted); text-shadow: none; }
+  .gauge .num { font-family: var(--display); font-variation-settings: "wdth" 120; font-size: 58px; font-weight: 780; color: #A5EFC7; line-height: 1; letter-spacing: -0.02em; text-shadow: 0 0 22px rgba(111,203,154,0.35); }
+  .gauge .num small { font-family: var(--display); font-variation-settings: "wdth" 108; font-size: 19px; font-weight: 500; color: var(--muted); text-shadow: none; }
   .gauge .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-top: 8px; padding-top: 7px; border-top: 1px solid var(--line-soft); display: inline-block; }
   .subs { display: flex; flex-direction: column; gap: 13px; width: 100%; }
-  .sub-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; margin-bottom: 6px; }
-  .sub-top .lbl { color: var(--muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10.5px; }
-  .sub-top .n { color: var(--text); font-weight: 700; }
+  .sub-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .sub-top .lbl { font-family: var(--mono); color: #8A9199; text-transform: uppercase; letter-spacing: 0.16em; font-size: 10px; }
+  .sub-top .n { font-family: var(--display); font-variation-settings: "wdth" 116; color: var(--text); font-weight: 720; font-size: 16px; }
   .bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 1.5px; overflow: hidden; }
   .bar span { display: block; height: 100%; width: 0; border-radius: 1.5px; transition: width 1.1s cubic-bezier(.2,.7,.2,1); }
   .findings { margin-top: 22px; border-top: 1px solid var(--line); padding-top: 18px; }
