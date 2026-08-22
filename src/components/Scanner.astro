@@ -125,6 +125,10 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   .scan-meta .sm-live i { width: 5px; height: 5px; border-radius: 50%; background: var(--cyan-ink); animation: blink 1.4s ease-in-out infinite; }
   @keyframes blink { 50% { opacity: 0.25; } }
 
+  @media (prefers-reduced-motion: reduce) {
+    #gaugeArc { transition: none !important; }
+    .bar span { transition: none; }
+  }
   .result { margin-top: 22px; display: none; }
   .result.show { display: block; }
   /* Modo auto-lectura: el instrumento llega encendido con el puntaje propio;
