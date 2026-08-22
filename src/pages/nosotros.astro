@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import SheetMarks from '../components/SheetMarks.astro';
 import { siGoogleads, siGoogleanalytics, siMeta, siGoogletagmanager } from 'simple-icons';
 import { getSeo } from '../lib/seo';
 import { founderProgramSlots } from '../lib/founderProgram';
@@ -20,6 +21,7 @@ const chk = 'M20 6 9 17l-5-5';
   breadcrumbs={[{ name: 'Nosotros', url: 'https://optimizahq.com/nosotros/' }]}
 >
   <section class="hero section">
+    <SheetMarks label="Optimiza · Hoja 03 · Nosotros" />
     <div class="wrap">
       <div class="hero-grid">
         <div>

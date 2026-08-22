@@ -53,6 +53,23 @@ Reglas de color:
 - H1 ≤ una oración. H1 40–60px, H2 26–36px.
 - Inter y Space Mono quedan PROHIBIDAS (par por defecto de sitio generado).
 
+## Firma visual — la hoja viva
+
+Tres dispositivos convierten los heroes en escena (lección de SpeedCurve:
+mostrar el producto vivo), sin copiar su atmósfera azul:
+
+1. **La hoja técnica** (`SheetMarks.astro`): esquinas de registro + rótulo
+   mono ("Optimiza · Hoja 0X · …") en cada hero. El hero es una lámina.
+2. **La cinta de registro** (`RegistroCinta.astro`): banda al pie del hero
+   (home y /analisis) que desfila lecturas REALES anonimizadas de los 346
+   sitios medidos. Datos reales en movimiento — nunca actividad simulada.
+   Pausa on-hover; estática con reduced-motion. Regenerar al re-medir.
+3. **El dial grabado**: arco de calibración en tinta ≤8% asomando bajo el
+   instrumento del hero — el dispositivo descansa sobre su propia lámina
+   de calibración. Solo en el hero de home.
+4. **El instrumento llega encendido**: el escáner precarga la lectura real
+   de optimizahq.com (constante SELF en Scanner.astro, fechada).
+
 ## Firma visual — la regleta calibrada
 
 Toda estadística clave (porcentaje o puntaje 0–100) se muestra sobre una

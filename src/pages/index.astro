@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Scanner from '../components/Scanner.astro';
+import RegistroCinta from '../components/RegistroCinta.astro';
+import SheetMarks from '../components/SheetMarks.astro';
 import { getSeo } from '../lib/seo';
 import { founderProgramSlots } from '../lib/founderProgram';
 const founder = founderProgramSlots();
@@ -38,6 +40,7 @@ const faqLd = {
 <Base title={title} description={description} ogImage={seo.ogImage}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
   <section class="hero section hero-data">
+    <SheetMarks label="Optimiza · Índice 2026 · Hoja 01" />
     <div class="wrap">
       <div class="hero-grid">
         <div class="hero-copy">
@@ -49,6 +52,11 @@ const faqLd = {
           </div>
         </div>
         <div class="hero-instrument">
+          <svg class="dial-grabado" viewBox="0 0 460 250" aria-hidden="true">
+            <path d="M18 240 A212 212 0 0 1 442 240" fill="none" stroke="rgba(25,26,23,0.14)" stroke-width="2" stroke-dasharray="1.5 20.6" stroke-linecap="round"></path>
+            <path d="M40 240 A190 190 0 0 1 420 240" fill="none" stroke="rgba(25,26,23,0.07)" stroke-width="1"></path>
+            <path d="M64 240 A166 166 0 0 1 396 240" fill="none" stroke="rgba(25,26,23,0.05)" stroke-width="1" stroke-dasharray="1 10"></path>
+          </svg>
           <Scanner />
           <p class="hero-sub">Sin registro para ver tu puntaje · el instrumento llega encendido con nuestra propia lectura.</p>
         </div>
@@ -70,6 +78,7 @@ const faqLd = {
         </div>
       </dl>
     </div>
+    <div class="hero-cinta"><RegistroCinta /></div>
   </section>
 
   <section class="section statband">
@@ -216,7 +225,8 @@ const faqLd = {
 
 <style>
   /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
-  .hero-data { overflow: hidden; }
+  .hero-data { overflow: hidden; padding-bottom: clamp(110px, 14vw, 150px); }
+  .hero-cinta { position: absolute; left: 0; right: 0; bottom: 0; }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
   @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
   h1.hero-title { font-size: clamp(34px, 4.2vw, 54px); margin-bottom: 20px; overflow-wrap: anywhere; min-width: 0; }
@@ -229,7 +239,9 @@ const faqLd = {
     background-position: bottom left, bottom left;
     background-repeat: no-repeat, no-repeat; }
   .hero-lead { color: var(--muted); font-size: clamp(16px, 1.7vw, 18px); max-width: 46ch; }
-  .hero-instrument { min-width: 0; }
+  .hero-instrument { min-width: 0; position: relative; }
+  .hero-instrument :global(.scanner) { z-index: 1; }
+  .dial-grabado { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); width: 126%; max-width: none; z-index: 0; }
   .hero-sub { font-size: 12.5px; color: var(--faint); margin-top: 14px; }
 
   /* Regleta-ledger: renglón de lecturas del informe. */

@@ -1,0 +1,70 @@
+---
+// La cinta de registro: lecturas REALES y anonimizadas del estudio de 346
+// sitios (motor v2, scripts/out/v2). El equivalente honesto del "ping en vivo"
+// de SpeedCurve: ellos simulan actividad; nosotros desfilamos el dataset.
+// Regenerar con scripts/compute-final-stats.py cuando se re-mida el estudio.
+const LECTURAS = [
+  { s: 'tienda de mascotas', i: 41, f: 'sin píxel' },
+  { s: 'software', i: 62, f: 'sin píxel' },
+  { s: 'agencia web', i: 79, f: 'sin píxel' },
+  { s: 'alimentos gourmet', i: 63, f: 'sin píxel' },
+  { s: 'marketing digital', i: 72, f: 'velocidad reprobada' },
+  { s: 'academia online', i: 67, f: 'sin píxel' },
+  { s: 'heladería', i: 57, f: 'sin píxel' },
+  { s: 'tienda de hogar', i: 65, f: 'velocidad reprobada' },
+  { s: 'piscinas', i: 54, f: 'sin píxel' },
+  { s: 'panadería', i: 59, f: 'sin píxel' },
+  { s: 'medicina estética', i: 81, f: 'píxel activo' },
+  { s: 'bar', i: 41, f: 'sin píxel' },
+  { s: 'acabados', i: 60, f: 'sin píxel' },
+  { s: 'consultorio médico', i: 60, f: 'sin píxel' },
+  { s: 'constructora', i: 72, f: 'sin WhatsApp' },
+  { s: 'electrónica', i: 74, f: 'píxel activo' },
+  { s: 'restaurante', i: 41, f: 'sin píxel' },
+  { s: 'cocinas a medida', i: 66, f: 'sin WhatsApp' },
+  { s: 'clínica dental', i: 76, f: 'sin píxel' },
+  { s: 'tienda de belleza', i: 61, f: 'sin WhatsApp' },
+  { s: 'consultoría', i: 77, f: 'sin WhatsApp' },
+  { s: 'cafetería', i: 60, f: 'sin píxel' },
+  { s: 'tienda de moda', i: 60, f: 'sin WhatsApp' },
+];
+const banda = (i: number) => (i < 55 ? 'crit' : i >= 70 ? 'ok' : '');
+---
+<div class="cinta" aria-label="Lecturas reales del Índice Optimiza sobre 346 sitios costarricenses, anonimizadas">
+  <span class="cinta-tag"><i class="rec" aria-hidden="true"></i>Registro · 346 sitios</span>
+  <div class="cinta-clip" aria-hidden="true">
+    <div class="cinta-track">
+      {[0, 1].map(() => (
+        <span class="cinta-copy">
+          {LECTURAS.map((l) => (
+            <span class="lect">{l.s} <b class={banda(l.i)}>{l.i}/100</b> · {l.f}<i class="sep"></i></span>
+          ))}
+        </span>
+      ))}
+    </div>
+  </div>
+  <p class="sr-only">Muestras del estudio: {LECTURAS.slice(0, 5).map((l) => `${l.s}, ${l.i} sobre 100, ${l.f}`).join('; ')}.</p>
+</div>
+
+<style>
+  .cinta { display: flex; align-items: stretch; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); overflow: hidden; }
+  .cinta-tag { flex: none; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 10px 18px; border-right: 1px solid var(--line); background: var(--bg); white-space: nowrap; }
+  .rec { width: 7px; height: 7px; border-radius: 50%; background: var(--crit); animation: recblink 2.2s ease-in-out infinite; }
+  @keyframes recblink { 50% { opacity: 0.25; } }
+  .cinta-clip { flex: 1; overflow: hidden; display: flex; align-items: center; min-width: 0;
+    mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+  .cinta-track { display: flex; width: max-content; animation: cintamove 90s linear infinite; }
+  .cinta:hover .cinta-track { animation-play-state: paused; }
+  .cinta-copy { display: inline-flex; align-items: center; }
+  .lect { display: inline-flex; align-items: center; gap: 7px; font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.02em; color: var(--faint); white-space: nowrap; }
+  .lect b { font-weight: 600; color: var(--text); }
+  .lect b.crit { color: var(--crit-ink); }
+  .lect b.ok { color: var(--ok-ink); }
+  .lect .sep { width: 3px; height: 11px; background: var(--line); margin-inline: 16px; }
+  @keyframes cintamove { to { transform: translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce) {
+    .cinta-track { animation: none; }
+    .rec { animation: none; }
+  }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+</style>

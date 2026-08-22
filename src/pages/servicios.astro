@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import SheetMarks from '../components/SheetMarks.astro';
 import Scanner from '../components/Scanner.astro';
 import { siMeta, siWhatsapp, siGoogleads, siGmail, siGoogle, siPerplexity } from 'simple-icons';
 import { getSeo } from '../lib/seo';
@@ -19,6 +20,7 @@ const check = 'M20 6 9 17l-5-5';
   breadcrumbs={[{ name: 'Servicios', url: 'https://optimizahq.com/servicios/' }]}
 >
   <section class="hero section">
+    <SheetMarks label="Optimiza · Hoja 02 · Servicios" />
     <div class="wrap">
       <h1>Cuatro palancas. Un objetivo: que tu negocio <span class="hl">venda</span>.</h1>
       <p class="lead">Velocidad, visibilidad, conversión y automatización trabajan juntas. No vendemos tareas técnicas sueltas — cada servicio existe para mover una métrica de negocio, y lo medimos en dinero.</p>

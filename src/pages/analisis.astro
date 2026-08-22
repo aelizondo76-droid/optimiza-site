@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import Scanner from '../components/Scanner.astro';
+import RegistroCinta from '../components/RegistroCinta.astro';
+import SheetMarks from '../components/SheetMarks.astro';
 import { getSeo } from '../lib/seo';
 const seo = await getSeo('analisis', {
   title: 'Análisis y Teardowns — Optimiza',
@@ -21,6 +23,7 @@ const posts = await getAnalisis();
   breadcrumbs={[{ name: 'Análisis', url: 'https://optimizahq.com/analisis/' }]}
 >
   <section class="hero section">
+    <SheetMarks label="Optimiza · Hoja 05 · Investigación" />
     <div class="wrap">
       <div>
         <h1>No prometemos resultados. Los <em class="medido">mostramos</em>.</h1>
@@ -31,6 +34,7 @@ const posts = await getAnalisis();
         </div>
       </div>
     </div>
+    <div class="hero-cinta"><RegistroCinta /></div>
   </section>
 
   <section class="section" style="padding-top:0">
@@ -235,6 +239,8 @@ const posts = await getAnalisis();
 </Base>
 
 <style>
+  .hero { padding-bottom: clamp(104px, 13vw, 140px); }
+  .hero-cinta { position: absolute; left: 0; right: 0; bottom: 0; }
   .hero h1 { font-size: clamp(36px, 5.4vw, 60px); max-width: 15ch; }
   .hero h1 .medido { font-style: normal; color: var(--crit-ink); white-space: nowrap; padding-bottom: 2px;
     background-image:
