@@ -39,7 +39,17 @@ const faqLd = {
 ---
 <Base title={title} description={description} ogImage={seo.ogImage}>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(faqLd)} />
-  <section class="hero section hero-data">
+  <section class="hero section hero-data dark portada">
+    <svg class="ondas" viewBox="0 0 1440 820" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <path d="M0 560 C300 480 560 640 880 560 C1140 496 1300 560 1440 500 L1440 820 L0 820 Z" fill="#F1F0E9" fill-opacity="0.045"/>
+      <path d="M0 640 C280 550 540 700 880 620 C1150 558 1310 630 1440 570 L1440 820 L0 820 Z" fill="#2E7A55" fill-opacity="0.22"/>
+      <path d="M0 726 C320 640 640 780 960 706 C1200 652 1330 716 1440 672 L1440 820 L0 820 Z" fill="#963A1D" fill-opacity="0.30"/>
+      <path d="M0 788 C360 720 700 830 1040 770 C1260 732 1360 774 1440 744 L1440 820 L0 820 Z" fill="#0C1410" fill-opacity="0.55"/>
+      <g fill="none" stroke="#F1F0E9" stroke-opacity="0.16" stroke-width="1">
+        <path d="M0 520 C300 440 560 600 880 520 C1140 456 1300 520 1440 460"/>
+        <path d="M0 496 C300 416 560 576 880 496 C1140 432 1300 496 1440 436"/>
+      </g>
+    </svg>
     <SheetMarks label="Optimiza · Índice 2026 · Hoja 01" />
     <div class="hero-cinta"><RegistroCinta /></div>
     <div class="wrap">
@@ -53,11 +63,7 @@ const faqLd = {
           </div>
         </div>
         <div class="hero-instrument">
-          <svg class="dial-grabado" viewBox="0 0 460 250" aria-hidden="true">
-            <path d="M18 240 A212 212 0 0 1 442 240" fill="none" stroke="rgba(25,26,23,0.14)" stroke-width="2" stroke-dasharray="1.5 20.6" stroke-linecap="round"></path>
-            <path d="M40 240 A190 190 0 0 1 420 240" fill="none" stroke="rgba(25,26,23,0.07)" stroke-width="1"></path>
-            <path d="M64 240 A166 166 0 0 1 396 240" fill="none" stroke="rgba(25,26,23,0.05)" stroke-width="1" stroke-dasharray="1 10"></path>
-          </svg>
+          
           <Scanner />
           <p class="hero-sub">Sin registro para ver tu puntaje · el instrumento llega encendido con nuestra propia lectura.</p>
         </div>
@@ -225,12 +231,19 @@ const faqLd = {
 
 <style>
   /* Hero: papel claro; el único objeto oscuro es el instrumento (Scanner). */
-  .hero-data { overflow: hidden; padding-bottom: clamp(110px, 14vw, 150px); }
-  .hero-cinta { position: absolute; left: 0; right: 0; bottom: 0; }
+  .hero-data.portada { overflow: hidden; padding-top: clamp(84px, 8vw, 100px); padding-bottom: clamp(130px, 15vw, 170px);
+    background:
+      linear-gradient(rgba(241,240,233,0.028) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(90deg, rgba(241,240,233,0.028) 1px, transparent 1px) 0 0 / 26px 26px,
+      linear-gradient(168deg, #16241D 0%, #101B15 46%, #0C1410 100%); }
+  .ondas { position: absolute; inset: auto 0 0 0; width: 100%; height: 72%; z-index: 0; pointer-events: none; }
+  .portada .wrap, .portada .hero-cinta { position: relative; z-index: 1; }
+  .portada :global(.scanner) { border-color: rgba(241,240,233,0.14); box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 18px 44px -14px rgba(0,0,0,0.6); }
+  .portada .ledger-row { border-top-color: rgba(241,240,233,0.4); }
+  .hero-cinta { margin-bottom: clamp(36px, 5vw, 54px); }
   @media (max-width: 940px) {
-    .hero-data { padding-top: 70px; padding-bottom: 56px; }
-    .hero-cinta { position: static; margin-bottom: 36px; }
-    .hero-data :global(.sheet) { --sheet-top: 122px; }
+    .hero-data { padding-top: 68px; padding-bottom: 120px; }
+    .hero-data :global(.sheet) { --sheet-top: 118px; }
   }
   .hero-grid { display: grid; grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
   @media (max-width: 940px) { .hero-grid { grid-template-columns: 1fr; gap: 40px; } }
@@ -246,7 +259,6 @@ const faqLd = {
   .hero-lead { color: var(--muted); font-size: clamp(16px, 1.7vw, 18px); max-width: 46ch; }
   .hero-instrument { min-width: 0; position: relative; }
   .hero-instrument :global(.scanner) { z-index: 1; }
-  .dial-grabado { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); width: 126%; max-width: none; z-index: 0; }
   .hero-sub { font-size: 12.5px; color: var(--faint); margin-top: 14px; }
 
   /* Regleta-ledger: renglón de lecturas del informe. */

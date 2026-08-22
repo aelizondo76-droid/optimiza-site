@@ -38,10 +38,16 @@ la audiencia son empresarios costarricenses 40+, no programadores)
 - Alias legacy: `--violet`→óxido, `--lime`→verde. No introducir colores nuevos.
 
 Reglas de color:
-1. Óxido/verde marcan **datos**, nunca decoración. ≤5% del viewport.
-2. **Prohibido el fondo oscuro** en secciones de marketing/contenido. Dark
-   vive únicamente dentro de `.scanner` (el instrumento). El footer es papel
-   con colofón de cierre de informe.
+1. Óxido/verde marcan **datos**, nunca decoración. ≤5% del viewport
+   (excepción única: las ondas de la portada, abajo).
+2. **La portada entintada** (v2.1, dirección de arte de Alonso sobre el
+   modelo SpeedCurve): el hero de la HOME es la única sección inmersiva —
+   campo profundo de verde tinta (#16241D→#0C1410) con papel milimetrado
+   al 3% y ondas de calibración en capas (verde/óxido/papel translúcidos),
+   clase `dark portada`. Metáfora: los informes tienen portada entintada
+   y páginas de papel. El resto del sitio sigue la regla original: dark
+   solo dentro de `.scanner`. Prohibido extender la portada a más
+   secciones o volver al near-black + verde neón.
 
 ## Typography
 
@@ -60,13 +66,12 @@ mostrar el producto vivo), sin copiar su atmósfera azul:
 
 1. **La hoja técnica** (`SheetMarks.astro`): esquinas de registro + rótulo
    mono ("Optimiza · Hoja 0X · …") en cada hero. El hero es una lámina.
-2. **La cinta de registro** (`RegistroCinta.astro`): banda al pie del hero
-   (home y /analisis) que desfila lecturas REALES anonimizadas de los 346
-   sitios medidos. Datos reales en movimiento — nunca actividad simulada.
-   Pausa on-hover; estática con reduced-motion. Regenerar al re-medir.
-3. **El dial grabado**: arco de calibración en tinta ≤8% asomando bajo el
-   instrumento del hero — el dispositivo descansa sobre su propia lámina
-   de calibración. Solo en el hero de home.
+2. **La cinta de registro** (`RegistroCinta.astro`): teletipo al TOPE del
+   hero (home bajo el nav; /analisis al pie) que desfila lecturas REALES
+   anonimizadas de los 346 sitios medidos. Datos reales en movimiento —
+   nunca actividad simulada. Pausa on-hover; estática con reduced-motion.
+3. **Las ondas de calibración**: capas orgánicas translúcidas al pie de la
+   portada (verde #2E7A55, óxido, papel) — nuestras "curvas". Solo portada.
 4. **El instrumento llega encendido**: el escáner precarga la lectura real
    de optimizahq.com (constante SELF en Scanner.astro, fechada).
 
