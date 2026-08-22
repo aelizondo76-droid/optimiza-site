@@ -72,6 +72,12 @@ El eje wdth de Archivo da todas las voces necesarias:
 - El token `--mono` sigue existiendo como alias pero resuelve a Archivo.
   PROHIBIDO reintroducir cualquier monoespaciada en UI visible.
 - H1 ≤ una oración. H1 40–60px, H2 26–36px.
+- **Escala de datos — anti-gigantismo (v2.5, dirección de Alonso):** la
+  cifra destacada más grande del sitio no supera ~1.2× el H1 (tope duro
+  68px; el statband estaba en 148px y "parecía landing de venta de
+  cursos"). La cifra APOYA la frase, nunca la sustituye. Excepción única:
+  numerales DENTRO del instrumento oscuro (son UI de aparato, no
+  tipografía de marketing).
 - Inter, Space Mono e IBM Plex Mono quedan PROHIBIDAS.
 
 ## Firma visual — la hoja viva
