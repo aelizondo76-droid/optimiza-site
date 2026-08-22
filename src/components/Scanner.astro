@@ -184,7 +184,7 @@ const SELF = { index: 81, vel: 50, seo: 100, conv: 90, fecha: 'agosto 2026' };
   select.qinp { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239A95B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 13px center; padding-right: 38px; cursor: pointer; }
   .q-label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 8px; }
   .qpills { display: flex; gap: 8px; }
-  .qpill { flex: 1; text-align: center; font-size: 13px; padding: 9px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); cursor: pointer; user-select: none; transition: border-color .16s, background .16s; position: relative; }
+  .qpill { flex: 1; text-align: center; font-size: 13px; padding: 9px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); cursor: pointer; user-select: none; transition: border-color .16s, background .16s; position: relative; }
   .qpill.on { border-color: var(--violet); background: color-mix(in srgb, var(--violet) 14%, transparent); color: var(--violet-ink); font-weight: 600; }
   .qpill input { position: absolute; opacity: 0; pointer-events: none; }
   .scan-err { color: #ff8b95; font-family: var(--mono); font-size: 12px; margin-top: 10px; display: none; }
