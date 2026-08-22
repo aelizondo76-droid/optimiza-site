@@ -312,7 +312,10 @@ const faqLd = {
   .rung-v.free { border-color: color-mix(in srgb, var(--crit) 45%, transparent); }
   .rv-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
   .rung-v .lvl { font-family: var(--mono); font-size: 11px; color: var(--faint); letter-spacing: 0.12em; text-transform: uppercase; }
-  .rung-v .kind { font-family: var(--mono); font-size: 10.5px; color: var(--ok-ink); border: 1px solid var(--line); border-radius: 3px; padding: 3px 9px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .rung-v .kind { font-family: var(--mono); font-size: 10.5px; color: var(--text); border: none; border-radius: 3px; padding: 4px 10px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .ladder-v .rung-v:nth-child(2) .kind { background: var(--wash-azul); }
+  .ladder-v .rung-v:nth-child(3) .kind { background: var(--wash-ocre); }
+  .ladder-v .rung-v:nth-child(4) .kind { background: var(--wash-terracota); }
   .rung-v.free .kind { background: var(--ok); color: var(--lime-fg); border-color: transparent; }
   .rung-v h3 { font-size: 18px; }
   .rung-v .for { color: var(--muted); font-size: 13.5px; margin-top: 6px; line-height: 1.5; }

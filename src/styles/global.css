@@ -11,6 +11,10 @@
   --text: #191A17; --muted: #4C4F49; --faint: #64675F;
   --line: rgba(25,26,23,0.16); --line-soft: rgba(25,26,23,0.07); --line-strong: rgba(25,26,23,0.5);
   --crit: #963A1D; --crit-ink: #7C2F17; --ok: #1E5A3F; --ok-ink: #17492F;
+  /* Paleta editorial extendida — SOLO ilustraciones y paneles editoriales,
+     nunca señales de dato (esas siguen siendo crit/ok). */
+  --ed-azul: #8FA7BC; --ed-ocre: #E3C68C; --ed-terracota: #C87B5F; --ed-salvia: #AEC3A9; --ed-gris: #BDB8B1;
+  --wash-azul: #E7EDF1; --wash-ocre: #F4EAD3; --wash-terracota: #F2E3DA; --wash-salvia: #E7EDE4; --wash-gris: #EDEBE7;
   /* alias legacy — páginas antiguas referencian estos nombres */
   --violet: var(--crit); --violet-ink: var(--crit-ink); --cyan-ink: #1F4A3E; --lime: var(--ok); --lime-fg: #F1F0E9;
   --vbtn-bg: #191A17; --vbtn-fg: #F1F0E9; --ico-bg: rgba(25,26,23,0.06);

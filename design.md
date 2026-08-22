@@ -84,6 +84,22 @@ mostrar el producto vivo), sin copiar su atmósfera azul:
 4. **El instrumento llega encendido**: el escáner precarga la lectura real
    de optimizahq.com (constante SELF en Scanner.astro, fechada).
 
+## Paleta editorial extendida (v2.4)
+
+Para ilustraciones y paneles editoriales (NUNCA para señales de dato):
+azul #8FA7BC · ocre #E3C68C · terracota #C87B5F · salvia #AEC3A9 ·
+gris #BDB8B1, con sus tintes wash (--wash-*) como fondos de panel.
+Regla de armonía: máximo 2 tintes wash visibles por viewport; las
+señales de dato siguen siendo exclusivamente crit/ok.
+
+## El footer — tinta, no acuarela
+
+El footer NO repite la acuarela del hero (SpeedCurve clona sus formas en
+el footer; decisión nuestra: variante, no clon). Su pieza es un trazo
+sumi-e de tinta china monocroma con un sello terracota
+(`/ilustraciones/trazo-footer.webp`) — misma familia manual, cero
+repetición de color, y remata el concepto "quién firma el informe".
+
 ## Firma visual — la regleta calibrada
 
 Toda estadística clave (porcentaje o puntaje 0–100) se muestra sobre una
