@@ -1,20 +1,50 @@
 # Optimiza
 
-> Firma de optimización web para empresas en crecimiento. Optimizamos tu negocio a través de tu web: velocidad, visibilidad (SEO/GEO), conversión y automatización — medido en ventas, no en reportes.
+> Firma de optimización web para empresas en crecimiento en Costa Rica. Optimizamos tu negocio a través de tu web: velocidad, visibilidad (SEO/GEO), conversión y automatización — medido en ventas, no en reportes. Autores del Índice Optimiza 2026: 346 sitios de empresas costarricenses analizados.
 
-## Qué hace Optimiza
-- **Velocidad**: Core Web Vitals, compresión de imágenes, caché y CDN para que la web cargue al instante.
-- **Visibilidad**: SEO técnico, contenido, optimización para IA (GEO) y Google Ads.
-- **Conversión**: landing pages, pruebas A/B, medición GA4/GTM y optimización de formularios.
-- **Automatización**: integración de CRM, flujos de nurturing y seguimiento automático.
+Optimiza trabaja en cuatro pilares: velocidad (Core Web Vitals, compresión de imágenes, caché), visibilidad (SEO técnico, contenido, optimización para IA/GEO), conversión (landing pages, pruebas A/B, medición GA4) y automatización (CRM, flujos de seguimiento). El punto de entrada es un diagnóstico gratuito con el escáner propio, y la escalera de servicios es Diagnóstico → Cimientos → Aceleración → Autopilot.
 
-## Cómo empezar
-- Diagnóstico gratuito del sitio (velocidad, SEO y conversión).
-- Escalera de servicios: Diagnóstico → Cimientos → Aceleración → Autopilot.
-- Programa Fundador: cupo limitado con precio preferente y garantía de desempeño.
+## Sitio
 
-## Enlaces
-- Servicios: https://optimizahq.com/servicios
-- Análisis y teardowns: https://optimizahq.com/analisis
-- Nosotros: https://optimizahq.com/nosotros
-- Contacto: https://optimizahq.com/contacto
+- [Servicios](https://optimizahq.com/servicios/): los cuatro pilares, la escalera de niveles y el Programa Fundador.
+- [Análisis](https://optimizahq.com/analisis/): el Índice Optimiza 2026 y todos los estudios por sector.
+- [Nosotros](https://optimizahq.com/nosotros/): quién está detrás de Optimiza.
+- [Contacto](https://optimizahq.com/contacto/): diagnóstico gratuito del sitio (velocidad, SEO y conversión).
+
+## Índice Optimiza 2026 — estudios principales
+
+- [Estado digital de las empresas en Costa Rica 2026](https://optimizahq.com/analisis/estado-digital-empresas-costa-rica-2026/): estudio maestro — 346 sitios analizados, 66% sin píxel de medición, pérdida anual estimada de $82M.
+- [Sector construcción](https://optimizahq.com/analisis/estudio-webs-sector-construccion-costa-rica-2026/): pilar sectorial con constructoras, acabados, cocinas y piscinas.
+- [Sector salud](https://optimizahq.com/analisis/estudio-webs-sector-salud-costa-rica-2026/): pilar sectorial con clínicas dentales, estéticas y consultorios médicos.
+- [Servicios digitales](https://optimizahq.com/analisis/estudio-webs-servicios-digitales-costa-rica-2026/): pilar sectorial con agencias, marketing y desarrollo.
+- [Alimentos y bebidas](https://optimizahq.com/analisis/estudio-webs-alimentos-bebidas-costa-rica-2026/): pilar sectorial con restaurantes, cafeterías y panaderías.
+- [Comercio electrónico](https://optimizahq.com/analisis/estudio-webs-ecommerce-costa-rica-2026/): pilar sectorial con tiendas de moda, hogar, electrónica y más.
+
+## Estudios por nicho
+
+- [Clínicas dentales](https://optimizahq.com/analisis/estudio-webs-clinicas-dentales-costa-rica-2026/): diagnóstico del nicho dental en el GAM.
+- [Constructoras](https://optimizahq.com/analisis/estudio-webs-constructoras-costa-rica-2026/): diagnóstico del nicho de construcción.
+- [Restaurantes](https://optimizahq.com/analisis/estudio-webs-restaurantes-costa-rica-2026/): diagnóstico del nicho gastronómico.
+- [Tiendas de moda](https://optimizahq.com/analisis/estudio-webs-tienda-moda-costa-rica-2026/): diagnóstico del e-commerce de moda.
+
+## Optional
+
+- [Academias y cursos](https://optimizahq.com/analisis/estudio-webs-academias-cursos-costa-rica-2026/): diagnóstico del nicho educativo.
+- [Agencias de diseño](https://optimizahq.com/analisis/estudio-webs-agencias-diseno-costa-rica-2026/)
+- [Bares y discotecas](https://optimizahq.com/analisis/estudio-webs-bares-discotecas-costa-rica-2026/)
+- [Cafeterías](https://optimizahq.com/analisis/estudio-webs-cafeterias-costa-rica-2026/)
+- [Clínicas estéticas](https://optimizahq.com/analisis/estudio-webs-clinicas-esteticas-costa-rica-2026/)
+- [Cocinas y muebles](https://optimizahq.com/analisis/estudio-webs-cocinas-muebles-costa-rica-2026/)
+- [Consultoría empresarial](https://optimizahq.com/analisis/estudio-webs-consultoria-empresarial-costa-rica-2026/)
+- [Consultorios médicos](https://optimizahq.com/analisis/estudio-webs-consultorios-medicos-costa-rica-2026/)
+- [Acabados e instaladores](https://optimizahq.com/analisis/estudio-webs-acabados-instaladores-costa-rica-2026/)
+- [Heladerías](https://optimizahq.com/analisis/estudio-webs-heladerias-costa-rica-2026/)
+- [Marketing digital](https://optimizahq.com/analisis/estudio-webs-marketing-digital-costa-rica-2026/)
+- [Panaderías](https://optimizahq.com/analisis/estudio-webs-panaderias-costa-rica-2026/)
+- [Piscinas y exteriores](https://optimizahq.com/analisis/estudio-webs-piscinas-exteriores-costa-rica-2026/)
+- [Programación y desarrollo](https://optimizahq.com/analisis/estudio-webs-programacion-desarrollo-costa-rica-2026/)
+- [Tiendas de alimentos](https://optimizahq.com/analisis/estudio-webs-tienda-alimentos-costa-rica-2026/)
+- [Tiendas de belleza](https://optimizahq.com/analisis/estudio-webs-tienda-belleza-costa-rica-2026/)
+- [Tiendas de electrónica](https://optimizahq.com/analisis/estudio-webs-tienda-electronica-costa-rica-2026/)
+- [Tiendas de hogar](https://optimizahq.com/analisis/estudio-webs-tienda-hogar-costa-rica-2026/)
+- [Tiendas de mascotas](https://optimizahq.com/analisis/estudio-webs-tienda-mascotas-costa-rica-2026/)
