@@ -55,6 +55,11 @@ img { max-width: 100%; display: block; }
 
 .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: 24px; }
 .section { padding-block: clamp(64px, 9vw, 104px); position: relative; }
+/* Rendimiento: las secciones bajo el pliegue no se maquetan hasta acercarse
+   al viewport (perfil 2026-08-22: Rendering+Style&Layout eran 1.2s del hilo
+   en móvil, con una long task de 146ms dentro de la ventana del LCP).
+   El hero queda fuera: es lo primero que se pinta. */
+.section:not(.hero) { content-visibility: auto; contain-intrinsic-size: auto 720px; }
 .hero.section { padding-top: clamp(96px, 13vw, 140px); }
 .eyebrow { font-family: var(--sans); font-size: 12.5px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--faint); margin: 0 0 18px; display: inline-flex; align-items: center; gap: 10px; font-weight: 680; }
 .eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--faint); }
