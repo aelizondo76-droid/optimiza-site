@@ -13,13 +13,29 @@ const hasRedis =
 /* La construcción también va blindada (incidente 2026-10-05, parte 2): una
    credencial malformada hacía lanzar a Redis.fromEnv() a nivel de módulo —
    ANTES de tryRedis — y tumbaba todos los endpoints sin pasar por el modo
-   degradado. Una URL que no empiece con https:// se trata como ausencia. */
+   degradado. Además (parte 3) las credenciales se NORMALIZAN: el snippet
+   .env de Upstash viene con comillas y hubo pegados con el nombre incluido
+   (NOMBRE=valor) — se recortan espacios/comillas y se extrae desde https://. */
+function cleanCred(raw: string | undefined, kind: 'url' | 'token'): string {
+  let v = (raw || '').trim().replace(/^["']+|["']+$/g, '').trim();
+  if (kind === 'url') {
+    const i = v.indexOf('https://');
+    if (i > 0) v = v.slice(i);
+  } else if (/^UPSTASH_[A-Z_]+=/.test(v)) {
+    v = v.slice(v.indexOf('=') + 1).replace(/^["']+|["']+$/g, '').trim();
+  }
+  return v;
+}
 const redis = (() => {
   if (!hasRedis) return null;
   try {
-    if (!process.env.UPSTASH_REDIS_REST_URL!.startsWith('https://'))
-      throw new Error(`UPSTASH_REDIS_REST_URL no es una URL https válida`);
-    return Redis.fromEnv();
+    const url = cleanCred(process.env.UPSTASH_REDIS_REST_URL, 'url');
+    const token = cleanCred(process.env.UPSTASH_REDIS_REST_TOKEN, 'token');
+    if (!url.startsWith('https://'))
+      throw new Error(
+        `UPSTASH_REDIS_REST_URL no es una URL https válida (empieza con: "${(process.env.UPSTASH_REDIS_REST_URL || '').slice(0, 18)}…")`
+      );
+    return new Redis({ url, token });
   } catch (e: any) {
     console.error('[store] Redis no construible, modo memoria:', e?.message || e);
     return null;
