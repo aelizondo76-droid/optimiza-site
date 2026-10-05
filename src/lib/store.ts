@@ -10,7 +10,21 @@ import { Redis } from '@upstash/redis';
 const hasRedis =
   !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
 
-const redis = hasRedis ? Redis.fromEnv() : null;
+/* La construcción también va blindada (incidente 2026-10-05, parte 2): una
+   credencial malformada hacía lanzar a Redis.fromEnv() a nivel de módulo —
+   ANTES de tryRedis — y tumbaba todos los endpoints sin pasar por el modo
+   degradado. Una URL que no empiece con https:// se trata como ausencia. */
+const redis = (() => {
+  if (!hasRedis) return null;
+  try {
+    if (!process.env.UPSTASH_REDIS_REST_URL!.startsWith('https://'))
+      throw new Error(`UPSTASH_REDIS_REST_URL no es una URL https válida`);
+    return Redis.fromEnv();
+  } catch (e: any) {
+    console.error('[store] Redis no construible, modo memoria:', e?.message || e);
+    return null;
+  }
+})();
 
 export const storeMode = hasRedis ? 'redis' : 'memory';
 
