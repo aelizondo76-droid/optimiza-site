@@ -1,65 +1,61 @@
-import { Redis } from '@upstash/redis';
+import { put, get, list } from '@vercel/blob';
 
 /* ────────────────────────────────────────────────────────────────────────
-   Capa de datos del scanner.
-   Usa Upstash Redis (REST) en producción; si no hay credenciales, cae a un
-   almacén en memoria para desarrollo local (`astro dev`). El almacén en
-   memoria NO persiste entre invocaciones serverless — solo sirve para probar.
+   Capa de datos del scanner — Vercel Blob (store privado `optimiza-datos`).
+
+   Historia: la versión original usaba Upstash Redis. El 2026-10-05 Upstash
+   eliminó la base gratuita por inactividad y el escáner completo cayó con
+   500 (el cliente se construía a nivel de módulo y la primera llamada
+   estaba fuera de todo try/catch). Migrado a Vercel Blob porque el token
+   (BLOB_READ_WRITE_TOKEN) lo inyecta la propia plataforma — cero
+   credenciales manuales, que fue la causa raíz de 4 intentos fallidos de
+   restauración.
+
+   Doctrina de resiliencia (se conserva): el almacén NUNCA es razón para no
+   responder. Toda operación intenta Blob y degrada a memoria si falla; en
+   modo degradado el escáner funciona y el lead llega igual a Clientify.
+
+   Trade-offs aceptados vs Redis:
+   - rateLimit es por instancia (memoria): suficiente contra abuso casual;
+     un atacante distribuido lo esquivaría igual con IPs múltiples.
+   - Los informes no expiran (eran 90 días): son JSON de ~5KB, costo nulo.
+   - upsertLead tiene una ventana de carrera read-modify-write: con el
+     tráfico actual es teórica; si algún día duele, se migra a algo con
+     transacciones.
    ──────────────────────────────────────────────────────────────────────── */
 
-const hasRedis =
-  !!process.env.UPSTASH_REDIS_REST_URL && !!process.env.UPSTASH_REDIS_REST_TOKEN;
+const hasBlob = !!process.env.BLOB_READ_WRITE_TOKEN;
+export const storeMode = hasBlob ? 'blob' : 'memory';
 
-/* La construcción también va blindada (incidente 2026-10-05, parte 2): una
-   credencial malformada hacía lanzar a Redis.fromEnv() a nivel de módulo —
-   ANTES de tryRedis — y tumbaba todos los endpoints sin pasar por el modo
-   degradado. Además (parte 3) las credenciales se NORMALIZAN: el snippet
-   .env de Upstash viene con comillas y hubo pegados con el nombre incluido
-   (NOMBRE=valor) — se recortan espacios/comillas y se extrae desde https://. */
-function cleanCred(raw: string | undefined, kind: 'url' | 'token'): string {
-  let v = (raw || '').trim().replace(/^["']+|["']+$/g, '').trim();
-  if (kind === 'url') {
-    const i = v.indexOf('https://');
-    if (i > 0) v = v.slice(i);
-  } else if (/^UPSTASH_[A-Z_]+=/.test(v)) {
-    v = v.slice(v.indexOf('=') + 1).replace(/^["']+|["']+$/g, '').trim();
-  }
-  return v;
-}
-const redis = (() => {
-  if (!hasRedis) return null;
-  try {
-    const url = cleanCred(process.env.UPSTASH_REDIS_REST_URL, 'url');
-    const token = cleanCred(process.env.UPSTASH_REDIS_REST_TOKEN, 'token');
-    if (!url.startsWith('https://'))
-      throw new Error(
-        `UPSTASH_REDIS_REST_URL no es una URL https válida (empieza con: "${(process.env.UPSTASH_REDIS_REST_URL || '').slice(0, 18)}…")`
-      );
-    return new Redis({ url, token });
-  } catch (e: any) {
-    console.error('[store] Redis no construible, modo memoria:', e?.message || e);
-    return null;
-  }
-})();
-
-export const storeMode = hasRedis ? 'redis' : 'memory';
-
-/* Resiliencia (incidente 2026-10-05): la base de Upstash murió y el 500 del
-   rate-limit tumbó el escáner COMPLETO — el instrumento de leads estuvo caído
-   sin aviso. Regla: Redis nunca es razón para no responder. Cada operación
-   intenta Redis y, si falla, degrada a memoria (el lead igual llega a
-   Clientify; solo se pierde dedup/persistencia entre invocaciones). */
-async function tryRedis<T>(op: () => Promise<T>): Promise<{ ok: true; value: T } | { ok: false }> {
-  if (!redis) return { ok: false };
+async function tryBlob<T>(op: () => Promise<T>): Promise<{ ok: true; value: T } | { ok: false }> {
+  if (!hasBlob) return { ok: false };
   try {
     return { ok: true, value: await op() };
   } catch (e: any) {
-    console.error('[store] Redis caído, degradando a memoria:', e?.message || e);
+    console.error('[store] Blob falló, degradando a memoria:', e?.message || e);
     return { ok: false };
   }
 }
 
-// ── Fallback en memoria (solo dev) ──
+async function blobReadJson<T>(path: string): Promise<T | null> {
+  const r = await get(path, { access: 'private' });
+  if (!r) return null;
+  let text = '';
+  for await (const chunk of r.stream as AsyncIterable<Uint8Array>) {
+    text += Buffer.from(chunk).toString('utf8');
+  }
+  return JSON.parse(text) as T;
+}
+
+async function blobWriteJson(path: string, data: any): Promise<void> {
+  await put(path, JSON.stringify(data), {
+    access: 'private',
+    allowOverwrite: true,
+    contentType: 'application/json',
+  });
+}
+
+// ── Fallback en memoria (dev local y modo degradado) ──
 const mem = new Map<string, { value: any; expires: number }>();
 function memGet<T>(key: string): T | null {
   const e = mem.get(key);
@@ -73,8 +69,6 @@ function memGet<T>(key: string): T | null {
 function memSet(key: string, value: any, ttlSec?: number) {
   mem.set(key, { value, expires: ttlSec ? Date.now() + ttlSec * 1000 : 0 });
 }
-
-const REPORT_TTL = 60 * 60 * 24 * 90; // 90 días
 
 export interface Lead {
   id: string;
@@ -98,17 +92,20 @@ export interface Lead {
 /* ── Informes ───────────────────────────────────────────────────────────── */
 
 export async function saveReport(id: string, data: any): Promise<void> {
-  const r = await tryRedis(() => redis!.set(`report:${id}`, data, { ex: REPORT_TTL }));
-  if (!r.ok) memSet(`report:${id}`, data, REPORT_TTL);
+  const r = await tryBlob(() => blobWriteJson(`reports/${id}.json`, data));
+  if (!r.ok) memSet(`report:${id}`, data, 60 * 60 * 24);
 }
 
 export async function getReport<T = any>(id: string): Promise<T | null> {
-  const r = await tryRedis(() => redis!.get<T>(`report:${id}`));
+  // El id viene de la URL pública /reporte/[id] — se restringe a nanoid
+  // para que jamás forme un pathname fuera de reports/.
+  if (!/^[A-Za-z0-9_-]{1,32}$/.test(id)) return null;
+  const r = await tryBlob(() => blobReadJson<T>(`reports/${id}.json`));
   if (r.ok) return r.value ?? memGet<T>(`report:${id}`);
   return memGet<T>(`report:${id}`);
 }
 
-/* ── Rate limit por IP ──────────────────────────────────────────────────── */
+/* ── Rate limit por IP (memoria por instancia — ver trade-offs arriba) ──── */
 
 export async function rateLimit(
   ip: string,
@@ -116,12 +113,6 @@ export async function rateLimit(
   windowSec: number
 ): Promise<{ allowed: boolean; remaining: number }> {
   const key = `rl:${ip}`;
-  const r = await tryRedis(async () => {
-    const count = await redis!.incr(key);
-    if (count === 1) await redis!.expire(key, windowSec);
-    return count;
-  });
-  if (r.ok) return { allowed: r.value <= max, remaining: Math.max(0, max - r.value) };
   const cur = memGet<number>(key) ?? 0;
   const next = cur + 1;
   memSet(key, next, windowSec);
@@ -130,17 +121,23 @@ export async function rateLimit(
 
 /* ── Leads + dedup ──────────────────────────────────────────────────────── */
 
+function dedupPath(email: string, domain: string): string {
+  const raw = `${email.toLowerCase()}|${domain.toLowerCase()}`;
+  // pathname seguro y estable (los emails traen @, | y acentos ocasionales)
+  return `leads/dedup/${Buffer.from(raw).toString('base64url')}.json`;
+}
+
 /** Devuelve el lead previo si ya existe (email+dominio), o null. */
 export async function findLead(email: string, domain: string): Promise<Lead | null> {
-  const key = `lead:${email.toLowerCase()}|${domain.toLowerCase()}`;
-  const r = await tryRedis(() => redis!.get<Lead>(key));
-  if (r.ok) return r.value ?? null;
-  return memGet<Lead>(key);
+  const path = dedupPath(email, domain);
+  const r = await tryBlob(() => blobReadJson<Lead>(path));
+  if (r.ok) return r.value;
+  return memGet<Lead>(path);
 }
 
 /** Crea o actualiza el lead (upsert con dedup por email+dominio). */
 export async function upsertLead(lead: Lead): Promise<Lead> {
-  const dedupKey = `lead:${lead.email.toLowerCase()}|${lead.domain.toLowerCase()}`;
+  const path = dedupPath(lead.email, lead.domain);
   const prev = await findLead(lead.email, lead.domain);
   // Al reincidir, conserva lo previo pero prefiere los valores nuevos no vacíos.
   const pick = <T>(a: T | undefined | null, b: T | undefined | null) =>
@@ -161,36 +158,35 @@ export async function upsertLead(lead: Lead): Promise<Lead> {
         scans: prev.scans + 1,
       }
     : lead;
-  const r = await tryRedis(async () => {
-    await redis!.set(dedupKey, merged);
-    // Solo indexa la primera vez (las actualizaciones reusan el id existente)
-    if (!prev) await redis!.lpush('leads:index', merged.id);
-    await redis!.set(`leadById:${merged.id}`, merged);
+  const id = prev?.id || merged.id;
+  const r = await tryBlob(async () => {
+    await blobWriteJson(path, { ...merged, id });
+    await blobWriteJson(`leads/by-id/${id}.json`, { ...merged, id });
   });
   if (!r.ok) {
-    memSet(dedupKey, merged);
-    if (!prev) {
-      const idx = memGet<string[]>('leads:index') ?? [];
-      idx.unshift(merged.id);
-      memSet('leads:index', idx);
-    }
-    memSet(`leadById:${merged.id}`, merged);
+    memSet(path, merged);
+    memSet(`leadById:${id}`, merged);
   }
   return merged;
 }
 
 /** Devuelve los leads más recientes para el panel. */
 export async function getLeads(limit = 200): Promise<Lead[]> {
-  let ids: string[] = [];
-  const r = await tryRedis(() => redis!.lrange('leads:index', 0, limit - 1));
-  if (r.ok) ids = r.value as string[];
-  else ids = (memGet<string[]>('leads:index') ?? []).slice(0, limit);
-  if (!ids.length) return [];
+  const r = await tryBlob(async () => {
+    const { blobs } = await list({ prefix: 'leads/by-id/', limit: 1000 });
+    const recent = blobs
+      .sort((a, b) => +new Date(b.uploadedAt) - +new Date(a.uploadedAt))
+      .slice(0, limit);
+    const out: Lead[] = [];
+    for (const b of recent) {
+      const l = await blobReadJson<Lead>(b.pathname);
+      if (l) out.push(l);
+    }
+    return out;
+  });
+  if (r.ok) return r.value;
+  // modo memoria: lo que haya en esta instancia
   const leads: Lead[] = [];
-  for (const id of ids) {
-    const rl = await tryRedis(() => redis!.get<Lead>(`leadById:${id}`));
-    const l = rl.ok ? rl.value : memGet<Lead>(`leadById:${id}`);
-    if (l) leads.push(l);
-  }
-  return leads;
+  for (const [k, v] of mem) if (k.startsWith('leadById:')) leads.push(v.value as Lead);
+  return leads.slice(0, limit);
 }
